@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Case study: Building a semantic search engine over 130+ technical books using MCP, SQLite FTS5, and sentence-transformers.">
+    <title>Book Library MCP Server | Taylor Stephens</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <meta property="og:title" content="Book Library MCP Server | Taylor Stephens">
+    <meta property="og:description" content="Turned 130+ technical books into an AI-searchable knowledge base with semantic search, full-text search, and 40+ natural language tools.">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/case-study.css">
+</head>
+<body>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <nav class="back-nav">
+        <a href="../index.html#personal-projects">&larr; Back to Portfolio</a>
+    </nav>
+
+    <main id="main-content" class="case-study">
+
+        <header class="cs-header">
+            <h1>From 130 Books to Instant Answers: Building a Semantic Search Engine with MCP</h1>
+            <p class="cs-tagline">Turned a personal library of 130+ technical books into an AI-searchable knowledge base with dual search, learning tools, and natural language access.</p>
+            <div class="tech-pills">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">FastMCP</span>
+                <span class="tech-pill">SQLite</span>
+                <span class="tech-pill">FTS5</span>
+                <span class="tech-pill">sentence-transformers</span>
+                <span class="tech-pill">all-MiniLM-L6-v2</span>
+            </div>
+        </header>
+
+        <section class="cs-section" id="problem">
+            <h2>The Problem</h2>
+            <p>I had 130+ technical books sitting on disk &mdash; Docker, Python, Linux, AI/ML, career development, mental models. Most were half-read or forgotten entirely. When starting a new project, I&rsquo;d spend hours re-reading chapters I&rsquo;d already studied, unable to connect ideas across books or remember which volume covered what.</p>
+            <p>The external problem was access: the knowledge was locked in files. The internal problem was frustration: I <em>knew</em> I&rsquo;d read about a topic but couldn&rsquo;t find where. The deeper issue was philosophical &mdash; knowledge you&rsquo;ve invested in shouldn&rsquo;t decay. It should compound.</p>
+        </section>
+
+        <section class="cs-section" id="approach">
+            <h2>The Approach</h2>
+            <p>The solution was a three-step pipeline: ingest and structure the books, build dual search (semantic + full-text), and surface everything through natural language tools via the Model Context Protocol.</p>
+
+            <div class="mermaid-container">
+                <div class="mermaid">
+flowchart LR
+    A["EPUB/PDF Files"] --> B["Ingestion"]
+    B --> C["SQLite DB"]
+    C --> D["FTS5 Index"]
+    C --> E["384-dim Embeddings"]
+    D --> F["MCP Server\n40+ Tools"]
+    E --> F
+    F --> G["Claude / AI Assistant"]
+                </div>
+            </div>
+
+            <h3>Three-Step Plan</h3>
+            <ul>
+                <li><strong>Ingest and structure:</strong> Parse EPUB/PDF files into chapters with metadata, store in SQLite with full-text indexing via FTS5.</li>
+                <li><strong>Build dual search:</strong> FTS5 for exact keyword matches (BM25 ranking) and sentence-transformer embeddings for conceptual similarity search.</li>
+                <li><strong>Surface through tools:</strong> Expose 40+ granular MCP tools that let an AI assistant compose complex workflows &mdash; from simple lookups to multi-step research.</li>
+            </ul>
+        </section>
+
+        <section class="cs-section" id="technical">
+            <h2>Key Technical Decisions</h2>
+
+            <h3>Dual Search Strategy</h3>
+            <p>Full-text search (FTS5) handles exact terms and phrases with BM25 ranking &mdash; fast and precise for &ldquo;async await&rdquo; or &ldquo;dependency injection.&rdquo; Semantic search with 384-dimensional embeddings handles conceptual queries &mdash; finding chapters about &ldquo;container networking&rdquo; even when those exact words don&rsquo;t appear.</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Search Type</th>
+                        <th>Best For</th>
+                        <th>Speed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>FTS5 (Full-Text)</td>
+                        <td>Exact terms, phrases, code snippets</td>
+                        <td class="highlight">&lt;1ms</td>
+                    </tr>
+                    <tr>
+                        <td>Semantic (Embeddings)</td>
+                        <td>Conceptual queries, intent matching</td>
+                        <td class="highlight">&lt;5ms</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="mermaid-container">
+                <div class="mermaid">
+flowchart TD
+    Q["User Query"] --> R{"Query Router"}
+    R -->|"Exact terms"| FTS["FTS5 Search\nBM25 Ranking"]
+    R -->|"Conceptual"| SEM["Semantic Search\nCosine Similarity"]
+    FTS --> RES["Ranked Results"]
+    SEM --> RES
+                </div>
+            </div>
+
+            <h3>Embedding Model Choice</h3>
+            <p>Selected <code>all-MiniLM-L6-v2</code> for its balance: 128.9 chapters/second embedding speed, compact 384-dimensional vectors, and good quality for single-user knowledge bases. Larger models offered marginal accuracy gains but significantly slower indexing.</p>
+
+            <h3>Tool Design Philosophy</h3>
+            <p>Rather than building a few monolithic tools, I exposed 40+ granular operations. This lets the LLM compose complex workflows &mdash; combining <code>semantic_search</code> with <code>get_chapter</code> with <code>extract_code_examples</code> &mdash; rather than trying to anticipate every use case in advance.</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Tools</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Discovery</td>
+                        <td class="highlight">8 tools</td>
+                        <td>Search, browse, find coverage</td>
+                    </tr>
+                    <tr>
+                        <td>Reading</td>
+                        <td class="highlight">6 tools</td>
+                        <td>Get chapters, sections, summaries</td>
+                    </tr>
+                    <tr>
+                        <td>Learning</td>
+                        <td class="highlight">5 tools</td>
+                        <td>Study guides, concept teaching, paths</td>
+                    </tr>
+                    <tr>
+                        <td>Planning</td>
+                        <td class="highlight">6 tools</td>
+                        <td>BRDs, implementation plans, architecture</td>
+                    </tr>
+                    <tr>
+                        <td>Progress</td>
+                        <td class="highlight">5 tools</td>
+                        <td>Bookmarks, reading status, notes</td>
+                    </tr>
+                    <tr>
+                        <td>Analytics</td>
+                        <td class="highlight">6 tools</td>
+                        <td>Stats, coverage, author insights</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <pre><code># Example: semantic search for container networking
+results = semantic_search("container networking concepts", limit=5)
+
+# Returns ranked chapters from across the library:
+# 1. Docker Deep Dive - Ch.11 (similarity: 0.89)
+# 2. Learn Docker in a Month - Ch.15 (similarity: 0.84)
+# 3. Linux Networking Deep Dive - Ch.7 (similarity: 0.71)</code></pre>
+        </section>
+
+        <section class="cs-section" id="results">
+            <h2>Results</h2>
+
+            <div class="metrics-row">
+                <div class="metric-card">
+                    <span class="metric-number">102</span>
+                    <span class="metric-label">Books Indexed</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">1,349</span>
+                    <span class="metric-label">Chapters Searchable</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">9.9M</span>
+                    <span class="metric-label">Words Accessible</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">&lt;5ms</span>
+                    <span class="metric-label">Search Latency</span>
+                </div>
+            </div>
+
+            <p>The library went from a passive collection of files to an active knowledge base. Starting a new project now begins with <code>get_topic_coverage("Docker")</code> instead of browsing folders. Cross-referencing ideas across books &mdash; comparing how three different authors explain the same concept &mdash; became a single query instead of an afternoon.</p>
+        </section>
+
+        <section class="cs-section" id="lessons">
+            <h2>Lessons Learned</h2>
+            <ul class="lessons-list">
+                <li>Granular tools beat monolithic tools for LLM composability &mdash; 40 small operations outperform 5 large ones because the model can chain them creatively.</li>
+                <li>SQLite + FTS5 is remarkably capable for single-user knowledge bases &mdash; no need for Elasticsearch or Postgres when your dataset fits in memory.</li>
+                <li>Dual search (keyword + semantic) catches what either alone misses. FTS5 finds the exact term; embeddings find the concept.</li>
+                <!-- Placeholder for Taylor's personal reflection -->
+            </ul>
+        </section>
+
+        <section class="cs-cta">
+            <a href="#" class="cta-button">View on GitHub</a>
+            <p>Next: <a href="agentic-pipeline.html">Agentic Book Pipeline</a></p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Taylor Stephens. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <script src="../js/mermaid-init.js"></script>
+
+</body>
+</html>

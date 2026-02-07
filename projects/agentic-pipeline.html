@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Case study: Building an AI-powered book ingestion pipeline with a 15-state machine, LLM classification, and graduated autonomy.">
+    <title>Agentic Book Pipeline | Taylor Stephens</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <meta property="og:title" content="Agentic Book Pipeline | Taylor Stephens">
+    <meta property="og:description" content="Built an AI-powered ingestion system that classifies, processes, and shelves books automatically with a graduated autonomy model.">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/case-study.css">
+</head>
+<body>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <nav class="back-nav">
+        <a href="../index.html#personal-projects">&larr; Back to Portfolio</a>
+    </nav>
+
+    <main id="main-content" class="case-study">
+
+        <header class="cs-header">
+            <h1>Teaching an AI to Shelve Books: Building a Pipeline with Graduated Autonomy</h1>
+            <p class="cs-tagline">An AI-powered ingestion system that classifies, processes, and shelves books automatically &mdash; earning trust incrementally through a graduated autonomy model.</p>
+            <div class="tech-pills">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">State Machine</span>
+                <span class="tech-pill">LLM Classification</span>
+                <span class="tech-pill">Ports &amp; Adapters</span>
+                <span class="tech-pill">SQLite</span>
+            </div>
+        </header>
+
+        <section class="cs-section" id="problem">
+            <h2>The Problem</h2>
+            <p>Adding a new book to the library was a manual, multi-step process: identify the format, detect chapter boundaries, classify the content type, validate quality, and move it into the right location. Every new book meant the same repetitive sequence, and errors at any step cascaded downstream.</p>
+            <p>The internal frustration was the tedium &mdash; a creative system reduced to data entry. But the philosophical issue ran deeper: AI should earn trust incrementally, not demand it upfront. I needed a system that started cautious and got autonomous only after proving itself.</p>
+        </section>
+
+        <section class="cs-section" id="approach">
+            <h2>The Approach</h2>
+            <p>I designed a 15-state pipeline orchestrator with three layers: a state machine for lifecycle management, LLM classification with confidence scoring, and a graduated autonomy model that progresses from fully supervised to largely autonomous.</p>
+
+            <div class="mermaid-container">
+                <div class="mermaid">
+stateDiagram-v2
+    [*] --> DETECTED
+    DETECTED --> HASHING
+    HASHING --> CLASSIFYING
+    HASHING --> DUPLICATE
+    CLASSIFYING --> SELECTING_STRATEGY
+    CLASSIFYING --> REJECTED
+    SELECTING_STRATEGY --> PROCESSING
+    PROCESSING --> VALIDATING
+    PROCESSING --> NEEDS_RETRY
+    VALIDATING --> PENDING_APPROVAL
+    VALIDATING --> NEEDS_RETRY
+    PENDING_APPROVAL --> APPROVED
+    PENDING_APPROVAL --> REJECTED
+    APPROVED --> EMBEDDING
+    EMBEDDING --> COMPLETE
+    COMPLETE --> ARCHIVED
+    NEEDS_RETRY --> PROCESSING
+    DUPLICATE --> [*]
+    REJECTED --> [*]
+    ARCHIVED --> [*]
+                </div>
+            </div>
+
+            <h3>Three-Step Plan</h3>
+            <ul>
+                <li><strong>State machine lifecycle:</strong> 15 states with an explicit transition matrix &mdash; terminal states are immutable, retry loops enable recovery, and pending approval gates human-in-the-loop decisions.</li>
+                <li><strong>LLM classification with confidence:</strong> Multi-provider classification (OpenAI primary, Anthropic fallback) that returns book type, confidence score, tags, and reasoning &mdash; not just a label.</li>
+                <li><strong>Graduated autonomy:</strong> Three modes (supervised, partial, confident) with an emergency escape hatch that reverts to supervised mode instantly.</li>
+            </ul>
+        </section>
+
+        <section class="cs-section" id="technical">
+            <h2>Key Technical Decisions</h2>
+
+            <h3>Ports &amp; Adapters Architecture</h3>
+            <p>The system uses Protocol-based interfaces (PEP 544) for clean architectural boundaries. <code>LLMFallbackPort</code> abstracts chapter detection assistance; <code>BookRepository</code> abstracts persistence. This means swapping SQLite for Postgres or Claude for GPT requires changing one adapter, not the pipeline logic.</p>
+
+            <h3>Graduated Autonomy Model</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Mode</th>
+                        <th>Auto-Approve</th>
+                        <th>Human Review</th>
+                        <th>Trust Level</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Supervised</td>
+                        <td>None</td>
+                        <td>All books</td>
+                        <td>Starting point</td>
+                    </tr>
+                    <tr>
+                        <td>Partial</td>
+                        <td>High confidence</td>
+                        <td>Low confidence</td>
+                        <td class="highlight">Earned</td>
+                    </tr>
+                    <tr>
+                        <td>Confident</td>
+                        <td>Most books</td>
+                        <td>Edge cases only</td>
+                        <td class="highlight">Proven</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="mermaid-container">
+                <div class="mermaid">
+flowchart TD
+    B["Book Processed"] --> C{"Autonomy Mode?"}
+    C -->|"Supervised"| H["Human Reviews All"]
+    C -->|"Partial"| D{"Confidence >= Threshold?"}
+    D -->|"Yes"| A["Auto-Approve"]
+    D -->|"No"| H
+    C -->|"Confident"| E{"Edge Case?"}
+    E -->|"No"| A
+    E -->|"Yes"| H
+    H --> F["Decision Recorded"]
+    A --> F
+    F --> G["Metrics Updated\n30-day Rolling"]
+                </div>
+            </div>
+            <p>Each human decision feeds back into the metrics system. The 30-day rolling accuracy rate determines whether the system can be promoted to the next autonomy level &mdash; or should be demoted.</p>
+
+            <h3>OperationResult Pattern</h3>
+            <p>Instead of exception-based control flow, every operation returns a typed <code>OperationResult&lt;T&gt;</code> with explicit success/failure states and error codes. Error codes drive recovery logic &mdash; a <code>VALIDATION_ERROR</code> triggers retry, while <code>FILE_NOT_FOUND</code> triggers rejection.</p>
+
+            <div class="formula-box">
+                <div class="formula-label">OperationResult&lt;T&gt; Structure</div>
+                <div class="formula">
+                    <span class="accent">success</span>: bool | <span class="accent">value</span>: T | <span class="accent">error_code</span>: Enum | <span class="accent">message</span>: str
+                </div>
+                <p class="formula-note">Every path is explicit and typed &mdash; no hidden exceptions, no ambiguous failures</p>
+            </div>
+
+            <h3>Before / After</h3>
+            <div class="comparison">
+                <div class="comparison-before">
+                    <h3>Before</h3>
+                    <p>Manual process: identify format, detect chapters by hand, classify content type, validate quality, move files. Error-prone, tedious, and unscalable. Subprocess calls returned only exit codes &mdash; no quality data, no confidence scores.</p>
+                </div>
+                <div class="comparison-after">
+                    <h3>After</h3>
+                    <p>Automated pipeline: 15-state machine handles the full lifecycle. LLM classification with confidence scoring. Rich data flow with 10+ metadata fields per book. Graduated autonomy earns trust through accuracy, not configuration.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cs-section" id="results">
+            <h2>Results</h2>
+
+            <div class="metrics-row">
+                <div class="metric-card">
+                    <span class="metric-number">$0.03&ndash;0.05</span>
+                    <span class="metric-label">Cost Per Book</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">15</span>
+                    <span class="metric-label">Pipeline States</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">3</span>
+                    <span class="metric-label">Autonomy Levels</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">7</span>
+                    <span class="metric-label">Book Types Classified</span>
+                </div>
+            </div>
+
+            <p>The system moved from manual book processing to a pipeline where most books flow through automatically. Cost optimization through provider cascading (try the cheapest model first, fall back to stronger ones) keeps per-book costs under five cents. The graduated autonomy model means the system is safe by default and earns independence through demonstrated accuracy.</p>
+        </section>
+
+        <section class="cs-section" id="lessons">
+            <h2>Lessons Learned</h2>
+            <ul class="lessons-list">
+                <li>Graduated autonomy builds trust naturally &mdash; starting supervised and earning independence is far more practical than trying to tune a fully-autonomous system from day one.</li>
+                <li>The &ldquo;subprocess wall&rdquo; pattern is real &mdash; when shell calls become your bottleneck, switching to direct library imports with rich data objects is worth the refactor.</li>
+                <li>OperationResult pattern eliminates the ambiguity of exception-based control flow &mdash; every path is explicit and typed.</li>
+                <!-- Placeholder for Taylor's personal reflection -->
+            </ul>
+        </section>
+
+        <section class="cs-cta">
+            <a href="#" class="cta-button">View on GitHub</a>
+            <p>Next: <a href="claude-innit.html">Claude-Innit</a></p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Taylor Stephens. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <script src="../js/mermaid-init.js"></script>
+
+</body>
+</html>

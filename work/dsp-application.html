@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Case study: Redesigning Amazon's DSP application to reduce a 74% abandonment rate and capture $2.1M+ in annual entitlement.">
+    <title>DSP Application Redesign | Taylor Stephens</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <meta property="og:title" content="DSP Application Redesign | Taylor Stephens">
+    <meta property="og:description" content="Redesigned a 2018-era application with 74% abandonment to project +130% completion and $2.1M+ in annual entitlement capture.">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/case-study.css">
+</head>
+<body>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <nav class="back-nav">
+        <a href="../index.html#projects">&larr; Back to Portfolio</a>
+    </nav>
+
+    <main id="main-content" class="case-study">
+
+        <header class="cs-header">
+            <h1>Turning a 74% Abandonment Rate into $2.1M+ Annual Entitlement</h1>
+            <p class="cs-tagline">Redesigning Amazon&rsquo;s delivery partner application &mdash; unchanged since 2018 &mdash; to capture the qualified candidates who were dropping out before completion.</p>
+            <div class="tech-pills">
+                <span class="tech-pill">Product Strategy</span>
+                <span class="tech-pill">UX Research</span>
+                <span class="tech-pill">BRD / User Stories</span>
+                <span class="tech-pill">Competitive Analysis</span>
+            </div>
+        </header>
+
+        <section class="cs-section" id="problem">
+            <h2>The Problem</h2>
+            <p>Amazon&rsquo;s Delivery Service Partner application hadn&rsquo;t been updated since 2018. It had a 74% abandonment rate, took 3+ hours to complete, and only 23% of approved candidates converted to program inclination. The math was stark: $2.1M&ndash;$2.35M in annual entitlement was sitting on the table because qualified candidates gave up before finishing.</p>
+
+            <div class="funnel-chart">
+                <div class="funnel-stage" style="--width: 100%">
+                    <span class="stage-label">Start Application</span>
+                    <span class="stage-value">100%</span>
+                </div>
+                <div class="funnel-stage" style="--width: 50%">
+                    <span class="stage-label">Reach Complex Questions</span>
+                    <span class="stage-value">50%<span class="stage-drop">&darr;50%</span></span>
+                </div>
+                <div class="funnel-stage" style="--width: 26%">
+                    <span class="stage-label">Complete Application</span>
+                    <span class="stage-value">26%<span class="stage-drop">&darr;24%</span></span>
+                </div>
+                <div class="funnel-stage" style="--width: 23%">
+                    <span class="stage-label">Program Inclination</span>
+                    <span class="stage-value">23%<span class="stage-drop">&darr;3%</span></span>
+                </div>
+            </div>
+
+            <p>The application wasn&rsquo;t just old &mdash; it was hostile. Complex questions requiring external research, no save-and-continue functionality, and a monolithic structure that gave applicants no sense of progress. Candidates who would make excellent delivery partners were abandoning because the application itself was a barrier.</p>
+        </section>
+
+        <section class="cs-section" id="approach">
+            <h2>The Approach</h2>
+            <p>I started with competitive benchmarking. If our 71-question application had 74% abandonment, how did other franchise-style programs handle applications? The answer revealed the opportunity: Chick-fil-A&rsquo;s franchise application had 152 questions &mdash; more than double ours &mdash; yet achieved higher completion rates. The difference wasn&rsquo;t length; it was design.</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Amazon DSP</th>
+                        <th>Chick-fil-A</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Total Questions</td>
+                        <td>71</td>
+                        <td class="highlight">152</td>
+                    </tr>
+                    <tr>
+                        <td>Completion Rate</td>
+                        <td class="old-value">26%</td>
+                        <td class="new-value">Higher</td>
+                    </tr>
+                    <tr>
+                        <td>Save & Continue</td>
+                        <td>No</td>
+                        <td class="highlight">Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Progress Indicators</td>
+                        <td>None</td>
+                        <td class="highlight">Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Multi-Stage Design</td>
+                        <td>Monolithic</td>
+                        <td class="highlight">Staged</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Three-Part Strategy</h3>
+            <ul>
+                <li><strong>Benchmark and diagnose:</strong> Analyze Chick-fil-A and other franchise applications to identify what makes long applications completable.</li>
+                <li><strong>Redesign the architecture:</strong> Move from a monolithic form to a modular multi-stage system with save-and-continue, progress indicators, and question simplification.</li>
+                <li><strong>Accelerate delivery:</strong> Propose a Pardot integration that would cut development timeline from 10&ndash;12 months to 3&ndash;4 months.</li>
+            </ul>
+        </section>
+
+        <section class="cs-section" id="technical">
+            <h2>Key Decisions</h2>
+
+            <h3>Modular Multi-Stage Architecture</h3>
+            <p>The original application was one long form. I designed a multi-stage architecture with clear sections: eligibility screening, financial verification, operational planning, and final submission. Each stage could be saved and continued later, and applicants could see exactly where they were in the process.</p>
+
+            <h3>Question Simplification</h3>
+            <p>Twenty of the original 71 questions required external research (financial documents, business plans, etc.) and complex multi-part responses. I redesigned these as single-response formats wherever possible, moving the complex gathering to later stages when candidates were already invested.</p>
+
+            <h3>Six Acquisition Channels</h3>
+            <p>The original application assumed everyone arrived the same way. The redesign supported 6 different acquisition channels across 17 countries, with channel-appropriate entry points and field pre-population where data was already known.</p>
+
+            <h3>Pardot Integration</h3>
+            <p>The original timeline called for 10&ndash;12 months of custom development. I proposed integrating with Pardot (already in the tech stack) for form management and progressive profiling, cutting the timeline to 3&ndash;4 months by leveraging existing infrastructure.</p>
+
+            <h3>Before / After</h3>
+            <div class="comparison">
+                <div class="comparison-before">
+                    <h3>Before</h3>
+                    <p>74% abandonment rate. 3+ hours to complete. No save-and-continue. 23% program inclination. 3.51 minutes per question. Monolithic form. Last updated 2018. $2.1M+ left on table.</p>
+                </div>
+                <div class="comparison-after">
+                    <h3>After</h3>
+                    <p>Projected 26% → 60% completion (+130%). 23% → 46% inclination (+100%). 1.5 minutes per question. Multi-stage with progress. 6 channels, 17 countries. 3&ndash;4 month delivery.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cs-section" id="results">
+            <h2>Results</h2>
+
+            <div class="metrics-row">
+                <div class="metric-card">
+                    <span class="metric-number">+130%</span>
+                    <span class="metric-label">Completion Rate</span>
+                    <span class="metric-subtitle">26% → 60%</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">+100%</span>
+                    <span class="metric-label">Program Inclination</span>
+                    <span class="metric-subtitle">23% → 46%</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">6,087</span>
+                    <span class="metric-label">Additional Apps/Year</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">$2.1M+</span>
+                    <span class="metric-label">Annual Entitlement</span>
+                </div>
+            </div>
+
+            <p>The redesign projected completion rates increasing from 26% to 60% (+130%) and program inclination from 23% to 46% (+100%). At scale, this translated to 6,087 additional approved applications annually and $2.1M+ in captured entitlement that was previously being lost to abandonment.</p>
+            <p>Time per question dropped from 3.51 minutes to 1.5 minutes &mdash; not by removing questions, but by restructuring how they were asked. The Pardot integration cut delivery timeline by 70%, enabling faster time-to-value.</p>
+        </section>
+
+        <section class="cs-section" id="lessons">
+            <h2>Lessons Learned</h2>
+            <ul class="lessons-list">
+                <li>Length isn&rsquo;t the enemy of completion &mdash; design is. Chick-fil-A asks 152 questions and gets higher completion than our 71. The difference is structure, progress visibility, and question design.</li>
+                <li>Competitive benchmarking against non-obvious competitors (franchise applications, not just delivery programs) reveals unexpected best practices.</li>
+                <li>The fastest path to delivery often runs through existing infrastructure. Pardot was already in the stack; using it cut 7 months off the timeline.</li>
+            </ul>
+        </section>
+
+        <section class="cs-cta">
+            <p>Next: <a href="pinnacle-automation.html">Pinnacle Selection Automation</a></p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Taylor Stephens. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

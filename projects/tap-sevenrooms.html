@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Case study: Building a Singer tap for the SevenRooms restaurant platform API with incremental sync and parent-child stream relationships.">
+    <title>tap-sevenrooms | Taylor Stephens</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <meta property="og:title" content="tap-sevenrooms | Taylor Stephens">
+    <meta property="og:description" content="Built a Singer tap for the SevenRooms restaurant platform API, enabling automated data extraction for analytics and reporting.">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/case-study.css">
+</head>
+<body>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <nav class="back-nav">
+        <a href="../index.html#personal-projects">&larr; Back to Portfolio</a>
+    </nav>
+
+    <main id="main-content" class="case-study">
+
+        <header class="cs-header">
+            <h1>Automating Restaurant Data: Building a Singer Tap for SevenRooms</h1>
+            <p class="cs-tagline">A production Singer tap that extracts reservation, client, venue, and charge data from the SevenRooms hospitality API with incremental sync and parent-child stream relationships.</p>
+            <div class="tech-pills">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">Singer SDK</span>
+                <span class="tech-pill">REST API</span>
+                <span class="tech-pill">JSON Schema</span>
+                <span class="tech-pill">Data Pipeline</span>
+            </div>
+        </header>
+
+        <section class="cs-section" id="problem">
+            <h2>The Problem</h2>
+            <p>Restaurant operations data was locked inside the SevenRooms platform. Reservation history, client profiles, venue configurations, and charge records were only accessible through the web UI or manual exports. Analysts needed this data in a warehouse for cross-venue reporting, but manual exports were tedious, error-prone, and never up to date.</p>
+            <p>The deeper issue: business data should flow freely into the tools that need it. A reservation platform shouldn&rsquo;t be a data silo.</p>
+        </section>
+
+        <section class="cs-section" id="approach">
+            <h2>The Approach</h2>
+            <p>I built a Singer-compatible tap that maps SevenRooms API endpoints to standardized data streams, implements incremental sync with bookmark-based state management, and outputs Singer-format messages compatible with any target (CSV, database, warehouse).</p>
+
+            <div class="mermaid-container">
+                <div class="mermaid">
+flowchart LR
+    API["SevenRooms API\nv2.2"] --> TAP["tap-sevenrooms\n(Singer Tap)"]
+    TAP --> MSG["Singer Messages\nSCHEMA / RECORD / STATE"]
+    MSG --> TGT["Any Singer Target\nCSV | Postgres | BigQuery"]
+                </div>
+            </div>
+
+            <h3>Three-Step Plan</h3>
+            <ul>
+                <li><strong>Map API to streams:</strong> Four data streams (Reservations, Clients, Venues, Charges) with JSON Schema definitions covering 120+ fields across all entities.</li>
+                <li><strong>Implement incremental sync:</strong> Bookmark-based state management using the <code>updated</code> timestamp field. Daily batching prevents oversized API calls and enables checkpoint recovery.</li>
+                <li><strong>Output standardized messages:</strong> Singer protocol compliance means the tap works with any existing Singer target &mdash; no custom integration needed.</li>
+            </ul>
+        </section>
+
+        <section class="cs-section" id="technical">
+            <h2>Key Technical Decisions</h2>
+
+            <h3>Stream Architecture</h3>
+            <p>Four primary streams with a parent-child relationship between Venues and Charges. Venues are fetched first, then for each venue, charge records are retrieved via the <code>venues/{id}/charges</code> endpoint. This hierarchical traversal handles the API&rsquo;s nested resource structure elegantly.</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Stream</th>
+                        <th>Fields</th>
+                        <th>Sync Mode</th>
+                        <th>Relationship</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="highlight">Reservations</td>
+                        <td>45+</td>
+                        <td>Incremental</td>
+                        <td>Root</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">Clients</td>
+                        <td>30+</td>
+                        <td>Full Table</td>
+                        <td>Root</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">Venues</td>
+                        <td>25+</td>
+                        <td>Full Table</td>
+                        <td>Parent</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">Charges</td>
+                        <td>20+</td>
+                        <td>Incremental</td>
+                        <td>Child of Venues</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="mermaid-container">
+                <div class="mermaid">
+flowchart TD
+    D["Discovery Mode"] --> S["Schema Catalog\n(4 Streams)"]
+    S --> SYNC["Sync Mode"]
+    SYNC --> R["Reservations\n(Incremental)"]
+    SYNC --> C["Clients\n(Full Table)"]
+    SYNC --> V["Venues\n(Full Table)"]
+    V --> CH["Charges\n(Incremental, Child)"]
+                </div>
+            </div>
+
+            <h3>Incremental Sync Strategy</h3>
+            <p>Data syncs in one-day windows rather than bulk retrieval. This serves three purposes: it respects API rate limits, enables checkpoint recovery (if interrupted, resume from the last completed day), and keeps memory usage predictable regardless of total data volume.</p>
+
+            <div class="process-timeline">
+                <div class="timeline-item completed">
+                    <div class="timeline-week">Day 1</div>
+                    <div class="timeline-title">Initial Sync</div>
+                    <div class="timeline-desc">Fetch all records from start_date, save checkpoint</div>
+                </div>
+                <div class="timeline-item completed">
+                    <div class="timeline-week">Day 2</div>
+                    <div class="timeline-title">Incremental Batch</div>
+                    <div class="timeline-desc">Fetch records updated since last checkpoint</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-week">Day N</div>
+                    <div class="timeline-title">Ongoing Sync</div>
+                    <div class="timeline-desc">Daily batches keep data fresh, checkpoints enable recovery</div>
+                </div>
+            </div>
+
+            <pre><code># Bookmark-based incremental sync
+# State tracks last sync date per stream
+{
+  "reservations": "2026-01-15",
+  "charges": "2026-01-15",
+  "currently_syncing": "reservations"
+}</code></pre>
+
+            <h3>Schema Design</h3>
+            <p>Each stream has a comprehensive JSON Schema definition. Reservations alone track 45+ fields: guest data, timing (arrival, seated, departure), financial details (prepayment, comps, min price), POS ticket integration with line items, and custom tagging. All fields are nullable to handle the API&rsquo;s inconsistent response shapes.</p>
+
+            <h3>Singer Protocol Compliance</h3>
+            <p>The tap implements the full Singer spec: discovery mode generates a schema catalog, sync mode emits SCHEMA, RECORD, and STATE messages. Field-level selection through metadata allows consumers to sync only the columns they need, reducing bandwidth and storage.</p>
+        </section>
+
+        <section class="cs-section" id="results">
+            <h2>Results</h2>
+
+            <div class="metrics-row">
+                <div class="metric-card">
+                    <span class="metric-number">4</span>
+                    <span class="metric-label">Data Streams</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">120+</span>
+                    <span class="metric-label">Schema Fields</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">2</span>
+                    <span class="metric-label">Sync Modes</span>
+                    <span class="metric-subtitle">Incremental + Full Table</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">Singer</span>
+                    <span class="metric-label">Protocol Compatible</span>
+                </div>
+            </div>
+
+            <p>The tap automated what was previously a manual export process. Reservation and charge data flows into the analytics warehouse on a schedule, enabling cross-venue reporting that wasn&rsquo;t possible when data was locked in the platform. The Singer compatibility means it plugs into any existing data infrastructure without custom work.</p>
+        </section>
+
+        <section class="cs-section" id="lessons">
+            <h2>Lessons Learned</h2>
+            <ul class="lessons-list">
+                <li>Daily batching is underrated &mdash; chunking API calls into one-day windows makes the system resilient to interruptions and predictable on memory usage.</li>
+                <li>Parent-child stream relationships need explicit design &mdash; flattening nested API resources for Singer&rsquo;s flat catalog while preserving the hierarchy for sync logic requires thoughtful abstraction.</li>
+                <li>Nullable everything: real-world APIs return inconsistent shapes. Making every schema field nullable from the start prevents brittle pipeline failures.</li>
+                <!-- Placeholder for Taylor's personal reflection -->
+            </ul>
+        </section>
+
+        <section class="cs-cta">
+            <a href="#" class="cta-button">View on GitHub</a>
+            <p>Next: <a href="lab-environment.html">_Lab Environment</a></p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Taylor Stephens. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <script src="../js/mermaid-init.js"></script>
+
+</body>
+</html>

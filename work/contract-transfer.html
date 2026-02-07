@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Case study: Scaling Amazon's DSP ownership transfer process 680% with zero additional headcount through process redesign and SQL-based analytics.">
+    <title>Contract Transfer Process Scaling | Taylor Stephens</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <meta property="og:title" content="Contract Transfer Process Scaling | Taylor Stephens">
+    <meta property="og:description" content="Scaled Amazon's DSP ownership transfer process 680% single-handedly while maintaining quality and projecting $25M in annual savings.">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/case-study.css">
+</head>
+<body>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <nav class="back-nav">
+        <a href="../index.html#projects">&larr; Back to Portfolio</a>
+    </nav>
+
+    <main id="main-content" class="case-study">
+
+        <header class="cs-header">
+            <h1>Scaling a Critical Process 680% with Zero Additional Headcount</h1>
+            <p class="cs-tagline">Redesigning Amazon&rsquo;s DSP ownership transfer process from ad-hoc firefighting to a structured, data-driven program that projected $25M in annual savings.</p>
+            <div class="tech-pills">
+                <span class="tech-pill">Process Design</span>
+                <span class="tech-pill">SQL / Redshift</span>
+                <span class="tech-pill">Root Cause Analysis</span>
+                <span class="tech-pill">Change Management</span>
+            </div>
+        </header>
+
+        <section class="cs-section" id="problem">
+            <h2>The Problem</h2>
+            <p>Amazon&rsquo;s Delivery Service Partner (DSP) ownership transfer process was broken. When I inherited it, there was a 15-case backlog, no documentation, no data infrastructure, and every case was handled ad-hoc. The process took four months per transfer, cost the company through extended exit payments, and had everyone firefighting individual cases.</p>
+
+            <div class="bar-comparison">
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>Previous Annual Volume</span>
+                        <span class="bar-value">5 cases</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill muted" style="width: 8%"></div>
+                    </div>
+                </div>
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>New Annual Volume</span>
+                        <span class="bar-value">63+ cases</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <p>The volume was about to explode: from 5 cases annually to 63+ &mdash; a 680% increase &mdash; with no additional staff allocated. Without fundamental redesign, the backlog would become unmanageable and the program would collapse.</p>
+        </section>
+
+        <section class="cs-section" id="approach">
+            <h2>The Approach</h2>
+            <p>I approached this as a systems problem, not a workload problem. The goal wasn&rsquo;t to work faster on a broken process &mdash; it was to redesign the process so it could scale without breaking.</p>
+
+            <h3>Three-Phase Strategy</h3>
+            <ul>
+                <li><strong>Standardize the workflow:</strong> Convert ad-hoc case handling into a structured 14-week, 21-milestone framework with clear handoffs and decision points.</li>
+                <li><strong>Build the data infrastructure:</strong> Create SQL-based analytics on Amazon Redshift tracking 689 data attributes across 209 candidates &mdash; replacing scattered spreadsheets with a single source of truth.</li>
+                <li><strong>Institutionalize the knowledge:</strong> Author the CT Process Playbook, create 19 standardized communication templates, and build a defect tracking system with 5-Why root cause analysis.</li>
+            </ul>
+        </section>
+
+        <section class="cs-section" id="technical">
+            <h2>Key Decisions</h2>
+
+            <h3>Milestone-Based Workflow</h3>
+            <p>The original process had no structure &mdash; cases moved forward when someone remembered to push them. I designed a 14-week timeline with 21 specific milestones, each with defined owners, deliverables, and escalation triggers. This turned an amorphous &ldquo;transfer&rdquo; into a sequence of discrete, trackable steps.</p>
+
+            <div class="process-timeline">
+                <div class="timeline-item completed">
+                    <div class="timeline-week">Weeks 1-2</div>
+                    <div class="timeline-title">Initiation & Assessment</div>
+                    <div class="timeline-desc">Exit notification, candidate identification, initial qualification</div>
+                </div>
+                <div class="timeline-item completed">
+                    <div class="timeline-week">Weeks 3-5</div>
+                    <div class="timeline-title">Candidate Screening</div>
+                    <div class="timeline-desc">Background checks, financial verification, interviews</div>
+                </div>
+                <div class="timeline-item completed">
+                    <div class="timeline-week">Weeks 6-8</div>
+                    <div class="timeline-title">Legal & Contract</div>
+                    <div class="timeline-desc">Agreement drafting, legal review, stakeholder sign-off</div>
+                </div>
+                <div class="timeline-item completed">
+                    <div class="timeline-week">Weeks 9-12</div>
+                    <div class="timeline-title">Transition Execution</div>
+                    <div class="timeline-desc">Knowledge transfer, system access, operational handoff</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-week">Weeks 13-14</div>
+                    <div class="timeline-title">Close & Monitor</div>
+                    <div class="timeline-desc">Quality verification, defect tracking, case closure</div>
+                </div>
+            </div>
+
+            <h3>SQL Analytics on Redshift</h3>
+            <p>The team had been tracking cases in spreadsheets that kept getting corrupted or lost. I built a proper analytics layer on Amazon Redshift, tracking 689 data attributes per candidate across 209 total candidates. This enabled real-time visibility into pipeline health, bottleneck identification, and quality metrics.</p>
+
+            <h3>Defect Tracking with 5-Why Analysis</h3>
+            <p>When transfers failed post-completion, the team would fix the immediate issue and move on. I implemented systematic 5-Why root cause analysis for every defect, categorizing failures by source and feeding insights back into process improvements. This shifted the team from reactive firefighting to proactive prevention.</p>
+
+            <h3>Before / After</h3>
+            <div class="comparison">
+                <div class="comparison-before">
+                    <h3>Before</h3>
+                    <p>Ad-hoc case handling. 15-case backlog. No documentation. Scattered spreadsheets. Four-month transfer timeline. Every case a unique firefight. Function viewed as &ldquo;customer service.&rdquo;</p>
+                </div>
+                <div class="comparison-after">
+                    <h3>After</h3>
+                    <p>Structured 14-week, 21-milestone framework. Zero backlog. Complete playbook. SQL analytics on 689 attributes. Defect prevention via root cause analysis. Function reframed as &ldquo;network protection.&rdquo;</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cs-section" id="results">
+            <h2>Results</h2>
+
+            <div class="metrics-row">
+                <div class="metric-card">
+                    <span class="metric-number">680%</span>
+                    <span class="metric-label">Volume Scaling</span>
+                    <span class="metric-subtitle">5 → 63+ cases/year</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">$25M</span>
+                    <span class="metric-label">Projected Savings</span>
+                    <span class="metric-subtitle">Annual by 2026</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">80&ndash;100%</span>
+                    <span class="metric-label">Post-Transfer Quality</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">0</span>
+                    <span class="metric-label">Additional Headcount</span>
+                </div>
+            </div>
+
+            <p>The program scaled 680% with a single process owner &mdash; me &mdash; while maintaining 80&ndash;100% post-transfer quality. The projected $25M in annual savings came from exit cost optimization: faster, cleaner transfers meant less time paying exiting partners.</p>
+            <p>Perhaps more importantly, I reframed how leadership viewed the function. It wasn&rsquo;t &ldquo;customer service&rdquo; handling partner requests &mdash; it was &ldquo;network protection&rdquo; ensuring the delivery network maintained quality during transitions. This reframing changed how the program was valued and resourced.</p>
+        </section>
+
+        <section class="cs-section" id="lessons">
+            <h2>Lessons Learned</h2>
+            <ul class="lessons-list">
+                <li>Process problems masquerading as workload problems are the most dangerous &mdash; throwing more people at a broken process just creates more chaos.</li>
+                <li>The act of creating structure creates capacity. A 21-milestone framework doesn&rsquo;t just track work; it reveals where work is actually getting stuck.</li>
+                <li>Reframing how leadership sees a function (&ldquo;customer service&rdquo; → &ldquo;network protection&rdquo;) can matter more than the metrics themselves.</li>
+            </ul>
+        </section>
+
+        <section class="cs-cta">
+            <p>Next: <a href="pinnacle-scoring.html">Pinnacle BPR Scoring Methodology Redesign</a></p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Taylor Stephens. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
