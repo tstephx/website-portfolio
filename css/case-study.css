@@ -1,9 +1,10 @@
 /* ===== CASE STUDY LAYOUT ===== */
 .case-study {
+    --cs-padding-block: 3rem;
     max-width: var(--max-width);
     margin-left: auto;
     margin-right: auto;
-    padding: var(--section-spacing) 1.5rem;
+    padding: var(--cs-padding-block) 1.5rem;
 }
 
 /* ===== BACK NAVIGATION ===== */
@@ -26,8 +27,8 @@
 
 /* ===== CASE STUDY HEADER ===== */
 .cs-header {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
     border-bottom: 1px solid var(--color-border);
 }
 
@@ -72,7 +73,7 @@
 
 /* ===== SECTION HEADINGS ===== */
 .cs-section {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
 }
 
 .cs-section h2 {
@@ -129,7 +130,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
 }
 
 .metric-card {
@@ -171,7 +172,7 @@
     background-color: var(--color-bg-alt);
     border: 1px solid var(--color-border-light);
     border-radius: 4px;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     max-width: 100%;
     overflow-x: auto;
     text-align: center;
@@ -207,7 +208,7 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
 }
 
 .comparison-before,
@@ -258,7 +259,7 @@
 
 /* ===== HORIZONTAL BAR COMPARISON ===== */
 .bar-comparison {
-    margin: 2rem 0;
+    margin: 1.5rem 0;
 }
 
 .bar-comparison-item {
@@ -309,7 +310,7 @@
 
 /* ===== FUNNEL CHART ===== */
 .funnel-chart {
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -360,7 +361,7 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
 }
 
 .vote-scenario {
@@ -448,7 +449,7 @@
 
 /* ===== PROCESS TIMELINE ===== */
 .process-timeline {
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     position: relative;
     padding-left: 2rem;
 }
@@ -514,7 +515,7 @@
 /* ===== DATA TABLE ===== */
 .data-table {
     width: 100%;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     border-collapse: collapse;
     font-size: 0.875rem;
 }
@@ -560,7 +561,7 @@
 
 /* ===== FORMULA DISPLAY ===== */
 .formula-box {
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     padding: 1.5rem;
     background-color: var(--color-bg-alt);
     border: 1px solid var(--color-border-light);
@@ -596,6 +597,94 @@
     font-style: italic;
 }
 
+/* ===== CHART CONTAINER ===== */
+.chart-container {
+    position: relative;
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border-light);
+    border-radius: 4px;
+}
+
+.chart-container canvas {
+    max-height: 300px;
+}
+
+.chart-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.chart-pair {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.chart-pair .chart-container {
+    margin: 0;
+}
+
+/* ===== SCOPE CALLOUT ===== */
+.scope-callout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin: 0 0 2rem;
+    border: 1px solid var(--color-border-light);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.scope-item {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--color-border-light);
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+}
+
+.scope-item:last-child {
+    border-bottom: none;
+}
+
+.scope-label {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-light);
+    white-space: nowrap;
+    min-width: 5rem;
+}
+
+.scope-value {
+    font-size: 0.875rem;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+/* ===== KEY INSIGHT CALLOUT ===== */
+.insight-callout {
+    margin: 1.5rem 0;
+    padding: 1.25rem 1.5rem;
+    background: linear-gradient(135deg, var(--color-accent-light), transparent);
+    border-left: 3px solid var(--color-accent);
+    border-radius: 0 4px 4px 0;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--color-heading);
+}
+
 /* ===== STAT HIGHLIGHT ===== */
 .stat-highlight {
     display: inline-flex;
@@ -624,7 +713,7 @@
 
 /* ===== CTA SECTION ===== */
 .cs-cta {
-    margin-top: 3rem;
+    margin-top: 1rem;
     padding-top: 2rem;
     border-top: 1px solid var(--color-border);
     text-align: center;
@@ -694,6 +783,27 @@
 
     .bar-comparison {
         max-width: 500px;
+    }
+
+    .chart-pair {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .scope-callout {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .scope-item {
+        border-bottom: none;
+        border-right: 1px solid var(--color-border-light);
+    }
+
+    .scope-item:nth-child(2n) {
+        border-right: none;
+    }
+
+    .scope-item:nth-child(n+3) {
+        border-top: 1px solid var(--color-border-light);
     }
 }
 

@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/case-study.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
 </head>
 <body>
 
@@ -36,107 +37,123 @@
             </div>
         </header>
 
-        <section class="cs-section" id="problem">
-            <h2>The Problem</h2>
-            <p>Amazon&rsquo;s Delivery Service Partner (DSP) ownership transfer process was broken. When I inherited it, there was a 15-case backlog, no documentation, no data infrastructure, and every case was handled ad-hoc. The process took four months per transfer, cost the company through extended exit payments, and had everyone firefighting individual cases.</p>
+        <div class="scope-callout">
+            <div class="scope-item">
+                <span class="scope-label">Timeline</span>
+                <span class="scope-value">2023&ndash;2025</span>
+            </div>
+            <div class="scope-item">
+                <span class="scope-label">My Role</span>
+                <span class="scope-value">Sole Process Owner</span>
+            </div>
+            <div class="scope-item">
+                <span class="scope-label">Stakeholders</span>
+                <span class="scope-value">14+ groups (Legal, Finance, Ops, Field, HR)</span>
+            </div>
+            <div class="scope-item">
+                <span class="scope-label">Data Scale</span>
+                <span class="scope-value">689 attributes &times; 209 candidates</span>
+            </div>
+        </div>
 
-            <div class="bar-comparison">
-                <div class="bar-comparison-item">
-                    <div class="bar-comparison-label">
-                        <span>Previous Annual Volume</span>
-                        <span class="bar-value">5 cases</span>
-                    </div>
-                    <div class="bar-track">
-                        <div class="bar-fill muted" style="width: 8%"></div>
-                    </div>
-                </div>
-                <div class="bar-comparison-item">
-                    <div class="bar-comparison-label">
-                        <span>New Annual Volume</span>
-                        <span class="bar-value">63+ cases</span>
-                    </div>
-                    <div class="bar-track">
-                        <div class="bar-fill" style="width: 100%"></div>
-                    </div>
-                </div>
+        <section class="cs-section" id="problem">
+            <h2>Every Transfer Was a Firefight</h2>
+            <p>Amazon delivers billions of packages through a network of independent Delivery Service Partners (DSPs) &mdash; small business owners who operate fleets of vans and drivers under the Amazon brand. When a DSP owner needs to exit, their business must be transferred to a new owner without disrupting deliveries. Think of it like a franchise transfer: legal, financial, and operational handoffs all have to happen in sequence, and a delay in any one area stalls the entire chain.</p>
+            <p>When I inherited this process, it was broken. There was a 15-case backlog, no documentation, no data infrastructure, and every case was handled ad-hoc. The process took roughly 17 weeks per transfer, cost the company through extended exit payments averaging $236K per partner, and had everyone firefighting individual cases.</p>
+
+            <div class="chart-container">
+                <div class="chart-label">Volume Scaling: Before vs. After</div>
+                <canvas id="volumeChart" aria-label="Bar chart showing volume increase from 5 to 63+ cases per year"></canvas>
             </div>
 
-            <p>The volume was about to explode: from 5 cases annually to 63+ &mdash; a 680% increase &mdash; with no additional staff allocated. Without fundamental redesign, the backlog would become unmanageable and the program would collapse.</p>
+            <p>The volume was about to explode: from 5 cases annually to 63+ &mdash; a 680% increase &mdash; with no additional staff allocated. Each delayed transfer cost Amazon an average of $236K in extended exit payments. Without fundamental redesign, the backlog would become unmanageable and the program would collapse under its own weight.</p>
+
+            <div class="insight-callout">
+                This wasn&rsquo;t a workload problem. Throwing more people at a broken process just creates more chaos. It was a systems problem &mdash; and the system didn&rsquo;t exist yet.
+            </div>
         </section>
 
         <section class="cs-section" id="approach">
-            <h2>The Approach</h2>
-            <p>I approached this as a systems problem, not a workload problem. The goal wasn&rsquo;t to work faster on a broken process &mdash; it was to redesign the process so it could scale without breaking.</p>
+            <h2>Building Infrastructure Where None Existed</h2>
+            <p>I approached this as a systems problem, not a staffing problem. The goal wasn&rsquo;t to work faster on a broken process &mdash; it was to design a process that could scale without breaking. I mapped the full lifecycle end-to-end, identified every handoff and decision point, and built infrastructure where none existed.</p>
 
             <h3>Three-Phase Strategy</h3>
             <ul>
-                <li><strong>Standardize the workflow:</strong> Convert ad-hoc case handling into a structured 14-week, 21-milestone framework with clear handoffs and decision points.</li>
-                <li><strong>Build the data infrastructure:</strong> Create SQL-based analytics on Amazon Redshift tracking 689 data attributes across 209 candidates &mdash; replacing scattered spreadsheets with a single source of truth.</li>
-                <li><strong>Institutionalize the knowledge:</strong> Author the CT Process Playbook, create 19 standardized communication templates, and build a defect tracking system with 5-Why root cause analysis.</li>
+                <li><strong>Standardize the workflow:</strong> Convert ad-hoc case handling into a structured 14-week, 21-milestone framework with clear handoffs, defined owners, and escalation triggers at every decision point.</li>
+                <li><strong>Build the data infrastructure:</strong> Create SQL-based analytics on Amazon Redshift tracking 689 data attributes across 209 candidates &mdash; replacing scattered spreadsheets with a single source of truth that updated in real time.</li>
+                <li><strong>Institutionalize the knowledge:</strong> Author the CT Process Playbook, create 19 standardized communication templates, and build a defect tracking system with 5-Why root cause analysis going 5&ndash;8 layers deep on every failure.</li>
             </ul>
+
+            <h3>Stakeholder Coordination</h3>
+            <p>The transfer process touched 14+ stakeholder groups &mdash; Legal, Finance, Field Operations, HR, Partner Management, and more. Each had different requirements and timelines. I designed the milestone framework to synchronize these groups, creating shared visibility into where each case stood and what each team needed to deliver next. Without this alignment, the 680% volume increase would have overwhelmed every downstream team.</p>
         </section>
 
         <section class="cs-section" id="technical">
-            <h2>Key Decisions</h2>
+            <h2>From Ad-Hoc to 21 Milestones</h2>
 
             <h3>Milestone-Based Workflow</h3>
             <p>The original process had no structure &mdash; cases moved forward when someone remembered to push them. I designed a 14-week timeline with 21 specific milestones, each with defined owners, deliverables, and escalation triggers. This turned an amorphous &ldquo;transfer&rdquo; into a sequence of discrete, trackable steps.</p>
 
             <div class="process-timeline">
                 <div class="timeline-item completed">
-                    <div class="timeline-week">Weeks 1-2</div>
-                    <div class="timeline-title">Initiation & Assessment</div>
-                    <div class="timeline-desc">Exit notification, candidate identification, initial qualification</div>
+                    <div class="timeline-week">Weeks 1&ndash;2</div>
+                    <div class="timeline-title">Initiation &amp; Assessment</div>
+                    <div class="timeline-desc">Exit notification, candidate identification, initial qualification screening</div>
                 </div>
                 <div class="timeline-item completed">
-                    <div class="timeline-week">Weeks 3-5</div>
+                    <div class="timeline-week">Weeks 3&ndash;5</div>
                     <div class="timeline-title">Candidate Screening</div>
-                    <div class="timeline-desc">Background checks, financial verification, interviews</div>
+                    <div class="timeline-desc">Background checks, financial verification, panel interviews, scoring</div>
                 </div>
                 <div class="timeline-item completed">
-                    <div class="timeline-week">Weeks 6-8</div>
-                    <div class="timeline-title">Legal & Contract</div>
-                    <div class="timeline-desc">Agreement drafting, legal review, stakeholder sign-off</div>
+                    <div class="timeline-week">Weeks 6&ndash;8</div>
+                    <div class="timeline-title">Legal &amp; Contract</div>
+                    <div class="timeline-desc">Agreement drafting, legal review, stakeholder sign-off across 14+ groups</div>
                 </div>
                 <div class="timeline-item completed">
-                    <div class="timeline-week">Weeks 9-12</div>
+                    <div class="timeline-week">Weeks 9&ndash;12</div>
                     <div class="timeline-title">Transition Execution</div>
-                    <div class="timeline-desc">Knowledge transfer, system access, operational handoff</div>
+                    <div class="timeline-desc">Knowledge transfer, system access, operational handoff, field coordination</div>
                 </div>
                 <div class="timeline-item">
-                    <div class="timeline-week">Weeks 13-14</div>
-                    <div class="timeline-title">Close & Monitor</div>
-                    <div class="timeline-desc">Quality verification, defect tracking, case closure</div>
+                    <div class="timeline-week">Weeks 13&ndash;14</div>
+                    <div class="timeline-title">Close &amp; Monitor</div>
+                    <div class="timeline-desc">Quality verification, defect tracking, 5-Why analysis on any issues, case closure</div>
                 </div>
             </div>
 
             <h3>SQL Analytics on Redshift</h3>
-            <p>The team had been tracking cases in spreadsheets that kept getting corrupted or lost. I built a proper analytics layer on Amazon Redshift, tracking 689 data attributes per candidate across 209 total candidates. This enabled real-time visibility into pipeline health, bottleneck identification, and quality metrics.</p>
+            <p>The team had been tracking cases in spreadsheets that kept getting corrupted or lost. I built a proper analytics layer on Amazon Redshift, tracking 689 data attributes per candidate across 209 total candidates. This enabled real-time visibility into pipeline health, bottleneck identification, and quality metrics &mdash; replacing a system where nobody could answer basic questions like &ldquo;How many cases are in progress right now?&rdquo;</p>
 
             <h3>Defect Tracking with 5-Why Analysis</h3>
-            <p>When transfers failed post-completion, the team would fix the immediate issue and move on. I implemented systematic 5-Why root cause analysis for every defect, categorizing failures by source and feeding insights back into process improvements. This shifted the team from reactive firefighting to proactive prevention.</p>
+            <p>When transfers failed post-completion, the team would fix the immediate issue and move on. I implemented systematic 5-Why root cause analysis for every defect, going 5&ndash;8 layers deep on each failure. I categorized failures by source and fed insights back into process improvements. This shifted the team from reactive firefighting to proactive prevention &mdash; the same defect never happened twice.</p>
 
             <h3>Before / After</h3>
             <div class="comparison">
                 <div class="comparison-before">
                     <h3>Before</h3>
-                    <p>Ad-hoc case handling. 15-case backlog. No documentation. Scattered spreadsheets. Four-month transfer timeline. Every case a unique firefight. Function viewed as &ldquo;customer service.&rdquo;</p>
+                    <p>Ad-hoc case handling. 15-case backlog. No documentation. Scattered spreadsheets. ~17-week transfer timeline. Every case a unique firefight. Function viewed as &ldquo;customer service.&rdquo;</p>
                 </div>
                 <div class="comparison-after">
                     <h3>After</h3>
-                    <p>Structured 14-week, 21-milestone framework. Zero backlog. Complete playbook. SQL analytics on 689 attributes. Defect prevention via root cause analysis. Function reframed as &ldquo;network protection.&rdquo;</p>
+                    <p>Structured 14-week, 21-milestone framework. Zero backlog. Complete playbook with 19 templates. SQL analytics on 689 attributes. 86.6% cycle time reduction. Function reframed as &ldquo;network protection.&rdquo;</p>
                 </div>
             </div>
         </section>
 
         <section class="cs-section" id="results">
-            <h2>Results</h2>
+            <h2>From 17 Weeks to 2 &mdash; at 680% Volume</h2>
 
             <div class="metrics-row">
                 <div class="metric-card">
                     <span class="metric-number">680%</span>
                     <span class="metric-label">Volume Scaling</span>
-                    <span class="metric-subtitle">5 → 63+ cases/year</span>
+                    <span class="metric-subtitle">5 &rarr; 63+ cases/year</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">86.6%</span>
+                    <span class="metric-label">Cycle Time Reduction</span>
+                    <span class="metric-subtitle">~17 weeks &rarr; ~2 weeks</span>
                 </div>
                 <div class="metric-card">
                     <span class="metric-number">$25M</span>
@@ -144,25 +161,29 @@
                     <span class="metric-subtitle">Annual by 2026</span>
                 </div>
                 <div class="metric-card">
-                    <span class="metric-number">80&ndash;100%</span>
-                    <span class="metric-label">Post-Transfer Quality</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-number">0</span>
-                    <span class="metric-label">Additional Headcount</span>
+                    <span class="metric-number">$13M</span>
+                    <span class="metric-label">Exit Costs Prevented</span>
+                    <span class="metric-subtitle">29 transfers &times; $236K avg</span>
                 </div>
             </div>
 
-            <p>The program scaled 680% with a single process owner &mdash; me &mdash; while maintaining 80&ndash;100% post-transfer quality. The projected $25M in annual savings came from exit cost optimization: faster, cleaner transfers meant less time paying exiting partners.</p>
-            <p>Perhaps more importantly, I reframed how leadership viewed the function. It wasn&rsquo;t &ldquo;customer service&rdquo; handling partner requests &mdash; it was &ldquo;network protection&rdquo; ensuring the delivery network maintained quality during transitions. This reframing changed how the program was valued and resourced.</p>
+            <div class="chart-container">
+                <div class="chart-label">Cycle Time: Before vs. After</div>
+                <canvas id="cycleChart" aria-label="Bar chart showing cycle time reduction from 17 weeks to 2 weeks"></canvas>
+            </div>
+
+            <p>The program scaled 680% with a single process owner &mdash; me &mdash; while maintaining 80&ndash;100% post-transfer quality. Cycle time dropped 86.6%, from roughly 17 weeks to approximately 2 weeks per transfer. The $13M in exit costs prevented came from faster, cleaner transfers that reduced extended exit payments across 29 completed cases. The broader $25M projection captures the annualized impact of the program operating at scale.</p>
+
+            <p>Perhaps more importantly, I reframed how leadership viewed the function. It wasn&rsquo;t &ldquo;customer service&rdquo; handling partner requests &mdash; it was &ldquo;network protection&rdquo; ensuring the delivery network maintained quality during transitions. This reframing changed how the program was valued, resourced, and prioritized across the organization.</p>
         </section>
 
         <section class="cs-section" id="lessons">
-            <h2>Lessons Learned</h2>
+            <h2>What This Taught Me</h2>
             <ul class="lessons-list">
-                <li>Process problems masquerading as workload problems are the most dangerous &mdash; throwing more people at a broken process just creates more chaos.</li>
-                <li>The act of creating structure creates capacity. A 21-milestone framework doesn&rsquo;t just track work; it reveals where work is actually getting stuck.</li>
-                <li>Reframing how leadership sees a function (&ldquo;customer service&rdquo; → &ldquo;network protection&rdquo;) can matter more than the metrics themselves.</li>
+                <li>Process problems masquerading as workload problems are the most dangerous &mdash; throwing more people at a broken process just creates more chaos. The answer was infrastructure, not headcount.</li>
+                <li>The act of creating structure creates capacity. A 21-milestone framework doesn&rsquo;t just track work; it reveals where work is actually getting stuck and where handoffs are failing.</li>
+                <li>Reframing how leadership sees a function (&ldquo;customer service&rdquo; &rarr; &ldquo;network protection&rdquo;) can matter more than the metrics themselves. The reframe changed how the program was resourced and prioritized.</li>
+                <li>Going 5&ndash;8 layers deep on root cause analysis is what separates lasting fixes from temporary patches. Surface-level fixes feel productive but leave the underlying system broken.</li>
             </ul>
         </section>
 
@@ -175,6 +196,102 @@
     <footer>
         <p>&copy; 2026 Taylor Stephens. All rights reserved.</p>
     </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var accent = '#2563eb';
+        var green = '#28a745';
+        var muted = 'rgba(107, 107, 107, 0.3)';
+        var defaults = {
+            responsive: true,
+            maintainAspectRatio: true,
+            animation: { duration: 1200, easing: 'easeOutQuart' },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#1a1a1a',
+                    titleFont: { family: "'Inter', sans-serif", size: 12 },
+                    bodyFont: { family: "'Inter', sans-serif", size: 12 },
+                    padding: 10,
+                    cornerRadius: 4
+                }
+            }
+        };
+
+        // Volume chart
+        new Chart(document.getElementById('volumeChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Previous Annual Volume', 'New Annual Volume'],
+                datasets: [{
+                    data: [5, 63],
+                    backgroundColor: [muted, green],
+                    borderRadius: 4,
+                    barThickness: 60
+                }]
+            },
+            options: Object.assign({}, defaults, {
+                aspectRatio: 2.5,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 75,
+                        grid: { color: 'rgba(0,0,0,0.04)' },
+                        ticks: {
+                            font: { family: "'Inter', sans-serif", size: 11 },
+                            color: '#6b6b6b',
+                            callback: function(v) { return v + ' cases'; }
+                        }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            font: { family: "'Inter', sans-serif", size: 11, weight: 600 },
+                            color: '#3d3d3d'
+                        }
+                    }
+                }
+            })
+        });
+
+        // Cycle time chart
+        new Chart(document.getElementById('cycleChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Before (Ad-Hoc)', 'After (Structured)'],
+                datasets: [{
+                    data: [17, 2.4],
+                    backgroundColor: [muted, green],
+                    borderRadius: 4,
+                    barThickness: 60
+                }]
+            },
+            options: Object.assign({}, defaults, {
+                indexAxis: 'y',
+                aspectRatio: 2.5,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 20,
+                        grid: { color: 'rgba(0,0,0,0.04)' },
+                        ticks: {
+                            font: { family: "'Inter', sans-serif", size: 11 },
+                            color: '#6b6b6b',
+                            callback: function(v) { return v + ' weeks'; }
+                        }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: {
+                            font: { family: "'Inter', sans-serif", size: 11, weight: 600 },
+                            color: '#3d3d3d'
+                        }
+                    }
+                }
+            })
+        });
+    });
+    </script>
 
 </body>
 </html>

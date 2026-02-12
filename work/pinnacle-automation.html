@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/case-study.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
 </head>
 <body>
 
@@ -36,51 +37,59 @@
             </div>
         </header>
 
-        <section class="cs-section" id="problem">
-            <h2>The Problem</h2>
-            <p>The Pinnacle eligibility process &mdash; determining which delivery partners qualified for premium station assignments &mdash; ran on a 55+ MB Excel file with INDEX-MATCH calculations across 24,000 rows. It crashed regularly, used inconsistent traffic-dependent distance calculations, had quarterly data lag, and was maintained by a single person who built it years ago.</p>
+        <div class="scope-callout">
+            <div class="scope-item">
+                <span class="scope-label">Timeline</span>
+                <span class="scope-value">2022&ndash;2025</span>
+            </div>
+            <div class="scope-item">
+                <span class="scope-label">My Role</span>
+                <span class="scope-value">Technical Lead &amp; System Architect</span>
+            </div>
+            <div class="scope-item">
+                <span class="scope-label">Data Scale</span>
+                <span class="scope-value">24,000 rows, 6-step SQL pipeline</span>
+            </div>
+            <div class="scope-item">
+                <span class="scope-label">Revenue Impact</span>
+                <span class="scope-value">$8.3M Pinnacle expansion protected</span>
+            </div>
+        </div>
 
-            <div class="bar-comparison">
-                <div class="bar-comparison-item">
-                    <div class="bar-comparison-label">
-                        <span>Pinnacle Launches (Before)</span>
-                        <span class="bar-value">93 launches</span>
-                    </div>
-                    <div class="bar-track">
-                        <div class="bar-fill muted" style="width: 100%"></div>
-                    </div>
-                </div>
-                <div class="bar-comparison-item">
-                    <div class="bar-comparison-label">
-                        <span>Pinnacle Launches (Broken System)</span>
-                        <span class="bar-value">42 launches</span>
-                    </div>
-                    <div class="bar-track">
-                        <div class="bar-fill" style="width: 45%; background: #dc3545;"></div>
-                    </div>
-                </div>
+        <section class="cs-section" id="problem">
+            <h2>A Spreadsheet That Couldn&rsquo;t Handle Its Own Data</h2>
+            <p>Amazon&rsquo;s &ldquo;Pinnacle&rdquo; program assigns top-performing Delivery Service Partners (independent business owners running delivery fleets) to premium, high-volume stations. To expand the network, someone has to determine which partners are eligible for which stations &mdash; matching geography, performance, and capacity across thousands of combinations.</p>
+            <p>This eligibility process ran on a 55+ MB Excel file with INDEX-MATCH calculations across 24,000 rows. It crashed regularly, used inconsistent traffic-dependent distance calculations, had quarterly data lag, and was maintained by a single person who built it years ago.</p>
+
+            <div class="chart-container">
+                <div class="chart-label">Pinnacle Launches: System Failure Impact</div>
+                <canvas id="launchChart" aria-label="Bar chart showing Pinnacle launches dropping from 93 to 42"></canvas>
             </div>
 
-            <p>The results were predictable: Pinnacle launches dropped 55% (from 93 to 42) and 20 eligible candidates were bypassed entirely because the system couldn&rsquo;t reliably identify them. A critical growth program was throttled by a spreadsheet that couldn&rsquo;t handle its own data.</p>
+            <p>The results were predictable: Pinnacle launches dropped 55% (from 93 to 42) and 20 eligible candidates were bypassed entirely because the system couldn&rsquo;t reliably identify them. A critical growth program &mdash; one protecting $8.3M in revenue &mdash; was throttled by a spreadsheet that couldn&rsquo;t handle its own data.</p>
+
+            <div class="insight-callout">
+                A 55MB Excel file with 24,000-row INDEX-MATCH formulas isn&rsquo;t a tool &mdash; it&rsquo;s a system screaming for a database. And when it crashes, you don&rsquo;t lose a file. You lose candidates.
+            </div>
         </section>
 
         <section class="cs-section" id="approach">
-            <h2>The Approach</h2>
-            <p>I diagnosed root causes across three dimensions: data (inconsistent, lagging), process (single point of failure, no documentation), and tooling (Excel couldn&rsquo;t scale). The solution needed to address all three simultaneously.</p>
+            <h2>Three Layers of Failure Required Three Layers of Solution</h2>
+            <p>I diagnosed root causes across three dimensions: data (inconsistent, lagging), process (single point of failure, no documentation), and tooling (Excel couldn&rsquo;t scale). The solution needed to address all three simultaneously &mdash; fixing just one would leave the others to cause the next failure.</p>
 
             <h3>Three-Layer Solution</h3>
             <ul>
-                <li><strong>Data layer:</strong> Create a multi-source integration pipeline feeding fresh data into Amazon Redshift &mdash; eliminating quarterly lag.</li>
-                <li><strong>Logic layer:</strong> Implement the Haversine distance formula in SQL for consistent geospatial calculations &mdash; eliminating traffic-dependent variability.</li>
-                <li><strong>Delivery layer:</strong> Build an outreach prioritization algorithm connected to Salesforce &mdash; enabling automated, ranked candidate identification.</li>
+                <li><strong>Data layer:</strong> Create a multi-source integration pipeline feeding fresh data into Amazon Redshift on a daily refresh cycle &mdash; eliminating quarterly lag and manual data entry.</li>
+                <li><strong>Logic layer:</strong> Implement the Haversine distance formula in SQL for consistent geospatial calculations &mdash; eliminating traffic-dependent variability that made the same partner-station pair show different distances depending on when you checked.</li>
+                <li><strong>Delivery layer:</strong> Build an outreach prioritization algorithm connected to Salesforce &mdash; enabling automated, ranked candidate identification that recruiters could work through without understanding eligibility math.</li>
             </ul>
         </section>
 
         <section class="cs-section" id="technical">
-            <h2>Key Decisions</h2>
+            <h2>Why Consistency Beat Accuracy</h2>
 
             <h3>Haversine Distance Formula</h3>
-            <p>The original Excel file used driving distances from a mapping API, which varied based on traffic conditions. The same partner-to-station pair could show different distances depending on when you checked. I implemented the Haversine formula for great-circle distance calculations &mdash; consistent, reproducible, and fast. While driving distance is more accurate in absolute terms, consistency mattered more for eligibility ranking.</p>
+            <p>The original Excel file used driving distances from a mapping API, which varied based on traffic conditions. The same partner-to-station pair could show different distances depending on when you checked. I implemented the Haversine formula for great-circle distance calculations &mdash; consistent, reproducible, and fast. While driving distance is more accurate in absolute terms, consistency mattered more for eligibility ranking. A decision system needs the same inputs to produce the same outputs every time.</p>
 
             <div class="formula-box">
                 <div class="formula-label">Haversine Formula</div>
@@ -91,17 +100,25 @@
             </div>
 
             <h3>6-Step SQL Query Architecture</h3>
-            <p>The transformation from raw data to prioritized outreach list required six sequential steps: (1) data extraction from multiple sources, (2) partner qualification filtering, (3) station requirement matching, (4) distance calculation via Haversine, (5) scoring and ranking, and (6) Salesforce-ready output formatting. Each step was a modular query that could be tested and maintained independently.</p>
+            <p>The transformation from raw data to prioritized outreach list required six sequential steps, each implemented as a modular SQL query that could be tested and maintained independently:</p>
+            <ul>
+                <li><strong>Step 1:</strong> Data extraction from multiple source systems into Redshift</li>
+                <li><strong>Step 2:</strong> Partner qualification filtering (active status, performance thresholds)</li>
+                <li><strong>Step 3:</strong> Station requirement matching (capacity needs, geography)</li>
+                <li><strong>Step 4:</strong> Distance calculation via Haversine formula</li>
+                <li><strong>Step 5:</strong> Scoring and ranking (distance, performance, capacity)</li>
+                <li><strong>Step 6:</strong> Salesforce-ready output formatting with prioritization</li>
+            </ul>
 
             <h3>Multi-Source Data Integration</h3>
-            <p>The Excel file had been updated quarterly by manually copying data from various systems. The new architecture pulled directly from source systems into Redshift on a daily refresh cycle. This eliminated both the data lag and the manual effort of maintaining the spreadsheet.</p>
+            <p>The Excel file had been updated quarterly by manually copying data from various systems. The new architecture pulled directly from source systems into Redshift on a daily refresh cycle. This eliminated both the data lag (from quarterly to daily) and the manual effort of maintaining the spreadsheet &mdash; removing a critical single point of failure.</p>
 
             <h3>Salesforce Integration</h3>
-            <p>The final step wasn&rsquo;t just a list &mdash; it was an actionable queue in Salesforce with prioritization logic baked in. Recruiters could work through candidates in optimal order without needing to understand the underlying eligibility calculations.</p>
+            <p>The final step wasn&rsquo;t just a list &mdash; it was an actionable queue in Salesforce with prioritization logic baked in. Recruiters could work through candidates in optimal order without needing to understand the underlying eligibility calculations. This separated the analytical complexity from the operational workflow.</p>
         </section>
 
         <section class="cs-section" id="results">
-            <h2>Results</h2>
+            <h2>From 57.9% to 94.1% Fill Rate</h2>
 
             <div class="metrics-row">
                 <div class="metric-card">
@@ -112,6 +129,7 @@
                 <div class="metric-card">
                     <span class="metric-number">100%</span>
                     <span class="metric-label">July Fill Rate</span>
+                    <span class="metric-subtitle">Peak month</span>
                 </div>
                 <div class="metric-card">
                     <span class="metric-number">20</span>
@@ -119,42 +137,28 @@
                     <span class="metric-subtitle">Previously bypassed</span>
                 </div>
                 <div class="metric-card">
-                    <span class="metric-number">+36pp</span>
-                    <span class="metric-label">Fill Rate Increase</span>
+                    <span class="metric-number">$8.3M</span>
+                    <span class="metric-label">Revenue Protected</span>
+                    <span class="metric-subtitle">Pinnacle expansion</span>
                 </div>
             </div>
 
-            <div class="bar-comparison">
-                <div class="bar-comparison-item">
-                    <div class="bar-comparison-label">
-                        <span>Fill Rate (Before)</span>
-                        <span class="bar-value">57.9%</span>
-                    </div>
-                    <div class="bar-track">
-                        <div class="bar-fill muted" style="width: 57.9%"></div>
-                    </div>
-                </div>
-                <div class="bar-comparison-item">
-                    <div class="bar-comparison-label">
-                        <span>Fill Rate (After)</span>
-                        <span class="bar-value">94.1%</span>
-                    </div>
-                    <div class="bar-track">
-                        <div class="bar-fill" style="width: 94.1%"></div>
-                    </div>
-                </div>
+            <div class="chart-container">
+                <div class="chart-label">Fill Rate Trajectory</div>
+                <canvas id="fillRateChart" aria-label="Line chart showing fill rate improvement from 57.9% to 94.1%, peaking at 100% in July"></canvas>
             </div>
 
-            <p>Pinnacle fill rate jumped from 57.9% to 94.1% &mdash; a 36 percentage point increase &mdash; with July hitting 100%. The 20 eligible candidates who had been bypassed by the old system were identified and preserved. The crashing, quarterly-lagged Excel file was replaced with an automated, real-time system that required no manual maintenance.</p>
-            <p>Beyond the metrics, the system eliminated a critical single point of failure. The previous process depended on one person&rsquo;s Excel expertise; the new process was documented, modular, and maintainable by anyone with SQL access.</p>
+            <p>Pinnacle fill rate jumped from 57.9% to 94.1% &mdash; a 36 percentage point increase &mdash; with July hitting 100%. The 20 eligible candidates who had been bypassed by the old system were identified and preserved. The crashing, quarterly-lagged Excel file was replaced with an automated, real-time system that required no manual maintenance and protected $8.3M in Pinnacle expansion revenue.</p>
+            <p>Beyond the metrics, the system eliminated a critical single point of failure. The previous process depended on one person&rsquo;s Excel expertise; the new process was documented, modular, and maintainable by anyone with SQL access. Each of the 6 query steps could be tested, debugged, and updated independently.</p>
         </section>
 
         <section class="cs-section" id="lessons">
-            <h2>Lessons Learned</h2>
+            <h2>What This Taught Me</h2>
             <ul class="lessons-list">
-                <li>Excel heroics are a sign of missing infrastructure. A 55MB file with 24,000-row INDEX-MATCH formulas is a system screaming for a database.</li>
-                <li>Consistency often beats accuracy. Haversine distances aren&rsquo;t as &ldquo;accurate&rdquo; as driving distances, but they&rsquo;re reproducible &mdash; and reproducibility is what eligibility decisions require.</li>
-                <li>Single points of failure aren&rsquo;t just risk &mdash; they&rsquo;re indicators. When a process depends on one person&rsquo;s spreadsheet, that process is already broken.</li>
+                <li>Excel heroics are a sign of missing infrastructure. A 55MB file with 24,000-row INDEX-MATCH formulas is a system screaming for a database. The heroism is the symptom, not the solution.</li>
+                <li>Consistency often beats accuracy. Haversine distances aren&rsquo;t as &ldquo;accurate&rdquo; as driving distances, but they&rsquo;re reproducible &mdash; and reproducibility is what eligibility decisions require. The same inputs must produce the same outputs.</li>
+                <li>Single points of failure aren&rsquo;t just risk &mdash; they&rsquo;re indicators. When a process depends on one person&rsquo;s spreadsheet, that process is already broken. The 20 bypassed candidates were proof.</li>
+                <li>Separating analytical complexity from operational workflow (SQL pipeline &rarr; Salesforce queue) lets each team work in their own context. Recruiters don&rsquo;t need to understand Haversine; they need a ranked list.</li>
             </ul>
         </section>
 
@@ -167,6 +171,126 @@
     <footer>
         <p>&copy; 2026 Taylor Stephens. All rights reserved.</p>
     </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var accent = '#2563eb';
+        var muted = 'rgba(107, 107, 107, 0.3)';
+        var red = '#dc3545';
+        var green = '#28a745';
+        var defaults = {
+            responsive: true,
+            maintainAspectRatio: true,
+            animation: { duration: 1200, easing: 'easeOutQuart' },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#1a1a1a',
+                    titleFont: { family: "'Inter', sans-serif", size: 12 },
+                    bodyFont: { family: "'Inter', sans-serif", size: 12 },
+                    padding: 10,
+                    cornerRadius: 4
+                }
+            }
+        };
+
+        // Launch comparison chart
+        new Chart(document.getElementById('launchChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Before (Working System)', 'During Failure'],
+                datasets: [{
+                    data: [93, 42],
+                    backgroundColor: [muted, red],
+                    borderRadius: 4,
+                    barThickness: 60
+                }]
+            },
+            options: Object.assign({}, defaults, {
+                aspectRatio: 2.5,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 110,
+                        grid: { color: 'rgba(0,0,0,0.04)' },
+                        ticks: {
+                            font: { family: "'Inter', sans-serif", size: 11 },
+                            color: '#6b6b6b',
+                            callback: function(v) { return v + ' launches'; }
+                        }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            font: { family: "'Inter', sans-serif", size: 11, weight: 600 },
+                            color: '#3d3d3d'
+                        }
+                    }
+                }
+            })
+        });
+
+        // Fill rate trajectory line chart
+        new Chart(document.getElementById('fillRateChart'), {
+            type: 'line',
+            data: {
+                labels: ['Before', 'Peak (July)', 'Sustained'],
+                datasets: [{
+                    label: 'Fill Rate',
+                    data: [57.9, 100, 94.1],
+                    borderColor: green,
+                    backgroundColor: 'rgba(40, 167, 69, 0.08)',
+                    borderWidth: 2.5,
+                    pointBackgroundColor: function(ctx) {
+                        return ctx.dataIndex === 1 ? '#1d8a35' : green;
+                    },
+                    pointRadius: function(ctx) {
+                        return ctx.dataIndex === 1 ? 6 : 4;
+                    },
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: Object.assign({}, defaults, {
+                aspectRatio: 2.2,
+                scales: {
+                    y: {
+                        min: 50,
+                        max: 105,
+                        grid: { color: 'rgba(0,0,0,0.04)' },
+                        ticks: {
+                            font: { family: "'Inter', sans-serif", size: 11 },
+                            color: '#6b6b6b',
+                            callback: function(v) { return v + '%'; }
+                        }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            font: { family: "'Inter', sans-serif", size: 11 },
+                            color: '#6b6b6b'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#1a1a1a',
+                        callbacks: {
+                            label: function(ctx) {
+                                var label = ctx.parsed.y + '% fill rate';
+                                if (ctx.dataIndex === 1) label += ' (peak)';
+                                return label;
+                            }
+                        }
+                    }
+                }
+            })
+        });
+    });
+    </script>
 
 </body>
 </html>

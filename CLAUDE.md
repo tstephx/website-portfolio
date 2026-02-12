@@ -1,13 +1,7 @@
 # CLAUDE.md - Portfolio Website
-
-## Session Initialization (READ FIRST)
+<!-- project-name: website-portfolio -->
 
 **DO NOT scan directories on startup.** This project is small and well-documented.
-
-### Quick Start Protocol
-1. Run `get_context(project="website-portfolio")` for project memory
-2. Check `git status` and `git log -3` for recent state
-3. Ask the user what they want to work on
 
 ---
 
