@@ -1,4 +1,4 @@
-# taylorstephens.dev
+# taylorstephens.io
 
 Personal portfolio website. Static HTML/CSS with Chart.js visualizations.
 
