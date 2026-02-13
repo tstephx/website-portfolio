@@ -97,6 +97,14 @@
                 <p><strong>Action:</strong> Computed 130,000+ pairwise geodesic distances across ~362 stations using Vincenty Ellipsoid in R, then ran a 16-threshold interval sweep proving the cap excluded 36.1% of the network. Analyzed 17 distance-breaking DSPs and found they outperformed non-breakers: 82% CSAT vs. 74%, 100% Quality, 109.6% CR vs. 106.6%. Formatted findings into a strategy proposal that secured the first structural eligibility change in two years.</p>
                 <p><strong>Result:</strong> Approved 3-tier prioritization (Pop-Up &rarr; &le;50mi &rarr; 5-closest fallback) raised station coverage from 63.9% to 96.0%. Fill rate jumped from 57.9% to 94.1% (+36 pp), with July hitting 100%. Operationalized into a 6-step SQL pipeline on Amazon Redshift replacing the crash-prone Excel file.</p>
             </article>
+            <article class="project-card">
+                <h3><a href="work/charge-back-processing/chargeback-parsing.html">Chargeback Email Parsing Automation</a></h3>
+                <p class="project-meta">R / Text Mining | Boundary Extraction | 92% Time Reduction | Self-Initiated</p>
+                <p><strong>Challenge:</strong> Stripe chargeback notifications arrived as unstructured email prose with 8 data fields buried in continuous text. Processing each batch required ~2 hours of manual transcription into a Google Sheets tracker &mdash; opening each email, scanning for fields like 26-character account IDs and dispute numbers, and typing each value by hand.</p>
+                <p><strong>Action:</strong> Built an R text mining script using boundary-based extraction (<code>rm_between()</code>) that treated the email template&rsquo;s sentence structure as delimiters. The script batch-processed every <code>.txt</code> file in a folder in a single run, extracting all 8 fields per notification into a structured table &mdash; scaling from 1 to N chargebacks without code changes.</p>
+                <p><strong>Result:</strong> Processing time dropped 92% (~2 hours to ~10 minutes). Eliminated transcription errors entirely &mdash; programmatic extraction from source text replaced manual reading and typing. The batch architecture meant time savings scaled with volume: parsing was constant-time regardless of batch size.</p>
+            </article>
+
         </section>
 
         <section id="personal-projects">

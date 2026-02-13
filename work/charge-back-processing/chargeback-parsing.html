@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Case study: Building an R text mining script that replaced 2 hours of manual chargeback email transcription with a 10-minute automated pipeline — 92% time reduction.">
+    <title>Chargeback Email Parsing Automation | Taylor Stephens</title>
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+    <meta property="og:title" content="Chargeback Email Parsing Automation | Taylor Stephens">
+    <meta property="og:description" content="Built an R script using boundary-based text extraction to parse unstructured Stripe chargeback emails into structured data — cutting processing time by 92%.">
+    <meta property="og:type" content="article">
+    <link rel="canonical" href="https://taylorstephens.dev/work/charge-back-processing/">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/case-study.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+    <script src="../../js/progress-bar.js" defer></script>
+</head>
+<body>
+
+    <div class="reading-progress"></div>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <nav class="back-nav" aria-label="Back navigation">
+        <a href="../../index.html#projects">&larr; Back to Portfolio</a>
+    </nav>
+
+    <main id="main-content" class="case-study">
+
+        <header class="cs-header">
+            <h1>92% of Processing Time Was Spent Transcribing Data That Already Existed</h1>
+            <p class="cs-tagline">I built an R text mining script that replaced 2 hours of manual chargeback email transcription with a 10-minute automated pipeline &mdash; extracting 8 data fields from unstructured Stripe notifications using boundary-based text extraction.</p>
+            <div class="tech-pills">
+                <span class="tech-pill">R / Text Mining</span>
+                <span class="tech-pill">Process Automation</span>
+                <span class="tech-pill">Regex / NLP</span>
+                <span class="tech-pill">Batch Processing</span>
+            </div>
+        </header>
+
+        <div class="scope-callout">
+            <div class="scope-item">
+                <span class="scope-label">Timeline</span>
+                <span class="scope-value">2022</span>
+            </div>
+            <div class="scope-item">
+                <span class="scope-label">My Role</span>
+                <span class="scope-value">Self-Initiated &mdash; Identified &amp; Built Solution</span>
+            </div>
+            <div class="scope-item">
+                <span class="scope-label">Platform</span>
+                <span class="scope-value">Mariana Tek (Stripe Payments)</span>
+            </div>
+            <div class="scope-item">
+                <span class="scope-label">Clients Affected</span>
+                <span class="scope-value">Barry&rsquo;s Bootcamp, StarCycle, The Bar Method, others</span>
+            </div>
+        </div>
+
+        <section class="cs-section" id="problem">
+            <h2>Structured Data Was Trapped in Unstructured Email Prose</h2>
+            <p>Mariana Tek&rsquo;s platform processed credit card payments for fitness studio clients. When customers disputed charges &mdash; subscription cancellations, fraud claims, duplicate charges &mdash; Stripe generated chargeback notifications that arrived as individual emails. Each email contained the 8 data fields needed to track and respond to the dispute: tenant name, connected Stripe account ID, dispute number, dispute amount, customer name, customer email, transaction date, and submission deadline.</p>
+            <p>The problem wasn&rsquo;t the data &mdash; it was the format. Every field was buried in continuous prose with no delimiters, no consistent formatting, and embedded URLs. The existing process required someone to open each email, visually scan for 8 fields scattered throughout the message body, and manually key each value into a Google Sheets tracker. With chargebacks arriving in batches across multiple tenants &mdash; 6 different disputes across 5 studio clients in a single month &mdash; this consumed approximately 2 hours per processing cycle.</p>
+
+            <div class="metrics-row">
+                <div class="metric-card">
+                    <span class="metric-number">~2 hrs</span>
+                    <span class="metric-label">Per Processing Cycle</span>
+                    <span class="metric-subtitle">manual transcription</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">8</span>
+                    <span class="metric-label">Fields per Email</span>
+                    <span class="metric-subtitle">buried in prose text</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">N &times; 8</span>
+                    <span class="metric-label">Manual Keystrokes</span>
+                    <span class="metric-subtitle">scales linearly with volume</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">26+</span>
+                    <span class="metric-label">Characters per ID</span>
+                    <span class="metric-subtitle">1 wrong character = wrong case</span>
+                </div>
+            </div>
+
+            <div class="insight-callout">
+                This wasn&rsquo;t a speed problem &mdash; it was a format problem. The data already existed in every email. The bottleneck was that structured information was trapped in unstructured prose, and the only extraction method was a human reading and typing. The solution was parsing automation, not faster typing.
+            </div>
+
+            <h3>What the Script Actually Sees</h3>
+            <div class="comparison">
+                <div class="comparison-before">
+                    <h3>Raw Email Notification</h3>
+                    <p>Hi <strong>Barry&rsquo;s Bootcamp Bay Area, LLC</strong>, Hope you&rsquo;re having a great week. One of your customers, <strong>James Liao</strong> (<strong>jlaimaeos@gmail.com</strong>), recently disputed a credit card charge processed by your Barry&rsquo;s Bay Area LLC gateway for <strong>$36.00</strong>. You have an opportunity to dispute the chargeback if you submit a response&hellip; prior to <strong>Sep 14, 2022, 11:59:59 PM</strong> time&hellip; Connected account number (for the form): <strong>acct_1IgFkhRFaQPehEcq</strong> Dispute number (for the form): <strong>du_1LYV97I1kLQM3y1JIOdBtCx6</strong> Original transaction date: <strong>Aug 4, 2022</strong></p>
+                </div>
+                <div class="comparison-after">
+                    <h3>Extracted Structured Row</h3>
+                    <table class="data-table" style="margin: 0">
+                        <caption>8 fields extracted from a single chargeback notification</caption>
+                        <tbody>
+                            <tr><td>Tenant</td><td>Barry&rsquo;s Bootcamp Bay Area, LLC</td></tr>
+                            <tr><td>Account ID</td><td>acct_1IgFkhRFaQPehEcq</td></tr>
+                            <tr><td>Dispute #</td><td>du_1LYV97I1kLQM3y1JIOdBtCx6</td></tr>
+                            <tr><td>Amount</td><td>$36.00</td></tr>
+                            <tr><td>Date</td><td>Aug 4, 2022</td></tr>
+                            <tr><td>Deadline</td><td>Sep 14, 2022</td></tr>
+                            <tr><td>Customer</td><td>James Liao</td></tr>
+                            <tr><td>Email</td><td>jlaimaeos@gmail.com</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="cs-section" id="approach">
+            <h2>Boundaries, Not Regex &mdash; Extracting Data from Natural Language</h2>
+            <p>I recognized that Mariana Tek&rsquo;s chargeback emails followed a consistent template. While the specific values changed per dispute, the surrounding sentence structure was identical every time: <em>&ldquo;Hi [tenant], Hope you&rsquo;re having a great week&hellip;&rdquo;</em> always bracketed the tenant name, <em>&ldquo;gateway for [amount]. You&rdquo;</em> always bracketed the dispute amount. These natural language phrases were more reliable delimiters than any character-level regex pattern.</p>
+            <p>I chose boundary-based text extraction over pure regex because the email body is prose, not structured data. A regex-only approach would require fragile patterns that break when template wording shifts slightly. Boundary extraction with <code>rm_between()</code> relies on sentence structure &mdash; as long as the email says &ldquo;Hi [name], Hope&rdquo; and &ldquo;Dispute [number] Customer,&rdquo; the extraction works regardless of the specific values inside.</p>
+
+            <h3>The Design Decision Stack</h3>
+            <ul>
+                <li><strong>Why R with text mining libraries?</strong> The <code>qdapRegex</code> library&rsquo;s <code>rm_between()</code> provided boundary extraction with minimal code. The <code>tm</code> library handled corpus operations that would have required more manual implementation elsewhere. Optimized for development speed &mdash; the goal was to solve the problem quickly, not build a production system.</li>
+                <li><strong>Why export-to-folder instead of API integration?</strong> The emails came through Mariana Tek&rsquo;s notification system, and the volume didn&rsquo;t justify building an API integration. The manual step of exporting emails as <code>.txt</code> files took a few minutes and kept the solution simple &mdash; no authentication, no rate limits, no third-party dependencies. The bottleneck was parsing, not downloading.</li>
+                <li><strong>Why batch architecture?</strong> The script processes every <code>.txt</code> file in the target folder in a single run. Whether the folder contains 1 chargeback or 50, the code runs identically &mdash; scaling from 1 to N without code changes.</li>
+            </ul>
+        </section>
+
+        <section class="cs-section" id="technical">
+            <h2>From Email Prose to Structured Table in 3 Steps</h2>
+
+            <h3>Processing Pipeline</h3>
+            <div class="process-timeline">
+                <div class="timeline-item completed">
+                    <div class="timeline-week">Step 1</div>
+                    <div class="timeline-title">Corpus Construction</div>
+                    <div class="timeline-desc">Read all <code>.txt</code> files from target folder into a list. Collapse each file&rsquo;s lines into a single string, creating one &ldquo;document&rdquo; per notification. Strip commas, parentheses, and colons that interfere with boundary matching.</div>
+                </div>
+                <div class="timeline-item completed">
+                    <div class="timeline-week">Step 2</div>
+                    <div class="timeline-title">Boundary-Based Field Extraction</div>
+                    <div class="timeline-desc">For each of 8 fields, identify the natural language phrases that bracket the target data, then use <code>rm_between()</code> to extract the text between those boundaries. Post-process with stopword removal, regex email extraction, and trailing character trimming.</div>
+                </div>
+                <div class="timeline-item completed">
+                    <div class="timeline-week">Step 3</div>
+                    <div class="timeline-title">Structured Output</div>
+                    <div class="timeline-desc">Each extraction produces a vector with one value per input file. Vectors form the columns of a structured table &mdash; one row per chargeback, one column per field &mdash; ready for export and paste into the Google Sheets tracker.</div>
+                </div>
+            </div>
+
+            <h3>Boundary Extraction Map</h3>
+            <p>Each field is isolated using the email template&rsquo;s own sentence structure as delimiters. The left/right boundary words bracket the target data &mdash; no fragile regex on the values themselves.</p>
+
+            <table class="data-table">
+                <caption>8 fields extracted per email using rm_between() boundary markers</caption>
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Left Boundary</th>
+                        <th>Right Boundary</th>
+                        <th>Post-Processing</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tenant Name</td>
+                        <td>&ldquo;Hi&rdquo;</td>
+                        <td>&ldquo;Hope&rdquo;</td>
+                        <td>Direct extraction</td>
+                    </tr>
+                    <tr>
+                        <td>Account ID</td>
+                        <td>&ldquo;Connected&rdquo;</td>
+                        <td>&ldquo;Dispute&rdquo;</td>
+                        <td>Stopword removal</td>
+                    </tr>
+                    <tr>
+                        <td>Dispute Number</td>
+                        <td>&ldquo;Dispute&rdquo;</td>
+                        <td>&ldquo;Customer&rdquo;</td>
+                        <td>Stopword removal</td>
+                    </tr>
+                    <tr>
+                        <td>Dispute Amount</td>
+                        <td>&ldquo;gateway&rdquo;</td>
+                        <td>&ldquo;You&rdquo;</td>
+                        <td>Remove &ldquo;for&rdquo;, trim trailing</td>
+                    </tr>
+                    <tr>
+                        <td>Transaction Date</td>
+                        <td>&ldquo;date&rdquo;</td>
+                        <td>&ldquo;Disputed&rdquo;</td>
+                        <td>Trim timezone artifacts</td>
+                    </tr>
+                    <tr>
+                        <td>Submission Deadline</td>
+                        <td>&ldquo;prior&rdquo;</td>
+                        <td>&ldquo;time&rdquo;</td>
+                        <td>Stopword + whitespace strip</td>
+                    </tr>
+                    <tr>
+                        <td>Customer Name</td>
+                        <td>&ldquo;customers&rdquo;</td>
+                        <td>&ldquo;recently&rdquo;</td>
+                        <td>Remove email via regex</td>
+                    </tr>
+                    <tr>
+                        <td>Customer Email</td>
+                        <td>&ldquo;customers&rdquo;</td>
+                        <td>&ldquo;recently&rdquo;</td>
+                        <td>Extract via <code>\S*@\S*</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Before vs. After: Process Transformation</h3>
+
+            <table class="data-table">
+                <caption>What changed at each step of the chargeback processing workflow</caption>
+                <thead>
+                    <tr>
+                        <th>Process Step</th>
+                        <th>Before (Manual)</th>
+                        <th>After (Automated)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Access notifications</td>
+                        <td class="old-value">Open each email individually</td>
+                        <td class="new-value">Batch export as .txt to folder</td>
+                    </tr>
+                    <tr>
+                        <td>Extract tenant name</td>
+                        <td class="old-value">Read header, copy text</td>
+                        <td class="new-value">Script: &ldquo;Hi&rdquo; / &ldquo;Hope&rdquo; boundaries</td>
+                    </tr>
+                    <tr>
+                        <td>Extract account ID</td>
+                        <td class="old-value">Scan body, find line, type value</td>
+                        <td class="new-value">Script: &ldquo;Connected&rdquo; / &ldquo;Dispute&rdquo;</td>
+                    </tr>
+                    <tr>
+                        <td>Extract dispute #</td>
+                        <td class="old-value">Scan body, find line, type value</td>
+                        <td class="new-value">Script: &ldquo;Dispute&rdquo; / &ldquo;Customer&rdquo;</td>
+                    </tr>
+                    <tr>
+                        <td>Extract amount</td>
+                        <td class="old-value">Scan body, find dollar amount</td>
+                        <td class="new-value">Script: &ldquo;gateway&rdquo; / &ldquo;You&rdquo;</td>
+                    </tr>
+                    <tr>
+                        <td>Identify customer</td>
+                        <td class="old-value">Find name and email separately</td>
+                        <td class="new-value">Script: &ldquo;customers&rdquo; / &ldquo;recently&rdquo; + regex split</td>
+                    </tr>
+                    <tr>
+                        <td>Enter into tracker</td>
+                        <td class="old-value">Type each value into Sheets cell</td>
+                        <td class="new-value">Copy output table, paste</td>
+                    </tr>
+                    <tr>
+                        <td>Handle batch</td>
+                        <td class="old-value">Repeat entire process per email</td>
+                        <td class="new-value">Single script run &mdash; all files in folder</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="cs-section" id="results">
+            <h2>10 Minutes Instead of 2 Hours &mdash; With Zero Transcription Errors</h2>
+
+            <div class="metrics-row">
+                <div class="metric-card">
+                    <span class="metric-number">92%</span>
+                    <span class="metric-label">Time Reduction</span>
+                    <span class="metric-subtitle">~2 hrs &rarr; ~10 min per cycle</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">8</span>
+                    <span class="metric-label">Fields Extracted</span>
+                    <span class="metric-subtitle">per notification, automatically</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">0</span>
+                    <span class="metric-label">Transcription Errors</span>
+                    <span class="metric-subtitle">vs. inherent manual risk</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">1 &rarr; N</span>
+                    <span class="metric-label">Batch Scalability</span>
+                    <span class="metric-subtitle">constant-time parsing</span>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-label">Processing Time: Manual vs. Automated</div>
+                <canvas id="timeChart" aria-label="Bar chart comparing approximately 120 minutes manual processing versus approximately 10 minutes automated processing"></canvas>
+            </div>
+
+            <p>The 92% time reduction freed approximately 1.5+ hours per processing cycle. For a recurring task executed weekly or bi-weekly, that represented meaningful capacity recovery &mdash; time redirected from transcribing notification data to actually investigating and responding to disputes.</p>
+
+            <div class="chart-container">
+                <div class="chart-label">Scaling Behavior: Manual (Linear) vs. Automated (Constant)</div>
+                <canvas id="scalingChart" aria-label="Line chart showing manual processing time growing linearly with batch size while automated time remains nearly flat"></canvas>
+            </div>
+
+            <p>The error elimination was equally important. Manual transcription of IDs like <code>acct_1JLCGLRBHKtIdC2g</code> and dispute numbers like <code>du_1LaINXI1kLQM3y1JRjTtoIaL</code> is inherently error-prone. A single transposed character means filing evidence against the wrong case. The script extracts these values programmatically from the source text &mdash; eliminating transcription errors entirely.</p>
+
+            <p>The batch architecture meant the time savings scaled with volume. Manual processing scales linearly &mdash; N emails &times; 8 fields &times; manual keystrokes. The automated approach is essentially constant-time for the parsing step. The more chargebacks in a batch, the greater the gap.</p>
+        </section>
+
+        <section class="cs-section" id="lessons">
+            <h2>What This Taught Me</h2>
+            <ul class="lessons-list">
+                <li>The best automation targets are format problems, not volume problems. The data existed in every email &mdash; it was just trapped in the wrong structure. Recognizing that distinction saved hours of accumulated manual work.</li>
+                <li>Right-size the solution to the problem. An API integration would have been over-engineered. Export-to-folder plus a script was simple, dependency-free, and solved the problem completely. The 10 minutes of remaining manual work wasn&rsquo;t worth eliminating.</li>
+                <li>Boundary-based extraction is more resilient than pure regex for natural language text. Relying on sentence structure rather than character-level patterns meant the script didn&rsquo;t break when values changed &mdash; only when the template itself changed.</li>
+                <li>Self-initiated automation compounds. This wasn&rsquo;t an assigned project &mdash; it was recognizing that a repetitive process could be solved with a script. The instinct to identify where human time is being wasted on machine-solvable tasks is a skill that transfers across every role.</li>
+            </ul>
+        </section>
+
+        <section class="cs-cta">
+            <p>Next: <a href="../contract-transfer/contract-transfer.html">Contract Transfer Process Redesign</a></p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Taylor Stephens. All rights reserved.</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var accent = '#2563eb';
+        var green = '#16a34a';
+        var red = '#dc3545';
+        var muted = 'rgba(107, 107, 107, 0.3)';
+        var defaults = {
+            responsive: true,
+            maintainAspectRatio: true,
+            animation: { duration: 1200, easing: 'easeOutQuart' },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#1a1a1a',
+                    titleFont: { family: "'Inter', sans-serif", size: 12 },
+                    bodyFont: { family: "'Inter', sans-serif", size: 12 },
+                    padding: 10,
+                    cornerRadius: 4
+                }
+            }
+        };
+
+        // Time comparison chart
+        new Chart(document.getElementById('timeChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Manual', 'Automated'],
+                datasets: [{
+                    data: [120, 10],
+                    backgroundColor: [red, green],
+                    borderRadius: 4,
+                    barThickness: 60
+                }]
+            },
+            options: Object.assign({}, defaults, {
+                aspectRatio: 2.5,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 140,
+                        grid: { color: 'rgba(0,0,0,0.04)' },
+                        ticks: {
+                            font: { family: "'Inter', sans-serif", size: 11 },
+                            color: '#6b6b6b',
+                            callback: function(v) { return v + ' min'; }
+                        }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            font: { family: "'Inter', sans-serif", size: 11, weight: 600 },
+                            color: '#3d3d3d'
+                        }
+                    }
+                }
+            })
+        });
+
+        // Scaling behavior chart
+        new Chart(document.getElementById('scalingChart'), {
+            type: 'line',
+            data: {
+                labels: ['1', '3', '5', '10', '20', '30', '50'],
+                datasets: [
+                    {
+                        label: 'Manual',
+                        data: [20, 60, 100, 200, 400, 600, 1000],
+                        borderColor: red,
+                        backgroundColor: 'rgba(220, 53, 69, 0.06)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 4,
+                        pointBackgroundColor: red,
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        borderWidth: 2.5
+                    },
+                    {
+                        label: 'Automated',
+                        data: [10, 10, 10, 10, 11, 11, 12],
+                        borderColor: green,
+                        backgroundColor: 'rgba(22, 163, 74, 0.06)',
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 4,
+                        pointBackgroundColor: green,
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        borderWidth: 2.5
+                    }
+                ]
+            },
+            options: Object.assign({}, defaults, {
+                aspectRatio: 2.5,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            font: { family: "'Inter', sans-serif", size: 11 },
+                            color: '#6b6b6b',
+                            usePointStyle: true,
+                            pointStyle: 'circle',
+                            padding: 16
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#1a1a1a',
+                        titleFont: { family: "'Inter', sans-serif", size: 12 },
+                        bodyFont: { family: "'Inter', sans-serif", size: 12 },
+                        padding: 10,
+                        cornerRadius: 4,
+                        callbacks: {
+                            label: function(ctx) {
+                                return ctx.dataset.label + ': ~' + ctx.raw + ' min';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 1100,
+                        grid: { color: 'rgba(0,0,0,0.04)' },
+                        ticks: {
+                            font: { family: "'Inter', sans-serif", size: 11 },
+                            color: '#6b6b6b',
+                            callback: function(v) { return v + ' min'; }
+                        }
+                    },
+                    x: {
+                        grid: { color: 'rgba(0,0,0,0.04)' },
+                        title: {
+                            display: true,
+                            text: 'Chargebacks per Batch',
+                            font: { family: "'Inter', sans-serif", size: 11 },
+                            color: '#6b6b6b'
+                        },
+                        ticks: {
+                            font: { family: "'Inter', sans-serif", size: 11 },
+                            color: '#3d3d3d'
+                        }
+                    }
+                }
+            })
+        });
+    });
+    </script>
+
+</body>
+</html>

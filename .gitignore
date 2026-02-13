@@ -1,0 +1,17 @@
+# OS
+.DS_Store
+
+# Evidence & source files (reference material, not served)
+work/**/evidence-*.md
+work/**/evidence-*.jsx
+work/**/*-dashboard.jsx
+work/**/*-transformation.jsx
+work/**/Project_*.md
+work/**/Project_*.txt
+work/**/Project *
+work/**/archive/
+
+# Planning & drafts
+PORTFOLIO_EXPANSION_PLAN.md
+docs/
+resume.html
