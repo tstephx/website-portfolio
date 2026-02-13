@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Case study: Replacing a crashing 55MB Excel file with a SQL-based automation system that increased Pinnacle fill rate from 57.9% to 94.1%.">
+    <meta name="description" content="Case study: Diagnosing 8 root causes behind a failing eligibility process and building a 6-step SQL pipeline that increased Pinnacle fill rate from 57.9% to 94.1%.">
     <title>Pinnacle Selection Automation | Taylor Stephens</title>
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
     <meta property="og:title" content="Pinnacle Selection Automation | Taylor Stephens">
-    <meta property="og:description" content="From crashing Excel to real-time SQL: increasing Pinnacle fill rate from 57.9% to 94.1% with automated geospatial calculations.">
+    <meta property="og:description" content="Diagnosed 8 root causes, built a 6-step SQL pipeline on Amazon Redshift, increased Pinnacle fill rate from 57.9% to 94.1% — hitting 100% in July.">
     <meta property="og:type" content="article">
     <link rel="canonical" href="https://taylorstephens.dev/work/pinnacle-program-selection/">
     <meta name="theme-color" content="#2563eb">
@@ -32,68 +32,146 @@
 
         <header class="cs-header">
             <h1>From Crashing Excel to Real-Time Automation</h1>
-            <p class="cs-tagline">Replacing a fragile 55MB Excel file with SQL-based automation that increased Pinnacle fill rate from 57.9% to 94.1% &mdash; hitting 100% in July.</p>
+            <p class="cs-tagline">I diagnosed 8 root causes behind a failing eligibility process &mdash; then designed and built a 6-step SQL pipeline on Amazon Redshift that replaced a crashing 55MB Excel file and increased Pinnacle fill rate from 57.9% to 94.1%.</p>
             <div class="tech-pills">
                 <span class="tech-pill">SQL / Redshift</span>
                 <span class="tech-pill">Haversine Formula</span>
-                <span class="tech-pill">Data Integration</span>
-                <span class="tech-pill">Salesforce</span>
+                <span class="tech-pill">Window Functions</span>
+                <span class="tech-pill">Process Architecture</span>
             </div>
         </header>
 
         <div class="scope-callout">
             <div class="scope-item">
                 <span class="scope-label">Timeline</span>
-                <span class="scope-value">2022&ndash;2025</span>
+                <span class="scope-value">2023&ndash;2025</span>
             </div>
             <div class="scope-item">
                 <span class="scope-label">My Role</span>
-                <span class="scope-value">Technical Lead &amp; System Architect</span>
+                <span class="scope-value">Process Architect &amp; Technical Lead</span>
             </div>
             <div class="scope-item">
                 <span class="scope-label">Data Scale</span>
-                <span class="scope-value">24,000 rows, 6-step SQL pipeline</span>
+                <span class="scope-value">2,620 DSPs, 5+ data sources, 9 quarterly snapshots</span>
             </div>
             <div class="scope-item">
-                <span class="scope-label">Revenue Impact</span>
-                <span class="scope-value">$8.3M Pinnacle expansion protected</span>
+                <span class="scope-label">Impact</span>
+                <span class="scope-value">94.1% fill rate (+36 pp), 1&rarr;5 BDM team</span>
             </div>
         </div>
 
         <section class="cs-section" id="problem">
             <h2>A Spreadsheet That Couldn&rsquo;t Handle Its Own Data</h2>
-            <p>Amazon&rsquo;s &ldquo;Pinnacle&rdquo; program assigns top-performing Delivery Service Partners (independent business owners running delivery fleets) to premium, high-volume stations. To expand the network, someone has to determine which partners are eligible for which stations &mdash; matching geography, performance, and capacity across thousands of combinations.</p>
-            <p>This eligibility process ran on a 55+ MB Excel file with INDEX-MATCH calculations across 24,000 rows. It crashed regularly, used inconsistent traffic-dependent distance calculations, had quarterly data lag, and was maintained by a single person who built it years ago.</p>
+            <p>Amazon&rsquo;s &ldquo;Pinnacle&rdquo; program assigns top-performing Delivery Service Partners (independent business owners running delivery fleets) to premium, high-volume stations across Multi-Station, Middle Mile, DSP Lite, and other expansion operations. To grow the network, someone has to determine which partners are eligible for which stations &mdash; matching geography, performance, and capacity across thousands of combinations.</p>
+            <p>This eligibility process ran on a 55+ MB Excel file with INDEX-MATCH calculations across 24,000 rows. It crashed regularly. The distance calculations came from a &ldquo;Who&rsquo;s My Neighbor Dashboard&rdquo; that computed traffic-dependent commute distances &mdash; the same partner-to-station pair could show 49 miles one month and 52 the next. Eligibility data refreshed quarterly while performance updated monthly, creating blind spots between cycles. The entire system was maintained by a single person.</p>
 
             <div class="chart-container">
                 <div class="chart-label">Pinnacle Launches: System Failure Impact</div>
-                <canvas id="launchChart" aria-label="Bar chart showing Pinnacle launches dropping from 93 to 42"></canvas>
+                <canvas id="launchChart" aria-label="Bar chart showing Pinnacle launches dropping from 93 in 2023 to 42 in 2024"></canvas>
             </div>
 
-            <p>The results were predictable: Pinnacle launches dropped 55% (from 93 to 42) and 20 eligible candidates were bypassed entirely because the system couldn&rsquo;t reliably identify them. A critical growth program &mdash; one protecting $8.3M in revenue &mdash; was throttled by a spreadsheet that couldn&rsquo;t handle its own data.</p>
+            <p>Pinnacle launches dropped 55% (from 93 to 42) and 20 eligible candidates were bypassed entirely. But the real damage was structural. Amazon&rsquo;s capacity planning follows a 5-lever prioritization hierarchy &mdash; where Pinnacle expansion (Rank 3) must be exhausted before falling to net-new RTO recruitment (Rank 5). Instead, those 20 targets jumped directly to RTO, violating the program&rsquo;s own prioritization tenets and breaking the reward mechanism that top-performing DSPs had earned.</p>
 
             <div class="insight-callout">
-                A 55MB Excel file with 24,000-row INDEX-MATCH formulas isn&rsquo;t a tool &mdash; it&rsquo;s a system screaming for a database. And when it crashes, you don&rsquo;t lose a file. You lose candidates.
+                A 55MB Excel file with 24,000-row INDEX-MATCH formulas isn&rsquo;t a tool &mdash; it&rsquo;s a system screaming for a database. And when it crashes, you don&rsquo;t lose a file. You lose candidates &mdash; and violate the rules that protect your best operators.
             </div>
         </section>
 
         <section class="cs-section" id="approach">
-            <h2>Three Layers of Failure Required Three Layers of Solution</h2>
-            <p>I diagnosed root causes across three dimensions: data (inconsistent, lagging), process (single point of failure, no documentation), and tooling (Excel couldn&rsquo;t scale). The solution needed to address all three simultaneously &mdash; fixing just one would leave the others to cause the next failure.</p>
+            <h2>8 Root Causes, Not Just a Crashing Spreadsheet</h2>
+            <p>What leadership saw as &ldquo;the Excel file crashes&rdquo; was actually 8 distinct root causes spanning three dimensions. Fixing any one alone would leave the others to cause the next failure.</p>
 
-            <h3>Three-Layer Solution</h3>
-            <ul>
-                <li><strong>Data layer:</strong> Create a multi-source integration pipeline feeding fresh data into Amazon Redshift on a daily refresh cycle &mdash; eliminating quarterly lag and manual data entry.</li>
-                <li><strong>Logic layer:</strong> Implement the Haversine distance formula in SQL for consistent geospatial calculations &mdash; eliminating traffic-dependent variability that made the same partner-station pair show different distances depending on when you checked.</li>
-                <li><strong>Delivery layer:</strong> Build an outreach prioritization algorithm connected to Salesforce &mdash; enabling automated, ranked candidate identification that recruiters could work through without understanding eligibility math.</li>
-            </ul>
+            <table class="data-table">
+                <caption>8 root causes diagnosed across data, process, and tooling</caption>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Root Cause</th>
+                        <th>Dimension</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="highlight">1</td>
+                        <td>Quarterly data lag &mdash; eligibility updated quarterly while performance updated monthly</td>
+                        <td>Data</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">2</td>
+                        <td>Variable commute distances &mdash; traffic-dependent, non-deterministic (49mi one month, 52mi the next)</td>
+                        <td>Data</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">3</td>
+                        <td>RSR Capacity Reliability defects from 2023 contaminating eligibility determinations</td>
+                        <td>Data</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">4</td>
+                        <td>Double-counting &mdash; DSPs already operating second stations inflating eligibility counts</td>
+                        <td>Data</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">5</td>
+                        <td>Inconsistent prioritization &mdash; tracker framework didn&rsquo;t match strategy documents</td>
+                        <td>Process</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">6</td>
+                        <td>Vetting history gaps &mdash; 12-month waits, bans without documentation or reconsideration dates</td>
+                        <td>Process</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">7</td>
+                        <td>Unclear training &mdash; tracker usage instructions incomplete for new analysts</td>
+                        <td>Process</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">8</td>
+                        <td>Excel infrastructure collapse &mdash; 55+MB file, single point of failure for the entire process</td>
+                        <td>Tooling</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>The solution needed to address all 8 simultaneously. I designed a 6-step SQL pipeline on Amazon Redshift that replaced every component: data extraction, consecutive-period validation, vetting integration, geospatial distance calculation, prioritized ranking, and downstream delivery.</p>
+
+            <h3>Eligibility Funnel</h3>
+            <p>The pipeline implements a progressive filtering funnel &mdash; narrowing 2,620 DSPs to a ranked candidate list per station. Each stage maps to a diagnosed root cause.</p>
+
+            <div class="funnel-chart">
+                <div class="funnel-stage" style="--width: 100%">
+                    <span class="stage-label">NA DSP Network</span>
+                    <span class="stage-value">2,620</span>
+                </div>
+                <div class="funnel-stage" style="--width: 55%">
+                    <span class="stage-label">Tier 1 Designation</span>
+                    <span class="stage-value">222<span class="stage-drop">8.5%</span></span>
+                </div>
+                <div class="funnel-stage" style="--width: 45%">
+                    <span class="stage-label">Consecutive Tier 1</span>
+                    <span class="stage-value">~180</span>
+                </div>
+                <div class="funnel-stage" style="--width: 38%">
+                    <span class="stage-label">Tenure Qualified (12+ months)</span>
+                    <span class="stage-value">~160</span>
+                </div>
+                <div class="funnel-stage" style="--width: 30%">
+                    <span class="stage-label">MSO Vetting Clear</span>
+                    <span class="stage-value">~140</span>
+                </div>
+                <div class="funnel-stage" style="--width: 18%">
+                    <span class="stage-label">Distance Matched &amp; Prioritized</span>
+                    <span class="stage-value">Ranked per station</span>
+                </div>
+            </div>
         </section>
 
         <section class="cs-section" id="technical">
             <h2>Why Consistency Beat Accuracy</h2>
 
             <h3>Haversine Distance Formula</h3>
-            <p>The original Excel file used driving distances from a mapping API, which varied based on traffic conditions. The same partner-to-station pair could show different distances depending on when you checked. I implemented the Haversine formula for great-circle distance calculations &mdash; consistent, reproducible, and fast. While driving distance is more accurate in absolute terms, consistency mattered more for eligibility ranking. A decision system needs the same inputs to produce the same outputs every time.</p>
+            <p>The &ldquo;Who&rsquo;s My Neighbor Dashboard&rdquo; computed driving distances that varied with traffic conditions &mdash; the same partner-to-station pair could show different distances depending on when you checked. I replaced it with the Haversine formula for great-circle distance calculations: consistent, reproducible, and fast. While driving distance is more accurate in absolute terms, consistency mattered more for eligibility ranking. A decision system needs the same inputs to produce the same outputs every time.</p>
 
             <div class="formula-box">
                 <div class="formula-label">Haversine Formula</div>
@@ -104,21 +182,21 @@
             </div>
 
             <h3>6-Step SQL Query Architecture</h3>
-            <p>The transformation from raw data to prioritized outreach list required six sequential steps, each implemented as a modular SQL query that could be tested and maintained independently:</p>
+            <p>The pipeline transforms raw data into a prioritized outreach list through six modular stages. Each stage addresses specific root causes and can be tested independently.</p>
             <ul>
-                <li><strong>Step 1:</strong> Data extraction from multiple source systems into Redshift</li>
-                <li><strong>Step 2:</strong> Partner qualification filtering (active status, performance thresholds)</li>
-                <li><strong>Step 3:</strong> Station requirement matching (capacity needs, geography)</li>
-                <li><strong>Step 4:</strong> Distance calculation via Haversine formula</li>
-                <li><strong>Step 5:</strong> Scoring and ranking (distance, performance, capacity)</li>
-                <li><strong>Step 6:</strong> Salesforce-ready output formatting with prioritization</li>
+                <li><strong>Stage 1 &mdash; Snapshot Configuration:</strong> Maps 9 quarterly snapshots (2022Q1&ndash;2024Q3) that lock Network Health scores for consistent eligibility evaluation. Solves root cause #1 (quarterly lag).</li>
+                <li><strong>Stage 2 &mdash; Consecutive Tier 1 Validation:</strong> Uses LAG() window functions to verify consecutive-period Tier 1 status across two quarters &mdash; preventing one-quarter flukes from qualifying DSPs for three-year contracts. Snapshot-locked tier data also isolates the 2023 CR defect period. Solves root causes #1 and #3.</li>
+                <li><strong>Stage 3 &mdash; Vetting Integration:</strong> Joins tier-validated DSPs with MSO vetting history, applies a 33-DSP exclusion list, and deduplicates transfer records via ROW_NUMBER(). Surfaces exclusion reasons and reconsideration dates. Solves root causes #4 (double-counting) and #6 (vetting gaps).</li>
+                <li><strong>Stage 4 &mdash; Station Coordinates:</strong> Ingests station latitude and longitude from the master station table for distance computation.</li>
+                <li><strong>Stage 5 &mdash; Haversine Distance:</strong> CROSS JOIN of all station pairs with Haversine formula, filtered to &le;250 miles and ranked by proximity. Replaces the traffic-dependent metric with a deterministic constant. Solves root cause #2.</li>
+                <li><strong>Stage 6 &mdash; Prioritized Selection:</strong> Two-tier distance filter with intelligent fallback. Outreach priority encoded directly in the ranking to match approved policy tenets. Solves root cause #5 (inconsistent prioritization).</li>
             </ul>
 
-            <h3>Multi-Source Data Integration</h3>
-            <p>The Excel file had been updated quarterly by manually copying data from various systems. The new architecture pulled directly from source systems into Redshift on a daily refresh cycle. This eliminated both the data lag (from quarterly to daily) and the manual effort of maintaining the spreadsheet &mdash; removing a critical single point of failure.</p>
+            <h3>Two-Tier Distance Filter</h3>
+            <p>Not every station has eligible candidates nearby. The original process had no fallback &mdash; remote or island stations simply went unfilled. I designed a two-tier filter: candidates within 50 miles get priority; if none exist for a station, the 5 closest within 250 miles are included via a NOT EXISTS subquery. The fallback never competes with primary matches &mdash; it only activates for stations that would otherwise be orphaned.</p>
 
-            <h3>Salesforce Integration</h3>
-            <p>The final step wasn&rsquo;t just a list &mdash; it was an actionable queue in Salesforce with prioritization logic baked in. Recruiters could work through candidates in optimal order without needing to understand the underlying eligibility calculations. This separated the analytical complexity from the operational workflow.</p>
+            <h3>What the Automation Feeds</h3>
+            <p>The SQL pipeline&rsquo;s output isn&rsquo;t the endpoint &mdash; it feeds into two structured organizational processes I mapped end-to-end. Candidates first enter an 8-day SLA Amazon Approvals process (5 steps across 4 stakeholder groups: LRP, BI, Acquisition, and Leadership), then a 3-week Business Plan Review vetting cycle with panel-style interviews and a 106/150 point threshold. By the time a candidate reaches BPR, they&rsquo;ve been systematically validated across performance, tenure, vetting history, and geography &mdash; eliminating the manual identification bottleneck that caused 20 missed opportunities.</p>
         </section>
 
         <section class="cs-section" id="results">
@@ -128,22 +206,22 @@
                 <div class="metric-card">
                     <span class="metric-number">94.1%</span>
                     <span class="metric-label">Pinnacle Fill Rate</span>
-                    <span class="metric-subtitle">Up from 57.9%</span>
+                    <span class="metric-subtitle">Up from 57.9% (+36 pp)</span>
                 </div>
                 <div class="metric-card">
                     <span class="metric-number">100%</span>
                     <span class="metric-label">July Fill Rate</span>
-                    <span class="metric-subtitle">Peak month</span>
+                    <span class="metric-subtitle">8 targets: 1 MMRO, 1 XL, 7 ZL</span>
                 </div>
                 <div class="metric-card">
                     <span class="metric-number">20</span>
                     <span class="metric-label">Candidates Preserved</span>
-                    <span class="metric-subtitle">Previously bypassed</span>
+                    <span class="metric-subtitle">Previously bypassed to RTO</span>
                 </div>
                 <div class="metric-card">
-                    <span class="metric-number">$8.3M</span>
-                    <span class="metric-label">Revenue Protected</span>
-                    <span class="metric-subtitle">Pinnacle expansion</span>
+                    <span class="metric-number">1 &rarr; 5</span>
+                    <span class="metric-label">BDM Team</span>
+                    <span class="metric-subtitle">5&times; outreach capacity</span>
                 </div>
             </div>
 
@@ -152,8 +230,54 @@
                 <canvas id="fillRateChart" aria-label="Line chart showing fill rate improvement from 57.9% to 94.1%, peaking at 100% in July"></canvas>
             </div>
 
-            <p>Pinnacle fill rate jumped from 57.9% to 94.1% &mdash; a 36 percentage point increase &mdash; with July hitting 100%. The 20 eligible candidates who had been bypassed by the old system were identified and preserved. The crashing, quarterly-lagged Excel file was replaced with an automated, real-time system that required no manual maintenance and protected $8.3M in Pinnacle expansion revenue.</p>
-            <p>Beyond the metrics, the system eliminated a critical single point of failure. The previous process depended on one person&rsquo;s Excel expertise; the new process was documented, modular, and maintainable by anyone with SQL access. Each of the 6 query steps could be tested, debugged, and updated independently.</p>
+            <p>Pinnacle fill rate jumped from 57.9% to 94.1% &mdash; a 36 percentage-point increase &mdash; with July hitting 100% across all 8 targets. The 20 eligible candidates who had been bypassed to RTO were identified and preserved, restoring the 5-lever prioritization hierarchy. The automation also enabled the Pinnacle BDM team to expand from 1 member to 5 by providing reliable candidate pipelines that didn&rsquo;t require manual Excel manipulation.</p>
+            <p>Data refresh improved from quarterly to monthly &mdash; 3&times; faster updates. The crashing Excel file was replaced with a self-documenting SQL pipeline that runs identically for any analyst, eliminating the single point of failure. Each of the 6 query stages can be tested, debugged, and updated independently. The Haversine distance module is reusable for any station-pair proximity calculation across the network.</p>
+
+            <table class="data-table">
+                <caption>System transformation: before and after automation</caption>
+                <thead>
+                    <tr>
+                        <th>Before</th>
+                        <th>After</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>55+ MB Excel file (crashes regularly)</td>
+                        <td class="highlight">6-step SQL pipeline on Amazon Redshift</td>
+                    </tr>
+                    <tr>
+                        <td>Traffic-dependent commute distances</td>
+                        <td class="highlight">Haversine constant (deterministic)</td>
+                    </tr>
+                    <tr>
+                        <td>Quarterly data refresh</td>
+                        <td class="highlight">Monthly NH integration (3&times; faster)</td>
+                    </tr>
+                    <tr>
+                        <td>Double-counting in WBR reports</td>
+                        <td class="highlight">ROW_NUMBER() deduplication</td>
+                    </tr>
+                    <tr>
+                        <td>20 candidates bypassed to RTO</td>
+                        <td class="highlight">0 candidates missed</td>
+                    </tr>
+                    <tr>
+                        <td>Manual Excel identification</td>
+                        <td class="highlight">Automated per-station ranked lists</td>
+                    </tr>
+                    <tr>
+                        <td>1 BDM team member</td>
+                        <td class="highlight">5 BDM members (5&times; capacity)</td>
+                    </tr>
+                    <tr>
+                        <td>57.9% fill rate (42 launches)</td>
+                        <td class="highlight">94.1% fill rate (100% in July)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Leadership documentation credited the work directly: <em>&ldquo;The acquisition team will create a script that automatically identifies the prioritized list of Pinnacle eligible candidates for each site (Taylor Stephens, ECD: completed).&rdquo;</em></p>
         </section>
 
         <section class="cs-section" id="lessons">
@@ -161,13 +285,13 @@
             <ul class="lessons-list">
                 <li>Excel heroics are a sign of missing infrastructure. A 55MB file with 24,000-row INDEX-MATCH formulas is a system screaming for a database. The heroism is the symptom, not the solution.</li>
                 <li>Consistency often beats accuracy. Haversine distances aren&rsquo;t as &ldquo;accurate&rdquo; as driving distances, but they&rsquo;re reproducible &mdash; and reproducibility is what eligibility decisions require. The same inputs must produce the same outputs.</li>
-                <li>Single points of failure aren&rsquo;t just risk &mdash; they&rsquo;re indicators. When a process depends on one person&rsquo;s spreadsheet, that process is already broken. The 20 bypassed candidates were proof.</li>
-                <li>Separating analytical complexity from operational workflow (SQL pipeline &rarr; Salesforce queue) lets each team work in their own context. Recruiters don&rsquo;t need to understand Haversine; they need a ranked list.</li>
+                <li>A crashing spreadsheet is never just a crashing spreadsheet. What looked like one tooling problem was 8 root causes across 3 dimensions. Fixing the Excel without diagnosing the data lag, vetting gaps, and prioritization misalignment would have produced a faster wrong answer.</li>
+                <li>Automation doesn&rsquo;t just speed things up &mdash; it enforces rules. The 5-lever hierarchy existed on paper, but a manual process let 20 targets skip from Rank 3 to Rank 5. The SQL pipeline mechanizes the hierarchy so prioritization tenets cannot be violated.</li>
             </ul>
         </section>
 
         <section class="cs-cta">
-            <p>Next: <a href="../contract-transfer/contract-transfer.html">Contract Transfer Process Scaling</a></p>
+            <p>Next: <a href="../contract-transfer/contract-transfer.html">Contract Transfer Process Redesign</a></p>
         </section>
 
     </main>
@@ -181,7 +305,7 @@
         var accent = '#2563eb';
         var muted = 'rgba(107, 107, 107, 0.3)';
         var red = '#dc3545';
-        var green = '#28a745';
+        var green = '#16a34a';
         var defaults = {
             responsive: true,
             maintainAspectRatio: true,
@@ -202,7 +326,7 @@
         new Chart(document.getElementById('launchChart'), {
             type: 'bar',
             data: {
-                labels: ['Before (Working System)', 'During Failure'],
+                labels: ['2023 (Working System)', '2024 (System Failure)'],
                 datasets: [{
                     data: [93, 42],
                     backgroundColor: [muted, red],
@@ -243,10 +367,10 @@
                     label: 'Fill Rate',
                     data: [57.9, 100, 94.1],
                     borderColor: green,
-                    backgroundColor: 'rgba(40, 167, 69, 0.08)',
+                    backgroundColor: 'rgba(22, 163, 74, 0.08)',
                     borderWidth: 2.5,
                     pointBackgroundColor: function(ctx) {
-                        return ctx.dataIndex === 1 ? '#1d8a35' : green;
+                        return ctx.dataIndex === 1 ? '#15803d' : green;
                     },
                     pointRadius: function(ctx) {
                         return ctx.dataIndex === 1 ? 6 : 4;

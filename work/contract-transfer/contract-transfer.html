@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Case study: Scaling Amazon's DSP ownership transfer process 680% with zero additional headcount through process redesign and SQL-based analytics.">
-    <title>Contract Transfer Process Scaling | Taylor Stephens</title>
+    <meta name="description" content="Case study: Redesigning Amazon's DSP ownership transfer process from zero documentation to handling 87 annual cases — preventing $13M in exit costs as a team of one.">
+    <title>Contract Transfer Process Redesign | Taylor Stephens</title>
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-    <meta property="og:title" content="Contract Transfer Process Scaling | Taylor Stephens">
-    <meta property="og:description" content="Scaled Amazon's DSP ownership transfer process 680% single-handedly while maintaining quality and projecting $25M in annual savings.">
+    <meta property="og:title" content="Contract Transfer Process Redesign | Taylor Stephens">
+    <meta property="og:description" content="From zero documentation to 87 annual transfer cases. Designed the complete operational system for Amazon's DSP ownership transfers — preventing $13M in exit costs.">
     <meta property="og:type" content="article">
     <link rel="canonical" href="https://taylorstephens.dev/work/contract-transfer/">
     <meta name="theme-color" content="#2563eb">
@@ -31,163 +31,262 @@
     <main id="main-content" class="case-study">
 
         <header class="cs-header">
-            <h1>Scaling a Critical Process 680% with Zero Additional Headcount</h1>
-            <p class="cs-tagline">Redesigning Amazon&rsquo;s DSP ownership transfer process from ad-hoc firefighting to a structured, data-driven program that projected $25M in annual savings.</p>
+            <h1>From Zero Documentation to 87 Cases a Year &mdash; Solo</h1>
+            <p class="cs-tagline">I inherited Amazon&rsquo;s DSP ownership transfer process with no SOP, no communication framework, and no data infrastructure &mdash; then designed the complete operational system that&rsquo;s prevented $13M in exit costs.</p>
             <div class="tech-pills">
-                <span class="tech-pill">Process Design</span>
+                <span class="tech-pill">Service Design</span>
+                <span class="tech-pill">Process Architecture</span>
                 <span class="tech-pill">SQL / Redshift</span>
-                <span class="tech-pill">Root Cause Analysis</span>
-                <span class="tech-pill">Change Management</span>
+                <span class="tech-pill">Stakeholder Governance</span>
             </div>
         </header>
 
         <div class="scope-callout">
             <div class="scope-item">
                 <span class="scope-label">Timeline</span>
-                <span class="scope-value">2023&ndash;2025</span>
+                <span class="scope-value">2022&ndash;2025</span>
             </div>
             <div class="scope-item">
                 <span class="scope-label">My Role</span>
-                <span class="scope-value">Sole Process Owner</span>
+                <span class="scope-value">CT Program Owner &amp; Design Strategist</span>
             </div>
             <div class="scope-item">
-                <span class="scope-label">Stakeholders</span>
-                <span class="scope-value">14+ groups (Legal, Finance, Ops, Field, HR)</span>
+                <span class="scope-label">Teams Coordinated</span>
+                <span class="scope-value">6 (BC, BDM, NH, Acquisitions, DRR, Legal)</span>
             </div>
             <div class="scope-item">
-                <span class="scope-label">Data Scale</span>
-                <span class="scope-value">689 attributes &times; 209 candidates</span>
+                <span class="scope-label">Artifacts Created</span>
+                <span class="scope-value">SOP + 13 appendices + 19 templates</span>
             </div>
         </div>
 
         <section class="cs-section" id="problem">
-            <h2>Every Transfer Was a Firefight</h2>
-            <p>Amazon delivers billions of packages through a network of independent Delivery Service Partners (DSPs) &mdash; small business owners who operate fleets of vans and drivers under the Amazon brand. When a DSP owner needs to exit, their business must be transferred to a new owner without disrupting deliveries. Think of it like a franchise transfer: legal, financial, and operational handoffs all have to happen in sequence, and a delay in any one area stalls the entire chain.</p>
-            <p>When I inherited this process, it was broken. There was a 15-case backlog, no documentation, no data infrastructure, and every case was handled ad-hoc. The process took roughly 17 weeks per transfer, cost the company through extended exit payments averaging $236K per partner, and had everyone firefighting individual cases.</p>
+            <h2>Every Failed Transfer Cost Half a Million Dollars</h2>
+            <p>Amazon delivers billions of packages through a network of independent Delivery Service Partners (DSPs) &mdash; small business owners who operate fleets of vans and drivers under the Amazon brand. When a DSP owner needs to exit, their business must be transferred to a new owner without disrupting deliveries. The stakes cut both ways: a failed exit costs Amazon $482K&ndash;$504K in backfill, onboarding, and ramp costs, while dropping network capacity by 7.7% with only 39.6% of routes recovered. But transferring to the wrong person is equally dangerous &mdash; a new owner who can&rsquo;t maintain capacity reliability, safety standards, or financial viability ends up exiting involuntarily, triggering the same $482K+ cost all over again.</p>
+            <p>When I inherited this process, it was broken. There was no SOP, no standardized communications &mdash; just 4 emails to candidates and zero to DSP owners across the entire lifecycle &mdash; no formalized vetting criteria, and heavy reliance on tribal knowledge across 6 teams. One stakeholder summarized it bluntly: <em>&ldquo;There&rsquo;s not much&hellip; it&rsquo;s an area we just need to be more attentive. It&rsquo;s been disappointing.&rdquo;</em></p>
 
             <div class="chart-container">
-                <div class="chart-label">Volume Scaling: Before vs. After</div>
-                <canvas id="volumeChart" aria-label="Bar chart showing volume increase from 5 to 63+ cases per year"></canvas>
+                <div class="chart-label">Annual Transfer Requests: 2020 vs. 2024</div>
+                <canvas id="volumeChart" aria-label="Bar chart showing volume increase from 5 cases in 2020 to 87 cases in 2024"></canvas>
             </div>
 
-            <p>The volume was about to explode: from 5 cases annually to 63+ &mdash; a 680% increase &mdash; with no additional staff allocated. Each delayed transfer cost Amazon an average of $236K in extended exit payments. Without fundamental redesign, the backlog would become unmanageable and the program would collapse under its own weight.</p>
+            <p>Volume was exploding: from 5 transfer requests in 2020 to 87 in 2024 &mdash; a 17x increase &mdash; with no additional staff. Transfers took 4+ months. Without fundamental redesign, the program would collapse under its own weight.</p>
 
             <div class="insight-callout">
-                This wasn&rsquo;t a workload problem. Throwing more people at a broken process just creates more chaos. It was a systems problem &mdash; and the system didn&rsquo;t exist yet.
+                This wasn&rsquo;t a workload problem &mdash; it was a design problem. The process had to solve two things that pull in opposite directions: move fast enough that DSP owners don&rsquo;t exit before a transfer completes, but vet rigorously enough that the replacement can actually run the business. Speed without quality is worse than no transfer at all.
             </div>
         </section>
 
         <section class="cs-section" id="approach">
-            <h2>Building Infrastructure Where None Existed</h2>
-            <p>I approached this as a systems problem, not a staffing problem. The goal wasn&rsquo;t to work faster on a broken process &mdash; it was to design a process that could scale without breaking. I mapped the full lifecycle end-to-end, identified every handoff and decision point, and built infrastructure where none existed.</p>
+            <h2>Designing a System, Not Patching a Process</h2>
+            <p>I approached this as a service design challenge. The goal wasn&rsquo;t to work faster on a broken process &mdash; it was to architect a system that could scale without breaking. I mapped the full lifecycle end-to-end, identified every handoff and decision point, and built infrastructure where none existed.</p>
 
             <h3>Three-Phase Strategy</h3>
             <ul>
-                <li><strong>Standardize the workflow:</strong> Convert ad-hoc case handling into a structured 14-week, 21-milestone framework with clear handoffs, defined owners, and escalation triggers at every decision point.</li>
-                <li><strong>Build the data infrastructure:</strong> Create SQL-based analytics on Amazon Redshift tracking 689 data attributes across 209 candidates &mdash; replacing scattered spreadsheets with a single source of truth that updated in real time.</li>
-                <li><strong>Institutionalize the knowledge:</strong> Author the CT Process Playbook, create 19 standardized communication templates, and build a defect tracking system with 5-Why root cause analysis going 5&ndash;8 layers deep on every failure.</li>
+                <li><strong>Design the process architecture:</strong> Codify the ad-hoc workflow into a structured 14-week lifecycle (5 weeks vetting + 2 weeks approvals + 7 weeks onboarding) with defined SLAs, stage gates, and 3 distinct transfer-type paths.</li>
+                <li><strong>Build the data infrastructure:</strong> Create SQL-based analytics on Amazon Redshift tracking 689 data attributes across 209 candidates &mdash; replacing scattered spreadsheets with a single source of truth.</li>
+                <li><strong>Institutionalize the knowledge:</strong> Author a comprehensive SOP with 13 appendices, 19 communication templates, a BC/BDM Playbook, vetting rubrics, and a governance model &mdash; every artifact standalone so any team member could execute without tribal knowledge.</li>
             </ul>
 
-            <h3>Stakeholder Coordination</h3>
-            <p>The transfer process touched 14+ stakeholder groups &mdash; Legal, Finance, Field Operations, HR, Partner Management, and more. Each had different requirements and timelines. I designed the milestone framework to synchronize these groups, creating shared visibility into where each case stood and what each team needed to deliver next. Without this alignment, the 680% volume increase would have overwhelmed every downstream team.</p>
+            <h3>Three Transfer Types, One Architecture</h3>
+            <p>Not all transfers carry the same risk. I defined 3 distinct use cases with differentiated vetting paths, approval criteria, and communication flows. The DSP program is highly selective &mdash; transfer candidates are held to the same bar as every other network owner. That&rsquo;s why 3rd-party candidates have a 79% rejection rate: the vetting exists to protect the network, not to process paperwork.</p>
+
+            <table class="data-table">
+                <caption>Transfer types: volume, approval rates, and vetting requirements</caption>
+                <thead>
+                    <tr>
+                        <th>Transfer Type</th>
+                        <th>Volume</th>
+                        <th>Approval Rate</th>
+                        <th>Vetting Depth</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>3rd Party</td>
+                        <td>82%</td>
+                        <td>21%</td>
+                        <td>Full 6-step sequence</td>
+                    </tr>
+                    <tr>
+                        <td>Legacy (family, employees)</td>
+                        <td>13%</td>
+                        <td>36%</td>
+                        <td>Full vetting, same bar as all sources</td>
+                    </tr>
+                    <tr>
+                        <td>Survivorship</td>
+                        <td>5%</td>
+                        <td>88%</td>
+                        <td>4 sub-scenarios, graduated depth</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Stakeholder Governance</h3>
+            <p>The transfer process spanned 6 teams &mdash; BCs (first contact), BDMs (candidate relationship), NH (supervision), Acquisitions (vetting execution), DRR (enhanced screening), and Legal (agreement review). Each had different requirements and unclear boundaries, causing inconsistent candidate experiences and confusion about decision authority. I defined explicit roles for each team and designed a 5-stakeholder consensus model for approvals &mdash; a governance layer unique to CT that doesn&rsquo;t exist in standard DSP recruiting.</p>
         </section>
 
         <section class="cs-section" id="technical">
-            <h2>From Ad-Hoc to 21 Milestones</h2>
+            <h2>From Tribal Knowledge to 13 Appendices</h2>
 
-            <h3>Milestone-Based Workflow</h3>
-            <p>The original process had no structure &mdash; cases moved forward when someone remembered to push them. I designed a 14-week timeline with 21 specific milestones, each with defined owners, deliverables, and escalation triggers. This turned an amorphous &ldquo;transfer&rdquo; into a sequence of discrete, trackable steps.</p>
+            <h3>14-Week Process Architecture</h3>
+            <p>The inherited process had no timeline, no stage gates, and no defined handoffs. I designed a 5-phase lifecycle with SLAs at every stage &mdash; the first time the CT process had a documented, repeatable architecture.</p>
 
             <div class="process-timeline">
                 <div class="timeline-item completed">
-                    <div class="timeline-week">Weeks 1&ndash;2</div>
-                    <div class="timeline-title">Initiation &amp; Assessment</div>
-                    <div class="timeline-desc">Exit notification, candidate identification, initial qualification screening</div>
+                    <div class="timeline-week">Phase 1</div>
+                    <div class="timeline-title">Notification &amp; Intake</div>
+                    <div class="timeline-desc">DSP Owner notifies BC of intent. CT PM validates eligibility (no open BOCs, not at-risk). Candidate completes application + Buyer Supplementary Questionnaire &mdash; a new artifact I designed for CT-specific data collection.</div>
                 </div>
                 <div class="timeline-item completed">
-                    <div class="timeline-week">Weeks 3&ndash;5</div>
-                    <div class="timeline-title">Candidate Screening</div>
-                    <div class="timeline-desc">Background checks, financial verification, panel interviews, scoring</div>
+                    <div class="timeline-week">Phase 2 &mdash; 5 weeks</div>
+                    <div class="timeline-title">Vetting (6 Steps)</div>
+                    <div class="timeline-desc">Application Review (6-dimension rubric: leadership, coaching ability, logistics experience, customer obsession, grit) &rarr; Background/Credit Check &rarr; HireVue (10 questions) &rarr; Enhanced Vetting &rarr; Station Visit &rarr; Interview Loop (3&times;45 min, 6 competencies). Front-loaded to catch disqualifiers early &mdash; 34% rejected within 2 weeks at the cheapest gates, before Amazon invests in expensive later stages.</div>
                 </div>
                 <div class="timeline-item completed">
-                    <div class="timeline-week">Weeks 6&ndash;8</div>
-                    <div class="timeline-title">Legal &amp; Contract</div>
-                    <div class="timeline-desc">Agreement drafting, legal review, stakeholder sign-off across 14+ groups</div>
+                    <div class="timeline-week">Phase 3 &mdash; 2 weeks</div>
+                    <div class="timeline-title">Approvals (100% Consensus)</div>
+                    <div class="timeline-desc">5-stakeholder panel: BC Manager, Acquisitions Manager, NH Manager, Legal, NH Director. Interview pass &ne; acceptance &mdash; a deliberate design difference from standard DSP recruiting.</div>
                 </div>
                 <div class="timeline-item completed">
-                    <div class="timeline-week">Weeks 9&ndash;12</div>
-                    <div class="timeline-title">Transition Execution</div>
-                    <div class="timeline-desc">Knowledge transfer, system access, operational handoff, field coordination</div>
+                    <div class="timeline-week">Phase 4 &mdash; 7 weeks</div>
+                    <div class="timeline-title">Onboarding &amp; Transition</div>
+                    <div class="timeline-desc">Conditional offer via Ownership Transfer Agreement. DSPi &amp; OEW training. 45-day minimum supportive transition period. Fleet transferred as-is.</div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-week">Weeks 13&ndash;14</div>
-                    <div class="timeline-title">Close &amp; Monitor</div>
-                    <div class="timeline-desc">Quality verification, defect tracking, 5-Why analysis on any issues, case closure</div>
+                <div class="timeline-item completed">
+                    <div class="timeline-week">Continuous</div>
+                    <div class="timeline-title">Communications (19 Templates)</div>
+                    <div class="timeline-desc">No party goes more than 2 weeks without contact. Separate tracks for DSP Owners and Candidates. Legally reviewed language at every touchpoint.</div>
                 </div>
             </div>
 
-            <h3>SQL Analytics on Redshift</h3>
-            <p>The team had been tracking cases in spreadsheets that kept getting corrupted or lost. I built a proper analytics layer on Amazon Redshift, tracking 689 data attributes per candidate across 209 total candidates. This enabled real-time visibility into pipeline health, bottleneck identification, and quality metrics &mdash; replacing a system where nobody could answer basic questions like &ldquo;How many cases are in progress right now?&rdquo;</p>
+            <h3>Communication Transformation</h3>
+            <p>Before the redesign: 4 standardized emails to candidates. Zero to DSP owners. Both parties experienced extended silence with no visibility into status, next steps, or expectations. I authored 19 templates covering every lifecycle state &mdash; from initial inquiry through conditional approval &mdash; with 2-week cadence updates during inactive periods and post-rejection talking points addressing 7 escalation scenarios (appeals, discrimination claims, selling without approval).</p>
 
-            <h3>Defect Tracking with 5-Why Analysis</h3>
-            <p>When transfers failed post-completion, the team would fix the immediate issue and move on. I implemented systematic 5-Why root cause analysis for every defect, going 5&ndash;8 layers deep on each failure. I categorized failures by source and fed insights back into process improvements. This shifted the team from reactive firefighting to proactive prevention &mdash; the same defect never happened twice.</p>
-
-            <h3>Before / After</h3>
-            <div class="comparison">
-                <div class="comparison-before">
-                    <h3>Before</h3>
-                    <p>Ad-hoc case handling. 15-case backlog. No documentation. Scattered spreadsheets. ~17-week transfer timeline. Every case a unique firefight. Function viewed as &ldquo;customer service.&rdquo;</p>
+            <h3>Process Capability: Before vs. After</h3>
+            <p>Eight dimensions of process maturity, scored 0&ndash;100. The inherited state averaged 12% across all dimensions &mdash; the redesigned system averages 87%.</p>
+            <div class="bar-comparison">
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>Documentation</span>
+                        <span class="bar-value">5% &rarr; 95%</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 95%;"></div>
+                    </div>
                 </div>
-                <div class="comparison-after">
-                    <h3>After</h3>
-                    <p>Structured 14-week, 21-milestone framework. Zero backlog. Complete playbook with 19 templates. SQL analytics on 689 attributes. 86.6% cycle time reduction. Function reframed as &ldquo;network protection.&rdquo;</p>
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>Decision Framework</span>
+                        <span class="bar-value">12% &rarr; 92%</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 92%;"></div>
+                    </div>
+                </div>
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>Communications</span>
+                        <span class="bar-value">15% &rarr; 90%</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 90%;"></div>
+                    </div>
+                </div>
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>Vetting Rigor</span>
+                        <span class="bar-value">20% &rarr; 88%</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 88%;"></div>
+                    </div>
+                </div>
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>Stakeholder Coordination</span>
+                        <span class="bar-value">18% &rarr; 85%</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>Role Clarity</span>
+                        <span class="bar-value">10% &rarr; 85%</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>Reporting</span>
+                        <span class="bar-value">5% &rarr; 82%</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 82%;"></div>
+                    </div>
+                </div>
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>Intake Design</span>
+                        <span class="bar-value">8% &rarr; 80%</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 80%;"></div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="cs-section" id="results">
-            <h2>From 17 Weeks to 2 &mdash; at 680% Volume</h2>
+            <h2>70% Faster Decisions &mdash; at 17x the Volume</h2>
 
             <div class="metrics-row">
                 <div class="metric-card">
-                    <span class="metric-number">680%</span>
-                    <span class="metric-label">Volume Scaling</span>
-                    <span class="metric-subtitle">5 &rarr; 63+ cases/year</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-number">86.6%</span>
-                    <span class="metric-label">Cycle Time Reduction</span>
-                    <span class="metric-subtitle">~17 weeks &rarr; ~2 weeks</span>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-number">$25M</span>
-                    <span class="metric-label">Projected Savings</span>
-                    <span class="metric-subtitle">Annual by 2026</span>
+                    <span class="metric-number">17x</span>
+                    <span class="metric-label">Volume Handled</span>
+                    <span class="metric-subtitle">5 &rarr; 87 cases/year</span>
                 </div>
                 <div class="metric-card">
                     <span class="metric-number">$13M</span>
                     <span class="metric-label">Exit Costs Prevented</span>
-                    <span class="metric-subtitle">29 transfers &times; $236K avg</span>
+                    <span class="metric-subtitle">29 transfers since 2019</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">70%</span>
+                    <span class="metric-label">Faster Decisions</span>
+                    <span class="metric-subtitle">9.6 &rarr; 2.9 weeks median</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">0 &rarr; 19</span>
+                    <span class="metric-label">Templates Created</span>
+                    <span class="metric-subtitle">+ SOP with 13 appendices</span>
                 </div>
             </div>
 
             <div class="chart-container">
-                <div class="chart-label">Cycle Time: Before vs. After</div>
-                <canvas id="cycleChart" aria-label="Bar chart showing cycle time reduction from 17 weeks to 2 weeks"></canvas>
+                <div class="chart-label">Median Decision Time by Year (Weeks)</div>
+                <canvas id="cycleChart" aria-label="Bar chart showing median decision time: 9.6 weeks in 2021, 5.3 in 2022, 2.9 in 2023, 3.3 in 2024"></canvas>
             </div>
 
-            <p>The program scaled 680% with a single process owner &mdash; me &mdash; while maintaining 80&ndash;100% post-transfer quality. Cycle time dropped 86.6%, from roughly 17 weeks to approximately 2 weeks per transfer. The $13M in exit costs prevented came from faster, cleaner transfers that reduced extended exit payments across 29 completed cases. The broader $25M projection captures the annualized impact of the program operating at scale.</p>
+            <p>Median time to decision dropped 70%, from 9.6 weeks in 2021 to 2.9 weeks in 2023, as the SOP standardized each stage. Three processing tiers emerged from the data: Fast Track (34% of cases, decision within 2 weeks at the cheapest gates), Standard (28%, 2&ndash;6 weeks through full vetting), and Extended (38%, 6+ weeks for investigation-level complexity).</p>
 
-            <p>Perhaps more importantly, I reframed how leadership viewed the function. It wasn&rsquo;t &ldquo;customer service&rdquo; handling partner requests &mdash; it was &ldquo;network protection&rdquo; ensuring the delivery network maintained quality during transitions. This reframing changed how the program was valued, resourced, and prioritized across the organization.</p>
+            <p>The 29 completed transfers prevented an estimated $13M in exit-related costs. Each successful transfer eliminates the $482K&ndash;$504K cost of a DSP exit and preserves 100% of network capacity &mdash; compared to the 7.7% capacity drop and 60.4% permanent route loss that comes with an unmanaged exit. But the real proof that the vetting works: Legacy transferees maintained quality at +1,800 basis points above the network average. The process didn&rsquo;t just move faster &mdash; it selected better.</p>
+
+            <p>The strongest validation came in 2025: the Legacy strategy document &mdash; a leadership-level initiative to formalize how DSPs transition ownership to internal candidates &mdash; explicitly built on this SOP as its foundational infrastructure. I was named owner of 3 of 4 implementation workstreams. The system I designed didn&rsquo;t just solve the immediate problem &mdash; it became the platform for the program&rsquo;s next phase.</p>
         </section>
 
         <section class="cs-section" id="lessons">
             <h2>What This Taught Me</h2>
             <ul class="lessons-list">
                 <li>Process problems masquerading as workload problems are the most dangerous &mdash; throwing more people at a broken process just creates more chaos. The answer was infrastructure, not headcount.</li>
-                <li>The act of creating structure creates capacity. A 21-milestone framework doesn&rsquo;t just track work; it reveals where work is actually getting stuck and where handoffs are failing.</li>
-                <li>Reframing how leadership sees a function (&ldquo;customer service&rdquo; &rarr; &ldquo;network protection&rdquo;) can matter more than the metrics themselves. The reframe changed how the program was resourced and prioritized.</li>
-                <li>Going 5&ndash;8 layers deep on root cause analysis is what separates lasting fixes from temporary patches. Surface-level fixes feel productive but leave the underlying system broken.</li>
+                <li>The act of creating structure creates capacity. A 5-phase lifecycle with stage gates doesn&rsquo;t just track work &mdash; it reveals where work gets stuck and where handoffs fail.</li>
+                <li>Design for the edge cases first. The survivorship framework (4 sub-scenarios for owner death or incapacitation) forced decisions that simplified the standard path.</li>
+                <li>Reframing how leadership sees a function can matter more than the metrics. &ldquo;Customer service&rdquo; implies processing requests. &ldquo;Network protection&rdquo; implies guarding against both exit losses and bad replacements. That reframe changed how the program was resourced &mdash; and led to the Legacy strategy adoption.</li>
             </ul>
         </section>
 
@@ -204,7 +303,7 @@
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         var accent = '#2563eb';
-        var green = '#28a745';
+        var green = '#16a34a';
         var muted = 'rgba(107, 107, 107, 0.3)';
         var defaults = {
             responsive: true,
@@ -226,9 +325,9 @@
         new Chart(document.getElementById('volumeChart'), {
             type: 'bar',
             data: {
-                labels: ['Previous Annual Volume', 'New Annual Volume'],
+                labels: ['2020', '2024'],
                 datasets: [{
-                    data: [5, 63],
+                    data: [5, 87],
                     backgroundColor: [muted, green],
                     borderRadius: 4,
                     barThickness: 60
@@ -239,7 +338,7 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        max: 75,
+                        max: 100,
                         grid: { color: 'rgba(0,0,0,0.04)' },
                         ticks: {
                             font: { family: "'Inter', sans-serif", size: 11 },
@@ -258,33 +357,32 @@
             })
         });
 
-        // Cycle time chart
+        // Decision time by year
         new Chart(document.getElementById('cycleChart'), {
             type: 'bar',
             data: {
-                labels: ['Before (Ad-Hoc)', 'After (Structured)'],
+                labels: ['2021', '2022', '2023', '2024'],
                 datasets: [{
-                    data: [17, 2.4],
-                    backgroundColor: [muted, green],
+                    data: [9.6, 5.3, 2.9, 3.3],
+                    backgroundColor: [muted, accent, green, green],
                     borderRadius: 4,
-                    barThickness: 60
+                    barThickness: 48
                 }]
             },
             options: Object.assign({}, defaults, {
-                indexAxis: 'y',
                 aspectRatio: 2.5,
                 scales: {
-                    x: {
+                    y: {
                         beginAtZero: true,
-                        max: 20,
+                        max: 12,
                         grid: { color: 'rgba(0,0,0,0.04)' },
                         ticks: {
                             font: { family: "'Inter', sans-serif", size: 11 },
                             color: '#6b6b6b',
-                            callback: function(v) { return v + ' weeks'; }
+                            callback: function(v) { return v + ' wks'; }
                         }
                     },
-                    y: {
+                    x: {
                         grid: { display: false },
                         ticks: {
                             font: { family: "'Inter', sans-serif", size: 11, weight: 600 },
