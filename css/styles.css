@@ -337,6 +337,12 @@ section {
     font-size: 0.9375rem;
 }
 
+.auth-notice {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    margin-bottom: var(--space-lg);
+}
+
 /* ===== PROJECT CARDS ===== */
 .project-card {
     padding: 2rem 1.5rem;
