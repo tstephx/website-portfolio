@@ -9,19 +9,21 @@
 
 ```
 website-portfolio/
-├── index.html              # Main portfolio page
+├── index.html              # Main portfolio page (6 work cards + 3 personal cards)
 ├── css/
 │   ├── styles.css          # Global styles + :root token system (58 custom properties)
 │   └── case-study.css      # Case study visual components
 ├── js/
 │   ├── mermaid-init.js     # Mermaid diagram config
 │   └── progress-bar.js     # Reading progress bar JS fallback (Safari/Firefox)
-├── work/                   # 4 professional case studies (subdirectories)
+├── work/                   # 6 professional case studies (subdirectories)
 │   ├── contract-transfer/contract-transfer.html
 │   ├── bpr-scoring-pinnacle/pinnacle-scoring.html
 │   ├── cfa-dsp-application/dsp-application.html
-│   └── pinnacle-program-selection/pinnacle-automation.html
-├── projects/               # 6 personal project case studies
+│   ├── pinnacle-program-selection/pinnacle-automation.html
+│   ├── pinnacle-station/pinnacle-distance.html
+│   └── charge-back-processing/chargeback-parsing.html
+├── projects/               # 5 personal project case studies
 │   ├── mcp-ecosystem.html
 │   ├── book-library-mcp.html
 │   ├── agentic-pipeline.html
@@ -29,8 +31,11 @@ website-portfolio/
 │   ├── tap-sevenrooms.html
 │   └── lab-environment.html
 ├── docs/plans/             # Design docs and implementation plans
+├── .gitignore              # Excludes evidence files, dashboards, .DS_Store
 └── images/                 # Static assets (ignore)
 ```
+
+Each `work/` subdirectory also contains evidence `.md` files and `.jsx` dashboard files (gitignored — reference material, not served).
 
 ### Key Files by Task
 - **Styling**: `css/styles.css`, `css/case-study.css`
@@ -42,6 +47,9 @@ website-portfolio/
 - Work pages are 2 levels deep: asset paths use `../../css/`, `../../js/`
 - Project pages are 1 level deep: asset paths use `../css/`, `../js/`
 - Work pages link to siblings via `../subfolder/file.html`
+
+### Link Chain (work case studies)
+CT → scoring → DSP → automation → distance → chargeback → CT (circular)
 
 ---
 
@@ -88,16 +96,36 @@ website-portfolio/
 
 ---
 
+## Case Study Workflow (3-Prompt Pattern)
+
+Each case study follows this sequence:
+
+1. **Prompt 1 — Research & Structure:** Read the evidence `.md` and dashboard `.jsx` in the `work/` subdirectory. Read an existing case study as template. Produce an outline mapping sections to specific data points. Don't create the file yet.
+2. **Prompt 2 — Create HTML:** Build the page from the approved outline. Use the template structure, design system tokens, and Chart.js patterns. Every claim gets a number.
+3. **Prompt 3 — Graphics Review:** Read the `.jsx` dashboard and identify which visualizations to add. Adapt to the site's design system. Propose before making changes.
+
+After each prompt: code review via `/superpowers:requesting-code-review`, fix issues, then add homepage card + update link chain.
+
+### Chart.js Patterns (in `<script>` blocks)
+```javascript
+var accent = '#2563eb';
+var green = '#16a34a';
+var red = '#dc3545';
+var muted = 'rgba(107, 107, 107, 0.3)';
+var defaults = { responsive: true, maintainAspectRatio: true, animation: {...}, plugins: { legend: { display: false }, tooltip: {...} } };
+// Per-chart: Object.assign({}, defaults, { aspectRatio: 2.5, scales: {...} })
+```
+
 ## Common Tasks
 
 ### Add a new case study
-1. Copy an existing file from `work/` or `projects/`
+1. Follow the 3-prompt pattern above
 2. For work pages: create a subdirectory, use `../../` paths for assets
 3. Add `<div class="reading-progress"></div>` as first child of `<body>`
 4. Add `<link rel="canonical">` and `<script src="[path]/js/progress-bar.js" defer>`
 5. Update content, keeping the section structure
 6. Link from index.html in the appropriate section
-7. Update the "Next:" link chain
+7. Update the "Next:" link chain (circular)
 
 ### Modify styling
 - Global styles: `css/styles.css`
@@ -129,4 +157,4 @@ This project uses claude-innit for persistent context:
 
 ---
 
-*Last updated: 2026-02-12*
+*Last updated: 2026-02-13*
