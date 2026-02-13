@@ -10,6 +10,7 @@
     <meta property="og:description" content="A research-first development environment where every project starts with curated book knowledge before external sources.">
     <meta property="og:type" content="article">
     <link rel="canonical" href="https://taylorstephens.dev/projects/lab-environment">
+    <meta name="theme-color" content="#2563eb">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
@@ -22,7 +23,7 @@
     <div class="reading-progress"></div>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <nav class="back-nav">
+    <nav class="back-nav" aria-label="Back navigation">
         <a href="../index.html#personal-projects">&larr; Back to Portfolio</a>
     </nav>
 
@@ -57,7 +58,7 @@
                 <p class="formula-note">Curated knowledge before search engines &mdash; depth over breadth</p>
             </div>
 
-            <div class="mermaid-container">
+            <div class="mermaid-container" role="img" aria-label="Research-first workflow: search, read, extract, build, document, repeat">
                 <div class="mermaid">
 flowchart TD
     A["Project Idea"] --> B["Book Library Search\nget_topic_coverage()"]
@@ -84,6 +85,7 @@ flowchart TD
             <p>Codified in the environment&rsquo;s configuration (<code>CLAUDE.md</code>), this rule instructs Claude Code to always search the curated book library before external sources. The library contains 130+ books across technical infrastructure, programming, AI/ML, career development, mental models, and financial analysis &mdash; all high-quality, curated content.</p>
 
             <table class="data-table">
+                <caption>Book library coverage by domain</caption>
                 <thead>
                     <tr>
                         <th>Domain</th>
@@ -121,7 +123,7 @@ flowchart TD
             </table>
 
             <h3>Knowledge Integration Stack</h3>
-            <div class="mermaid-container">
+            <div class="mermaid-container" role="img" aria-label="Knowledge integration stack: book library to projects via MCP">
                 <div class="mermaid">
 flowchart BT
     BL["Book Library\n130+ Books"] --> MCP["MCP Server\n40+ Tools"]

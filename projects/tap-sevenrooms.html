@@ -10,6 +10,7 @@
     <meta property="og:description" content="Built a Singer tap for the SevenRooms restaurant platform API, enabling automated data extraction for analytics and reporting.">
     <meta property="og:type" content="article">
     <link rel="canonical" href="https://taylorstephens.dev/projects/tap-sevenrooms">
+    <meta name="theme-color" content="#2563eb">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
@@ -22,7 +23,7 @@
     <div class="reading-progress"></div>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <nav class="back-nav">
+    <nav class="back-nav" aria-label="Back navigation">
         <a href="../index.html#personal-projects">&larr; Back to Portfolio</a>
     </nav>
 
@@ -50,7 +51,7 @@
             <h2>The Approach</h2>
             <p>I built a Singer-compatible tap that maps SevenRooms API endpoints to standardized data streams, implements incremental sync with bookmark-based state management, and outputs Singer-format messages compatible with any target (CSV, database, warehouse).</p>
 
-            <div class="mermaid-container">
+            <div class="mermaid-container" role="img" aria-label="Data flow: SevenRooms API through Singer tap to targets">
                 <div class="mermaid">
 flowchart LR
     API["SevenRooms API\nv2.2"] --> TAP["tap-sevenrooms\n(Singer Tap)"]
@@ -74,6 +75,7 @@ flowchart LR
             <p>Four primary streams with a parent-child relationship between Venues and Charges. Venues are fetched first, then for each venue, charge records are retrieved via the <code>venues/{id}/charges</code> endpoint. This hierarchical traversal handles the API&rsquo;s nested resource structure elegantly.</p>
 
             <table class="data-table">
+                <caption>Stream architecture: fields, sync modes, and relationships</caption>
                 <thead>
                     <tr>
                         <th>Stream</th>
@@ -110,7 +112,7 @@ flowchart LR
                 </tbody>
             </table>
 
-            <div class="mermaid-container">
+            <div class="mermaid-container" role="img" aria-label="Sync mode: discovery, schema catalog, and stream selection">
                 <div class="mermaid">
 flowchart TD
     D["Discovery Mode"] --> S["Schema Catalog\n(4 Streams)"]

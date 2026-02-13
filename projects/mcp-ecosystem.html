@@ -10,6 +10,7 @@
     <meta property="og:description" content="Built a 4-server MCP ecosystem from scratch: semantic search over 195 books, persistent AI memory, autonomous ingestion pipeline, and career intelligence — 79K LOC, 130+ tools, 1,100+ tests.">
     <meta property="og:type" content="article">
     <link rel="canonical" href="https://taylorstephens.dev/projects/mcp-ecosystem">
+    <meta name="theme-color" content="#2563eb">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
@@ -22,7 +23,7 @@
     <div class="reading-progress"></div>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <nav class="back-nav">
+    <nav class="back-nav" aria-label="Back navigation">
         <a href="../index.html#personal-projects">&larr; Back to Portfolio</a>
     </nav>
 
@@ -79,7 +80,7 @@
             <h2>The Architecture</h2>
             <p>Four MCP servers, each solving one problem, all connected through Claude Code as the orchestrator. The key insight was that these servers aren&rsquo;t independent &mdash; they form a system where each one makes the others more useful.</p>
 
-            <div class="mermaid-container">
+            <div class="mermaid-container" role="img" aria-label="Four-server architecture with Claude Code as orchestrator">
                 <div class="mermaid">
 flowchart TD
     CC["Claude Code\n(Orchestrator)"]
@@ -100,6 +101,7 @@ flowchart TD
             </div>
 
             <table class="data-table">
+                <caption>MCP server overview: lines of code, tools, and purpose</caption>
                 <thead>
                     <tr>
                         <th>Server</th>
@@ -148,6 +150,7 @@ flowchart TD
             <h3>Search Strategy: Why Hybrid over Single-Mode</h3>
             <p><strong>The fork:</strong> FTS5 full-text search only, semantic embeddings only, or both combined?</p>
             <table class="data-table">
+                <caption>Search strategy comparison</caption>
                 <thead>
                     <tr>
                         <th>Option</th>
@@ -188,7 +191,7 @@ flowchart TD
                 </div>
             </div>
 
-            <div class="mermaid-container">
+            <div class="mermaid-container" role="img" aria-label="Graduated trust ladder: supervised to partial to confident">
                 <div class="mermaid">
 flowchart LR
     S["Supervised\n(All human review)"] -->|"Accuracy proven"| P["Partial\n(High-confidence auto)"]
@@ -216,6 +219,7 @@ flowchart LR
             <h3>Storage Philosophy: Why Files over Database-First</h3>
             <p><strong>The fork:</strong> Database as source of truth (Postgres/SQLite owns the data) or files as source of truth (database is a disposable index)?</p>
             <table class="data-table">
+                <caption>Storage approach comparison</caption>
                 <thead>
                     <tr>
                         <th>Approach</th>
@@ -245,6 +249,7 @@ flowchart LR
 
             <h3>1,133 Tests Across the Ecosystem</h3>
             <table class="data-table">
+                <caption>Test coverage across the MCP ecosystem</caption>
                 <thead>
                     <tr>
                         <th>Server</th>
@@ -277,7 +282,7 @@ flowchart LR
             <h3>Audit Trail &amp; Continuous Calibration</h3>
             <p>Every autonomy decision &mdash; approve, reject, batch operation, rollback &mdash; is logged to an <strong>immutable audit trail</strong> recording the actor, reason, confidence score, before/after state, and autonomy mode at the time of decision. This data feeds a <strong>calibration engine</strong> that recalculates per-book-type confidence thresholds from 90 days of feedback (target: 95% accuracy, minimum 50 samples). Spot checks randomly sample 10% of auto-approved books for human verification.</p>
 
-            <div class="mermaid-container">
+            <div class="mermaid-container" role="img" aria-label="Audit and calibration cycle: decisions to metrics to threshold adjustment">
                 <div class="mermaid">
 flowchart LR
     D["Decision Made"] --> A["Audit Trail\n(Immutable Log)"]
@@ -352,7 +357,7 @@ flowchart LR
                         <span class="bar-value">15&ndash;20 min manual &rarr; $0.03 automated</span>
                     </div>
                     <div class="bar-track">
-                        <div class="bar-fill" style="width: 95%"></div>
+                        <div class="bar-fill" style="width: 100%"></div>
                     </div>
                 </div>
                 <div class="bar-comparison-item">
@@ -361,7 +366,7 @@ flowchart LR
                         <span class="bar-value">Re-explain everything &rarr; instant recall</span>
                     </div>
                     <div class="bar-track">
-                        <div class="bar-fill" style="width: 90%"></div>
+                        <div class="bar-fill" style="width: 100%"></div>
                     </div>
                 </div>
                 <div class="bar-comparison-item">
@@ -370,7 +375,7 @@ flowchart LR
                         <span class="bar-value">Impossible &rarr; single query</span>
                     </div>
                     <div class="bar-track">
-                        <div class="bar-fill" style="width: 85%"></div>
+                        <div class="bar-fill" style="width: 100%"></div>
                     </div>
                 </div>
             </div>

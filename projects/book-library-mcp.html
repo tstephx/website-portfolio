@@ -10,6 +10,7 @@
     <meta property="og:description" content="Turned 130+ technical books into an AI-searchable knowledge base with semantic search, full-text search, and 40+ natural language tools.">
     <meta property="og:type" content="article">
     <link rel="canonical" href="https://taylorstephens.dev/projects/book-library-mcp">
+    <meta name="theme-color" content="#2563eb">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
@@ -22,7 +23,7 @@
     <div class="reading-progress"></div>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <nav class="back-nav">
+    <nav class="back-nav" aria-label="Back navigation">
         <a href="../index.html#personal-projects">&larr; Back to Portfolio</a>
     </nav>
 
@@ -51,7 +52,7 @@
             <h2>The Approach</h2>
             <p>The solution was a three-step pipeline: ingest and structure the books, build dual search (semantic + full-text), and surface everything through natural language tools via the Model Context Protocol.</p>
 
-            <div class="mermaid-container">
+            <div class="mermaid-container" role="img" aria-label="Ingestion pipeline: EPUB/PDF files to AI assistant via MCP server">
                 <div class="mermaid">
 flowchart LR
     A["EPUB/PDF Files"] --> B["Ingestion"]
@@ -79,6 +80,7 @@ flowchart LR
             <p>Full-text search (FTS5) handles exact terms and phrases with BM25 ranking &mdash; fast and precise for &ldquo;async await&rdquo; or &ldquo;dependency injection.&rdquo; Semantic search with 384-dimensional embeddings handles conceptual queries &mdash; finding chapters about &ldquo;container networking&rdquo; even when those exact words don&rsquo;t appear.</p>
 
             <table class="data-table">
+                <caption>Search type comparison: speed and best use cases</caption>
                 <thead>
                     <tr>
                         <th>Search Type</th>
@@ -100,7 +102,7 @@ flowchart LR
                 </tbody>
             </table>
 
-            <div class="mermaid-container">
+            <div class="mermaid-container" role="img" aria-label="Query routing: exact terms to FTS5, conceptual to semantic search">
                 <div class="mermaid">
 flowchart TD
     Q["User Query"] --> R{"Query Router"}
@@ -118,6 +120,7 @@ flowchart TD
             <p>Rather than building a few monolithic tools, I exposed 40+ granular operations. This lets the LLM compose complex workflows &mdash; combining <code>semantic_search</code> with <code>get_chapter</code> with <code>extract_code_examples</code> &mdash; rather than trying to anticipate every use case in advance.</p>
 
             <table class="data-table">
+                <caption>MCP tool categories and purposes</caption>
                 <thead>
                     <tr>
                         <th>Category</th>

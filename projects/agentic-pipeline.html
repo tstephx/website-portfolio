@@ -10,6 +10,7 @@
     <meta property="og:description" content="Built an AI-powered ingestion system that classifies, processes, and shelves books automatically with a graduated autonomy model.">
     <meta property="og:type" content="article">
     <link rel="canonical" href="https://taylorstephens.dev/projects/agentic-pipeline">
+    <meta name="theme-color" content="#2563eb">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
@@ -22,7 +23,7 @@
     <div class="reading-progress"></div>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <nav class="back-nav">
+    <nav class="back-nav" aria-label="Back navigation">
         <a href="../index.html#personal-projects">&larr; Back to Portfolio</a>
     </nav>
 
@@ -50,7 +51,7 @@
             <h2>The Approach</h2>
             <p>I designed a 15-state pipeline orchestrator with three layers: a state machine for lifecycle management, LLM classification with confidence scoring, and a graduated autonomy model that progresses from fully supervised to largely autonomous.</p>
 
-            <div class="mermaid-container">
+            <div class="mermaid-container" role="img" aria-label="15-state pipeline lifecycle from detection to archival">
                 <div class="mermaid">
 stateDiagram-v2
     [*] --> DETECTED
@@ -92,6 +93,7 @@ stateDiagram-v2
 
             <h3>Graduated Autonomy Model</h3>
             <table class="data-table">
+                <caption>Graduated autonomy model: approval rules by trust level</caption>
                 <thead>
                     <tr>
                         <th>Mode</th>
@@ -122,7 +124,7 @@ stateDiagram-v2
                 </tbody>
             </table>
 
-            <div class="mermaid-container">
+            <div class="mermaid-container" role="img" aria-label="Autonomy decision flow: mode determines approval path">
                 <div class="mermaid">
 flowchart TD
     B["Book Processed"] --> C{"Autonomy Mode?"}

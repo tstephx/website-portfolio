@@ -209,7 +209,7 @@ nav li:last-child a {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 85vh;
+    min-height: 70vh;
     text-align: center;
     padding: 4rem 1.5rem;
     animation: fadeIn 0.8s ease-out both;

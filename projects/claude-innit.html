@@ -10,6 +10,7 @@
     <meta property="og:description" content="Gave Claude persistent memory across sessions with personal, project, and session context that survives conversation boundaries.">
     <meta property="og:type" content="article">
     <link rel="canonical" href="https://taylorstephens.dev/projects/claude-innit">
+    <meta name="theme-color" content="#2563eb">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
@@ -22,7 +23,7 @@
     <div class="reading-progress"></div>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <nav class="back-nav">
+    <nav class="back-nav" aria-label="Back navigation">
         <a href="../index.html#personal-projects">&larr; Back to Portfolio</a>
     </nav>
 
@@ -51,7 +52,7 @@
             <h2>The Approach</h2>
             <p>I built a memory system with three categories, dual search, and a markdown-first storage philosophy &mdash; all exposed as an MCP server with 7 tools that Claude Code can call natively.</p>
 
-            <div class="mermaid-container">
+            <div class="mermaid-container" role="img" aria-label="Data flow: Markdown files to Claude Code via SQLite and MCP server">
                 <div class="mermaid">
 flowchart LR
     MD["Markdown Files\n(Source of Truth)"] --> SYNC["Sync Engine"]
@@ -79,6 +80,7 @@ flowchart LR
             <p>Memories are organized into three tiers: <strong>personal</strong> (static profile &mdash; identity, preferences, workflows), <strong>project</strong> (scoped to a specific repo &mdash; decisions, architecture, recent work), and <strong>session</strong> (temporal markers &mdash; conversation summaries with topics and dates).</p>
 
             <table class="data-table">
+                <caption>Memory categories: scope, examples, and persistence</caption>
                 <thead>
                     <tr>
                         <th>Category</th>
@@ -110,7 +112,7 @@ flowchart LR
             </table>
 
             <h3>Smart Search Routing</h3>
-            <div class="mermaid-container">
+            <div class="mermaid-container" role="img" aria-label="Search routing: short queries to FTS5, long queries to semantic search">
                 <div class="mermaid">
 flowchart TD
     Q["Search Query"] --> WC{"Word Count"}
@@ -135,7 +137,7 @@ Role: Program Manager with MBA background
 Preference: Research-first workflow, book library before web</code></pre>
 
             <h3>Session Lifecycle</h3>
-            <div class="mermaid-container">
+            <div class="mermaid-container" role="img" aria-label="Session lifecycle: start, accumulate, save, and load in next session">
                 <div class="mermaid">
 flowchart LR
     S["Session Start\nget_context()"] --> A["Accumulate\nremember(), search()"]
