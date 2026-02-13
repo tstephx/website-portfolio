@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Case study: Building a 4-server MCP ecosystem with 79,000 lines of Python, 130+ AI tools, 1,100+ tests, and production-grade infrastructure for knowledge management, memory, and autonomous ingestion.">
+    <title>MCP Ecosystem: 79K Lines of AI Infrastructure | Taylor Stephens</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <meta property="og:title" content="MCP Ecosystem: 79K Lines of AI Infrastructure | Taylor Stephens">
+    <meta property="og:description" content="Built a 4-server MCP ecosystem from scratch: semantic search over 195 books, persistent AI memory, autonomous ingestion pipeline, and career intelligence — 79K LOC, 130+ tools, 1,100+ tests.">
+    <meta property="og:type" content="article">
+    <link rel="canonical" href="https://taylorstephens.dev/projects/mcp-ecosystem">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/case-study.css">
+    <script src="../js/progress-bar.js" defer></script>
+</head>
+<body>
+
+    <div class="reading-progress"></div>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <nav class="back-nav">
+        <a href="../index.html#personal-projects">&larr; Back to Portfolio</a>
+    </nav>
+
+    <main id="main-content" class="case-study">
+
+        <header class="cs-header">
+            <h1>79,000 Lines of AI Infrastructure: Building a 4-Server MCP Ecosystem</h1>
+            <p class="cs-tagline">An operations PM who taught himself Python and built a production AI system from scratch &mdash; 4 interconnected servers, 130+ tools, and a philosophy that knowledge should compound, not decay.</p>
+            <div class="tech-pills">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">FastMCP</span>
+                <span class="tech-pill">SQLite</span>
+                <span class="tech-pill">FTS5</span>
+                <span class="tech-pill">Sentence-Transformers</span>
+                <span class="tech-pill">Clean Architecture</span>
+                <span class="tech-pill">State Machine</span>
+            </div>
+        </header>
+
+        <div class="scope-callout">
+            <div class="scope-item">
+                <span class="scope-label">Timeline</span>
+                <span class="scope-value">Nov 2025 &ndash; Present</span>
+            </div>
+            <div class="scope-item">
+                <span class="scope-label">Role</span>
+                <span class="scope-value">Sole architect &amp; developer</span>
+            </div>
+            <div class="scope-item">
+                <span class="scope-label">Scale</span>
+                <span class="scope-value">4 MCP servers, 79K LOC, 130+ tools</span>
+            </div>
+            <div class="scope-item">
+                <span class="scope-label">Stack</span>
+                <span class="scope-value">Python, SQLite, FastMCP, sentence-transformers</span>
+            </div>
+        </div>
+
+        <section class="cs-section" id="problem">
+            <h2>The Problem</h2>
+            <p>I had four problems that looked separate but shared a root cause: useful knowledge was trapped in formats that couldn&rsquo;t talk to each other.</p>
+            <ul>
+                <li><strong>195 books sitting on disk.</strong> Technical depth on Docker, Python, AI/ML, career strategy, mental models &mdash; 3,391 chapters and 13.4 million words, mostly half-read, entirely unsearchable. Starting a new project meant re-reading chapters I&rsquo;d already studied.</li>
+                <li><strong>An AI assistant with amnesia.</strong> Claude forgot everything between sessions. Every conversation started from scratch &mdash; re-explaining preferences, architecture decisions, and project context.</li>
+                <li><strong>Manual book ingestion.</strong> Adding a new book meant identifying the format, detecting chapters, classifying content, validating quality, and filing it. The same tedious sequence every time, with errors cascading downstream.</li>
+                <li><strong>Career materials scattered across 2,200+ files.</strong> STAR stories, project documentation, performance reviews &mdash; useful for interview prep but impossible to surface when needed.</li>
+            </ul>
+            <div class="insight-callout">
+                The common thread: valuable knowledge locked in passive storage. The frustration wasn&rsquo;t just inefficiency &mdash; it was knowing I&rsquo;d already invested the time to learn something and couldn&rsquo;t access it when it mattered. Knowledge you&rsquo;ve paid for in hours of reading shouldn&rsquo;t decay. The solution wasn&rsquo;t four separate tools &mdash; it was one ecosystem where each server feeds the others.
+            </div>
+        </section>
+
+        <section class="cs-section" id="architecture">
+            <h2>The Architecture</h2>
+            <p>Four MCP servers, each solving one problem, all connected through Claude Code as the orchestrator. The key insight was that these servers aren&rsquo;t independent &mdash; they form a system where each one makes the others more useful.</p>
+
+            <div class="mermaid-container">
+                <div class="mermaid">
+flowchart TD
+    CC["Claude Code\n(Orchestrator)"]
+    BL["Book Library\n41 tools | 20K LOC"]
+    AP["Agentic Pipeline\n15 tools | 8K LOC"]
+    CI["Claude-Innit\n7 tools | 2K LOC"]
+    PS["Portfolio Server\n70+ tools | 49K LOC"]
+
+    CC --> BL
+    CC --> AP
+    CC --> CI
+    CC --> PS
+
+    AP -->|"Ingests into"| BL
+    BL -->|"Feeds knowledge to"| PS
+    CI -->|"Persists context\nacross all sessions"| CC
+                </div>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Server</th>
+                        <th>LOC</th>
+                        <th>Tools</th>
+                        <th>Key Tech</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="highlight">Book Library</td>
+                        <td>~20K</td>
+                        <td>41</td>
+                        <td>FTS5, Embeddings</td>
+                        <td>Knowledge search &amp; retrieval</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">Agentic Pipeline</td>
+                        <td>~8K</td>
+                        <td>15</td>
+                        <td>State Machine, LLM</td>
+                        <td>Autonomous book ingestion</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">Portfolio Server</td>
+                        <td>~49K</td>
+                        <td>70+</td>
+                        <td>RAG, NLP</td>
+                        <td>Career intelligence &amp; content generation</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">Claude-Innit</td>
+                        <td>~2K</td>
+                        <td>7</td>
+                        <td>FTS5, Embeddings</td>
+                        <td>Persistent AI memory</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="cs-section" id="decisions">
+            <h2>Decision Points</h2>
+
+            <h3>Search Strategy: Why Hybrid over Single-Mode</h3>
+            <p><strong>The fork:</strong> FTS5 full-text search only, semantic embeddings only, or both combined?</p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Strengths</th>
+                        <th>Weakness</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>FTS5 only</td>
+                        <td>Sub-millisecond, zero ML overhead</td>
+                        <td>Misses conceptual matches entirely</td>
+                    </tr>
+                    <tr>
+                        <td>Semantic only</td>
+                        <td>Understands intent and concepts</td>
+                        <td>Can&rsquo;t find exact terms or code snippets</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">Hybrid with RRF</td>
+                        <td class="highlight">Both precision and recall</td>
+                        <td>Slightly more complex ranking logic</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Why hybrid:</strong> In testing, FTS5 alone missed ~30% of relevant chapters because it can&rsquo;t match concepts &mdash; searching &ldquo;container networking&rdquo; won&rsquo;t find a chapter titled &ldquo;How Pods Communicate.&rdquo; Semantic search alone missed exact code patterns and specific terms. Reciprocal rank fusion was the tiebreaker: results that score well on <em>both</em> methods surface first, and the ranking logic is under 50 lines. The complexity cost was minimal for a major recall improvement.</p>
+
+            <h3>Autonomy Model: Why Graduated over Binary</h3>
+            <p><strong>The fork:</strong> Fully autonomous from day one, always human-supervised, or a trust ladder?</p>
+            <div class="comparison">
+                <div class="comparison-before">
+                    <h3>Rejected: Binary Approach</h3>
+                    <p><strong>Full autonomy</strong> risks silently misclassifying books with no feedback loop. <strong>Always supervised</strong> defeats the purpose &mdash; I&rsquo;d still be manually approving every book. Both assume a fixed trust level that doesn&rsquo;t match reality.</p>
+                </div>
+                <div class="comparison-after">
+                    <h3>Chosen: Graduated Trust</h3>
+                    <p>Three levels (Supervised &rarr; Partial &rarr; Confident) with a 30-day rolling accuracy score driving promotion or demotion. An escape hatch reverts to supervised instantly. Trust is earned through demonstrated accuracy, not configuration.</p>
+                </div>
+            </div>
+
+            <div class="mermaid-container">
+                <div class="mermaid">
+flowchart LR
+    S["Supervised\n(All human review)"] -->|"Accuracy proven"| P["Partial\n(High-confidence auto)"]
+    P -->|"Sustained accuracy"| C["Confident\n(Edge cases only)"]
+    C -->|"Escape hatch"| S
+    P -->|"Accuracy drops"| S
+                </div>
+            </div>
+            <p><strong>Why this path:</strong> The graduated model mirrors how you&rsquo;d onboard a new team member &mdash; start with close oversight, relax as they prove themselves, pull back if quality slips. It also provided real training data: every human approval/rejection during the supervised phase became signal for tuning the confidence thresholds.</p>
+
+            <h3>Tool Granularity: Why 130 Small Tools over 10 Large Ones</h3>
+            <p><strong>The fork:</strong> A few monolithic endpoints that try to anticipate every workflow, or many small composable tools the LLM chains together?</p>
+            <div class="comparison">
+                <div class="comparison-before">
+                    <h3>Rejected: Monolithic Tools</h3>
+                    <p>A single <code>research_topic()</code> tool that searches, reads chapters, and generates a summary. Seems convenient, but hardcodes one workflow. Every new use case means a new monolithic tool or more parameters on existing ones.</p>
+                </div>
+                <div class="comparison-after">
+                    <h3>Chosen: Composable Primitives</h3>
+                    <p>Separate <code>semantic_search</code>, <code>get_chapter</code>, <code>extract_code_examples</code>, and <code>create_study_guide</code>. The LLM chains them in ways I never anticipated &mdash; comparing how three authors explain the same concept, or cross-referencing a career book with a technical one.</p>
+                </div>
+            </div>
+            <p><strong>Why this path:</strong> LLMs are natural tool composers &mdash; they&rsquo;re better at chaining small operations than navigating complex parameter schemas. I saw this firsthand: after deploying granular tools, Claude started combining <code>find_related_content</code> with <code>get_author_insights</code> in ways I hadn&rsquo;t designed for. The system became more capable than I planned because the composability surface area was large.</p>
+
+            <h3>Storage Philosophy: Why Files over Database-First</h3>
+            <p><strong>The fork:</strong> Database as source of truth (Postgres/SQLite owns the data) or files as source of truth (database is a disposable index)?</p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Approach</th>
+                        <th>Benefit</th>
+                        <th>Risk</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Database-first</td>
+                        <td>Single source, fast queries</td>
+                        <td>Data locked in binary format, corruption = data loss</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">Files-first</td>
+                        <td class="highlight">Human-readable, git-friendly, resilient</td>
+                        <td>Requires sync layer between files and DB</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><strong>Why files-first:</strong> I&rsquo;ve rebuilt the SQLite databases from scratch three times during development &mdash; schema changes, embedding model upgrades, index optimizations. Each time, the rebuild was trivial because the files were intact. If the database had been the source of truth, each rebuild would have risked data loss. The sync layer added ~200 lines of code but bought complete resilience: <code>rm library.db && python rebuild.py</code> restores everything.</p>
+        </section>
+
+        <section class="cs-section" id="engineering">
+            <h2>Production Engineering</h2>
+            <p>This isn&rsquo;t a weekend project. The ecosystem includes the infrastructure you&rsquo;d expect from production software &mdash; comprehensive testing, structured logging, health monitoring, audit trails, and continuous calibration.</p>
+
+            <h3>1,133 Tests Across the Ecosystem</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Server</th>
+                        <th>Tests</th>
+                        <th>Coverage Focus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Portfolio Server</td>
+                        <td class="highlight">817</td>
+                        <td>Domain logic, services, content generation, integration</td>
+                    </tr>
+                    <tr>
+                        <td>Book Library</td>
+                        <td class="highlight">292</td>
+                        <td>Search routing, tool registration, database operations</td>
+                    </tr>
+                    <tr>
+                        <td>Claude-Innit</td>
+                        <td class="highlight">24</td>
+                        <td>Full lifecycle: DB &rarr; sync &rarr; embeddings &rarr; search &rarr; MCP</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Monitoring &amp; Health Checks</h3>
+            <p>The agentic pipeline includes a <strong>health monitor</strong> that tracks active, queued, and failed pipelines with configurable alert thresholds (queue backup &gt; 100 books, failure rate &gt; 20%). A <strong>stuck detector</strong> watches every pipeline state with per-state timeouts &mdash; if a book sits in PROCESSING for more than 30 minutes, it gets flagged. Database integrity checks with auto-repair verify FTS index sync and catch orphaned embeddings across both the book library and Claude-Innit.</p>
+
+            <h3>Audit Trail &amp; Continuous Calibration</h3>
+            <p>Every autonomy decision &mdash; approve, reject, batch operation, rollback &mdash; is logged to an <strong>immutable audit trail</strong> recording the actor, reason, confidence score, before/after state, and autonomy mode at the time of decision. This data feeds a <strong>calibration engine</strong> that recalculates per-book-type confidence thresholds from 90 days of feedback (target: 95% accuracy, minimum 50 samples). Spot checks randomly sample 10% of auto-approved books for human verification.</p>
+
+            <div class="mermaid-container">
+                <div class="mermaid">
+flowchart LR
+    D["Decision Made"] --> A["Audit Trail\n(Immutable Log)"]
+    A --> M["Metrics Collector\n(30-day rollup)"]
+    M --> C["Calibration Engine\n(Per-type thresholds)"]
+    C --> S["Spot Checks\n(10% sample)"]
+    S --> M
+                </div>
+            </div>
+
+            <h3>Structured Logging &amp; Error Handling</h3>
+            <p>The pipeline uses <strong>structured JSON logging</strong> &mdash; every state transition, processing start/stop, and error is a JSON object with UTC timestamps and pipeline IDs, making events trivially parseable for debugging. A <strong>custom exception hierarchy</strong> (<code>ProcessingError</code>, <code>EmbeddingError</code>, <code>PipelineTimeoutError</code>, <code>IdempotencyError</code>) ensures recovery logic can match on error type rather than parsing strings. Logging across both MCP servers outputs to stderr, following the MCP server best practice of keeping stdout clean for protocol messages.</p>
+        </section>
+
+        <section class="cs-section" id="results">
+            <h2>Results &amp; Success Metrics</h2>
+
+            <div class="metrics-row">
+                <div class="metric-card">
+                    <span class="metric-number">79K</span>
+                    <span class="metric-label">Lines of Code</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">1,133</span>
+                    <span class="metric-label">Tests</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">130+</span>
+                    <span class="metric-label">AI Tools</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">4</span>
+                    <span class="metric-label">Production Servers</span>
+                </div>
+            </div>
+
+            <h3>Library at Scale</h3>
+            <div class="metrics-row">
+                <div class="metric-card">
+                    <span class="metric-number">195</span>
+                    <span class="metric-label">Books Indexed</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">3,391</span>
+                    <span class="metric-label">Chapters Searchable</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">13.4M</span>
+                    <span class="metric-label">Words Accessible</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">14</span>
+                    <span class="metric-label">Topic Categories</span>
+                </div>
+            </div>
+            <p>Every chapter has a 384-dimensional embedding vector for semantic search. The 14 categories span technical infrastructure, programming, AI/ML, career development, mental models, and financial analysis &mdash; 100% embedding coverage, no book sits unindexed.</p>
+
+            <h3>Before / After</h3>
+            <div class="bar-comparison">
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>Knowledge retrieval</span>
+                        <span class="bar-value">10&ndash;15 min &rarr; &lt;5ms</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>Book ingestion (per book)</span>
+                        <span class="bar-value">15&ndash;20 min manual &rarr; $0.03 automated</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>Session context loading</span>
+                        <span class="bar-value">Re-explain everything &rarr; instant recall</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>Cross-book research</span>
+                        <span class="bar-value">Impossible &rarr; single query</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <p>The system runs daily. Every Claude Code session starts with <code>get_context()</code> loading project memory and recent session history. Research begins with <code>get_topic_coverage()</code> searching the book library before touching a browser. New books drop into the pipeline and get classified, processed, and shelved automatically. Career materials surface through natural language queries when preparing for interviews.</p>
+            <p>What started as &ldquo;I want to search my books&rdquo; became a personal knowledge infrastructure &mdash; one where learning compounds across sessions, projects, and time.</p>
+        </section>
+
+        <section class="cs-section" id="deep-dives">
+            <h2>Deep Dives</h2>
+            <p>Each server has its own case study with architectural details, technical decisions, and implementation specifics.</p>
+
+            <div class="comparison">
+                <div class="comparison-before link-card">
+                    <h3><a href="book-library-mcp.html">Book Library MCP Server</a></h3>
+                    <p>Dual search architecture, 41 tools, embedding model selection, and the tool design philosophy behind granular composability.</p>
+                </div>
+                <div class="comparison-after link-card">
+                    <h3><a href="agentic-pipeline.html">Agentic Book Pipeline</a></h3>
+                    <p>15-state machine, LLM classification with confidence scoring, graduated autonomy model, and the OperationResult pattern.</p>
+                </div>
+            </div>
+            <div class="comparison">
+                <div class="comparison-before link-card">
+                    <h3><a href="claude-innit.html">Claude-Innit</a></h3>
+                    <p>Three memory categories, smart search routing, markdown-first storage, and TDD implementation with 19 tests.</p>
+                </div>
+                <div class="comparison-after link-card">
+                    <h3>Portfolio Server <span style="font-weight: 400; font-size: 0.6875rem; text-transform: none; letter-spacing: normal; color: var(--color-light);">(coming soon)</span></h3>
+                    <p>RAG-powered career intelligence across 2,200+ work documents, STAR story generation, resume customization, and interview preparation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cs-section" id="lessons">
+            <h2>Lessons Learned</h2>
+            <ul class="lessons-list">
+                <li><strong>Systems beat tools.</strong> Four servers that feed each other are exponentially more useful than four standalone utilities. The ingestion pipeline fills the library; the library feeds career intelligence; memory ties it all together across sessions.</li>
+                <li><strong>Granular tools compound.</strong> 130 small operations that the LLM can chain beat 10 big ones that try to anticipate every workflow. The AI finds combinations I never designed for.</li>
+                <li><strong>Earn trust incrementally.</strong> The graduated autonomy model &mdash; supervised to partial to confident &mdash; applies beyond book ingestion. Any AI system that affects real data should prove itself before gaining independence.</li>
+                <li><strong>Files as source of truth, databases as acceleration.</strong> When your database is a disposable index over human-readable files, you get resilience, auditability, and git-friendliness for free.</li>
+            </ul>
+        </section>
+
+        <section class="cs-cta">
+            <a href="https://github.com/tstephx" class="cta-button">View on GitHub</a>
+            <p>Next: <a href="book-library-mcp.html">Book Library MCP Server</a></p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Taylor Stephens. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <script src="../js/mermaid-init.js"></script>
+
+</body>
+</html>

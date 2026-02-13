@@ -3,7 +3,7 @@
     --color-text:         #3d3d3d;
     --color-heading:      #1a1a1a;
     --color-muted:        #6b6b6b;
-    --color-light:        #a0a0a0;
+    --color-light:        #767676;
     --color-accent:       #2563eb;
     --color-accent-hover: #1d4ed8;
     --color-accent-light: rgba(37, 99, 235, 0.08);
@@ -14,9 +14,47 @@
     --font-sans:          'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-serif:         'Lora', Georgia, 'Times New Roman', serif;
     --max-width:          720px;
-    --section-spacing:    5rem;
+    --section-spacing:    clamp(5rem, 4rem + 3vw, 6rem);
     --baseline:           1.5rem; /* 24px baseline grid unit */
     --transition:         0.2s ease;
+
+    /* Typography (fluid) */
+    --font-size-h1:       clamp(2.25rem, 1.75rem + 2vw, 3.25rem);
+    --font-size-h2:       clamp(1.5rem, 1.25rem + 1vw, 1.75rem);
+    --font-size-summary:  clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+    --font-size-body-lg:  clamp(0.9375rem, 0.875rem + 0.25vw, 1.0625rem);
+
+    /* Spacing */
+    --space-xs:           0.5rem;
+    --space-sm:           1rem;
+    --space-md:           1.5rem;
+    --space-lg:           2rem;
+
+    /* Radii */
+    --radius-sm:          3px;
+    --radius-md:          4px;
+
+    /* Shadows */
+    --shadow-sm:          0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-md:          0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-hover:       0 4px 12px rgba(0, 0, 0, 0.12);
+
+    /* Transitions */
+    --transition-fast:    0.15s ease;
+    --transition-base:    0.25s ease;
+    --transition-content: 0.4s ease-out;
+
+    /* Dark mode prep */
+    --color-surface:      #ffffff;
+    --color-heading-inv:  #ffffff;
+
+    /* Semantic colors */
+    --color-success:       #16a34a;
+    --color-success-light: #dcfce7;
+    --color-success-dark:  #15803d;
+    --color-danger:        #dc2626;
+    --color-danger-light:  #fee2e2;
+    --color-danger-dark:   #991b1b;
 }
 
 /* ===== RESET ===== */
@@ -59,14 +97,14 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: 2.25rem;
+    font-size: var(--font-size-h1);
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 0.3em;
 }
 
 h2 {
-    font-size: 1.5rem;
+    font-size: var(--font-size-h2);
     font-weight: 600;
     line-height: 1.2;
     margin-bottom: 0.5em;
@@ -215,7 +253,7 @@ nav li:last-child a {
 
 .summary {
     font-family: var(--font-serif);
-    font-size: 1.125rem;
+    font-size: var(--font-size-summary);
     line-height: 1.7;
     color: var(--color-text);
     margin: 0 auto 2em;
@@ -305,7 +343,7 @@ section {
     margin: 0 -1.5rem;
     border-bottom: 1px solid var(--color-border);
     border-radius: 4px;
-    transition: border-color var(--transition), box-shadow var(--transition), background-color var(--transition);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
 }
 
 /* hover styles scoped to desktop — see desktop media query */
@@ -470,10 +508,6 @@ footer {
         position: relative;
     }
 
-    h1 {
-        font-size: 2.75rem;
-    }
-
     .headshot {
         width: 140px;
         height: 140px;
@@ -494,13 +528,6 @@ footer {
         min-height: auto;
     }
 
-    h2 {
-        font-size: 1.625rem;
-    }
-
-    .summary {
-        font-size: 1.1875rem;
-    }
 }
 
 
@@ -508,10 +535,6 @@ footer {
    DESKTOP (1024px+)
    ========================================= */
 @media screen and (min-width: 1024px) {
-
-    :root {
-        --section-spacing: 6rem;
-    }
 
     header {
         position: sticky;
@@ -532,10 +555,6 @@ footer {
         justify-content: flex-end;
     }
 
-    h1 {
-        font-size: 3.25rem;
-    }
-
     .headshot {
         width: 150px;
         height: 150px;
@@ -549,10 +568,6 @@ footer {
         padding: 2.5rem 1.5rem;
     }
 
-    h2 {
-        font-size: 1.75rem;
-    }
-
     #about p {
         font-size: 1.0625rem;
     }
@@ -563,10 +578,6 @@ footer {
 
     .project-card p {
         font-size: 1rem;
-    }
-
-    .summary {
-        font-size: 1.25rem;
     }
 
     /* === HOVER STATES (desktop only) === */
@@ -602,7 +613,7 @@ footer {
         background-color: #000;
         text-decoration: none;
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        box-shadow: var(--shadow-hover);
     }
 
     .cta-button:active {
@@ -611,8 +622,8 @@ footer {
     }
 
     .project-card:hover {
-        border-color: var(--color-border-light);
-        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-hover);
         background-color: var(--color-bg);
     }
 
@@ -651,6 +662,27 @@ footer {
 }
 
 
+/* ===== ACCESSIBILITY ===== */
+a:focus-visible,
+.cta-button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+h1, h2 { text-wrap: balance; }
+.summary { text-wrap: pretty; }
+
+
 /* =========================================
    PRINT
    ========================================= */
@@ -664,6 +696,10 @@ footer {
     }
 
     header, .skip-link, .cta-button {
+        display: none;
+    }
+
+    .reading-progress {
         display: none;
     }
 

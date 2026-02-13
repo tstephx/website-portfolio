@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Case study: Proving a mathematical flaw in Amazon's interview scoring methodology and designing a replacement that eliminated the single-dissent veto problem.">
+    <title>Pinnacle BPR Scoring Methodology Redesign | Taylor Stephens</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <meta property="og:title" content="Pinnacle BPR Scoring Methodology Redesign | Taylor Stephens">
+    <meta property="og:description" content="Reverse-engineered 198 interview records to prove a mathematical flaw in the scoring formula, then designed a replacement methodology.">
+    <meta property="og:type" content="article">
+    <link rel="canonical" href="https://taylorstephens.dev/work/bpr-scoring-pinnacle/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/case-study.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+    <script src="../../js/progress-bar.js" defer></script>
+</head>
+<body>
+
+    <div class="reading-progress"></div>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <nav class="back-nav">
+        <a href="../index.html#projects">&larr; Back to Portfolio</a>
+    </nav>
+
+    <main id="main-content" class="case-study">
+
+        <header class="cs-header">
+            <h1>Finding the Mathematical Flaw No One Else Saw</h1>
+            <p class="cs-tagline">Reverse-engineering 198 interview records to prove why qualified candidates were being rejected &mdash; and designing the methodology that fixed it.</p>
+            <div class="tech-pills">
+                <span class="tech-pill">Root Cause Analysis</span>
+                <span class="tech-pill">Statistical Analysis</span>
+                <span class="tech-pill">Methodology Design</span>
+                <span class="tech-pill">Calibration Protocols</span>
+            </div>
+        </header>
+
+        <div class="scope-callout">
+            <div class="scope-item">
+                <span class="scope-label">Timeline</span>
+                <span class="scope-value">2024&ndash;2025</span>
+            </div>
+            <div class="scope-item">
+                <span class="scope-label">My Role</span>
+                <span class="scope-value">Lead Analyst &amp; Methodology Designer</span>
+            </div>
+            <div class="scope-item">
+                <span class="scope-label">Data Set</span>
+                <span class="scope-value">198 interview records, individual panelist scores</span>
+            </div>
+            <div class="scope-item">
+                <span class="scope-label">Impact</span>
+                <span class="scope-value">Unblocked $8.3M revenue pipeline</span>
+            </div>
+        </div>
+
+        <section class="cs-section" id="problem">
+            <h2>Approval Rates Collapsed &mdash; Nobody Knew Why</h2>
+            <p>Amazon&rsquo;s delivery network expands by promoting top-performing Delivery Service Partners (independent business owners operating delivery fleets) into &ldquo;Pinnacle&rdquo; assignments &mdash; premium stations with higher volume and revenue. Before a partner can expand, they must pass a panel interview called the Business Partner Review (BPR), where three interviewers score them across leadership and operational criteria.</p>
+            <p>This gateway interview was failing. Approval rates had collapsed from 86% to 56%, and no one could explain why. Qualified candidates were being rejected at unprecedented rates, blocking a critical growth pipeline worth $8.3M in revenue protection.</p>
+
+            <div class="chart-container">
+                <div class="chart-label">Approval Rate Collapse</div>
+                <canvas id="approvalChart" aria-label="Bar chart showing approval rate decline from 86% to 56% and target recovery to 65-70%"></canvas>
+            </div>
+
+            <p>Leadership assumed the problem was calibration: panelists weren&rsquo;t scoring consistently. But when I started digging, the data told a different story. The problem wasn&rsquo;t the panelists &mdash; it was the formula itself.</p>
+
+            <div class="insight-callout">
+                Everyone was looking at the people. I looked at the math. The formula had a structural flaw that no amount of training could fix.
+            </div>
+        </section>
+
+        <section class="cs-section" id="approach">
+            <h2>Forensic Analysis of 198 Interviews</h2>
+            <p>I approached this as a forensic analysis. Before proposing solutions, I needed to understand exactly why the system was producing bad outcomes. That meant reverse-engineering the scoring formula from historical data &mdash; not just running summary statistics, but reconstructing the exact mathematical relationship between individual panelist scores and final decisions.</p>
+
+            <h3>Three-Phase Investigation</h3>
+            <ul>
+                <li><strong>Data extraction:</strong> Pull 198 interview records with individual panelist scores, final outcomes, and candidate metadata. Clean and normalize the data for analysis.</li>
+                <li><strong>Formula reconstruction:</strong> Reverse-engineer the exact formula being used by analyzing how individual scores mapped to final decisions. Map every edge case where outcomes diverged from what panelist consensus would predict.</li>
+                <li><strong>Root cause identification:</strong> Identify the specific mathematical property causing qualified candidates to be rejected. Prove it with data, not opinion.</li>
+            </ul>
+        </section>
+
+        <section class="cs-section" id="technical">
+            <h2>One Dissenter Could Overrule Two Supporters</h2>
+
+            <h3>The Mathematical Flaw</h3>
+            <p>The scoring formula had a hidden property: a single dissenting panelist could override two supporters. If two panelists scored a candidate highly but one scored them low, the formula weighted the low score heavily enough to trigger rejection. This meant a 2-1 favorable panel could still result in a &ldquo;No.&rdquo;</p>
+
+            <div class="vote-comparison">
+                <div class="vote-scenario scenario-old">
+                    <h4>Old Formula</h4>
+                    <div class="vote-icons">
+                        <div class="vote-icon vote-yes">+</div>
+                        <div class="vote-icon vote-yes">+</div>
+                        <div class="vote-icon vote-no">&minus;</div>
+                    </div>
+                    <div class="vote-result result-rejected">Rejected</div>
+                    <p class="vote-caption">One low score vetoes two high scores</p>
+                </div>
+                <div class="vote-scenario scenario-new">
+                    <h4>New Median-Based Formula</h4>
+                    <div class="vote-icons">
+                        <div class="vote-icon vote-yes">+</div>
+                        <div class="vote-icon vote-yes">+</div>
+                        <div class="vote-icon vote-no">&minus;</div>
+                    </div>
+                    <div class="vote-result result-approved">Approved</div>
+                    <p class="vote-caption">Median score resists outliers</p>
+                </div>
+            </div>
+
+            <p>This wasn&rsquo;t a calibration problem &mdash; it was structural. No amount of panelist training would fix a formula that mathematically allowed one voice to override two. I proved this with the data: among panels with extreme variance (15+ point gaps), the old formula produced outcomes that contradicted the majority view in a significant portion of cases.</p>
+
+            <h3>Extreme Scoring Variance</h3>
+            <p>The data showed that 77% of panels had extreme scoring variance &mdash; gaps of 15+ points between panelists on the same candidate. Combined with the single-dissent veto, this variance was creating chaotic outcomes that didn&rsquo;t reflect actual candidate quality.</p>
+
+            <div class="chart-container">
+                <div class="chart-label">Scoring Variance: Before vs. After</div>
+                <canvas id="varianceChart" aria-label="Bar chart showing panels with extreme variance dropping from 77% to under 15-point gaps"></canvas>
+            </div>
+
+            <h3>The Replacement Methodology</h3>
+            <p>I designed a hybrid scoring system that eliminated the veto problem while preserving signal quality. The key insight: use the median (resistant to outliers) as the primary signal, but weight panel alignment and objective deliverables to capture information the median alone would miss.</p>
+
+            <div class="formula-box">
+                <div class="formula-label">New Scoring Formula</div>
+                <div class="formula">
+                    Final Score = <span class="accent">60%</span> Median + <span class="accent">25%</span> Vote Weight + <span class="accent">15%</span> Deliverables
+                </div>
+                <p class="formula-note">Median score resists outliers; vote weight captures panel alignment; deliverables add objectivity</p>
+            </div>
+
+            <ul>
+                <li><strong>60% Median Score:</strong> The middle score across panelists &mdash; resistant to outliers in either direction. A single dissenter can&rsquo;t move the median.</li>
+                <li><strong>25% Vote Weight:</strong> A simple majority component (2-1 for, 2-1 against) that captures panelist alignment without giving any individual veto power.</li>
+                <li><strong>15% Deliverables Quality:</strong> Objective scoring of candidate-submitted materials, reducing subjectivity and giving candidates another avenue to demonstrate qualification.</li>
+            </ul>
+
+            <h3>Rubric Redesign</h3>
+            <p>Beyond the formula, I created 33 behaviorally anchored rubric items across four categories. Each score level (1&ndash;5) had specific, observable behaviors attached &mdash; removing the ambiguity that led to wild scoring variation. I also built calibration protocols for panelist training, using historical edge cases to align scoring standards. The goal: panelists can still disagree, but they&rsquo;re disagreeing about the same observable behaviors.</p>
+        </section>
+
+        <section class="cs-section" id="results">
+            <h2>Veto Eliminated, Pipeline Unblocked</h2>
+
+            <div class="metrics-row">
+                <div class="metric-card">
+                    <span class="metric-number">0</span>
+                    <span class="metric-label">Veto Power</span>
+                    <span class="metric-subtitle">Eliminated entirely</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">63%+</span>
+                    <span class="metric-label">Variance Reduction</span>
+                    <span class="metric-subtitle">77% &rarr; &lt;15pt gaps</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">65&ndash;70%</span>
+                    <span class="metric-label">Target Approval Rate</span>
+                    <span class="metric-subtitle">Restored from 56%</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-number">$8.3M</span>
+                    <span class="metric-label">Revenue Protected</span>
+                    <span class="metric-subtitle">Pinnacle expansion pipeline</span>
+                </div>
+            </div>
+
+            <p>The new methodology eliminated the single-dissent veto problem entirely. Extreme scoring variance dropped from 77% of panels to a target of under 15-point average gaps &mdash; a 63%+ reduction. The approval pathway was restored to a 65&ndash;70% target rate, unblocking a critical growth pipeline that had been stalled for months and protecting $8.3M in revenue from Pinnacle expansion.</p>
+
+            <p>The 33 behaviorally anchored rubric items and calibration protocols gave panelists a shared language for evaluation. Disagreement didn&rsquo;t disappear &mdash; it became productive rather than destructive.</p>
+        </section>
+
+        <section class="cs-section" id="lessons">
+            <h2>What This Taught Me</h2>
+            <ul class="lessons-list">
+                <li>When a system produces bad outcomes, the problem is often structural, not behavioral. Training people harder doesn&rsquo;t fix a broken formula &mdash; you have to look at the math.</li>
+                <li>Proving a flaw exists is harder than fixing it. The reverse-engineering work to demonstrate the veto property took longer than designing the replacement. But proof is what creates organizational willingness to change.</li>
+                <li>Behaviorally anchored rubrics transform subjective judgment into something closer to objective measurement &mdash; panelists can still disagree, but at least they&rsquo;re disagreeing about the same observable behaviors.</li>
+                <li>The median is an underrated tool for decision systems. It resists outliers naturally, which is exactly what you need when human judgment is the input.</li>
+            </ul>
+        </section>
+
+        <section class="cs-cta">
+            <p>Next: <a href="dsp-application.html">DSP Application Redesign</a></p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Taylor Stephens. All rights reserved.</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var accent = '#2563eb';
+        var accentLight = 'rgba(37, 99, 235, 0.5)';
+        var muted = 'rgba(107, 107, 107, 0.3)';
+        var red = '#dc3545';
+        var green = '#28a745';
+        var defaults = {
+            responsive: true,
+            maintainAspectRatio: true,
+            animation: { duration: 1200, easing: 'easeOutQuart' },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: '#1a1a1a',
+                    titleFont: { family: "'Inter', sans-serif", size: 12 },
+                    bodyFont: { family: "'Inter', sans-serif", size: 12 },
+                    padding: 10,
+                    cornerRadius: 4
+                }
+            }
+        };
+
+        // Approval rate chart
+        new Chart(document.getElementById('approvalChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Original Rate', 'Collapsed Rate', 'New Target'],
+                datasets: [{
+                    data: [86, 56, 67.5],
+                    backgroundColor: [muted, red, green],
+                    borderRadius: 4,
+                    barThickness: 60
+                }]
+            },
+            options: Object.assign({}, defaults, {
+                aspectRatio: 2.5,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: { color: 'rgba(0,0,0,0.04)' },
+                        ticks: {
+                            font: { family: "'Inter', sans-serif", size: 11 },
+                            color: '#6b6b6b',
+                            callback: function(v) { return v + '%'; }
+                        }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            font: { family: "'Inter', sans-serif", size: 11, weight: 600 },
+                            color: '#3d3d3d'
+                        }
+                    }
+                }
+            })
+        });
+
+        // Variance chart
+        new Chart(document.getElementById('varianceChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Before: Panels with 15+ pt Gaps', 'Target: Est. Remaining'],
+                datasets: [{
+                    data: [77, 28],
+                    backgroundColor: [red, green],
+                    borderRadius: 4,
+                    barThickness: 60
+                }]
+            },
+            options: Object.assign({}, defaults, {
+                indexAxis: 'y',
+                aspectRatio: 2.5,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100,
+                        grid: { color: 'rgba(0,0,0,0.04)' },
+                        ticks: {
+                            font: { family: "'Inter', sans-serif", size: 11 },
+                            color: '#6b6b6b',
+                            callback: function(v) { return v + '%'; }
+                        }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: {
+                            font: { family: "'Inter', sans-serif", size: 11, weight: 600 },
+                            color: '#3d3d3d'
+                        }
+                    }
+                }
+            })
+        });
+    });
+    </script>
+
+</body>
+</html>
