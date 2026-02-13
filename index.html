@@ -89,6 +89,14 @@
                 <p><strong>Action:</strong> Diagnosed 8 root causes across data (4), process (3), and tooling (1) dimensions. Built a 6-step SQL pipeline on Amazon Redshift: LAG() window functions for consecutive Tier 1 validation, Haversine formula replacing traffic-dependent distances, MSO vetting integration with 33-DSP exclusion list, and a two-tier distance filter (50mi primary, 250mi NOT EXISTS fallback) feeding into 8-day Amazon Approvals and 3-week BPR vetting.</p>
                 <p><strong>Result:</strong> Pinnacle fill rate jumped from 57.9% to 94.1% (+36 pp), with July hitting 100% across 8 targets. Preserved 20 candidates, restored the 5-lever hierarchy, and enabled BDM team expansion from 1 to 5 members. Data refresh improved from quarterly to monthly (3&times; faster).</p>
             </article>
+
+            <article class="project-card">
+                <h3><a href="work/pinnacle-station/pinnacle-distance.html">Pinnacle Station Distance Analysis</a></h3>
+                <p class="project-meta">Geospatial Analysis (R) | 130K+ Station Pairs | Vincenty Ellipsoid | Policy Change</p>
+                <p><strong>Challenge:</strong> Amazon&rsquo;s Pinnacle expansion program had a 50-mile distance cap that hadn&rsquo;t been questioned since launch in May 2022. Launches dropped 55% (93 to 42), 20 eligible candidates were bypassed for less-qualified RTOs, and only 47% of the eligible pool was reached for outreach. ~33% of Pinnacle-eligible DSPs were structurally excluded by geography, not performance.</p>
+                <p><strong>Action:</strong> Computed 130,000+ pairwise geodesic distances across ~362 stations using Vincenty Ellipsoid in R, then ran a 16-threshold interval sweep proving the cap excluded 36.1% of the network. Analyzed 17 distance-breaking DSPs and found they outperformed non-breakers: 82% CSAT vs. 74%, 100% Quality, 109.6% CR vs. 106.6%. Formatted findings into a strategy proposal that secured the first structural eligibility change in two years.</p>
+                <p><strong>Result:</strong> Approved 3-tier prioritization (Pop-Up &rarr; &le;50mi &rarr; 5-closest fallback) raised station coverage from 63.9% to 96.0%. Fill rate jumped from 57.9% to 94.1% (+36 pp), with July hitting 100%. Operationalized into a 6-step SQL pipeline on Amazon Redshift replacing the crash-prone Excel file.</p>
+            </article>
         </section>
 
         <section id="personal-projects">
