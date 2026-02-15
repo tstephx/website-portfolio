@@ -231,6 +231,82 @@
             </ul>
         </section>
 
+        <section class="cs-section" id="under-the-hood">
+            <h2>Under the Hood</h2>
+            <p>The coverage matrix above summarizes what the R analysis found. Here&rsquo;s the analysis itself &mdash; three excerpts from the geospatial pipeline that produced those numbers.</p>
+
+            <h3>Vincenty Ellipsoid Distance Matrix</h3>
+            <div class="code-annotation">
+                <div class="code-annotation-header">
+                    <p class="code-annotation-title">Geodesic Distance &mdash; Full Cartesian Product</p>
+                    <span class="code-annotation-lang">R</span>
+                </div>
+                <p class="code-annotation-desc">Vincenty Ellipsoid accounts for Earth&rsquo;s flattening at the poles &mdash; more precise than Haversine over long distances. The full Cartesian product generates every possible station pair for analysis.</p>
+<pre><code>library(geosphere)
+
+# All pairwise station combinations (~130,000 pairs)
+pairs &lt;- expand.grid(
+    station1 = 1:nrow(stations),
+    station2 = 1:nrow(stations)
+)
+pairs &lt;- pairs[pairs$station1 != pairs$station2, ]
+
+# Vincenty Ellipsoid — most accurate for oblate spheroid
+pairs$distance_mi &lt;- distVincentyEllipsoid(
+    cbind(stations$lon[pairs$station1], stations$lat[pairs$station1]),
+    cbind(stations$lon[pairs$station2], stations$lat[pairs$station2])
+) * 0.000621371  # meters to miles</code></pre>
+            </div>
+
+            <h3>Distance Interval Sweep</h3>
+            <div class="code-annotation">
+                <div class="code-annotation-header">
+                    <p class="code-annotation-title">16-Threshold Coverage Analysis</p>
+                    <span class="code-annotation-lang">R</span>
+                </div>
+                <p class="code-annotation-desc">Sweeping from 50 to 200 miles in 10-mile increments. At each threshold, compute the percentage of stations with 1, 3, or 5+ eligible DSPs nearby. This produced the coverage matrix that made the policy case.</p>
+<pre><code>thresholds &lt;- seq(50, 200, by = 10)
+results &lt;- data.frame()
+
+for (d in thresholds) {
+    nearby &lt;- pairs[pairs$distance_mi &lt;= d, ]
+    by_station &lt;- nearby %&gt;%
+        group_by(station1) %&gt;%
+        summarise(neighbor_count = n_distinct(station2))
+    results &lt;- rbind(results, data.frame(
+        distance  = d,
+        AtLeast1  = mean(by_station$neighbor_count &gt;= 1),
+        AtLeast3  = mean(by_station$neighbor_count &gt;= 3),
+        AtLeast5  = mean(by_station$neighbor_count &gt;= 5)
+    ))
+}</code></pre>
+            </div>
+
+            <h3>Performance Comparison &mdash; Distance Breakers vs. Non-Breakers</h3>
+            <div class="code-annotation">
+                <div class="code-annotation-header">
+                    <p class="code-annotation-title">Counter-Intuitive Finding &mdash; Distance Doesn&rsquo;t Predict Performance</p>
+                    <span class="code-annotation-lang">R</span>
+                </div>
+                <p class="code-annotation-desc">The 17 DSPs who launched despite exceeding the 50-mile cap outperformed non-breakers across every metric &mdash; CSAT (+800 bps), DSP Quality (+10 pp), Safety (100% vs 97%). The assumption that distance degrades performance was wrong.</p>
+<pre><code>breakers &lt;- pinnacle_dsps %&gt;%
+    filter(distance_break == TRUE)       # n = 17
+non_breakers &lt;- pinnacle_dsps %&gt;%
+    filter(distance_break == FALSE)      # n = 91
+
+comparison &lt;- bind_rows(
+    breakers %&gt;%
+        summarise(across(c(CSAT, DSP_Quality, CR_T12M,
+            Tier1_Post, SLS_Safety, NSF), mean)) %&gt;%
+        mutate(group = "Breakers"),
+    non_breakers %&gt;%
+        summarise(across(c(CSAT, DSP_Quality, CR_T12M,
+            Tier1_Post, SLS_Safety, NSF), mean)) %&gt;%
+        mutate(group = "Non-Breakers")
+)</code></pre>
+            </div>
+        </section>
+
         <section class="cs-section" id="technical">
             <h2>From R Research to SQL Production</h2>
 
