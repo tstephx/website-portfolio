@@ -205,6 +205,72 @@
     padding: 0;
 }
 
+/* ===== ANNOTATED CODE SNIPPET ===== */
+.code-annotation {
+    margin: 1.5rem 0;
+    border: 1px solid var(--color-border-light);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.code-annotation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem 1.25rem 0;
+    background-color: var(--color-bg-alt);
+}
+
+.code-annotation-title {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--color-heading);
+    margin: 0;
+}
+
+.code-annotation-lang {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    background-color: var(--color-accent-light);
+    padding: 0.2em 0.6em;
+    border-radius: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.code-annotation-desc {
+    padding: 0.5rem 1.25rem 1rem;
+    background-color: var(--color-bg-alt);
+    font-size: 0.8125rem;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--color-muted);
+    margin: 0;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.code-annotation pre {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    padding: 1.25rem;
+    background-color: var(--color-bg);
+}
+
+.code-annotation pre code {
+    font-family: 'SF Mono', 'Fira Code', 'Fira Mono', Menlo, Consolas, monospace;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    background: none;
+    padding: 0;
+}
+
 /* ===== BEFORE/AFTER COMPARISON ===== */
 .comparison {
     display: grid;
@@ -911,6 +977,10 @@
     .cs-figure-pair {
         grid-template-columns: 1fr 1fr;
     }
+
+    .code-annotation-header {
+        align-items: center;
+    }
 }
 
 
@@ -1006,5 +1076,15 @@
 
     .reading-progress {
         display: none;
+    }
+
+    .code-annotation {
+        page-break-inside: avoid;
+    }
+
+    .code-annotation pre {
+        font-size: 0.7rem;
+        background: none !important;
+        border-top: 1px solid #ccc;
     }
 }
