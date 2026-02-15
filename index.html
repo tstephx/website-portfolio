@@ -63,7 +63,7 @@
                 <h3><a href="work/contract-transfer/contract-transfer.html">Contract Transfer Process Redesign</a></h3>
                 <p class="project-meta">CT Program Owner &amp; Design Strategist | 17x Volume Growth | Solo</p>
                 <p><strong>Challenge:</strong> Amazon's DSP ownership transfer process had no SOP, no standardized communications (4 emails to candidates, zero to owners), and no formalized vetting criteria. Volume was exploding from 5 to 87 annual cases with no additional staff. Each failed exit cost $482K&ndash;$504K.</p>
-                <p><strong>Action:</strong> Designed a complete operational system: 14-week process architecture with 3 distinct transfer-type paths, 6-step vetting framework with rubric-based scoring, 19 communication templates, 13 appendix artifacts, and a 5-stakeholder consensus governance model. Built SQL analytics on Redshift tracking 689 attributes across 209 candidates.</p>
+                <p><strong>Approach:</strong> Built a 14-week operational system from scratch &mdash; the playbook behind a 70% faster decision cycle. <a href="work/contract-transfer/contract-transfer.html">Read the full case study &rarr;</a></p>
                 <p><strong>Result:</strong> Median decision time dropped 70% (9.6 &rarr; 2.9 weeks). Prevented $13M in exit costs across 29 transfers. Legacy transferees maintained quality at +1,800 basis points vs. network average. SOP adopted as foundation for 2025 Legacy strategy &mdash; named owner of 3 of 4 implementation workstreams.</p>
             </article>
 
@@ -71,7 +71,7 @@
                 <h3><a href="work/bpr-scoring-pinnacle/pinnacle-scoring.html">Pinnacle BPR Scoring Methodology Redesign</a></h3>
                 <p class="project-meta">Measurement System Design | 198 Interviews &amp; 36 Panelists | 5 Production Artifacts</p>
                 <p><strong>Challenge:</strong> Amazon's gateway interview for DSP expansion saw approval rates collapse from 85.7% to 56.0% &mdash; a 29.7 percentage-point drop. 77% of panels showed 30+ point scoring gaps between panelists on the same candidate. Horror cases included one candidate scored 5 by one panelist and 57 by another.</p>
-                <p><strong>Action:</strong> Reverse-engineered the scoring formula from 198 interview records and identified three failure modes: subjective language in rubrics, a mean-based formula that let one dissenter override two supporters, and no correlation between scores and on-road performance. Designed a complete replacement: hybrid formula (80% Median + 15% Vote Weight + 5% Deliverables), 35 evaluation questions across five weighted categories, 4-tier decision architecture, and a 5-step calibration protocol.</p>
+                <p><strong>Approach:</strong> Reverse-engineered the scoring formula from 198 interviews and found three failure modes no one had identified. <a href="work/bpr-scoring-pinnacle/pinnacle-scoring.html">Read the full case study &rarr;</a></p>
                 <p><strong>Result:</strong> Eliminated the single-dissent veto problem entirely. Reduced 30+ point scoring gaps from 77% of panels to a target under 15 points. Shipped 5 production artifacts including an 18-page methodology spec and scoring template with 60+ diagnostic questions. Restored the approval pathway to a 65&ndash;70% target rate.</p>
             </article>
 
@@ -79,7 +79,7 @@
                 <h3><a href="work/cfa-dsp-application/dsp-application.html">DSP Application Redesign</a></h3>
                 <p class="project-meta">Competitive Intelligence | 101 Requirements | 18 Countries | $10.9M Entitlement</p>
                 <p><strong>Challenge:</strong> Amazon's delivery partner application hadn't been updated since 2018. It had a 74% abandonment rate, a 15% post-approval failure rate, and only 23% of approved candidates converted to program inclination &mdash; a ratio of 1 in 135 starts to a single inclined candidate.</p>
-                <p><strong>Action:</strong> Applied to Chick-fil-A's franchise program as competitive intelligence (0.2% acceptance rate), documenting every field across their 152-question application. Built a question-level analytical framework comparing 5 dimensions, then carried findings through a 101-requirement BRD across 6 epics, a Tech Vision, and an OP1 resource escalation spanning 18 countries.</p>
+                <p><strong>Approach:</strong> Applied to a competitor&rsquo;s franchise program as competitive intelligence, then turned the findings into a 101-requirement redesign. <a href="work/cfa-dsp-application/dsp-application.html">Read the full case study &rarr;</a></p>
                 <p><strong>Result:</strong> Projected completion from 26% to 60% (+131%), inclination from 23% to 46% (+100%), and post-approval failure from 15% to under 8% ($149K annual vetting savings). Secured 4.60 SDEs (from 0.25 initial allocation) against $10.9&ndash;11.3M WW entitlement.</p>
             </article>
 
@@ -87,7 +87,7 @@
                 <h3><a href="work/pinnacle-program-selection/pinnacle-automation.html">Pinnacle Selection Automation</a></h3>
                 <p class="project-meta">8 Root Causes | 6-Step SQL Pipeline | Haversine Formula | 2,620 DSPs</p>
                 <p><strong>Challenge:</strong> The Pinnacle eligibility process ran on a 55+ MB Excel file with INDEX-MATCH calculations across 24,000 rows that regularly crashed. Traffic-dependent distances were non-deterministic, data lagged by a quarter, and 20 eligible candidates were bypassed to RTO &mdash; violating the program&rsquo;s own 5-lever prioritization hierarchy. Launches dropped 55% (93 to 42).</p>
-                <p><strong>Action:</strong> Diagnosed 8 root causes across data (4), process (3), and tooling (1) dimensions. Built a 6-step SQL pipeline on Amazon Redshift: LAG() window functions for consecutive Tier 1 validation, Haversine formula replacing traffic-dependent distances, MSO vetting integration with 33-DSP exclusion list, and a two-tier distance filter (50mi primary, 250mi NOT EXISTS fallback) feeding into 8-day Amazon Approvals and 3-week BPR vetting.</p>
+                <p><strong>Approach:</strong> Diagnosed the root causes behind a 55% launch drop and replaced the crash-prone tooling with a deterministic pipeline. <a href="work/pinnacle-program-selection/pinnacle-automation.html">Read the full case study &rarr;</a></p>
                 <p><strong>Result:</strong> Pinnacle fill rate jumped from 57.9% to 94.1% (+36 pp), with July hitting 100% across 8 targets. Preserved 20 candidates, restored the 5-lever hierarchy, and enabled BDM team expansion from 1 to 5 members. Data refresh improved from quarterly to monthly (3&times; faster).</p>
             </article>
 
@@ -95,14 +95,14 @@
                 <h3><a href="work/pinnacle-station/pinnacle-distance.html">Pinnacle Station Distance Analysis</a></h3>
                 <p class="project-meta">Geospatial Analysis (R) | 130K+ Station Pairs | Vincenty Ellipsoid | Policy Change</p>
                 <p><strong>Challenge:</strong> Amazon&rsquo;s Pinnacle expansion program had a 50-mile distance cap that hadn&rsquo;t been questioned since launch in May 2022. Launches dropped 55% (93 to 42), 20 eligible candidates were bypassed for less-qualified RTOs, and only 47% of the eligible pool was reached for outreach. ~33% of Pinnacle-eligible DSPs were structurally excluded by geography, not performance.</p>
-                <p><strong>Action:</strong> Computed 130,000+ pairwise geodesic distances across ~362 stations using Vincenty Ellipsoid in R, then ran a 16-threshold interval sweep proving the cap excluded 36.1% of the network. Analyzed 17 distance-breaking DSPs and found they outperformed non-breakers: 82% CSAT vs. 74%, 100% Quality, 109.6% CR vs. 106.6%. Formatted findings into a strategy proposal that secured the first structural eligibility change in two years.</p>
+                <p><strong>Approach:</strong> Computed 130,000+ pairwise geodesic distances to prove the eligibility cap was excluding top performers. <a href="work/pinnacle-station/pinnacle-distance.html">Read the full case study &rarr;</a></p>
                 <p><strong>Result:</strong> Approved 3-tier prioritization (Pop-Up &rarr; &le;50mi &rarr; 5-closest fallback) raised station coverage from 63.9% to 96.0%. Fill rate jumped from 57.9% to 94.1% (+36 pp), with July hitting 100%. Operationalized into a 6-step SQL pipeline on Amazon Redshift replacing the crash-prone Excel file.</p>
             </article>
             <article class="project-card">
                 <h3><a href="work/charge-back-processing/chargeback-parsing.html">Chargeback Email Parsing Automation</a></h3>
                 <p class="project-meta">R / Text Mining | Boundary Extraction | 92% Time Reduction | Self-Initiated</p>
                 <p><strong>Challenge:</strong> Stripe chargeback notifications arrived as unstructured email prose with 8 data fields buried in continuous text. Processing each batch required ~2 hours of manual transcription into a Google Sheets tracker &mdash; opening each email, scanning for fields like 26-character account IDs and dispute numbers, and typing each value by hand.</p>
-                <p><strong>Action:</strong> Built an R text mining script using boundary-based extraction (<code>rm_between()</code>) that treated the email template&rsquo;s sentence structure as delimiters. The script batch-processed every <code>.txt</code> file in a folder in a single run, extracting all 8 fields per notification into a structured table &mdash; scaling from 1 to N chargebacks without code changes.</p>
+                <p><strong>Approach:</strong> Turned unstructured email prose into structured data with a text mining script that scales to any batch size. <a href="work/charge-back-processing/chargeback-parsing.html">Read the full case study &rarr;</a></p>
                 <p><strong>Result:</strong> Processing time dropped 92% (~2 hours to ~10 minutes). Eliminated transcription errors entirely &mdash; programmatic extraction from source text replaced manual reading and typing. The batch architecture meant time savings scaled with volume: parsing was constant-time regardless of batch size.</p>
             </article>
 
