@@ -200,6 +200,68 @@
             <p>The SQL pipeline&rsquo;s output isn&rsquo;t the endpoint &mdash; it feeds into two structured organizational processes I mapped end-to-end. Candidates first enter an 8-day SLA Amazon Approvals process (5 steps across 4 stakeholder groups: LRP, BI, Acquisition, and Leadership), then a 3-week Business Plan Review vetting cycle with panel-style interviews and a 106/150 point threshold. By the time a candidate reaches BPR, they&rsquo;ve been systematically validated across performance, tenure, vetting history, and geography &mdash; eliminating the manual identification bottleneck that caused 20 missed opportunities.</p>
         </section>
 
+        <section class="cs-section" id="under-the-hood">
+            <h2>Under the Hood</h2>
+            <p>The descriptions above trace the pipeline&rsquo;s logic. Here&rsquo;s what the actual production SQL looks like &mdash; three excerpts from the 6-step Redshift query.</p>
+
+            <h3>Stage 2 &mdash; Consecutive Tier 1 Validation</h3>
+            <div class="code-annotation">
+                <div class="code-annotation-header">
+                    <p class="code-annotation-title">LAG() Window Function &mdash; Temporal Business Rule</p>
+                    <span class="code-annotation-lang">SQL</span>
+                </div>
+                <p class="code-annotation-desc">Window functions validate that a DSP held Tier 1 across consecutive quarters &mdash; not just once. This single clause prevents one-quarter flukes from qualifying DSPs for three-year contracts.</p>
+<pre><code>static_tier AS (
+    SELECT dsp_id, snapshot_date, adjusted_tier,
+        LAG(adjusted_tier, 1) OVER (
+            PARTITION BY dsp_id ORDER BY snapshot_date
+        ) AS prev_tier
+    FROM dsp_network_health
+    WHERE snapshot_date IN (SELECT snapshot_date FROM nh_score_config)
+)
+SELECT * FROM static_tier
+WHERE adjusted_tier = 1 AND prev_tier = 1</code></pre>
+            </div>
+
+            <h3>Stage 5 &mdash; Haversine Distance Computation</h3>
+            <div class="code-annotation">
+                <div class="code-annotation-header">
+                    <p class="code-annotation-title">CROSS JOIN + Great-Circle Distance</p>
+                    <span class="code-annotation-lang">SQL</span>
+                </div>
+                <p class="code-annotation-desc">Every station paired with every other station, distance computed via Haversine formula. Deterministic &mdash; same inputs always produce the same output, unlike traffic-dependent alternatives.</p>
+<pre><code>station_pairs AS (
+    SELECT a.station_code AS station_a,
+           b.station_code AS station_b,
+        3959 * ACOS(
+            COS(RADIANS(a.lat)) * COS(RADIANS(b.lat))
+            * COS(RADIANS(b.lon) - RADIANS(a.lon))
+            + SIN(RADIANS(a.lat)) * SIN(RADIANS(b.lat))
+        ) AS distance_miles
+    FROM temp_station_data a
+    CROSS JOIN temp_station_data b
+    WHERE a.station_code &lt;&gt; b.station_code
+)</code></pre>
+            </div>
+
+            <h3>Stage 6 &mdash; Two-Tier Policy Fallback</h3>
+            <div class="code-annotation">
+                <div class="code-annotation-header">
+                    <p class="code-annotation-title">NOT EXISTS Subquery &mdash; Policy Encoded as SQL</p>
+                    <span class="code-annotation-lang">SQL</span>
+                </div>
+                <p class="code-annotation-desc">Policy encoded as SQL: candidates within 50 miles get priority. Remote stations with no nearby candidates fall back to the 5 closest within 250 miles. The fallback never competes with primary matches.</p>
+<pre><code>WHERE distance_miles &lt;= 50
+   OR (distance_miles &lt;= 250
+       AND proximity_rank &lt;= 5
+       AND NOT EXISTS (
+           SELECT 1 FROM station_pairs sp2
+           WHERE sp2.station_a = sp.station_a
+             AND sp2.distance_miles &lt;= 50
+       ))</code></pre>
+            </div>
+        </section>
+
         <section class="cs-section" id="results">
             <h2>From 57.9% to 94.1% Fill Rate</h2>
 
