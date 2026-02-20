@@ -2,7 +2,7 @@
 # SQL/R Analytics Enhancement — Design Document
 
 *Approved: 2026-02-14*
-*Branch: feat/sql-r-analytics*
+*Branch: main (implemented directly on main)*
 
 ---
 
