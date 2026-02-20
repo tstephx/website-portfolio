@@ -90,17 +90,17 @@
             </div>
 
             <div class="insight-callout">
-                This wasn&rsquo;t a speed problem &mdash; it was a format problem. The data already existed in every email. The bottleneck was that structured information was trapped in unstructured prose, and the only extraction method was a human reading and typing. The solution was parsing automation, not faster typing. This isn&rsquo;t a high-stakes business problem at Amazon scale &mdash; it&rsquo;s a demonstration of a specific instinct: I don&rsquo;t tolerate manual work that a script can handle in minutes. Scale is irrelevant to that instinct.
+                The data already existed in every email &mdash; it was just trapped in the wrong format. The bottleneck was parsing, not volume. I don&rsquo;t tolerate manual work that a script can handle in minutes.
             </div>
 
             <h3>What the Script Actually Sees</h3>
             <div class="comparison">
                 <div class="comparison-before">
-                    <h3>Raw Email Notification</h3>
+                    <p class="comparison-label"><strong>Raw Email Notification</strong></p>
                     <p>Hi <strong>Barry&rsquo;s Bootcamp Bay Area, LLC</strong>, Hope you&rsquo;re having a great week. One of your customers, <strong>James Liao</strong> (<strong>jlaimaeos@gmail.com</strong>), recently disputed a credit card charge processed by your Barry&rsquo;s Bay Area LLC gateway for <strong>$36.00</strong>. You have an opportunity to dispute the chargeback if you submit a response&hellip; prior to <strong>Sep 14, 2022, 11:59:59 PM</strong> time&hellip; Connected account number (for the form): <strong>acct_1IgFkhRFaQPehEcq</strong> Dispute number (for the form): <strong>du_1LYV97I1kLQM3y1JIOdBtCx6</strong> Original transaction date: <strong>Aug 4, 2022</strong></p>
                 </div>
                 <div class="comparison-after">
-                    <h3>Extracted Structured Row</h3>
+                    <p class="comparison-label"><strong>Extracted Structured Row</strong></p>
                     <table class="data-table" style="margin: 0">
                         <caption>8 fields extracted from a single chargeback notification</caption>
                         <tbody>
@@ -119,7 +119,7 @@
         </section>
 
         <section class="cs-section" id="approach">
-            <h2>Boundaries, Not Regex &mdash; Extracting Data from Natural Language</h2>
+            <h2>Boundary-Based Extraction from Natural Language</h2>
             <p>I recognized that Mariana Tek&rsquo;s chargeback emails followed a consistent template. While the specific values changed per dispute, the surrounding sentence structure was identical every time: <em>&ldquo;Hi [tenant], Hope you&rsquo;re having a great week&hellip;&rdquo;</em> always bracketed the tenant name, <em>&ldquo;gateway for [amount]. You&rdquo;</em> always bracketed the dispute amount. These natural language phrases were more reliable delimiters than any character-level regex pattern.</p>
             <p>I chose boundary-based text extraction over pure regex because the email body is prose, not structured data. A regex-only approach would require fragile patterns that break when template wording shifts slightly. Boundary extraction with <code>rm_between()</code> relies on sentence structure &mdash; as long as the email says &ldquo;Hi [name], Hope&rdquo; and &ldquo;Dispute [number] Customer,&rdquo; the extraction works regardless of the specific values inside.</p>
 
@@ -277,6 +277,10 @@
         <section class="cs-section" id="results">
             <h2>10 Minutes Instead of 2 Hours &mdash; With Zero Transcription Errors</h2>
 
+            <div class="insight-callout">
+                The automation didn&rsquo;t just save time &mdash; it eliminated a category of error entirely. Manual transcription of 26-character IDs is inherently lossy. Programmatic extraction isn&rsquo;t.
+            </div>
+
             <div class="metrics-row">
                 <div class="metric-card">
                     <span class="metric-number">92%</span>
@@ -350,7 +354,9 @@
             maintainAspectRatio: true,
             animation: { duration: 1200, easing: 'easeOutQuart' },
             plugins: {
-                legend: { display: false },
+                legend: {
+                    display: false
+                },
                 tooltip: {
                     backgroundColor: '#1a1a1a',
                     titleFont: { family: "'Epilogue', sans-serif", size: 12 },

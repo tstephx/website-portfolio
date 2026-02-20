@@ -309,6 +309,17 @@
     margin-bottom: 0;
 }
 
+.comparison-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
 /* Link card variant - all borders accent-colored */
 .comparison-before.link-card,
 .comparison-after.link-card {
