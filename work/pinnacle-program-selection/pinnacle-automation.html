@@ -42,8 +42,6 @@
             </div>
         </header>
 
-        <p>This case study covers the technical implementation and automation &mdash; the SQL pipeline, Excel replacement, and infrastructure. The analytical research and policy design that informed it is documented in the <a href="../pinnacle-station/pinnacle-distance.html">Pinnacle Distance Analysis</a> case study.</p>
-
         <div class="scope-callout">
             <div class="scope-item">
                 <span class="scope-label">Timeline</span>
@@ -61,6 +59,10 @@
                 <span class="scope-label">Impact</span>
                 <span class="scope-value">94.1% fill rate (+36 pp), 1&rarr;5 BDM team</span>
             </div>
+            <div class="scope-item">
+                <span class="scope-label">See Also</span>
+                <span class="scope-value">Technical implementation &amp; automation &mdash; the SQL pipeline, Excel replacement, and infrastructure. Analytical research &amp; policy design: <a href="../pinnacle-station/pinnacle-distance.html">Pinnacle Distance Analysis</a></span>
+            </div>
         </div>
 
         <section class="cs-section" id="problem">
@@ -68,15 +70,15 @@
             <p>Amazon&rsquo;s &ldquo;Pinnacle&rdquo; program assigns top-performing Delivery Service Partners (independent business owners running delivery fleets) to premium, high-volume stations across Multi-Station, Middle Mile, DSP Lite, and other expansion operations. To grow the network, someone has to determine which partners are eligible for which stations &mdash; matching geography, performance, and capacity across thousands of combinations.</p>
             <p>This eligibility process ran on a 55+ MB Excel file with INDEX-MATCH calculations across 24,000 rows. It crashed regularly. The distance calculations came from a &ldquo;Who&rsquo;s My Neighbor Dashboard&rdquo; that computed traffic-dependent commute distances &mdash; the same partner-to-station pair could show 49 miles one month and 52 the next. Eligibility data refreshed quarterly while performance updated monthly, creating blind spots between cycles. The entire system was maintained by a single person.</p>
 
-            <div class="chart-container">
-                <div class="chart-label">Pinnacle Launches: System Failure Impact</div>
-                <canvas id="launchChart" aria-label="Bar chart showing Pinnacle launches dropping from 93 in 2023 to 42 in 2024"></canvas>
-            </div>
-
             <p>Pinnacle launches dropped 55% (from 93 to 42) and 20 eligible candidates were bypassed entirely. But the real damage was structural. Amazon&rsquo;s capacity planning follows a 5-lever prioritization hierarchy &mdash; where Pinnacle expansion (Rank 3) must be exhausted before falling to net-new RTO recruitment (Rank 5). Instead, those 20 targets jumped directly to RTO, violating the program&rsquo;s own prioritization tenets and breaking the reward mechanism that top-performing DSPs had earned.</p>
 
             <div class="insight-callout">
                 A 55MB Excel file with 24,000-row INDEX-MATCH formulas isn&rsquo;t a tool &mdash; it&rsquo;s a system screaming for a database. And when it crashes, you don&rsquo;t lose a file. You lose candidates &mdash; and violate the rules that protect your best operators.
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-label">Pinnacle Launches: System Failure Impact</div>
+                <canvas id="launchChart" aria-label="Bar chart showing Pinnacle launches dropping from 93 in 2023 to 42 in 2024"></canvas>
             </div>
         </section>
 
@@ -142,6 +144,7 @@
             <h3>Eligibility Funnel</h3>
             <p>The pipeline implements a progressive filtering funnel &mdash; narrowing 2,620 DSPs to a ranked candidate list per station. Each stage maps to a diagnosed root cause.</p>
 
+            <div class="chart-label">2,620 DSPs &rarr; Ranked Candidates per Station</div>
             <div class="funnel-chart">
                 <div class="funnel-stage" style="--width: 100%">
                     <span class="stage-label">NA DSP Network</span>
@@ -171,7 +174,7 @@
         </section>
 
         <section class="cs-section" id="technical">
-            <h2>Why Consistency Beat Accuracy</h2>
+            <h2>Technical Architecture: Six Modular Stages</h2>
 
             <h3>Haversine Distance Formula</h3>
             <p>The &ldquo;Who&rsquo;s My Neighbor Dashboard&rdquo; computed driving distances that varied with traffic conditions &mdash; the same partner-to-station pair could show different distances depending on when you checked. I replaced it with the Haversine formula for great-circle distance calculations: consistent, reproducible, and fast. While driving distance is more accurate in absolute terms, consistency mattered more for eligibility ranking. A decision system needs the same inputs to produce the same outputs every time.</p>
@@ -267,6 +270,10 @@ WHERE adjusted_tier = 1 AND prev_tier = 1</code></pre>
         <section class="cs-section" id="results">
             <h2>From 57.9% to 94.1% Fill Rate</h2>
 
+            <div class="insight-callout">
+                The crashing file wasn&rsquo;t just an inconvenience &mdash; it was actively misrouting Amazon&rsquo;s best operators. The pipeline fixed the tooling, the data, and the rules simultaneously.
+            </div>
+
             <div class="metrics-row">
                 <div class="metric-card">
                     <span class="metric-number">94.1%</span>
@@ -356,8 +363,7 @@ WHERE adjusted_tier = 1 AND prev_tier = 1</code></pre>
         </section>
 
         <section class="cs-cta">
-            <p>Next: <a href="../pinnacle-station/pinnacle-distance.html">Pinnacle Station Distance Analysis</a></p>
-            <p>Related: <a href="../pinnacle-station/pinnacle-distance.html">Pinnacle Distance Analysis</a> &middot; <a href="../bpr-scoring-pinnacle/pinnacle-scoring.html">BPR Scoring Methodology</a></p>
+            <p>Next: <a href="../pinnacle-station/pinnacle-distance.html">Pinnacle Station Distance Analysis</a> &middot; Related: <a href="../bpr-scoring-pinnacle/pinnacle-scoring.html">BPR Scoring Methodology</a></p>
         </section>
 
     </main>
