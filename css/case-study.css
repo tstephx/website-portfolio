@@ -41,6 +41,7 @@
     color: var(--color-heading);
     margin-bottom: 0.5em;
     max-width: none;
+    text-wrap: balance;
 }
 
 .cs-tagline {
@@ -90,7 +91,7 @@
 .cs-section h2::after {
     content: '';
     display: block;
-    width: 2.5rem;
+    width: 2em;
     height: 2px;
     background: linear-gradient(to right, var(--color-accent), var(--color-accent-hover));
     margin-top: 0.75em;
@@ -586,6 +587,15 @@
 
 .timeline-item.completed::before {
     background-color: var(--color-accent);
+}
+
+.timeline-item:last-child.completed::before {
+    background-color: var(--color-success);
+    box-shadow: 0 0 0 3px var(--color-success-light);
+}
+
+.timeline-item:last-child .timeline-title {
+    color: var(--color-success-dark);
 }
 
 .timeline-week {
