@@ -97,6 +97,10 @@
             </ul>
 
             <p>The analysis made the case for wholesale replacement, not incremental adjustment. Every component was broken: the rating scale, the categories, the formula mechanics, the debrief protocol, and the question framework. I needed to redesign all of it.</p>
+
+            <div class="insight-callout">
+                Proving the flaw existed was harder than fixing it. Building the mathematical case from 198 records &mdash; not just asserting a problem, but demonstrating it in the data &mdash; was what created organizational willingness to replace the system rather than patch it.
+            </div>
         </section>
 
         <section class="cs-section" id="technical">
@@ -309,14 +313,14 @@
                     <span class="metric-subtitle">Single-dissent override eliminated</span>
                 </div>
                 <div class="metric-card">
-                    <span class="metric-number">30+ &rarr; &lt;15</span>
-                    <span class="metric-label">Scoring Gap (Points)</span>
-                    <span class="metric-subtitle">Target: halve inter-rater variance</span>
+                    <span class="metric-number">&lt;15 pts</span>
+                    <span class="metric-label">Scoring Gap Goal</span>
+                    <span class="metric-subtitle">Target: halve inter-rater variance from 30+ pt baseline</span>
                 </div>
                 <div class="metric-card">
                     <span class="metric-number">65&ndash;70%</span>
-                    <span class="metric-label">Target Approval Rate</span>
-                    <span class="metric-subtitle">Restored from 56%</span>
+                    <span class="metric-label">Approval Rate Target</span>
+                    <span class="metric-subtitle">Goal: restore from collapsed 56%</span>
                 </div>
                 <div class="metric-card">
                     <span class="metric-number">5</span>
@@ -413,13 +417,15 @@
             <p>The approval pathway was restored to a 65&ndash;70% target rate, unblocking a Pinnacle expansion pipeline that had stalled for months. The 4-tier decision architecture added the Verify/Audit zone (75&ndash;79%) for borderline candidates, replacing a binary pass/fail that treated a score of 74 the same as 49.</p>
 
             <p>But the real shift was structural. Every decision is now traceable: rubric scores tied to behavioral anchors, evidence fields requiring 3&ndash;5 bullet points per category, calibration discussion documented, and dissent recorded with rationale. If a decision is challenged, the evidence trail exists.</p>
+
+            <p>Together, these changes unblocked a candidate pipeline protecting an estimated $8.3M in Pinnacle expansion revenue.</p>
         </section>
 
         <section class="cs-section" id="lessons">
             <h2>What This Taught Me</h2>
             <ul class="lessons-list">
+                <li>Proving a flaw exists is harder than fixing it. The reverse-engineering work to demonstrate the veto property took longer than designing the replacement. But proof is what creates organizational willingness to change &mdash; without it, the proposal is just an opinion.</li>
                 <li>When a system produces bad outcomes, the problem is often structural, not behavioral. Training people harder doesn&rsquo;t fix a broken formula &mdash; you have to look at the math.</li>
-                <li>Proving a flaw exists is harder than fixing it. The reverse-engineering work to demonstrate the veto property took longer than designing the replacement. But proof is what creates organizational willingness to change.</li>
                 <li>Design decisions should be driven by discovered failure, not theory. The formula evolved through 3 versions because each iteration revealed a new problem &mdash; the Consistency Bonus penalized legitimate disagreement, the 60% median weight left too much room for soft factors. Shipping v3 instead of v1 was the difference between an improvement and a solution.</li>
                 <li>A methodology is only as good as its artifacts. The formula, rubric, question bank, and calibration protocol are intellectually interesting &mdash; but what actually changed behavior was the production scoring template panelists hold in their hands, the playbook they train from, and the dashboard that shows them the data.</li>
             </ul>

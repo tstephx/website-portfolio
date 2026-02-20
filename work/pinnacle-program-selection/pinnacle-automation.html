@@ -42,6 +42,8 @@
             </div>
         </header>
 
+        <p>This case study covers the technical implementation and automation &mdash; the SQL pipeline, Excel replacement, and infrastructure. The analytical research and policy design that informed it is documented in the <a href="../pinnacle-station/pinnacle-distance.html">Pinnacle Distance Analysis</a> case study.</p>
+
         <div class="scope-callout">
             <div class="scope-item">
                 <span class="scope-label">Timeline</span>
@@ -49,7 +51,7 @@
             </div>
             <div class="scope-item">
                 <span class="scope-label">My Role</span>
-                <span class="scope-value">Process Architect &amp; Technical Lead</span>
+                <span class="scope-value">Senior PM, DSP Acquisitions</span>
             </div>
             <div class="scope-item">
                 <span class="scope-label">Data Scale</span>
@@ -346,15 +348,16 @@ WHERE adjusted_tier = 1 AND prev_tier = 1</code></pre>
         <section class="cs-section" id="lessons">
             <h2>What This Taught Me</h2>
             <ul class="lessons-list">
+                <li>Automation doesn&rsquo;t just speed things up &mdash; it enforces rules. The 5-lever hierarchy existed on paper, but a manual process let 20 targets skip from Rank 3 to Rank 5. The SQL pipeline mechanizes the hierarchy so prioritization tenets cannot be violated.</li>
                 <li>Excel heroics are a sign of missing infrastructure. A 55MB file with 24,000-row INDEX-MATCH formulas is a system screaming for a database. The heroism is the symptom, not the solution.</li>
                 <li>Consistency often beats accuracy. Haversine distances aren&rsquo;t as &ldquo;accurate&rdquo; as driving distances, but they&rsquo;re reproducible &mdash; and reproducibility is what eligibility decisions require. The same inputs must produce the same outputs.</li>
                 <li>A crashing spreadsheet is never just a crashing spreadsheet. What looked like one tooling problem was 8 root causes across 3 dimensions. Fixing the Excel without diagnosing the data lag, vetting gaps, and prioritization misalignment would have produced a faster wrong answer.</li>
-                <li>Automation doesn&rsquo;t just speed things up &mdash; it enforces rules. The 5-lever hierarchy existed on paper, but a manual process let 20 targets skip from Rank 3 to Rank 5. The SQL pipeline mechanizes the hierarchy so prioritization tenets cannot be violated.</li>
             </ul>
         </section>
 
         <section class="cs-cta">
             <p>Next: <a href="../pinnacle-station/pinnacle-distance.html">Pinnacle Station Distance Analysis</a></p>
+            <p>Related: <a href="../pinnacle-station/pinnacle-distance.html">Pinnacle Distance Analysis</a> &middot; <a href="../bpr-scoring-pinnacle/pinnacle-scoring.html">BPR Scoring Methodology</a></p>
         </section>
 
     </main>

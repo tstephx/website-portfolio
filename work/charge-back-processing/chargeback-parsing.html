@@ -49,7 +49,7 @@
             </div>
             <div class="scope-item">
                 <span class="scope-label">My Role</span>
-                <span class="scope-value">Self-Initiated &mdash; Identified &amp; Built Solution</span>
+                <span class="scope-value">Self-Initiated &mdash; identified the inefficiency, scoped the solution, built and deployed without direction</span>
             </div>
             <div class="scope-item">
                 <span class="scope-label">Platform</span>
@@ -63,7 +63,7 @@
 
         <section class="cs-section" id="problem">
             <h2>Structured Data Was Trapped in Unstructured Email Prose</h2>
-            <p>Mariana Tek&rsquo;s platform processed credit card payments for fitness studio clients. When customers disputed charges &mdash; subscription cancellations, fraud claims, duplicate charges &mdash; Stripe generated chargeback notifications that arrived as individual emails. Each email contained the 8 data fields needed to track and respond to the dispute: tenant name, connected Stripe account ID, dispute number, dispute amount, customer name, customer email, transaction date, and submission deadline.</p>
+            <p>Mariana Tek&rsquo;s platform processed payments for fitness studio clients across the US, with chargebacks routed through Stripe&rsquo;s dispute management system. The platform processed credit card payments for fitness studio clients. When customers disputed charges &mdash; subscription cancellations, fraud claims, duplicate charges &mdash; Stripe generated chargeback notifications that arrived as individual emails. Each email contained the 8 data fields needed to track and respond to the dispute: tenant name, connected Stripe account ID, dispute number, dispute amount, customer name, customer email, transaction date, and submission deadline.</p>
             <p>The problem wasn&rsquo;t the data &mdash; it was the format. Every field was buried in continuous prose with no delimiters, no consistent formatting, and embedded URLs. The existing process required someone to open each email, visually scan for 8 fields scattered throughout the message body, and manually key each value into a Google Sheets tracker. With chargebacks arriving in batches across multiple tenants &mdash; 6 different disputes across 5 studio clients in a single month &mdash; this consumed approximately 2 hours per processing cycle.</p>
 
             <div class="metrics-row">
@@ -90,7 +90,7 @@
             </div>
 
             <div class="insight-callout">
-                This wasn&rsquo;t a speed problem &mdash; it was a format problem. The data already existed in every email. The bottleneck was that structured information was trapped in unstructured prose, and the only extraction method was a human reading and typing. The solution was parsing automation, not faster typing.
+                This wasn&rsquo;t a speed problem &mdash; it was a format problem. The data already existed in every email. The bottleneck was that structured information was trapped in unstructured prose, and the only extraction method was a human reading and typing. The solution was parsing automation, not faster typing. This isn&rsquo;t a high-stakes business problem at Amazon scale &mdash; it&rsquo;s a demonstration of a specific instinct: I don&rsquo;t tolerate manual work that a script can handle in minutes. Scale is irrelevant to that instinct.
             </div>
 
             <h3>What the Script Actually Sees</h3>
@@ -304,6 +304,8 @@
                 <div class="chart-label">Processing Time: Manual vs. Automated</div>
                 <canvas id="timeChart" aria-label="Bar chart comparing approximately 120 minutes manual processing versus approximately 10 minutes automated processing"></canvas>
             </div>
+
+            <p>The batch architecture meant the script required no modifications as volume grew &mdash; it was used through the end of the engagement with regex patterns holding consistently across Stripe&rsquo;s email format variations.</p>
 
             <p>The 92% time reduction freed approximately 1.5+ hours per processing cycle. For a recurring task executed weekly or bi-weekly, that represented meaningful capacity recovery &mdash; time redirected from transcribing notification data to actually investigating and responding to disputes.</p>
 

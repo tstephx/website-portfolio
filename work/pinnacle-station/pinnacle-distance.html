@@ -101,7 +101,7 @@
         <section class="cs-section" id="approach">
             <h2>130,000 Distance Calculations and a Counter-Intuitive Finding</h2>
 
-            <p>I approached this in three phases: research the problem with data, change the policy with evidence, then automate the solution into production. The entire arc &mdash; from R analysis to approved strategy proposal to SQL pipeline &mdash; took one quarter.</p>
+            <p>I approached this in three phases: research the problem with data, change the policy with evidence, then automate the solution into production. The entire arc &mdash; from R analysis to approved strategy proposal to SQL pipeline &mdash; took one quarter. <em>This case study covers the analytical research and policy design; the technical implementation is documented in the <a href="../pinnacle-program-selection/pinnacle-automation.html">Pinnacle Selection Automation</a> case study.</em></p>
 
             <h3>Phase 1: Geospatial Distance Analysis</h3>
             <p>The first question was simple: what exactly does the 50-mile cap exclude? To answer it, I computed pairwise geodesic distances across all ~362 US stations using R&rsquo;s <code>distVincentyEllipsoid</code> function from the <code>geosphere</code> package &mdash; the most accurate distance formula for an oblate spheroid, generating ~130,000 unique station pairs. Then I ran a distance interval sweep across 16 thresholds (50&ndash;200 miles in 10-mile increments), computing cumulative station coverage at each tier.</p>
@@ -406,6 +406,11 @@ comparison &lt;- bind_rows(
                     <span class="metric-label">BDM Team</span>
                     <span class="metric-subtitle">5&times; outreach capacity</span>
                 </div>
+                <div class="metric-card">
+                    <span class="metric-number">1 Quarter</span>
+                    <span class="metric-label">Analysis to Approved Policy</span>
+                    <span class="metric-subtitle">R research &rarr; leadership approval &rarr; SQL production</span>
+                </div>
             </div>
 
             <div class="chart-container">
@@ -480,6 +485,7 @@ comparison &lt;- bind_rows(
 
         <section class="cs-cta">
             <p>Next: <a href="../charge-back-processing/chargeback-parsing.html">Chargeback Email Parsing Automation</a></p>
+            <p>Related: <a href="../pinnacle-program-selection/pinnacle-automation.html">Pinnacle Selection Automation</a> &mdash; <a href="../bpr-scoring-pinnacle/pinnacle-scoring.html">BPR Scoring Methodology</a></p>
         </section>
 
     </main>
