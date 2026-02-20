@@ -500,10 +500,18 @@ comparison &lt;- bind_rows(
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var accent = '#1a3a6b';
-        var green = '#16a34a';
-        var red = '#dc3545';
-        var muted = 'rgba(107, 107, 107, 0.3)';
+        var css = getComputedStyle(document.documentElement);
+        var token = function(name, fallback) { return css.getPropertyValue(name).trim() || fallback; };
+        var hexToRgba = function(hex, a) {
+            var h = hex.replace('#', '');
+            if (h.length === 3) h = h.split('').map(function(c) { return c + c; }).join('');
+            var n = parseInt(h, 16);
+            return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')';
+        };
+        var accent = token('--color-accent', '#1a3a6b');
+        var green  = token('--color-success', '#16a34a');
+        var red    = token('--color-danger', '#dc2626');
+        var muted  = hexToRgba(token('--color-muted', '#6b6b6b'), 0.3);
         var defaults = {
             responsive: true,
             maintainAspectRatio: true,
@@ -511,7 +519,7 @@ comparison &lt;- bind_rows(
             plugins: {
                 legend: { display: false },
                 tooltip: {
-                    backgroundColor: '#1a1a1a',
+                    backgroundColor: token('--color-heading', '#1a1a1a'),
                     titleFont: { family: "'Epilogue', sans-serif", size: 12 },
                     bodyFont: { family: "'Epilogue', sans-serif", size: 12 },
                     padding: 10,
@@ -528,12 +536,12 @@ comparison &lt;- bind_rows(
                 datasets: [{
                     data: [63.9, 66.7, 75.7, 85.4, 91.8, 96.0],
                     borderColor: accent,
-                    backgroundColor: 'rgba(26, 58, 107, 0.08)',
+                    backgroundColor: hexToRgba(accent, 0.08),
                     fill: true,
                     tension: 0.3,
                     pointRadius: 5,
                     pointBackgroundColor: [red, accent, accent, accent, accent, green],
-                    pointBorderColor: '#fff',
+                    pointBorderColor: token('--color-bg', '#ffffff'),
                     pointBorderWidth: 2,
                     pointHoverRadius: 7,
                     borderWidth: 2.5
@@ -548,7 +556,7 @@ comparison &lt;- bind_rows(
                         grid: { color: 'rgba(0,0,0,0.04)' },
                         ticks: {
                             font: { family: "'Epilogue', sans-serif", size: 11 },
-                            color: '#6b6b6b',
+                            color: token('--color-muted', '#6b6b6b'),
                             callback: function(v) { return v + '%'; }
                         }
                     },
@@ -556,14 +564,14 @@ comparison &lt;- bind_rows(
                         grid: { display: false },
                         ticks: {
                             font: { family: "'Epilogue', sans-serif", size: 11, weight: 600 },
-                            color: '#3d3d3d'
+                            color: token('--color-text', '#3d3d3d')
                         }
                     }
                 },
                 plugins: {
                     legend: { display: false },
                     tooltip: {
-                        backgroundColor: '#1a1a1a',
+                        backgroundColor: token('--color-heading', '#1a1a1a'),
                         titleFont: { family: "'Epilogue', sans-serif", size: 12 },
                         bodyFont: { family: "'Epilogue', sans-serif", size: 12 },
                         padding: 10,
@@ -599,7 +607,7 @@ comparison &lt;- bind_rows(
                         grid: { color: 'rgba(0,0,0,0.04)' },
                         ticks: {
                             font: { family: "'Epilogue', sans-serif", size: 11 },
-                            color: '#6b6b6b',
+                            color: token('--color-muted', '#6b6b6b'),
                             callback: function(v) { return v + '%'; }
                         }
                     },
@@ -607,7 +615,7 @@ comparison &lt;- bind_rows(
                         grid: { display: false },
                         ticks: {
                             font: { family: "'Epilogue', sans-serif", size: 11, weight: 600 },
-                            color: '#3d3d3d'
+                            color: token('--color-text', '#3d3d3d')
                         }
                     }
                 }
