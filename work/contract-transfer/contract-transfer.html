@@ -67,7 +67,7 @@
             <p>When I inherited this process, it was broken. There was no SOP, no standardized communications &mdash; just 4 emails to candidates and zero to DSP owners across the entire lifecycle &mdash; no formalized vetting criteria, and heavy reliance on tribal knowledge across 6 teams. One stakeholder summarized it bluntly: <em>&ldquo;There&rsquo;s not much&hellip; it&rsquo;s an area we just need to be more attentive. It&rsquo;s been disappointing.&rdquo;</em></p>
 
             <div class="chart-container">
-                <div class="chart-label">Annual Transfer Requests: 2020 vs. 2024</div>
+                <div class="chart-label">Annual Transfer Requests: 2020 vs. 2024 &mdash; 17&times; growth, zero additional headcount</div>
                 <canvas id="volumeChart" aria-label="Bar chart showing volume increase from 5 cases in 2020 to 87 cases in 2024"></canvas>
             </div>
 
@@ -274,7 +274,7 @@
                 <canvas id="cycleChart" aria-label="Bar chart showing median decision time: 9.6 weeks in 2021, 5.3 in 2022, 2.9 in 2023, 3.3 in 2024"></canvas>
             </div>
 
-            <p>Median time to decision dropped 70%, from 9.6 weeks in 2021 to 2.9 weeks in 2023, as the SOP standardized each stage. Three processing tiers emerged from the data: Fast Track (34% of cases, decision within 2 weeks at the cheapest gates), Standard (28%, 2&ndash;6 weeks through full vetting), and Extended (38%, 6+ weeks for investigation-level complexity). Speed matters here in a specific way: the longer a transfer drags, the more likely a DSP owner is to abandon the process and exit unmanaged &mdash; triggering exactly the $482K cost the transfer was meant to prevent.</p>
+            <p>Median time to decision dropped 70%, from 9.6 weeks in 2021 to 2.9 weeks in 2023, as the SOP standardized each stage. The 3.3-week median in 2024 reflects 87% YoY volume growth &mdash; more cases meant more at the extended-complexity end of the distribution, pulling the median slightly right. Three processing tiers emerged from the data: Fast Track (34% of cases, decision within 2 weeks at the cheapest gates), Standard (28%, 2&ndash;6 weeks through full vetting), and Extended (38%, 6+ weeks for investigation-level complexity). Speed matters here in a specific way: the longer a transfer drags, the more likely a DSP owner is to abandon the process and exit unmanaged &mdash; triggering exactly the $482K cost the transfer was meant to prevent.</p>
 
             <p>The 29 completed transfers prevented an estimated $13M in exit-related costs. Each successful transfer eliminates the $482K&ndash;$504K cost of a DSP exit and preserves 100% of network capacity &mdash; compared to the 7.7% capacity drop and 60.4% permanent route loss that comes with an unmanaged exit. But the real proof that the vetting works: Legacy transferees maintained quality at +1,800 basis points above the network average. The process didn&rsquo;t just move faster &mdash; it selected better.</p>
 
@@ -304,9 +304,17 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var accent = '#1a3a6b';
-        var green = '#16a34a';
-        var muted = 'rgba(107, 107, 107, 0.3)';
+        var css = getComputedStyle(document.documentElement);
+        var token = function(name, fallback) { return css.getPropertyValue(name).trim() || fallback; };
+        var hexToRgba = function(hex, a) {
+            var h = hex.replace('#', '');
+            if (h.length === 3) h = h.split('').map(function(c) { return c + c; }).join('');
+            var n = parseInt(h, 16);
+            return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')';
+        };
+        var accent = token('--color-accent', '#1a3a6b');
+        var green  = token('--color-success', '#16a34a');
+        var muted  = hexToRgba(token('--color-muted', '#6b6b6b'), 0.3);
         var defaults = {
             responsive: true,
             maintainAspectRatio: true,
@@ -314,7 +322,7 @@
             plugins: {
                 legend: { display: false },
                 tooltip: {
-                    backgroundColor: '#1a1a1a',
+                    backgroundColor: token('--color-heading', '#1a1a1a'),
                     titleFont: { family: "'Epilogue', sans-serif", size: 12 },
                     bodyFont: { family: "'Epilogue', sans-serif", size: 12 },
                     padding: 10,
@@ -344,7 +352,7 @@
                         grid: { color: 'rgba(0,0,0,0.04)' },
                         ticks: {
                             font: { family: "'Epilogue', sans-serif", size: 11 },
-                            color: '#6b6b6b',
+                            color: token('--color-muted', '#6b6b6b'),
                             callback: function(v) { return v + ' cases'; }
                         }
                     },
@@ -352,7 +360,7 @@
                         grid: { display: false },
                         ticks: {
                             font: { family: "'Epilogue', sans-serif", size: 11, weight: 600 },
-                            color: '#3d3d3d'
+                            color: token('--color-text', '#3d3d3d')
                         }
                     }
                 }
@@ -380,7 +388,7 @@
                         grid: { color: 'rgba(0,0,0,0.04)' },
                         ticks: {
                             font: { family: "'Epilogue', sans-serif", size: 11 },
-                            color: '#6b6b6b',
+                            color: token('--color-muted', '#6b6b6b'),
                             callback: function(v) { return v + ' wks'; }
                         }
                     },
@@ -388,7 +396,7 @@
                         grid: { display: false },
                         ticks: {
                             font: { family: "'Epilogue', sans-serif", size: 11, weight: 600 },
-                            color: '#3d3d3d'
+                            color: token('--color-text', '#3d3d3d')
                         }
                     }
                 }
