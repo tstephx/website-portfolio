@@ -54,7 +54,8 @@ Add "Under the Hood" sections to two portfolio case studies (pinnacle-automation
 ```
 
 Styling rules:
-- Uses existing design tokens (--font-sans, --color-muted, --radius-md, --shadow-sm)
+- Uses existing design tokens (--font-sans, --color-muted, --color-border-light, --color-bg-alt, --color-bg, --color-heading, --color-accent, --color-accent-light, --color-text)
+- Note: border-radius uses hardcoded values (4px, 3px) matching token values — no shadow used
 - Subtle background similar to `.formula-box` aesthetic
 - Language label pill in top-right corner
 - Horizontal scroll on mobile for long lines
