@@ -49,7 +49,7 @@
             </div>
             <div class="scope-item">
                 <span class="scope-label">My Role</span>
-                <span class="scope-value">CT Program Owner, Senior PM</span>
+                <span class="scope-value">CT Program Owner &amp; Design Strategist</span>
             </div>
             <div class="scope-item">
                 <span class="scope-label">Teams Coordinated</span>
@@ -66,12 +66,12 @@
             <p>Amazon delivers billions of packages through a network of independent Delivery Service Partners (DSPs) &mdash; small business owners who operate fleets of vans and drivers under the Amazon brand. When a DSP owner needs to exit, their business must be transferred to a new owner without disrupting deliveries. The stakes cut both ways: a failed exit costs Amazon $482K&ndash;$504K in backfill, onboarding, and ramp costs, while dropping network capacity by 7.7% with only 39.6% of routes recovered. But transferring to the wrong person is equally dangerous &mdash; a new owner who can&rsquo;t maintain capacity reliability, safety standards, or financial viability ends up exiting involuntarily, triggering the same $482K+ cost all over again.</p>
             <p>When I inherited this process, it was broken. There was no SOP, no standardized communications &mdash; just 4 emails to candidates and zero to DSP owners across the entire lifecycle &mdash; no formalized vetting criteria, and heavy reliance on tribal knowledge across 6 teams. One stakeholder summarized it bluntly: <em>&ldquo;There&rsquo;s not much&hellip; it&rsquo;s an area we just need to be more attentive. It&rsquo;s been disappointing.&rdquo;</em></p>
 
-            <p>Volume was exploding: from 5 transfer requests in 2020 to 87 in 2024 &mdash; a 17x increase &mdash; with no additional staff. Transfers took 4+ months. Without fundamental redesign, the program would collapse under its own weight.</p>
-
             <div class="chart-container">
-                <div class="chart-label">Annual Transfer Requests: 2020 vs. 2024 &mdash; 17&times; growth, zero additional headcount</div>
+                <div class="chart-label">Annual Transfer Requests: 2020 vs. 2024</div>
                 <canvas id="volumeChart" aria-label="Bar chart showing volume increase from 5 cases in 2020 to 87 cases in 2024"></canvas>
             </div>
+
+            <p>Volume was exploding: from 5 transfer requests in 2020 to 87 in 2024 &mdash; a 17x increase &mdash; with no additional staff. Transfers took 4+ months. Without fundamental redesign, the program would collapse under its own weight.</p>
 
             <div class="insight-callout">
                 This wasn&rsquo;t a workload problem &mdash; it was a design problem. The process had to solve two things that pull in opposite directions: move fast enough that DSP owners don&rsquo;t exit before a transfer completes, but vet rigorously enough that the replacement can actually run the business. Speed without quality is worse than no transfer at all.
@@ -92,7 +92,7 @@
             <h3>Three Transfer Types, One Architecture</h3>
             <p>Not all transfers carry the same risk. I defined 3 distinct use cases with differentiated vetting paths, approval criteria, and communication flows. The DSP program is highly selective &mdash; transfer candidates are held to the same bar as every other network owner. That&rsquo;s why 3rd-party candidates have a 79% rejection rate: the vetting exists to protect the network, not to process paperwork.</p>
 
-            <div class="data-table-wrapper"><table class="data-table">
+            <table class="data-table">
                 <caption>Transfer types: volume, approval rates, and vetting requirements</caption>
                 <thead>
                     <tr>
@@ -122,7 +122,7 @@
                         <td>4 sub-scenarios, graduated depth</td>
                     </tr>
                 </tbody>
-            </table></div>
+            </table>
 
             <h3>Stakeholder Governance</h3>
             <p>The transfer process spanned 6 teams &mdash; BCs (first contact), BDMs (candidate relationship), NH (supervision), Acquisitions (vetting execution), DRR (enhanced screening), and Legal (agreement review). Each had different requirements and unclear boundaries, causing inconsistent candidate experiences and confusion about decision authority. I defined explicit roles for each team and designed a 5-stakeholder consensus model for approvals &mdash; a governance layer unique to CT that doesn&rsquo;t exist in standard DSP recruiting.</p>
@@ -166,9 +166,7 @@
             <p>Before the redesign: 4 standardized emails to candidates. Zero to DSP owners. Both parties experienced extended silence with no visibility into status, next steps, or expectations. I authored 19 templates covering every lifecycle state &mdash; from initial inquiry through conditional approval &mdash; with 2-week cadence updates during inactive periods and post-rejection talking points addressing 7 escalation scenarios (appeals, discrimination claims, selling without approval).</p>
 
             <h3>Process Capability: Before vs. After</h3>
-            <div class="insight-callout">
-                Eight dimensions of process maturity, scored 0&ndash;100. The inherited state averaged 12% across all dimensions &mdash; the redesigned system averages 87%.
-            </div>
+            <p>Eight dimensions of process maturity, scored 0&ndash;100. The inherited state averaged 12% across all dimensions &mdash; the redesigned system averages 87%.</p>
             <div class="bar-comparison">
                 <div class="bar-comparison-item">
                     <div class="bar-comparison-label">
@@ -248,10 +246,6 @@
         <section class="cs-section" id="results">
             <h2>70% Faster Decisions &mdash; at 17x the Volume</h2>
 
-            <div class="insight-callout">
-                Speed without quality is worse than no transfer at all. The system had to deliver both &mdash; 70% faster decisions and better candidate selection, at 17x the original volume.
-            </div>
-
             <div class="metrics-row">
                 <div class="metric-card">
                     <span class="metric-number">17x</span>
@@ -261,7 +255,7 @@
                 <div class="metric-card">
                     <span class="metric-number">$13M</span>
                     <span class="metric-label">Exit Costs Prevented</span>
-                    <span class="metric-subtitle">29 transfers &times; $482K avg = $13.9M</span>
+                    <span class="metric-subtitle">29 transfers since 2019</span>
                 </div>
                 <div class="metric-card">
                     <span class="metric-number">70%</span>
@@ -280,7 +274,7 @@
                 <canvas id="cycleChart" aria-label="Bar chart showing median decision time: 9.6 weeks in 2021, 5.3 in 2022, 2.9 in 2023, 3.3 in 2024"></canvas>
             </div>
 
-            <p>Median time to decision dropped 70%, from 9.6 weeks in 2021 to 2.9 weeks in 2023, as the SOP standardized each stage. The 3.3-week median in 2024 reflects 87% YoY volume growth &mdash; more cases meant more at the extended-complexity end of the distribution, pulling the median slightly right. Three processing tiers emerged from the data: Fast Track (34% of cases, decision within 2 weeks at the cheapest gates), Standard (28%, 2&ndash;6 weeks through full vetting), and Extended (38%, 6+ weeks for investigation-level complexity). Speed matters here in a specific way: the longer a transfer drags, the more likely a DSP owner is to abandon the process and exit unmanaged &mdash; triggering exactly the $482K cost the transfer was meant to prevent.</p>
+            <p>Median time to decision dropped 70%, from 9.6 weeks in 2021 to 2.9 weeks in 2023, as the SOP standardized each stage. Three processing tiers emerged from the data: Fast Track (34% of cases, decision within 2 weeks at the cheapest gates), Standard (28%, 2&ndash;6 weeks through full vetting), and Extended (38%, 6+ weeks for investigation-level complexity).</p>
 
             <p>The 29 completed transfers prevented an estimated $13M in exit-related costs. Each successful transfer eliminates the $482K&ndash;$504K cost of a DSP exit and preserves 100% of network capacity &mdash; compared to the 7.7% capacity drop and 60.4% permanent route loss that comes with an unmanaged exit. But the real proof that the vetting works: Legacy transferees maintained quality at +1,800 basis points above the network average. The process didn&rsquo;t just move faster &mdash; it selected better.</p>
 
@@ -298,7 +292,7 @@
         </section>
 
         <section class="cs-cta">
-            <p>Next: <a href="../bpr-scoring-pinnacle/pinnacle-scoring.html">Pinnacle BPR Scoring Methodology Redesign</a> &middot; Related: <a href="../pinnacle-program-selection/pinnacle-automation.html">Pinnacle Automation</a> &middot; <a href="../pinnacle-station/pinnacle-distance.html">Distance Analysis</a></p>
+            <p>Next: <a href="../bpr-scoring-pinnacle/pinnacle-scoring.html">Pinnacle BPR Scoring Methodology Redesign</a></p>
         </section>
 
     </main>
@@ -309,17 +303,9 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var css = getComputedStyle(document.documentElement);
-        var token = function(name, fallback) { return css.getPropertyValue(name).trim() || fallback; };
-        var hexToRgba = function(hex, a) {
-            var h = hex.replace('#', '');
-            if (h.length === 3) h = h.split('').map(function(c) { return c + c; }).join('');
-            var n = parseInt(h, 16);
-            return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')';
-        };
-        var accent = token('--color-accent', '#1a3a6b');
-        var green  = token('--color-success', '#16a34a');
-        var muted  = hexToRgba(token('--color-muted', '#6b6b6b'), 0.3);
+        var accent = '#1a3a6b';
+        var green = '#16a34a';
+        var muted = 'rgba(107, 107, 107, 0.3)';
         var defaults = {
             responsive: true,
             maintainAspectRatio: true,
@@ -327,7 +313,7 @@
             plugins: {
                 legend: { display: false },
                 tooltip: {
-                    backgroundColor: token('--color-heading', '#1a1a1a'),
+                    backgroundColor: '#1a1a1a',
                     titleFont: { family: "'Epilogue', sans-serif", size: 12 },
                     bodyFont: { family: "'Epilogue', sans-serif", size: 12 },
                     padding: 10,
@@ -357,7 +343,7 @@
                         grid: { color: 'rgba(0,0,0,0.04)' },
                         ticks: {
                             font: { family: "'Epilogue', sans-serif", size: 11 },
-                            color: token('--color-muted', '#6b6b6b'),
+                            color: '#6b6b6b',
                             callback: function(v) { return v + ' cases'; }
                         }
                     },
@@ -365,7 +351,7 @@
                         grid: { display: false },
                         ticks: {
                             font: { family: "'Epilogue', sans-serif", size: 11, weight: 600 },
-                            color: token('--color-text', '#3d3d3d')
+                            color: '#3d3d3d'
                         }
                     }
                 }
@@ -393,7 +379,7 @@
                         grid: { color: 'rgba(0,0,0,0.04)' },
                         ticks: {
                             font: { family: "'Epilogue', sans-serif", size: 11 },
-                            color: token('--color-muted', '#6b6b6b'),
+                            color: '#6b6b6b',
                             callback: function(v) { return v + ' wks'; }
                         }
                     },
@@ -401,7 +387,7 @@
                         grid: { display: false },
                         ticks: {
                             font: { family: "'Epilogue', sans-serif", size: 11, weight: 600 },
-                            color: token('--color-text', '#3d3d3d')
+                            color: '#3d3d3d'
                         }
                     }
                 }

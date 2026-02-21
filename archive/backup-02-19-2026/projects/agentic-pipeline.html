@@ -92,7 +92,7 @@ stateDiagram-v2
             <p>The system uses Protocol-based interfaces (PEP 544) for clean architectural boundaries. <code>LLMFallbackPort</code> abstracts chapter detection assistance; <code>BookRepository</code> abstracts persistence. This means swapping SQLite for Postgres or Claude for GPT requires changing one adapter, not the pipeline logic.</p>
 
             <h3>Graduated Autonomy Model</h3>
-            <div class="data-table-wrapper"><table class="data-table">
+            <table class="data-table">
                 <caption>Graduated autonomy model: approval rules by trust level</caption>
                 <thead>
                     <tr>
@@ -122,7 +122,7 @@ stateDiagram-v2
                         <td class="highlight">Proven</td>
                     </tr>
                 </tbody>
-            </table></div>
+            </table>
 
             <div class="mermaid-container" role="img" aria-label="Autonomy decision flow: mode determines approval path">
                 <div class="mermaid">

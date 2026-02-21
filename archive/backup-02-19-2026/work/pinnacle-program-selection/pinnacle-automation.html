@@ -49,7 +49,7 @@
             </div>
             <div class="scope-item">
                 <span class="scope-label">My Role</span>
-                <span class="scope-value">Senior PM, DSP Acquisitions</span>
+                <span class="scope-value">Process Architect &amp; Technical Lead</span>
             </div>
             <div class="scope-item">
                 <span class="scope-label">Data Scale</span>
@@ -59,10 +59,6 @@
                 <span class="scope-label">Impact</span>
                 <span class="scope-value">94.1% fill rate (+36 pp), 1&rarr;5 BDM team</span>
             </div>
-            <div class="scope-item">
-                <span class="scope-label">See Also</span>
-                <span class="scope-value">Technical implementation &amp; automation &mdash; the SQL pipeline, Excel replacement, and infrastructure. Analytical research &amp; policy design: <a href="../pinnacle-station/pinnacle-distance.html">Pinnacle Distance Analysis</a></span>
-            </div>
         </div>
 
         <section class="cs-section" id="problem">
@@ -70,15 +66,15 @@
             <p>Amazon&rsquo;s &ldquo;Pinnacle&rdquo; program assigns top-performing Delivery Service Partners (independent business owners running delivery fleets) to premium, high-volume stations across Multi-Station, Middle Mile, DSP Lite, and other expansion operations. To grow the network, someone has to determine which partners are eligible for which stations &mdash; matching geography, performance, and capacity across thousands of combinations.</p>
             <p>This eligibility process ran on a 55+ MB Excel file with INDEX-MATCH calculations across 24,000 rows. It crashed regularly. The distance calculations came from a &ldquo;Who&rsquo;s My Neighbor Dashboard&rdquo; that computed traffic-dependent commute distances &mdash; the same partner-to-station pair could show 49 miles one month and 52 the next. Eligibility data refreshed quarterly while performance updated monthly, creating blind spots between cycles. The entire system was maintained by a single person.</p>
 
+            <div class="chart-container">
+                <div class="chart-label">Pinnacle Launches: System Failure Impact</div>
+                <canvas id="launchChart" aria-label="Bar chart showing Pinnacle launches dropping from 93 in 2023 to 42 in 2024"></canvas>
+            </div>
+
             <p>Pinnacle launches dropped 55% (from 93 to 42) and 20 eligible candidates were bypassed entirely. But the real damage was structural. Amazon&rsquo;s capacity planning follows a 5-lever prioritization hierarchy &mdash; where Pinnacle expansion (Rank 3) must be exhausted before falling to net-new RTO recruitment (Rank 5). Instead, those 20 targets jumped directly to RTO, violating the program&rsquo;s own prioritization tenets and breaking the reward mechanism that top-performing DSPs had earned.</p>
 
             <div class="insight-callout">
                 A 55MB Excel file with 24,000-row INDEX-MATCH formulas isn&rsquo;t a tool &mdash; it&rsquo;s a system screaming for a database. And when it crashes, you don&rsquo;t lose a file. You lose candidates &mdash; and violate the rules that protect your best operators.
-            </div>
-
-            <div class="chart-container">
-                <div class="chart-label">Pinnacle Launches: System Failure Impact</div>
-                <canvas id="launchChart" aria-label="Bar chart showing Pinnacle launches dropping from 93 in 2023 to 42 in 2024"></canvas>
             </div>
         </section>
 
@@ -86,7 +82,7 @@
             <h2>8 Root Causes, Not Just a Crashing Spreadsheet</h2>
             <p>What leadership saw as &ldquo;the Excel file crashes&rdquo; was actually 8 distinct root causes spanning three dimensions. Fixing any one alone would leave the others to cause the next failure.</p>
 
-            <div class="data-table-wrapper"><table class="data-table">
+            <table class="data-table">
                 <caption>8 root causes diagnosed across data, process, and tooling</caption>
                 <thead>
                     <tr>
@@ -137,14 +133,13 @@
                         <td>Tooling</td>
                     </tr>
                 </tbody>
-            </table></div>
+            </table>
 
             <p>The solution needed to address all 8 simultaneously. I designed a 6-step SQL pipeline on Amazon Redshift that replaced every component: data extraction, consecutive-period validation, vetting integration, geospatial distance calculation, prioritized ranking, and downstream delivery.</p>
 
             <h3>Eligibility Funnel</h3>
             <p>The pipeline implements a progressive filtering funnel &mdash; narrowing 2,620 DSPs to a ranked candidate list per station. Each stage maps to a diagnosed root cause.</p>
 
-            <div class="chart-label">2,620 DSPs &rarr; Ranked Candidates per Station</div>
             <div class="funnel-chart">
                 <div class="funnel-stage" style="--width: 100%">
                     <span class="stage-label">NA DSP Network</span>
@@ -174,7 +169,7 @@
         </section>
 
         <section class="cs-section" id="technical">
-            <h2>Technical Architecture: Six Modular Stages</h2>
+            <h2>Why Consistency Beat Accuracy</h2>
 
             <h3>Haversine Distance Formula</h3>
             <p>The &ldquo;Who&rsquo;s My Neighbor Dashboard&rdquo; computed driving distances that varied with traffic conditions &mdash; the same partner-to-station pair could show different distances depending on when you checked. I replaced it with the Haversine formula for great-circle distance calculations: consistent, reproducible, and fast. While driving distance is more accurate in absolute terms, consistency mattered more for eligibility ranking. A decision system needs the same inputs to produce the same outputs every time.</p>
@@ -270,10 +265,6 @@ WHERE adjusted_tier = 1 AND prev_tier = 1</code></pre>
         <section class="cs-section" id="results">
             <h2>From 57.9% to 94.1% Fill Rate</h2>
 
-            <div class="insight-callout">
-                The crashing file wasn&rsquo;t just an inconvenience &mdash; it was actively misrouting Amazon&rsquo;s best operators. The pipeline fixed the tooling, the data, and the rules simultaneously.
-            </div>
-
             <div class="metrics-row">
                 <div class="metric-card">
                     <span class="metric-number">94.1%</span>
@@ -305,7 +296,7 @@ WHERE adjusted_tier = 1 AND prev_tier = 1</code></pre>
             <p>Pinnacle fill rate jumped from 57.9% to 94.1% &mdash; a 36 percentage-point increase &mdash; with July hitting 100% across all 8 targets. The 20 eligible candidates who had been bypassed to RTO were identified and preserved, restoring the 5-lever prioritization hierarchy. The automation also enabled the Pinnacle BDM team to expand from 1 member to 5 by providing reliable candidate pipelines that didn&rsquo;t require manual Excel manipulation.</p>
             <p>Data refresh improved from quarterly to monthly &mdash; 3&times; faster updates. The crashing Excel file was replaced with a self-documenting SQL pipeline that runs identically for any analyst, eliminating the single point of failure. Each of the 6 query stages can be tested, debugged, and updated independently. The Haversine distance module is reusable for any station-pair proximity calculation across the network.</p>
 
-            <div class="data-table-wrapper"><table class="data-table">
+            <table class="data-table">
                 <caption>System transformation: before and after automation</caption>
                 <thead>
                     <tr>
@@ -347,7 +338,7 @@ WHERE adjusted_tier = 1 AND prev_tier = 1</code></pre>
                         <td class="highlight">94.1% fill rate (100% in July)</td>
                     </tr>
                 </tbody>
-            </table></div>
+            </table>
 
             <p>Leadership documentation credited the work directly: <em>&ldquo;The acquisition team will create a script that automatically identifies the prioritized list of Pinnacle eligible candidates for each site (Taylor Stephens, ECD: completed).&rdquo;</em></p>
         </section>
@@ -355,15 +346,15 @@ WHERE adjusted_tier = 1 AND prev_tier = 1</code></pre>
         <section class="cs-section" id="lessons">
             <h2>What This Taught Me</h2>
             <ul class="lessons-list">
-                <li>Automation doesn&rsquo;t just speed things up &mdash; it enforces rules. The 5-lever hierarchy existed on paper, but a manual process let 20 targets skip from Rank 3 to Rank 5. The SQL pipeline mechanizes the hierarchy so prioritization tenets cannot be violated.</li>
                 <li>Excel heroics are a sign of missing infrastructure. A 55MB file with 24,000-row INDEX-MATCH formulas is a system screaming for a database. The heroism is the symptom, not the solution.</li>
                 <li>Consistency often beats accuracy. Haversine distances aren&rsquo;t as &ldquo;accurate&rdquo; as driving distances, but they&rsquo;re reproducible &mdash; and reproducibility is what eligibility decisions require. The same inputs must produce the same outputs.</li>
                 <li>A crashing spreadsheet is never just a crashing spreadsheet. What looked like one tooling problem was 8 root causes across 3 dimensions. Fixing the Excel without diagnosing the data lag, vetting gaps, and prioritization misalignment would have produced a faster wrong answer.</li>
+                <li>Automation doesn&rsquo;t just speed things up &mdash; it enforces rules. The 5-lever hierarchy existed on paper, but a manual process let 20 targets skip from Rank 3 to Rank 5. The SQL pipeline mechanizes the hierarchy so prioritization tenets cannot be violated.</li>
             </ul>
         </section>
 
         <section class="cs-cta">
-            <p>Next: <a href="../pinnacle-station/pinnacle-distance.html">Pinnacle Station Distance Analysis</a> &middot; Related: <a href="../bpr-scoring-pinnacle/pinnacle-scoring.html">BPR Scoring Methodology</a></p>
+            <p>Next: <a href="../pinnacle-station/pinnacle-distance.html">Pinnacle Station Distance Analysis</a></p>
         </section>
 
     </main>

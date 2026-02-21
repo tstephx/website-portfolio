@@ -49,7 +49,7 @@
             </div>
             <div class="scope-item">
                 <span class="scope-label">My Role</span>
-                <span class="scope-value">Self-Initiated &mdash; identified the inefficiency, scoped the solution, built and deployed without direction</span>
+                <span class="scope-value">Self-Initiated &mdash; Identified &amp; Built Solution</span>
             </div>
             <div class="scope-item">
                 <span class="scope-label">Platform</span>
@@ -63,7 +63,7 @@
 
         <section class="cs-section" id="problem">
             <h2>Structured Data Was Trapped in Unstructured Email Prose</h2>
-            <p>Mariana Tek&rsquo;s platform processed payments for fitness studio clients across the US, with chargebacks routed through Stripe&rsquo;s dispute management system. The platform processed credit card payments for fitness studio clients. When customers disputed charges &mdash; subscription cancellations, fraud claims, duplicate charges &mdash; Stripe generated chargeback notifications that arrived as individual emails. Each email contained the 8 data fields needed to track and respond to the dispute: tenant name, connected Stripe account ID, dispute number, dispute amount, customer name, customer email, transaction date, and submission deadline.</p>
+            <p>Mariana Tek&rsquo;s platform processed credit card payments for fitness studio clients. When customers disputed charges &mdash; subscription cancellations, fraud claims, duplicate charges &mdash; Stripe generated chargeback notifications that arrived as individual emails. Each email contained the 8 data fields needed to track and respond to the dispute: tenant name, connected Stripe account ID, dispute number, dispute amount, customer name, customer email, transaction date, and submission deadline.</p>
             <p>The problem wasn&rsquo;t the data &mdash; it was the format. Every field was buried in continuous prose with no delimiters, no consistent formatting, and embedded URLs. The existing process required someone to open each email, visually scan for 8 fields scattered throughout the message body, and manually key each value into a Google Sheets tracker. With chargebacks arriving in batches across multiple tenants &mdash; 6 different disputes across 5 studio clients in a single month &mdash; this consumed approximately 2 hours per processing cycle.</p>
 
             <div class="metrics-row">
@@ -90,17 +90,17 @@
             </div>
 
             <div class="insight-callout">
-                The data already existed in every email &mdash; it was just trapped in the wrong format. The bottleneck was parsing, not volume. I don&rsquo;t tolerate manual work that a script can handle in minutes.
+                This wasn&rsquo;t a speed problem &mdash; it was a format problem. The data already existed in every email. The bottleneck was that structured information was trapped in unstructured prose, and the only extraction method was a human reading and typing. The solution was parsing automation, not faster typing.
             </div>
 
             <h3>What the Script Actually Sees</h3>
             <div class="comparison">
                 <div class="comparison-before">
-                    <p class="comparison-label"><strong>Raw Email Notification</strong></p>
+                    <h3>Raw Email Notification</h3>
                     <p>Hi <strong>Barry&rsquo;s Bootcamp Bay Area, LLC</strong>, Hope you&rsquo;re having a great week. One of your customers, <strong>James Liao</strong> (<strong>jlaimaeos@gmail.com</strong>), recently disputed a credit card charge processed by your Barry&rsquo;s Bay Area LLC gateway for <strong>$36.00</strong>. You have an opportunity to dispute the chargeback if you submit a response&hellip; prior to <strong>Sep 14, 2022, 11:59:59 PM</strong> time&hellip; Connected account number (for the form): <strong>acct_1IgFkhRFaQPehEcq</strong> Dispute number (for the form): <strong>du_1LYV97I1kLQM3y1JIOdBtCx6</strong> Original transaction date: <strong>Aug 4, 2022</strong></p>
                 </div>
                 <div class="comparison-after">
-                    <p class="comparison-label"><strong>Extracted Structured Row</strong></p>
+                    <h3>Extracted Structured Row</h3>
                     <table class="data-table" style="margin: 0">
                         <caption>8 fields extracted from a single chargeback notification</caption>
                         <tbody>
@@ -113,13 +113,13 @@
                             <tr><td>Customer</td><td>James Liao</td></tr>
                             <tr><td>Email</td><td>jlaimaeos@gmail.com</td></tr>
                         </tbody>
-                    </table></div>
+                    </table>
                 </div>
             </div>
         </section>
 
         <section class="cs-section" id="approach">
-            <h2>Boundary-Based Extraction from Natural Language</h2>
+            <h2>Boundaries, Not Regex &mdash; Extracting Data from Natural Language</h2>
             <p>I recognized that Mariana Tek&rsquo;s chargeback emails followed a consistent template. While the specific values changed per dispute, the surrounding sentence structure was identical every time: <em>&ldquo;Hi [tenant], Hope you&rsquo;re having a great week&hellip;&rdquo;</em> always bracketed the tenant name, <em>&ldquo;gateway for [amount]. You&rdquo;</em> always bracketed the dispute amount. These natural language phrases were more reliable delimiters than any character-level regex pattern.</p>
             <p>I chose boundary-based text extraction over pure regex because the email body is prose, not structured data. A regex-only approach would require fragile patterns that break when template wording shifts slightly. Boundary extraction with <code>rm_between()</code> relies on sentence structure &mdash; as long as the email says &ldquo;Hi [name], Hope&rdquo; and &ldquo;Dispute [number] Customer,&rdquo; the extraction works regardless of the specific values inside.</p>
 
@@ -156,7 +156,7 @@
             <h3>Boundary Extraction Map</h3>
             <p>Each field is isolated using the email template&rsquo;s own sentence structure as delimiters. The left/right boundary words bracket the target data &mdash; no fragile regex on the values themselves.</p>
 
-            <div class="data-table-wrapper"><table class="data-table">
+            <table class="data-table">
                 <caption>8 fields extracted per email using rm_between() boundary markers</caption>
                 <thead>
                     <tr>
@@ -216,11 +216,11 @@
                         <td>Extract via <code>\S*@\S*</code></td>
                     </tr>
                 </tbody>
-            </table></div>
+            </table>
 
             <h3>Before vs. After: Process Transformation</h3>
 
-            <div class="data-table-wrapper"><table class="data-table">
+            <table class="data-table">
                 <caption>What changed at each step of the chargeback processing workflow</caption>
                 <thead>
                     <tr>
@@ -271,15 +271,11 @@
                         <td class="new-value">Single script run &mdash; all files in folder</td>
                     </tr>
                 </tbody>
-            </table></div>
+            </table>
         </section>
 
         <section class="cs-section" id="results">
             <h2>10 Minutes Instead of 2 Hours &mdash; With Zero Transcription Errors</h2>
-
-            <div class="insight-callout">
-                The automation didn&rsquo;t just save time &mdash; it eliminated a category of error entirely. Manual transcription of 26-character IDs is inherently lossy. Programmatic extraction isn&rsquo;t.
-            </div>
 
             <div class="metrics-row">
                 <div class="metric-card">
@@ -308,8 +304,6 @@
                 <div class="chart-label">Processing Time: Manual vs. Automated</div>
                 <canvas id="timeChart" aria-label="Bar chart comparing approximately 120 minutes manual processing versus approximately 10 minutes automated processing"></canvas>
             </div>
-
-            <p>The batch architecture meant the script required no modifications as volume grew &mdash; it was used through the end of the engagement with regex patterns holding consistently across Stripe&rsquo;s email format variations.</p>
 
             <p>The 92% time reduction freed approximately 1.5+ hours per processing cycle. For a recurring task executed weekly or bi-weekly, that represented meaningful capacity recovery &mdash; time redirected from transcribing notification data to actually investigating and responding to disputes.</p>
 
@@ -354,9 +348,7 @@
             maintainAspectRatio: true,
             animation: { duration: 1200, easing: 'easeOutQuart' },
             plugins: {
-                legend: {
-                    display: false
-                },
+                legend: { display: false },
                 tooltip: {
                     backgroundColor: '#1a1a1a',
                     titleFont: { family: "'Epilogue', sans-serif", size: 12 },

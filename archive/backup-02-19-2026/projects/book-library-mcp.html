@@ -79,7 +79,7 @@ flowchart LR
             <h3>Dual Search Strategy</h3>
             <p>Full-text search (FTS5) handles exact terms and phrases with BM25 ranking &mdash; fast and precise for &ldquo;async await&rdquo; or &ldquo;dependency injection.&rdquo; Semantic search with 384-dimensional embeddings handles conceptual queries &mdash; finding chapters about &ldquo;container networking&rdquo; even when those exact words don&rsquo;t appear.</p>
 
-            <div class="data-table-wrapper"><table class="data-table">
+            <table class="data-table">
                 <caption>Search type comparison: speed and best use cases</caption>
                 <thead>
                     <tr>
@@ -100,7 +100,7 @@ flowchart LR
                         <td class="highlight">&lt;5ms</td>
                     </tr>
                 </tbody>
-            </table></div>
+            </table>
 
             <div class="mermaid-container" role="img" aria-label="Query routing: exact terms to FTS5, conceptual to semantic search">
                 <div class="mermaid">
@@ -119,7 +119,7 @@ flowchart TD
             <h3>Tool Design Philosophy</h3>
             <p>Rather than building a few monolithic tools, I exposed 40+ granular operations. This lets the LLM compose complex workflows &mdash; combining <code>semantic_search</code> with <code>get_chapter</code> with <code>extract_code_examples</code> &mdash; rather than trying to anticipate every use case in advance.</p>
 
-            <div class="data-table-wrapper"><table class="data-table">
+            <table class="data-table">
                 <caption>MCP tool categories and purposes</caption>
                 <thead>
                     <tr>
@@ -160,7 +160,7 @@ flowchart TD
                         <td>Stats, coverage, author insights</td>
                     </tr>
                 </tbody>
-            </table></div>
+            </table>
 
             <pre><code># Example: semantic search for container networking
 results = semantic_search("container networking concepts", limit=5)

@@ -101,7 +101,7 @@
         <section class="cs-section" id="approach">
             <h2>130,000 Distance Calculations and a Counter-Intuitive Finding</h2>
 
-            <p>I approached this in three phases: research the problem with data, change the policy with evidence, then automate the solution into production. The entire arc &mdash; from R analysis to approved strategy proposal to SQL pipeline &mdash; took one quarter. <em>This case study covers the analytical research and policy design; the technical implementation is documented in the <a href="../pinnacle-program-selection/pinnacle-automation.html">Pinnacle Selection Automation</a> case study.</em></p>
+            <p>I approached this in three phases: research the problem with data, change the policy with evidence, then automate the solution into production. The entire arc &mdash; from R analysis to approved strategy proposal to SQL pipeline &mdash; took one quarter.</p>
 
             <h3>Phase 1: Geospatial Distance Analysis</h3>
             <p>The first question was simple: what exactly does the 50-mile cap exclude? To answer it, I computed pairwise geodesic distances across all ~362 US stations using R&rsquo;s <code>distVincentyEllipsoid</code> function from the <code>geosphere</code> package &mdash; the most accurate distance formula for an oblate spheroid, generating ~130,000 unique station pairs. Then I ran a distance interval sweep across 16 thresholds (50&ndash;200 miles in 10-mile increments), computing cumulative station coverage at each tier.</p>
@@ -113,7 +113,7 @@
                 <canvas id="coverageChart" aria-label="Line chart showing station coverage increasing from 63.9% at 50 miles to 96.0% at 200 miles, with steepest gain between 50 and 100 miles"></canvas>
             </div>
 
-            <div class="data-table-wrapper"><table class="data-table">
+            <table class="data-table">
                 <caption>Coverage matrix: percentage of stations with N+ eligible DSPs within distance</caption>
                 <thead>
                     <tr>
@@ -161,18 +161,14 @@
                         <td class="highlight">96.0%</td>
                     </tr>
                 </tbody>
-            </table></div>
+            </table>
 
             <h3>The Counter-Intuitive Finding</h3>
             <p>The coverage data made the case for expansion. But leadership needed a different kind of proof: that farther DSPs could actually perform. The assumption behind the 50-mile cap &mdash; that distance correlates with degraded performance &mdash; had been accepted without evidence for over two years.</p>
 
-            <p>I analyzed the 17 DSPs who had been launched despite known distance criteria breaks since 2023. The results dismantled the assumption entirely:</p>
+            <p>I analyzed the 17 DSPs who had been launched despite known distance criteria breaks since 2023. The results dismantled the assumption entirely: distance-breaking DSPs outperformed non-breakers across every metric.</p>
 
-            <div class="insight-callout">
-                <strong>Distance-breaking DSPs outperformed non-breakers across every single metric.</strong> CSAT, quality, compliance rate, post-launch tier, safety — not one metric favored proximity. The 50-mile rule had been protecting nothing.
-            </div>
-
-            <div class="data-table-wrapper"><table class="data-table">
+            <table class="data-table">
                 <caption>Performance: distance-breaking DSPs (n=17) vs. non-breakers (n=91)</caption>
                 <thead>
                     <tr>
@@ -220,7 +216,7 @@
                         <td class="highlight">&minus;2</td>
                     </tr>
                 </tbody>
-            </table></div>
+            </table>
 
             <p>Of the 17 distance breakers, 71% came from island sites (5 DSPs) or overstaffed markets (7 DSPs) &mdash; situations where the geographic constraint was a structural disadvantage, not a performance predictor. This wasn&rsquo;t a handful of lucky exceptions. It was a systematic pattern proving the assumption wrong.</p>
 
@@ -353,7 +349,7 @@ comparison &lt;- bind_rows(
             <h3>R &rarr; SQL Methodology Bridge</h3>
             <p>The R pipeline used Vincenty Ellipsoid distance &mdash; the most accurate formula for an oblate spheroid. The SQL pipeline uses Haversine &mdash; sufficient accuracy for 50&ndash;250 mile distances (&lt;0.3% difference) and native to Redshift math functions with no external dependencies. Same math, different execution environments.</p>
 
-            <div class="data-table-wrapper"><table class="data-table">
+            <table class="data-table">
                 <caption>How R analysis translated to SQL production</caption>
                 <thead>
                     <tr>
@@ -383,10 +379,10 @@ comparison &lt;- bind_rows(
                         <td class="highlight">Single 6-step integrated query</td>
                     </tr>
                 </tbody>
-            </table></div>
+            </table>
         </section>
 
-        <section class="cs-section" id="results" style="margin-top: 3rem;">
+        <section class="cs-section" id="results">
             <h2>94.1% Fill Rate &mdash; and the First Policy Change in Two Years</h2>
 
             <div class="metrics-row">
@@ -410,11 +406,6 @@ comparison &lt;- bind_rows(
                     <span class="metric-label">BDM Team</span>
                     <span class="metric-subtitle">5&times; outreach capacity</span>
                 </div>
-                <div class="metric-card">
-                    <span class="metric-number">1 Quarter</span>
-                    <span class="metric-label">Analysis to Approved Policy</span>
-                    <span class="metric-subtitle">R research &rarr; leadership approval &rarr; SQL production</span>
-                </div>
             </div>
 
             <div class="chart-container">
@@ -426,7 +417,7 @@ comparison &lt;- bind_rows(
 
             <p>The 3-tier prioritization &mdash; approved in October 2024 &mdash; was the first structural change to Pinnacle eligibility since the program launched in May 2022. Previously, distance exceptions required individual escalation and approval (17 exceptions since 2023, 71% from island or overstaffed sites). Now, the 5-closest-stations fallback is systematic and encoded in the production SQL pipeline.</p>
 
-            <div class="data-table-wrapper"><table class="data-table">
+            <table class="data-table">
                 <caption>System transformation: before and after</caption>
                 <thead>
                     <tr>
@@ -472,7 +463,7 @@ comparison &lt;- bind_rows(
                         <td class="highlight">94.1% fill rate (100% in July)</td>
                     </tr>
                 </tbody>
-            </table></div>
+            </table>
 
             <p>The infrastructure legacy extends beyond the immediate fix. The distance matrix is reusable for any future threshold analysis &mdash; run with updated station coordinates, get updated coverage tables. The coverage table format (Table 2) was adopted as a standard WBR reporting artifact. And the analysis approach &mdash; interval sweep plus counter-intuitive performance comparison &mdash; was cited as a model for future eligibility criteria reviews across DSP programs.</p>
         </section>
@@ -489,7 +480,6 @@ comparison &lt;- bind_rows(
 
         <section class="cs-cta">
             <p>Next: <a href="../charge-back-processing/chargeback-parsing.html">Chargeback Email Parsing Automation</a></p>
-            <p>Related: <a href="../pinnacle-program-selection/pinnacle-automation.html">Pinnacle Selection Automation</a> &mdash; <a href="../bpr-scoring-pinnacle/pinnacle-scoring.html">BPR Scoring Methodology</a></p>
         </section>
 
     </main>
@@ -500,18 +490,10 @@ comparison &lt;- bind_rows(
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var css = getComputedStyle(document.documentElement);
-        var token = function(name, fallback) { return css.getPropertyValue(name).trim() || fallback; };
-        var hexToRgba = function(hex, a) {
-            var h = hex.replace('#', '');
-            if (h.length === 3) h = h.split('').map(function(c) { return c + c; }).join('');
-            var n = parseInt(h, 16);
-            return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')';
-        };
-        var accent = token('--color-accent', '#1a3a6b');
-        var green  = token('--color-success', '#16a34a');
-        var red    = token('--color-danger', '#dc2626');
-        var muted  = hexToRgba(token('--color-muted', '#6b6b6b'), 0.3);
+        var accent = '#1a3a6b';
+        var green = '#16a34a';
+        var red = '#dc3545';
+        var muted = 'rgba(107, 107, 107, 0.3)';
         var defaults = {
             responsive: true,
             maintainAspectRatio: true,
@@ -519,7 +501,7 @@ comparison &lt;- bind_rows(
             plugins: {
                 legend: { display: false },
                 tooltip: {
-                    backgroundColor: token('--color-heading', '#1a1a1a'),
+                    backgroundColor: '#1a1a1a',
                     titleFont: { family: "'Epilogue', sans-serif", size: 12 },
                     bodyFont: { family: "'Epilogue', sans-serif", size: 12 },
                     padding: 10,
@@ -536,12 +518,12 @@ comparison &lt;- bind_rows(
                 datasets: [{
                     data: [63.9, 66.7, 75.7, 85.4, 91.8, 96.0],
                     borderColor: accent,
-                    backgroundColor: hexToRgba(accent, 0.08),
+                    backgroundColor: 'rgba(26, 58, 107, 0.08)',
                     fill: true,
                     tension: 0.3,
                     pointRadius: 5,
                     pointBackgroundColor: [red, accent, accent, accent, accent, green],
-                    pointBorderColor: token('--color-bg', '#ffffff'),
+                    pointBorderColor: '#fff',
                     pointBorderWidth: 2,
                     pointHoverRadius: 7,
                     borderWidth: 2.5
@@ -556,7 +538,7 @@ comparison &lt;- bind_rows(
                         grid: { color: 'rgba(0,0,0,0.04)' },
                         ticks: {
                             font: { family: "'Epilogue', sans-serif", size: 11 },
-                            color: token('--color-muted', '#6b6b6b'),
+                            color: '#6b6b6b',
                             callback: function(v) { return v + '%'; }
                         }
                     },
@@ -564,14 +546,14 @@ comparison &lt;- bind_rows(
                         grid: { display: false },
                         ticks: {
                             font: { family: "'Epilogue', sans-serif", size: 11, weight: 600 },
-                            color: token('--color-text', '#3d3d3d')
+                            color: '#3d3d3d'
                         }
                     }
                 },
                 plugins: {
                     legend: { display: false },
                     tooltip: {
-                        backgroundColor: token('--color-heading', '#1a1a1a'),
+                        backgroundColor: '#1a1a1a',
                         titleFont: { family: "'Epilogue', sans-serif", size: 12 },
                         bodyFont: { family: "'Epilogue', sans-serif", size: 12 },
                         padding: 10,
@@ -607,7 +589,7 @@ comparison &lt;- bind_rows(
                         grid: { color: 'rgba(0,0,0,0.04)' },
                         ticks: {
                             font: { family: "'Epilogue', sans-serif", size: 11 },
-                            color: token('--color-muted', '#6b6b6b'),
+                            color: '#6b6b6b',
                             callback: function(v) { return v + '%'; }
                         }
                     },
@@ -615,7 +597,7 @@ comparison &lt;- bind_rows(
                         grid: { display: false },
                         ticks: {
                             font: { family: "'Epilogue', sans-serif", size: 11, weight: 600 },
-                            color: token('--color-text', '#3d3d3d')
+                            color: '#3d3d3d'
                         }
                     }
                 }

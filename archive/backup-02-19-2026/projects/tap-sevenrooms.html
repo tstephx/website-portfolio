@@ -74,7 +74,7 @@ flowchart LR
             <h3>Stream Architecture</h3>
             <p>Four primary streams with a parent-child relationship between Venues and Charges. Venues are fetched first, then for each venue, charge records are retrieved via the <code>venues/{id}/charges</code> endpoint. This hierarchical traversal handles the API&rsquo;s nested resource structure elegantly.</p>
 
-            <div class="data-table-wrapper"><table class="data-table">
+            <table class="data-table">
                 <caption>Stream architecture: fields, sync modes, and relationships</caption>
                 <thead>
                     <tr>
@@ -110,7 +110,7 @@ flowchart LR
                         <td>Child of Venues</td>
                     </tr>
                 </tbody>
-            </table></div>
+            </table>
 
             <div class="mermaid-container" role="img" aria-label="Sync mode: discovery, schema catalog, and stream selection">
                 <div class="mermaid">

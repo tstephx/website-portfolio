@@ -100,7 +100,7 @@ flowchart TD
                 </div>
             </div>
 
-            <div class="data-table-wrapper"><table class="data-table">
+            <table class="data-table">
                 <caption>MCP server overview: lines of code, tools, and purpose</caption>
                 <thead>
                     <tr>
@@ -141,7 +141,7 @@ flowchart TD
                         <td>Persistent AI memory</td>
                     </tr>
                 </tbody>
-            </table></div>
+            </table>
         </section>
 
         <section class="cs-section" id="decisions">
@@ -149,7 +149,7 @@ flowchart TD
 
             <h3>Search Strategy: Why Hybrid over Single-Mode</h3>
             <p><strong>The fork:</strong> FTS5 full-text search only, semantic embeddings only, or both combined?</p>
-            <div class="data-table-wrapper"><table class="data-table">
+            <table class="data-table">
                 <caption>Search strategy comparison</caption>
                 <thead>
                     <tr>
@@ -175,7 +175,7 @@ flowchart TD
                         <td>Slightly more complex ranking logic</td>
                     </tr>
                 </tbody>
-            </table></div>
+            </table>
             <p><strong>Why hybrid:</strong> In testing, FTS5 alone missed ~30% of relevant chapters because it can&rsquo;t match concepts &mdash; searching &ldquo;container networking&rdquo; won&rsquo;t find a chapter titled &ldquo;How Pods Communicate.&rdquo; Semantic search alone missed exact code patterns and specific terms. Reciprocal rank fusion was the tiebreaker: results that score well on <em>both</em> methods surface first, and the ranking logic is under 50 lines. The complexity cost was minimal for a major recall improvement.</p>
 
             <h3>Autonomy Model: Why Graduated over Binary</h3>
@@ -218,7 +218,7 @@ flowchart LR
 
             <h3>Storage Philosophy: Why Files over Database-First</h3>
             <p><strong>The fork:</strong> Database as source of truth (Postgres/SQLite owns the data) or files as source of truth (database is a disposable index)?</p>
-            <div class="data-table-wrapper"><table class="data-table">
+            <table class="data-table">
                 <caption>Storage approach comparison</caption>
                 <thead>
                     <tr>
@@ -239,7 +239,7 @@ flowchart LR
                         <td>Requires sync layer between files and DB</td>
                     </tr>
                 </tbody>
-            </table></div>
+            </table>
             <p><strong>Why files-first:</strong> I&rsquo;ve rebuilt the SQLite databases from scratch three times during development &mdash; schema changes, embedding model upgrades, index optimizations. Each time, the rebuild was trivial because the files were intact. If the database had been the source of truth, each rebuild would have risked data loss. The sync layer added ~200 lines of code but bought complete resilience: <code>rm library.db && python rebuild.py</code> restores everything.</p>
         </section>
 
@@ -248,7 +248,7 @@ flowchart LR
             <p>This isn&rsquo;t a weekend project. The ecosystem includes the infrastructure you&rsquo;d expect from production software &mdash; comprehensive testing, structured logging, health monitoring, audit trails, and continuous calibration.</p>
 
             <h3>1,133 Tests Across the Ecosystem</h3>
-            <div class="data-table-wrapper"><table class="data-table">
+            <table class="data-table">
                 <caption>Test coverage across the MCP ecosystem</caption>
                 <thead>
                     <tr>
@@ -274,7 +274,7 @@ flowchart LR
                         <td>Full lifecycle: DB &rarr; sync &rarr; embeddings &rarr; search &rarr; MCP</td>
                     </tr>
                 </tbody>
-            </table></div>
+            </table>
 
             <h3>Monitoring &amp; Health Checks</h3>
             <p>The agentic pipeline includes a <strong>health monitor</strong> that tracks active, queued, and failed pipelines with configurable alert thresholds (queue backup &gt; 100 books, failure rate &gt; 20%). A <strong>stuck detector</strong> watches every pipeline state with per-state timeouts &mdash; if a book sits in PROCESSING for more than 30 minutes, it gets flagged. Database integrity checks with auto-repair verify FTS index sync and catch orphaned embeddings across both the book library and Claude-Innit.</p>
@@ -341,38 +341,44 @@ flowchart LR
             <p>Every chapter has a 384-dimensional embedding vector for semantic search. The 14 categories span technical infrastructure, programming, AI/ML, career development, mental models, and financial analysis &mdash; 100% embedding coverage, no book sits unindexed.</p>
 
             <h3>Before / After</h3>
-            <div class="data-table-wrapper"><table class="data-table">
-                <caption>System transformation: manual workflow vs. MCP ecosystem</caption>
-                <thead>
-                    <tr>
-                        <th>Capability</th>
-                        <th>Before</th>
-                        <th>After</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Knowledge retrieval</td>
-                        <td>10&ndash;15 min manual search</td>
-                        <td class="highlight">&lt;5ms semantic query</td>
-                    </tr>
-                    <tr>
-                        <td>Book ingestion</td>
-                        <td>15&ndash;20 min manual per book</td>
-                        <td class="highlight">$0.03 automated pipeline</td>
-                    </tr>
-                    <tr>
-                        <td>Session context</td>
-                        <td>Re-explain everything each session</td>
-                        <td class="highlight">Instant recall via <code>get_context()</code></td>
-                    </tr>
-                    <tr>
-                        <td>Cross-book research</td>
-                        <td>Impossible</td>
-                        <td class="highlight">Single semantic query across 185+ books</td>
-                    </tr>
-                </tbody>
-            </table></div>
+            <div class="bar-comparison">
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>Knowledge retrieval</span>
+                        <span class="bar-value">10&ndash;15 min &rarr; &lt;5ms</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>Book ingestion (per book)</span>
+                        <span class="bar-value">15&ndash;20 min manual &rarr; $0.03 automated</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>Session context loading</span>
+                        <span class="bar-value">Re-explain everything &rarr; instant recall</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="bar-comparison-item">
+                    <div class="bar-comparison-label">
+                        <span>Cross-book research</span>
+                        <span class="bar-value">Impossible &rarr; single query</span>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
 
             <p>The system runs daily. Every Claude Code session starts with <code>get_context()</code> loading project memory and recent session history. Research begins with <code>get_topic_coverage()</code> searching the book library before touching a browser. New books drop into the pipeline and get classified, processed, and shelved automatically. Career materials surface through natural language queries when preparing for interviews.</p>
             <p>What started as &ldquo;I want to search my books&rdquo; became a personal knowledge infrastructure &mdash; one where learning compounds across sessions, projects, and time.</p>
