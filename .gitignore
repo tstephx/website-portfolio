@@ -13,4 +13,7 @@ work/**/archive/
 
 # Planning & drafts
 PORTFOLIO_EXPANSION_PLAN.md
+TODO.md
 docs/
+archive/
+work/**/*draft*.md
