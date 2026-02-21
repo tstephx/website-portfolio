@@ -8,3 +8,8 @@ if (typeof CSS === 'undefined' || !CSS.supports('animation-timeline', 'scroll()'
         bar.style.transform = `scaleX(${Math.min(window.scrollY / scrollable, 1)})`;
     }, { passive: true });
 }
+
+
+// Dynamic copyright year
+const yearEl = document.getElementById('copy-year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();

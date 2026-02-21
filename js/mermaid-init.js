@@ -16,7 +16,7 @@ mermaid.initialize({
         clusterBorder: '#e5e5e5',
         edgeLabelBackground: '#ffffff'
     },
-    securityLevel: 'loose',
+    securityLevel: 'strict',
     flowchart: {
         htmlLabels: true,
         curve: 'basis',
