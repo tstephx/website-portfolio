@@ -31,7 +31,7 @@ cd website-portfolio && python3 -m http.server 8000
 ## Design System
 - Tokens: 44 custom properties in `css/styles.css :root` (colors, typography, spacing, shadows, transitions, semantic colors)
 - Components: `css/case-study.css` (metrics-row, bar-comparison, funnel-chart, vote-comparison, process-timeline, data-table, formula-box, comparison, mermaid-container, cs-figure, reading-progress, insight-callout, scope-callout)
-- Full token reference: `docs/plans/2026-02-12-css-design-system-upgrade.md`
+- Full token reference: `docs/decisions/ADR-001-css-token-system.md`
 
 ## Chart.js Pattern (Token-Driven)
 
@@ -85,6 +85,12 @@ After each prompt: code review via `/superpowers:requesting-code-review`, fix is
 - [ ] "Next:" link chain updated (circular)
 - [ ] Chart.js uses token-driven pattern (no hardcoded colors)
 
+## Documentation
+- ADRs: `docs/decisions/` — permanent decision log, ~1 page each, numbered ADR-NNN
+- Active work: `docs/active/` — open items only; files >14 days old are stale, flag them
+- Archive: `docs/archive/` — executed plans, read-only reference
+- When shipping significant changes, update the relevant ADR status or write a new ADR
+
 ## Common Tasks
 
 ### Modify styling
@@ -101,4 +107,4 @@ After each prompt: code review via `/superpowers:requesting-code-review`, fix is
 
 ---
 
-*Last updated: 2026-02-18*
+*Last updated: 2026-02-23*
