@@ -88,7 +88,7 @@ After each prompt: code review via `/superpowers:requesting-code-review`, fix is
 
 ## Documentation
 - ADRs: `docs/decisions/` — permanent decision log, ~1 page each, numbered ADR-NNN
-- Active work: `docs/active/` — open items only; files >14 days old are stale, flag them
+- Active work: `docs/active/` — open items only; files >14 days old are stale, flag them (**folder not yet created — gap**)
 - Archive: `docs/archive/` — executed plans and source design docs, read-only reference
 - Plans: `docs/plans/` — staging area for new plans before execution; move to `docs/archive/` when done
 - When shipping significant changes, update the relevant ADR status or write a new ADR
