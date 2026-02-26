@@ -39,7 +39,7 @@
     /* Shadows */
     --shadow-sm:          0 1px 3px rgba(0, 0, 0, 0.06);
     --shadow-md:          0 2px 8px rgba(0, 0, 0, 0.08);
-    --shadow-hover:       0 4px 12px rgba(0, 0, 0, 0.12);
+    --shadow-hover:       0 4px 12px rgba(0, 0, 0, 0.10), 0 1px 4px rgba(0, 0, 0, 0.06);
 
     /* Transitions */
     --transition-fast:    0.15s ease;
@@ -87,7 +87,7 @@ html {
 body {
     font-family: var(--font-sans);
     font-size: 16px;
-    line-height: var(--baseline);
+    line-height: 1.5;
     color: var(--color-text);
     background-color: var(--color-bg);
 }
@@ -248,10 +248,10 @@ nav li:last-child a {
 /* hover styles scoped to desktop — see desktop media query */
 
 .tagline {
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 600;
     letter-spacing: 0.03em;
-    color: var(--color-muted);
+    color: var(--color-heading);
     margin-bottom: 1.5em;
 }
 
@@ -354,6 +354,7 @@ section {
     border-top: 1px solid var(--color-border-light);
     border-bottom: 1px solid var(--color-border);
     border-radius: 4px;
+    box-shadow: var(--shadow-sm);
     transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
 }
 
@@ -507,6 +508,20 @@ footer {
 /* =========================================
    TABLET (640px+)
    ========================================= */
+@media screen and (min-width: 640px) {
+
+    header {
+        position: sticky;
+        top: 0;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        z-index: 100;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+}
+
 @media screen and (min-width: 640px), print {
 
     nav ul {
@@ -538,7 +553,6 @@ footer {
 
     .contact-links a {
         padding: 0.5em 0;
-        min-height: auto;
     }
 
 }
@@ -574,7 +588,7 @@ footer {
     }
 
     .skills-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .project-card {
@@ -614,7 +628,8 @@ footer {
         color: var(--color-heading);
     }
 
-    nav li a:hover::after {
+    nav li a:hover::after,
+    nav li a:focus-visible::after {
         transform: scaleX(1);
     }
 
@@ -623,7 +638,7 @@ footer {
     }
 
     .cta-button:hover {
-        background-color: #000;
+        background-color: var(--color-heading);
         text-decoration: none;
         transform: translateY(-1px);
         box-shadow: var(--shadow-hover);

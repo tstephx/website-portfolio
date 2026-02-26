@@ -66,6 +66,7 @@
             <p>Amazon grows its delivery network by recruiting entrepreneurs to become Delivery Service Partners (DSPs) &mdash; independent business owners who operate delivery fleets. To apply, candidates complete an online application assessing their financial readiness, leadership experience, and operational capacity. It&rsquo;s similar to a franchise application: the company needs to evaluate whether someone can run a multi-million-dollar logistics operation.</p>
             <p>This application hadn&rsquo;t been updated since 2018. It had a 74% abandonment rate, took over 3 hours to complete, and only 23% of approved candidates converted to program inclination &mdash; a ratio of 1 in 135 application starts to a single inclined candidate. The average completion window stretched to 60 calendar days, with 33% of applicants taking over a week. The math was stark: $2.1M&ndash;$2.35M in annual entitlement was sitting on the table because qualified candidates gave up before finishing.</p>
 
+            <div class="funnel-wrapper">
             <div class="chart-label">Application Drop-Off: Where Candidates Abandoned</div>
             <div class="funnel-chart">
                 <div class="funnel-stage" style="--width: 100%">
@@ -85,6 +86,7 @@
                     <span class="stage-value">23%<span class="stage-drop">&darr;3%</span></span>
                 </div>
             </div>
+            </div><!-- /.funnel-wrapper -->
 
             <p>But the application wasn&rsquo;t just losing good candidates &mdash; it was passing bad ones. A 15% post-approval failure rate meant candidates were clearing the process who shouldn&rsquo;t have, because open-ended questions produced inconsistent, hard-to-evaluate responses. ANOVA testing across 25,830 reviewer records confirmed the design was the root cause: F=430.9, p&lt;2e-16, with Tukey&rsquo;s HSD revealing score differences of &minus;2.936 to +2.243 between reviewer pairs evaluating the same responses.</p>
 
@@ -289,14 +291,17 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Taylor Stephenscopy; <span id="copy-year">2026</span> Taylor Stephens. All rights reserved.</p>
+        <p>&copy; <span id="copy-year">2026</span> Taylor Stephens. All rights reserved.</p>
     </footer>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var accent = '#1a3a6b';
-        var green = '#16a34a';
-        var muted = 'rgba(107, 107, 107, 0.3)';
+        var css = getComputedStyle(document.documentElement);
+        var token = function(name, fallback) { return css.getPropertyValue(name).trim() || fallback; };
+        var hexToRgba = function(hex, a) { var h = hex.replace('#', ''); if (h.length === 3) h = h.split('').map(function(c) { return c+c; }).join(''); var n = parseInt(h, 16); return 'rgba('+((n>>16)&255)+','+((n>>8)&255)+','+(n&255)+','+a+')'; };
+        var accent = token('--color-accent', '#1a3a6b');
+        var green = token('--color-success', '#16a34a');
+        var muted = hexToRgba(token('--color-muted', '#6b6b6b'), 0.3);
         var defaults = {
             responsive: true,
             maintainAspectRatio: true,

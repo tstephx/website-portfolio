@@ -61,7 +61,7 @@
             </div>
             <div class="scope-item">
                 <span class="scope-label">See Also</span>
-                <span class="scope-value">Technical implementation &amp; automation &mdash; the SQL pipeline, Excel replacement, and infrastructure. Analytical research &amp; policy design: <a href="../pinnacle-station/pinnacle-distance.html">Pinnacle Distance Analysis</a></span>
+                <span class="scope-value"><a href="../pinnacle-station/pinnacle-distance.html">Pinnacle Distance Analysis</a></span>
             </div>
         </div>
 
@@ -369,15 +369,18 @@ WHERE adjusted_tier = 1 AND prev_tier = 1</code></pre>
     </main>
 
     <footer>
-        <p>&copy; 2026 Taylor Stephenscopy; <span id="copy-year">2026</span> Taylor Stephens. All rights reserved.</p>
+        <p>&copy; <span id="copy-year">2026</span> Taylor Stephens. All rights reserved.</p>
     </footer>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var accent = '#1a3a6b';
-        var muted = 'rgba(107, 107, 107, 0.3)';
-        var red = '#dc3545';
-        var green = '#16a34a';
+        var css = getComputedStyle(document.documentElement);
+        var token = function(name, fallback) { return css.getPropertyValue(name).trim() || fallback; };
+        var hexToRgba = function(hex, a) { var h = hex.replace('#', ''); if (h.length === 3) h = h.split('').map(function(c) { return c+c; }).join(''); var n = parseInt(h, 16); return 'rgba('+((n>>16)&255)+','+((n>>8)&255)+','+(n&255)+','+a+')'; };
+        var accent = token('--color-accent', '#1a3a6b');
+        var muted = hexToRgba(token('--color-muted', '#6b6b6b'), 0.3);
+        var red = token('--color-danger', '#dc2626');
+        var green = token('--color-success', '#16a34a');
         var defaults = {
             responsive: true,
             maintainAspectRatio: true,
