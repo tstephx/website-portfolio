@@ -89,10 +89,7 @@ After each prompt: code review via `/superpowers:requesting-code-review`, fix is
 ## Documentation
 - ADRs: `docs/decisions/` — permanent decision log, ~1 page each, numbered ADR-NNN
 - Active work: `docs/active/` — open items only; files >14 days old are stale, flag them
-- Archive: `docs/archive/` — executed plans and source design docs, read-only reference
-- Plans: `docs/plans/` — staging area for new plans before execution; move to `docs/archive/` when done
-- Reviews: `docs/review/` — one-off code and design review outputs (not ADRs)
-- Audits: `docs/audit/` — dated audit snapshots (e.g. UI audit passes)
+- Archive: `docs/archive/` — executed plans, reviews, audits, and source design docs; read-only reference
 - Prompts: `docs/prompts/` — reusable Claude prompt templates for recurring tasks
 - When shipping significant changes, update the relevant ADR status or write a new ADR
 

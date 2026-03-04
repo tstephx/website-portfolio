@@ -182,11 +182,11 @@ flowchart TD
             <p><strong>The fork:</strong> Fully autonomous from day one, always human-supervised, or a trust ladder?</p>
             <div class="comparison">
                 <div class="comparison-before">
-                    <h3>Rejected: Binary Approach</h3>
+                    <p class="comparison-label">Rejected: Binary Approach</p>
                     <p><strong>Full autonomy</strong> risks silently misclassifying books with no feedback loop. <strong>Always supervised</strong> defeats the purpose &mdash; I&rsquo;d still be manually approving every book. Both assume a fixed trust level that doesn&rsquo;t match reality.</p>
                 </div>
                 <div class="comparison-after">
-                    <h3>Chosen: Graduated Trust</h3>
+                    <p class="comparison-label">Chosen: Graduated Trust</p>
                     <p>Three levels (Supervised &rarr; Partial &rarr; Confident) with a 30-day rolling accuracy score driving promotion or demotion. An escape hatch reverts to supervised instantly. Trust is earned through demonstrated accuracy, not configuration.</p>
                 </div>
             </div>
@@ -206,11 +206,11 @@ flowchart LR
             <p><strong>The fork:</strong> A few monolithic endpoints that try to anticipate every workflow, or many small composable tools the LLM chains together?</p>
             <div class="comparison">
                 <div class="comparison-before">
-                    <h3>Rejected: Monolithic Tools</h3>
+                    <p class="comparison-label">Rejected: Monolithic Tools</p>
                     <p>A single <code>research_topic()</code> tool that searches, reads chapters, and generates a summary. Seems convenient, but hardcodes one workflow. Every new use case means a new monolithic tool or more parameters on existing ones.</p>
                 </div>
                 <div class="comparison-after">
-                    <h3>Chosen: Composable Primitives</h3>
+                    <p class="comparison-label">Chosen: Composable Primitives</p>
                     <p>Separate <code>semantic_search</code>, <code>get_chapter</code>, <code>extract_code_examples</code>, and <code>create_study_guide</code>. The LLM chains them in ways I never anticipated &mdash; comparing how three authors explain the same concept, or cross-referencing a career book with a technical one.</p>
                 </div>
             </div>
