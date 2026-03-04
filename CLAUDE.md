@@ -7,8 +7,9 @@
 - Homepage: `index.html` (6 work cards + 3 personal cards)
 - Work case studies: `work/*/*.html` (2 levels deep; paths use `../../`)
 - Project pages: `projects/*.html` (1 level deep; paths use `../`)
-- Global styling tokens: `css/styles.css` (44 custom properties in `:root`)
+- Global styling tokens: `css/styles.css` (57 custom properties in `:root`)
 - Case study components: `css/case-study.css`
+- Site map & page index: `ref/site-map.md`
 
 ## Local Preview
 
@@ -29,10 +30,9 @@ cd website-portfolio && python3 -m http.server 8000
 - Link chain (work case studies, circular): CT → scoring → DSP → automation → distance → chargeback → CT
 
 ## Design System
-- Tokens: 44 custom properties in `css/styles.css :root` (colors, typography, spacing, shadows, transitions, semantic colors)
-- Components: `css/case-study.css` (metrics-row, bar-comparison, funnel-chart, vote-comparison, process-timeline, data-table, formula-box, comparison, mermaid-container, cs-figure, reading-progress, insight-callout, scope-callout)
-- CSS token decision: `docs/decisions/ADR-001-css-token-system.md`
-- Full token reference: `docs/archive/2026-02-12-css-design-system-upgrade.md`
+- Token reference: `ref/css-tokens.md` — all 57 tokens with values and usage notes
+- Component reference: `ref/components.md` — all case-study components with usage snippets
+- ADR: `docs/decisions/ADR-001-css-token-system.md`
 
 ## Chart.js Pattern (Token-Driven)
 
@@ -109,6 +109,13 @@ After each prompt: code review via `/superpowers:requesting-code-review`, fix is
 ## Git
 - Branch: `main` — Remote: `origin` (github.com:tstephx/website-portfolio.git)
 - Commit style: `feat:`, `fix:`, `docs:`, `style:`
+
+---
+
+## Reference Docs (`ref/`)
+- `ref/site-map.md` — all pages, paths, link chain, asset directories
+- `ref/css-tokens.md` — all 57 design tokens with values and usage
+- `ref/components.md` — case study component library with usage snippets
 
 ---
 
