@@ -133,6 +133,7 @@ After each prompt: code review via `/superpowers:requesting-code-review`, fix is
 - `ref/css-tokens.md` — all 57 design tokens with values and usage
 - `ref/components.md` — case study component library with usage snippets
 - `ref/chartjs-pattern.md` — Chart.js token-driven boilerplate, color variables, dataset patterns
+- `ref/deploy.md` — deployment workflow (git pull on Whatbox), Cloudflare config, header verification
 
 ---
 

@@ -67,14 +67,18 @@ Each page has a "Next:" footer link. When adding/reordering, update all 6 links 
 
 ## Asset Directories
 
-| Path                  | Contents                                       |
-| --------------------- | ---------------------------------------------- |
-| `css/styles.css`      | Global tokens + layout (57 custom properties)  |
-| `css/case-study.css`  | Case study component library                   |
-| `js/progress-bar.js`  | Reading progress bar (Safari/Firefox fallback) |
-| `js/mermaid-init.js`  | Mermaid diagram config                         |
-| `images/headshot.jpg` | Profile photo                                  |
-| `favicon.svg`         | Site favicon                                   |
+| Path                   | Contents                                                        |
+| ---------------------- | --------------------------------------------------------------- |
+| `css/styles.css`       | Global tokens + layout (57 custom properties)                   |
+| `css/case-study.css`   | Case study component library                                    |
+| `css/fonts.css`        | Self-hosted @font-face declarations (latin subset, 11 blocks)   |
+| `js/progress-bar.js`   | Reading progress bar (Safari/Firefox fallback)                  |
+| `js/mermaid-init.js`   | Mermaid diagram config                                          |
+| `fonts/`               | 6 WOFF2 files (Cormorant Garamond, DM Mono, Epilogue, Newsreader) |
+| `images/headshot.jpg`  | Profile photo (JPEG fallback, 23 KB)                            |
+| `images/headshot.webp` | Profile photo WebP (10 KB, 57% smaller)                         |
+| `images/headshot.avif` | Profile photo AVIF (13 KB)                                      |
+| `favicon.svg`          | Site favicon                                                    |
 
 ---
 
