@@ -556,7 +556,7 @@ WHERE adjusted_tier = 1 AND prev_tier = 1</code></pre>
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: '#1a1a1a',
+              backgroundColor: token('--color-heading', '#1a1a1a'),
               titleFont: { family: "'Epilogue', sans-serif", size: 12 },
               bodyFont: { family: "'Epilogue', sans-serif", size: 12 },
               padding: 10,
@@ -615,7 +615,7 @@ WHERE adjusted_tier = 1 AND prev_tier = 1</code></pre>
                 label: 'Fill Rate',
                 data: [57.9, 100, 94.1],
                 borderColor: green,
-                backgroundColor: 'rgba(22, 163, 74, 0.08)',
+                backgroundColor: hexToRgba(green, 0.08),
                 borderWidth: 2.5,
                 pointBackgroundColor: function (ctx) {
                   return ctx.dataIndex === 1 ? '#15803d' : green;
@@ -656,7 +656,7 @@ WHERE adjusted_tier = 1 AND prev_tier = 1</code></pre>
             plugins: {
               legend: { display: false },
               tooltip: {
-                backgroundColor: '#1a1a1a',
+                backgroundColor: token('--color-heading', '#1a1a1a'),
                 callbacks: {
                   label: function (ctx) {
                     var label = ctx.parsed.y + '% fill rate';

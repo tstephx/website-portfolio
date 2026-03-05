@@ -467,7 +467,7 @@
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: '#1a1a1a',
+              backgroundColor: token('--color-heading', '#1a1a1a'),
               titleFont: { family: "'Epilogue', sans-serif", size: 12 },
               bodyFont: { family: "'Epilogue', sans-serif", size: 12 },
               padding: 10,
@@ -584,7 +584,7 @@
               {
                 label: 'Everything Else',
                 data: [32.1, 50.1],
-                backgroundColor: 'rgba(107, 107, 107, 0.2)',
+                backgroundColor: hexToRgba(token('--color-muted', '#6b6b6b'), 0.2),
                 borderRadius: 0,
                 barThickness: 32,
               },
@@ -625,7 +625,7 @@
                 },
               },
               tooltip: {
-                backgroundColor: '#1a1a1a',
+                backgroundColor: token('--color-heading', '#1a1a1a'),
                 callbacks: {
                   label: function (ctx) {
                     var detail =

@@ -359,7 +359,7 @@
                     display: false
                 },
                 tooltip: {
-                    backgroundColor: '#1a1a1a',
+                    backgroundColor: token('--color-heading', '#1a1a1a'),
                     titleFont: { family: "'Epilogue', sans-serif", size: 12 },
                     bodyFont: { family: "'Epilogue', sans-serif", size: 12 },
                     padding: 10,
@@ -414,7 +414,7 @@
                         label: 'Manual',
                         data: [20, 60, 100, 200, 400, 600, 1000],
                         borderColor: red,
-                        backgroundColor: 'rgba(220, 53, 69, 0.06)',
+                        backgroundColor: hexToRgba(red, 0.06),
                         fill: true,
                         tension: 0.3,
                         pointRadius: 4,
@@ -427,7 +427,7 @@
                         label: 'Automated',
                         data: [10, 10, 10, 10, 11, 11, 12],
                         borderColor: green,
-                        backgroundColor: 'rgba(22, 163, 74, 0.06)',
+                        backgroundColor: hexToRgba(green, 0.06),
                         fill: true,
                         tension: 0.3,
                         pointRadius: 4,
@@ -453,7 +453,7 @@
                         }
                     },
                     tooltip: {
-                        backgroundColor: '#1a1a1a',
+                        backgroundColor: token('--color-heading', '#1a1a1a'),
                         titleFont: { family: "'Epilogue', sans-serif", size: 12 },
                         bodyFont: { family: "'Epilogue', sans-serif", size: 12 },
                         padding: 10,
