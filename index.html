@@ -24,12 +24,7 @@
       content="Strategic Program Manager specializing in AI infrastructure, systems design, and zero-to-one process builds. Former Amazon PM."
     />
     <meta name="theme-color" content="#1a3a6b" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Mono:wght@400;500&family=Epilogue:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="css/fonts.css" />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
@@ -49,15 +44,19 @@
     <main id="main-content">
       <section id="hero">
         <div class="hero-content">
-          <img
-            src="images/headshot.jpg"
-            alt="Taylor Stephens, Strategic Program Manager"
-            class="headshot"
-            loading="eager"
-            fetchpriority="high"
-            width="300"
-            height="300"
-          />
+          <picture>
+            <source srcset="images/headshot.avif" type="image/avif" />
+            <source srcset="images/headshot.webp" type="image/webp" />
+            <img
+              src="images/headshot.jpg"
+              alt="Taylor Stephens, Strategic Program Manager"
+              class="headshot"
+              loading="eager"
+              fetchpriority="high"
+              width="300"
+              height="300"
+            />
+          </picture>
           <h1>Taylor Stephens</h1>
           <p class="tagline">Strategic Program Manager | AI Infrastructure &amp; Systems Design | Former Amazon PM</p>
           <p class="summary">

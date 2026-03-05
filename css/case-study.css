@@ -745,6 +745,7 @@
 /* ===== CHART CONTAINER ===== */
 .chart-container {
   position: relative;
+  min-height: 340px; /* canvas max-height 300px + padding 2×20px — prevents CLS */
   margin: 1.5rem 0;
   padding: 1.5rem;
   background-color: var(--color-bg-alt);
