@@ -11,7 +11,7 @@ Primary audience: Technical recruiters and hiring managers scanning 50+ portfoli
 Success criterion: A visitor answers "Who is this person, what do they do, why should I care?" within 5 seconds of landing.
 
 Existing design system:
-- 44 CSS custom properties in `css/styles.css :root` — use ONLY these tokens, no new values
+- 57 CSS custom properties in `css/styles.css :root` — use ONLY these tokens, no new values
 - Fluid typography already uses `clamp()` — do NOT add font-size media query overrides
 - Homepage: `index.html` (6 work cards + 3 personal cards)
 - Work pages: `work/*/*.html` (paths use `../../`), project pages: `projects/*.html` (paths use `../`)

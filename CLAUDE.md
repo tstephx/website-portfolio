@@ -113,6 +113,7 @@ After each prompt: code review via `/superpowers:requesting-code-review`, fix is
 - `ref/site-map.md` — all pages, paths, link chain, asset directories
 - `ref/css-tokens.md` — all 57 design tokens with values and usage
 - `ref/components.md` — case study component library with usage snippets
+- `ref/chartjs-pattern.md` — Chart.js token-driven boilerplate, color variables, dataset patterns
 
 ---
 
