@@ -51,13 +51,13 @@ For fonts/images with long cache headers, a hard refresh clears the cache on fir
 
 Security and performance headers are set via **Managed Transforms** (free plan):
 
-| Feature                | Status   | Notes                                     |
-| ---------------------- | -------- | ----------------------------------------- |
-| Add security headers   | Enabled  | X-Frame-Options, X-Content-Type, etc.     |
-| Remove X-Powered-By    | Enabled  | Hides server fingerprint                  |
-| HSTS                   | Enabled  | `max-age=31536000` (6 months), no subdomain/preload |
-| TLS minimum            | 1.2      | TLS 1.0/1.1 blocked                       |
-| Certificate            | Universal SSL (auto-renewed)              |
+| Feature              | Status                       | Notes                                               |
+| -------------------- | ---------------------------- | --------------------------------------------------- |
+| Add security headers | Enabled                      | X-Frame-Options, X-Content-Type, etc.               |
+| Remove X-Powered-By  | Enabled                      | Hides server fingerprint                            |
+| HSTS                 | Enabled                      | `max-age=31536000` (6 months), no subdomain/preload |
+| TLS minimum          | 1.2                          | TLS 1.0/1.1 blocked                                 |
+| Certificate          | Universal SSL (auto-renewed) |
 
 **Where to configure:** Cloudflare Dashboard → taylorstephens.io → Security / SSL-TLS / Managed Transforms
 
@@ -70,6 +70,7 @@ curl -sI https://taylorstephens.io | grep -E 'server|x-frame|strict-transport|co
 ```
 
 Expected output includes:
+
 - `server: cloudflare`
 - `x-frame-options: SAMEORIGIN`
 - `strict-transport-security: max-age=31536000`

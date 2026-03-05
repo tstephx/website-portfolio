@@ -2,18 +2,13 @@
 
 /* Generated from Google Fonts API — run scripts/download-fonts.py to refresh */
 
+/* Static font — only weight 600 available locally.
+   Weight 700 is not declared here; browser will synthesize bold if needed.
+   To add weight 700, download cormorant-garamond-700-normal.woff2 and add a block. */
 @font-face {
   font-family: "Cormorant Garamond";
   font-style: normal;
   font-weight: 600;
-  font-display: swap;
-  src: url("../fonts/cormorant-garamond-600-normal.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Cormorant Garamond";
-  font-style: normal;
-  font-weight: 700;
   font-display: swap;
   src: url("../fonts/cormorant-garamond-600-normal.woff2") format("woff2");
 }
@@ -34,34 +29,11 @@
   src: url("../fonts/dm-mono-500-normal.woff2") format("woff2");
 }
 
+/* Variable font — single file covers the full weight range 100–900 */
 @font-face {
   font-family: Epilogue;
   font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/epilogue-400-normal.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: Epilogue;
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("../fonts/epilogue-400-normal.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: Epilogue;
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("../fonts/epilogue-400-normal.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: Epilogue;
-  font-style: normal;
-  font-weight: 700;
+  font-weight: 100 900;
   font-display: swap;
   src: url("../fonts/epilogue-400-normal.woff2") format("woff2");
 }
@@ -74,18 +46,11 @@
   src: url("../fonts/newsreader-400-italic.woff2") format("woff2");
 }
 
+/* Variable font — single file covers the full weight range 100–900 */
 @font-face {
   font-family: Newsreader;
   font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/newsreader-400-normal.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: Newsreader;
-  font-style: normal;
-  font-weight: 600;
+  font-weight: 100 900;
   font-display: swap;
   src: url("../fonts/newsreader-400-normal.woff2") format("woff2");
 }
