@@ -5,12 +5,18 @@
 ## 2026-03
 
 ### Features
+- `e2d0913` add html-validate + linkinator, fix raw HTML entities and parser errors
+- `d9de4a0` add og:image social card meta to all 14 pages (L5)
 - `2d33f93` add Playwright testing infrastructure + changelog automation
 
 ### Bug Fixes
+- `d992b12` add SRI hashes + pin CDN versions (M3, M4)
+- `f68ca74` replace hardcoded Chart.js colors with CSS token variables (H1)
+- `16c16dc` resolve all critical/high audit findings
 - `d93e5d5` comparison-label audit + docs restructure
 
 ### Documentation
+- `9a3fc85` add deploy ref, update site-map for fonts + headshot variants
 - `a68c73f` fix 2 CLAUDE.md inaccuracies flagged by scaffold audit
 - `e51725e` add ref/ directory with site map, CSS tokens, and component reference
 - `9b142a4` clean up project structure and update CLAUDE.md
@@ -19,9 +25,11 @@
 - `cd7b634` apply 4 typography/design refinements to case-study components
 
 ### Chores / Maintenance
+- `507a691` remove _headers (nginx/Cloudflare stack — use CF Transform Rules instead)
 - `b64ade6` add ESLint, Prettier, stylelint; apply first-run formatting
 
 ### Other
+- `6b735ba` perf: add _headers caching/security rules; update changelog
 - `311ee4c` perf: performance improvements — fonts, images, chart CLS
 - `2886327` test: add mobile visual regression snapshots
 

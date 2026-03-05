@@ -8,10 +8,23 @@ const { test, expect } = require('@playwright/test');
  */
 
 const SNAPSHOT_PAGES = [
+  // Core pages
   { path: '/', name: 'homepage' },
-  { path: '/work/contract-transfer/contract-transfer.html', name: 'work-contract-transfer' },
-  { path: '/projects/mcp-ecosystem.html', name: 'project-mcp-ecosystem' },
   { path: '/resume.html', name: 'resume' },
+  // Work case studies
+  { path: '/work/contract-transfer/contract-transfer.html', name: 'work-contract-transfer' },
+  { path: '/work/bpr-scoring-pinnacle/pinnacle-scoring.html', name: 'work-pinnacle-scoring' },
+  { path: '/work/cfa-dsp-application/dsp-application.html', name: 'work-dsp-application' },
+  { path: '/work/charge-back-processing/chargeback-parsing.html', name: 'work-chargeback-parsing' },
+  { path: '/work/pinnacle-program-selection/pinnacle-automation.html', name: 'work-pinnacle-automation' },
+  { path: '/work/pinnacle-station/pinnacle-distance.html', name: 'work-pinnacle-distance' },
+  // Project pages
+  { path: '/projects/mcp-ecosystem.html', name: 'project-mcp-ecosystem' },
+  { path: '/projects/agentic-pipeline.html', name: 'project-agentic-pipeline' },
+  { path: '/projects/book-library-mcp.html', name: 'project-book-library-mcp' },
+  { path: '/projects/claude-innit.html', name: 'project-claude-innit' },
+  { path: '/projects/lab-environment.html', name: 'project-lab-environment' },
+  { path: '/projects/tap-sevenrooms.html', name: 'project-tap-sevenrooms' },
 ];
 
 // ===== DESKTOP (1280×720) =====
