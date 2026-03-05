@@ -4,5 +4,7 @@ tests/snapshots/
 playwright-report/
 test-results/
 CHANGELOG.md
+# Local Claude config — not project code
+.claude/
 # Malformed HTML that Prettier cannot parse
 work/charge-back-processing/chargeback-parsing.html

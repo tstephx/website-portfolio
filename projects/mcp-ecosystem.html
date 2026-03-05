@@ -322,7 +322,7 @@
           development &mdash; schema changes, embedding model upgrades, index optimizations. Each time, the rebuild was
           trivial because the files were intact. If the database had been the source of truth, each rebuild would have
           risked data loss. The sync layer added ~200 lines of code but bought complete resilience:
-          <code>rm library.db && python rebuild.py</code> restores everything.
+          <code>rm library.db &amp;&amp; python rebuild.py</code> restores everything.
         </p>
       </section>
 
