@@ -19,7 +19,7 @@ cd website-portfolio && python3 -m http.server 8000
 ```
 
 ## Hard Rules
-- Always use existing CSS custom properties (44 tokens in `css/styles.css :root`). Do not add new tokens without updating the design doc.
+- Always use existing CSS custom properties (57 tokens in `css/styles.css :root`). Do not add new tokens without updating the design doc.
 - Fluid typography uses `clamp()` — do NOT add font-size media query overrides.
 - Chart.js colors must read from CSS tokens via `getComputedStyle`, never hardcoded hex values.
 - Do not scan `images/` or evidence files in `work/` subdirectories unless explicitly asked.
@@ -63,7 +63,7 @@ window.addEventListener('DOMContentLoaded', () => {
   Chart.defaults.borderColor = grid;
   Chart.defaults.plugins.legend.labels.color = text;
   Chart.defaults.scale.grid.color = grid;
-  Chart.defaults.scale.ticks.color = text;
+  Chart.defaults.scale.ticks.color = grid;
 
   // use accent/green/red per dataset as needed
 });
