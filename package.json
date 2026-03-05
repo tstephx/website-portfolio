@@ -14,7 +14,14 @@
     "test:ui": "playwright test --ui",
     "test:report": "playwright show-report tests/report",
     "changelog": "node scripts/generate-changelog.js",
-    "pretest": "node scripts/generate-changelog.js"
+    "pretest": "node scripts/generate-changelog.js",
+    "lint": "eslint js/ scripts/ tests/",
+    "lint:fix": "eslint js/ scripts/ tests/ --fix",
+    "format": "prettier --write '**/*.{js,css,html,json,md}'",
+    "format:check": "prettier --check '**/*.{js,css,html,json,md}'",
+    "lint:css": "stylelint 'css/**/*.css'",
+    "lint:css:fix": "stylelint 'css/**/*.css' --fix",
+    "check": "npm run lint && npm run lint:css && npm run format:check"
   },
   "repository": {
     "type": "git",
@@ -29,6 +36,11 @@
   },
   "homepage": "https://github.com/tstephx/website-portfolio#readme",
   "devDependencies": {
-    "@playwright/test": "^1.58.2"
+    "@playwright/test": "^1.58.2",
+    "eslint": "^10.0.2",
+    "globals": "^17.4.0",
+    "prettier": "^3.8.1",
+    "stylelint": "^17.4.0",
+    "stylelint-config-standard": "^40.0.0"
   }
 }

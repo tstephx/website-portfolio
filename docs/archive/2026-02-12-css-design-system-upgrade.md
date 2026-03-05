@@ -1,4 +1,5 @@
 # CSS Design System Upgrade — Design Document
+
 <!-- project: website-portfolio -->
 
 **Date:** 2026-02-12
@@ -11,6 +12,7 @@
 ## Problem Statement
 
 Two review documents identified 20 design fixes ranging from WCAG compliance failures to dead CSS code. The fixes need to be:
+
 1. Future-proof (no rework when adding graphics or dark mode)
 2. Standardized across all 10 pages (1 homepage + 4 work/ + 5 projects/)
 3. CSS-only with minimal HTML changes
@@ -81,61 +83,85 @@ Add to `:root` in `styles.css`:
 ## Section 2: Component Fixes
 
 ### Vote Diagram Colors
+
 Replace hardcoded Bootstrap colors (#d4edda, #28a745, etc.) with `--color-success-*` and `--color-danger-*` tokens in `case-study.css`.
 
 ### h3 Comparison Card Titles
+
 Differentiate comparison card h3s from section label h3s:
+
 ```css
 .comparison-before h3,
 .comparison-after h3 {
-    font-family: var(--font-serif);
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    text-transform: none;
-    color: var(--color-heading);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--color-heading);
 }
 ```
 
 ### Table Highlight Semantics
+
 New `.chosen` class for row highlighting (background tint) vs `.highlight` for text labels:
+
 ```css
-.data-table tr.chosen { background-color: var(--color-accent-light); }
+.data-table tr.chosen {
+  background-color: var(--color-accent-light);
+}
 ```
 
 ### Metric Number Responsive Scaling
+
 ```css
 .metric-number {
-    font-size: clamp(1.5rem, 1.25rem + 1vw, 2.25rem);
+  font-size: clamp(1.5rem, 1.25rem + 1vw, 2.25rem);
 }
 ```
 
 ### Mobile Table Overflow
+
 ```css
-.data-table-wrapper { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.data-table-wrapper {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 ```
 
 ### Bar-Fill Animation
+
 Remove dead `transition: width 0.6s ease-out`. Replace with scroll-driven animation:
+
 ```css
 @supports (animation-timeline: view()) {
-    .bar-fill {
-        animation: fill-bar linear both;
-        animation-timeline: view();
-        animation-range: entry 0% entry 100%;
+  .bar-fill {
+    animation: fill-bar linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 100%;
+  }
+  @keyframes fill-bar {
+    from {
+      transform: scaleX(0);
+      transform-origin: left;
     }
-    @keyframes fill-bar {
-        from { transform: scaleX(0); transform-origin: left; }
-        to { transform: scaleX(1); transform-origin: left; }
+    to {
+      transform: scaleX(1);
+      transform-origin: left;
     }
+  }
 }
 ```
 
 ### Tabular Numbers
+
 ```css
-.metric-number, .stage-value, .bar-value,
-.data-table td:nth-child(n+2) {
-    font-variant-numeric: tabular-nums;
+.metric-number,
+.stage-value,
+.bar-value,
+.data-table td:nth-child(n + 2) {
+  font-variant-numeric: tabular-nums;
 }
 ```
 
@@ -144,39 +170,59 @@ Remove dead `transition: width 0.6s ease-out`. Replace with scroll-driven animat
 ## Section 3: Accessibility & Interaction
 
 ### Focus-Visible States
+
 ```css
 a:focus-visible,
 .cta-button:focus-visible,
 .nav-link:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
-    border-radius: var(--radius-sm);
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 ```
 
 ### Reduced Motion
+
 ```css
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 ```
 
 ### Text Wrap
+
 ```css
-h1, h2, .cs-tagline { text-wrap: balance; }
-.cs-section p, .summary { text-wrap: pretty; }
+h1,
+h2,
+.cs-tagline {
+  text-wrap: balance;
+}
+.cs-section p,
+.summary {
+  text-wrap: pretty;
+}
 ```
 
 ### Card Hover Elevation
+
 ```css
-.project-card { transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
+.project-card {
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
 /* Inside 1024px hover block: */
-.project-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
 ```
 
 ---
@@ -184,33 +230,46 @@ h1, h2, .cs-tagline { text-wrap: balance; }
 ## Section 4: Scroll-Driven Animations & Progress Bar
 
 ### Reading Progress Bar (CSS + JS fallback)
+
 ```css
 .reading-progress {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 3px;
-    background: var(--color-accent);
-    transform-origin: left;
-    transform: scaleX(0);
-    z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--color-accent);
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 100;
 }
 @supports (animation-timeline: scroll()) {
-    .reading-progress {
-        animation: progress-fill linear both;
-        animation-timeline: scroll();
+  .reading-progress {
+    animation: progress-fill linear both;
+    animation-timeline: scroll();
+  }
+  @keyframes progress-fill {
+    to {
+      transform: scaleX(1);
     }
-    @keyframes progress-fill { to { transform: scaleX(1); } }
+  }
 }
 ```
 
 JS fallback for Safari/Firefox (~8 lines):
+
 ```js
 if (!CSS.supports('animation-timeline', 'scroll()')) {
-    const bar = document.querySelector('.reading-progress');
-    if (bar) window.addEventListener('scroll', () => {
+  const bar = document.querySelector('.reading-progress');
+  if (bar)
+    window.addEventListener(
+      'scroll',
+      () => {
         const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
         bar.style.transform = `scaleX(${Math.min(pct, 1)})`;
-    }, { passive: true });
+      },
+      { passive: true }
+    );
 }
 ```
 
@@ -219,18 +278,41 @@ if (!CSS.supports('animation-timeline', 'scroll()')) {
 ## Section 5: Graphics-Ready Containers
 
 ```css
-.cs-figure { margin: var(--space-md) 0; max-width: 100%; }
-.cs-figure img, .cs-figure svg { display: block; max-width: 100%; height: auto; border-radius: var(--radius-md); }
-.cs-figure figcaption { font-size: 0.8125rem; color: var(--color-muted); margin-top: 0.5rem; text-align: center; font-style: italic; }
+.cs-figure {
+  margin: var(--space-md) 0;
+  max-width: 100%;
+}
+.cs-figure img,
+.cs-figure svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+}
+.cs-figure figcaption {
+  font-size: 0.8125rem;
+  color: var(--color-muted);
+  margin-top: 0.5rem;
+  text-align: center;
+  font-style: italic;
+}
 
-.cs-figure-pair { display: grid; grid-template-columns: 1fr; gap: var(--space-sm); }
-@media (min-width: 640px) { .cs-figure-pair { grid-template-columns: 1fr 1fr; } }
+.cs-figure-pair {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+}
+@media (min-width: 640px) {
+  .cs-figure-pair {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 
 .cs-figure-wide {
-    max-width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-    padding: 0 var(--space-sm);
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 0 var(--space-sm);
 }
 ```
 
@@ -259,23 +341,28 @@ Only 3 non-CSS changes:
 ## Print Stylesheet Enhancement
 
 Add to existing `@media print` blocks:
+
 ```css
-.cs-section { page-break-inside: avoid; }
-.reading-progress { display: none; }
+.cs-section {
+  page-break-inside: avoid;
+}
+.reading-progress {
+  display: none;
+}
 ```
 
 ---
 
 ## Files Modified
 
-| File | Changes |
-|---|---|
-| `css/styles.css` | Extended `:root` tokens, fluid typography, focus-visible, reduced-motion, card hover, text-wrap, print enhancement |
-| `css/case-study.css` | Vote diagram tokens, h3 comparison fix, table highlight, metric scaling, table overflow, bar-fill animation, tabular nums, figure containers, progress bar, print enhancement |
-| `js/progress-bar.js` | New: 8-line JS fallback for reading progress bar |
-| `index.html` | Canonical URL, headshot loading/fetchpriority |
-| `work/*.html` (4 files) | Reading progress div, canonical URL |
-| `projects/*.html` (5 files) | Reading progress div, canonical URL |
+| File                        | Changes                                                                                                                                                                       |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `css/styles.css`            | Extended `:root` tokens, fluid typography, focus-visible, reduced-motion, card hover, text-wrap, print enhancement                                                            |
+| `css/case-study.css`        | Vote diagram tokens, h3 comparison fix, table highlight, metric scaling, table overflow, bar-fill animation, tabular nums, figure containers, progress bar, print enhancement |
+| `js/progress-bar.js`        | New: 8-line JS fallback for reading progress bar                                                                                                                              |
+| `index.html`                | Canonical URL, headshot loading/fetchpriority                                                                                                                                 |
+| `work/*.html` (4 files)     | Reading progress div, canonical URL                                                                                                                                           |
+| `projects/*.html` (5 files) | Reading progress div, canonical URL                                                                                                                                           |
 
 ---
 

@@ -8,7 +8,7 @@ const { test, expect } = require('@playwright/test');
  */
 
 const SNAPSHOT_PAGES = [
-  { path: '/',          name: 'homepage' },
+  { path: '/', name: 'homepage' },
   { path: '/work/contract-transfer/contract-transfer.html', name: 'work-contract-transfer' },
   { path: '/projects/mcp-ecosystem.html', name: 'project-mcp-ecosystem' },
   { path: '/resume.html', name: 'resume' },

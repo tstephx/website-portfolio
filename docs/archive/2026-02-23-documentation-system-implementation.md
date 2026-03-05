@@ -15,6 +15,7 @@
 ### Task 1: Create folder structure
 
 **Files:**
+
 - Create: `docs/decisions/`
 - Create: `docs/active/`
 - Create: `docs/archive/`
@@ -32,6 +33,7 @@ mkdir -p /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/archive
 ```bash
 ls /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/
 ```
+
 Expected: `active/  archive/  decisions/  plans/  review/`
 
 ---
@@ -65,6 +67,7 @@ rm /Users/taylorstephens/Dev/_Lab/website-portfolio/TODO.md
 ```bash
 ls /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/active/
 ```
+
 Expected: `design-review-todos.md  portfolio-expansion-plan.md`
 
 ---
@@ -86,6 +89,7 @@ mv 2026-02-19-typography-overhaul-implementation.md ../archive/
 ```bash
 ls /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/archive/
 ```
+
 Expected: 4 implementation plan files.
 
 ---
@@ -95,6 +99,7 @@ Expected: 4 implementation plan files.
 Distill `2026-02-12-css-design-system-upgrade.md` into a 1-page ADR.
 
 **Files:**
+
 - Create: `docs/decisions/ADR-001-css-token-system.md`
 - Read first: `docs/plans/2026-02-12-css-design-system-upgrade.md`
 
@@ -102,23 +107,28 @@ Distill `2026-02-12-css-design-system-upgrade.md` into a 1-page ADR.
 
 ```markdown
 # ADR-001: CSS Token System
+
 **Date:** 2026-02-12 | **Status:** Implemented | **Supersedes:** —
 
 ## Decision
+
 44 custom properties defined in `css/styles.css :root` cover all colors, typography,
 spacing, shadows, transitions, and semantic states. No hardcoded values anywhere in
 the codebase. Chart.js colors read tokens via `getComputedStyle` at runtime.
 
 ## Why
+
 A single token source eliminates color drift between components and charts. Changing
 a brand color requires one edit. Chart colors stay in sync with UI without manual
 updates.
 
 ## Rejected Alternatives
+
 - Per-component variables — too scattered, defeats single-source-of-truth goal
 - Tailwind utility classes — too much churn for a static portfolio; overkill
 
 ## Where in Code
+
 - `css/styles.css :root` — all 44 token definitions
 - `css/case-study.css` — component usage (metrics-row, bar-comparison, etc.)
 - Every `*.html` Chart.js block — `getComputedStyle` token reads
@@ -146,6 +156,7 @@ git commit -m "docs: add ADR-001 CSS token system, archive source design doc"
 Merge `2026-02-12-sql-r-portfolio-integration-design.md` and `2026-02-14-sql-r-analytics-design.md` into one ADR.
 
 **Files:**
+
 - Create: `docs/decisions/ADR-002-sql-r-analytics.md`
 - Read first: `docs/plans/2026-02-12-sql-r-portfolio-integration-design.md` and `docs/plans/2026-02-14-sql-r-analytics-design.md`
 
@@ -153,24 +164,29 @@ Merge `2026-02-12-sql-r-portfolio-integration-design.md` and `2026-02-14-sql-r-a
 
 ```markdown
 # ADR-002: SQL/R Analytics Case Study
+
 **Date:** 2026-02-14 | **Status:** Implemented | **Supersedes:** 2026-02-12-sql-r-portfolio-integration-design.md
 
 ## Decision
+
 Added a SQL/R analytics case study as a project page (`projects/sql-r-analytics.html`).
 The page demonstrates data pipeline work using embedded Chart.js visualizations and
 a before/after data table rather than screenshots of R output.
 
 ## Why
+
 Screenshots of R output don't convey methodology. Interactive charts let reviewers
 engage with the data. The project page pattern (1 level deep) suited a standalone
 technical showcase rather than a full work case study.
 
 ## Rejected Alternatives
+
 - Embedding R Markdown output directly — requires iframe or external host, adds
   maintenance burden
 - PDF attachment — not indexable, poor mobile experience
 
 ## Where in Code
+
 - `projects/sql-r-analytics.html` — the case study page
 - `css/case-study.css` — shared components (data-table, chart patterns)
 ```
@@ -199,6 +215,7 @@ git commit -m "docs: add ADR-002 SQL/R analytics, archive source design docs"
 Distill `2026-02-13-content-protection-design.md`.
 
 **Files:**
+
 - Create: `docs/decisions/ADR-003-content-protection.md`
 - Read first: `docs/plans/2026-02-13-content-protection-design.md`
 
@@ -206,21 +223,26 @@ Distill `2026-02-13-content-protection-design.md`.
 
 ```markdown
 # ADR-003: Content Protection (Basic Auth)
+
 **Date:** 2026-02-13 | **Status:** Implemented | **Supersedes:** —
 
 ## Decision
+
 Portfolio is protected by HTTP Basic Auth via nginx. Credentials stored server-side.
 No client-side auth logic in the HTML/JS codebase.
 
 ## Why
+
 The site is not yet public. Basic auth is the simplest reliable gate for a static
 site on a VPS without requiring a login UI or session management.
 
 ## Rejected Alternatives
+
 - Client-side password check in JS — trivially bypassed, credentials visible in source
 - OAuth/SSO — massive overkill for a personal portfolio behind a temporary gate
 
 ## Where in Code
+
 - nginx config (server-side, not in this repo)
 - No auth logic in HTML/CSS/JS — the site assumes authenticated access
 ```
@@ -247,6 +269,7 @@ git commit -m "docs: add ADR-003 content protection, archive source design doc"
 Distill `2026-02-19-typography-overhaul-design.md`.
 
 **Files:**
+
 - Create: `docs/decisions/ADR-004-typography-system.md`
 - Read first: `docs/plans/2026-02-19-typography-overhaul-design.md`
 
@@ -254,23 +277,28 @@ Distill `2026-02-19-typography-overhaul-design.md`.
 
 ```markdown
 # ADR-004: Typography System
+
 **Date:** 2026-02-19 | **Status:** Implemented | **Supersedes:** —
 
 ## Decision
+
 Fluid typography using `clamp()` for all heading sizes. Two typefaces: Epilogue
 (headings, UI) and a system serif for body text in case studies. No font-size
 media query overrides anywhere.
 
 ## Why
+
 `clamp()` eliminates breakpoint-specific font rules and produces smoother scaling
 across all viewport sizes. Epilogue's geometric style suits the professional/technical
 positioning. System serif for body reduces font loading weight.
 
 ## Rejected Alternatives
+
 - Fixed breakpoint font sizes — more rules, more maintenance, abrupt size jumps
 - Variable font with weight axis — interesting but adds loading complexity for minimal gain
 
 ## Where in Code
+
 - `css/styles.css :root` — `--font-*` tokens (size scale, families, line-heights)
 - All `clamp()` values in the token block; never repeated inline
 ```
@@ -297,6 +325,7 @@ git commit -m "docs: add ADR-004 typography system, archive source design doc"
 Distill `2026-02-14-homepage-card-truncation-design.md`.
 
 **Files:**
+
 - Create: `docs/decisions/ADR-005-homepage-card-layout.md`
 - Read first: `docs/plans/2026-02-14-homepage-card-truncation-design.md`
 
@@ -304,21 +333,26 @@ Distill `2026-02-14-homepage-card-truncation-design.md`.
 
 ```markdown
 # ADR-005: Homepage Card Layout
+
 **Date:** 2026-02-14 | **Status:** Implemented | **Supersedes:** —
 
 ## Decision
+
 Homepage work cards use fixed-height description areas with CSS line-clamp for
 truncation. All 6 work cards maintain uniform height regardless of description length.
 
 ## Why
+
 Variable-height cards create visual imbalance in the grid. Line-clamp is the
 simplest CSS-only solution — no JS needed, degrades gracefully.
 
 ## Rejected Alternatives
+
 - JS-based truncation — unnecessary complexity for a pure layout problem
 - Manual description length caps — fragile, breaks when copy changes
 
 ## Where in Code
+
 - `index.html` — card markup with `.card-description` class
 - `css/styles.css` — `.card-description` line-clamp rules
 ```
@@ -345,6 +379,7 @@ git commit -m "docs: add ADR-005 homepage card layout, archive source design doc
 Two files need updating: global `~/.claude/CLAUDE.md` (session-start step) and project `CLAUDE.md` (docs section).
 
 **Files:**
+
 - Modify: `/Users/taylorstephens/.claude/CLAUDE.md`
 - Modify: `/Users/taylorstephens/Dev/_Lab/website-portfolio/CLAUDE.md`
 
@@ -364,6 +399,7 @@ Add before `## Common Tasks`:
 
 ```markdown
 ## Documentation
+
 - ADRs: `docs/decisions/` — permanent decision log, ~1 page each, numbered ADR-NNN
 - Active work: `docs/active/` — open items only; files >14 days old are stale, flag them
 - Archive: `docs/archive/` — executed plans, read-only reference
@@ -387,6 +423,7 @@ git commit -m "docs: add Documentation section to CLAUDE.md"
 ```bash
 ls /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/plans/
 ```
+
 Expected: only `2026-02-23-documentation-system-design.md` and `2026-02-23-documentation-system-implementation.md` (this plan and its design doc — keep both as a record of this migration).
 
 **Step 2: Verify full docs structure**
@@ -394,7 +431,9 @@ Expected: only `2026-02-23-documentation-system-design.md` and `2026-02-23-docum
 ```bash
 find /Users/taylorstephens/Dev/_Lab/website-portfolio/docs -name "*.md" | sort
 ```
+
 Expected output shape:
+
 ```
 docs/active/design-review-todos.md
 docs/active/portfolio-expansion-plan.md

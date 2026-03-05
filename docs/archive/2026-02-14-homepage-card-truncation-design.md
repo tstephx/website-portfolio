@@ -11,11 +11,12 @@ The 6 work case study cards on the homepage publicly display full Challenge/Acti
 **Approach A: Replace Action with curiosity-gap one-liner + CTA**
 
 Grounded in copywriting frameworks from the book library:
+
 - **StoryBrand**: "Write in Morse code" — very few words above the fold
 - **Complete Copywriter**: "Arouse, Withhold, Fulfill" — hint at the approach without revealing it
 - **4U's**: Useful, Ultra-specific, Unique, Urgent
 
-Each card keeps Challenge and Result untouched. The Action paragraph is replaced with a single sentence that creates a curiosity gap (names the *type* of work without revealing *how*), followed by a CTA link.
+Each card keeps Challenge and Result untouched. The Action paragraph is replaced with a single sentence that creates a curiosity gap (names the _type_ of work without revealing _how_), followed by a CTA link.
 
 ## Card Structure (After)
 
@@ -42,7 +43,9 @@ Note: Label changes from "Action" to "Approach" — sounds less like a homework 
 Single file change: `index.html` lines 62-107. Replace each `<p><strong>Action:</strong> ...</p>` with:
 
 ```html
-<p><strong>Approach:</strong> [one-liner] <a href="work/[path]">Read the full case study &rarr;</a></p>
+<p>
+  <strong>Approach:</strong> [one-liner] <a href="work/[path]">Read the full case study &rarr;</a>
+</p>
 ```
 
 No CSS changes needed — the CTA link inherits existing `a` styling.

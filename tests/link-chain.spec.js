@@ -58,7 +58,7 @@ for (const step of CHAIN) {
 
     // Click the link and verify destination loads (resolves relative href correctly)
     const [response] = await Promise.all([
-      page.waitForResponse(r => r.status() === 200 && r.url().includes('.html')),
+      page.waitForResponse((r) => r.status() === 200 && r.url().includes('.html')),
       nextLink.click(),
     ]);
     expect(response.status()).toBe(200);

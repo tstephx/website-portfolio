@@ -12,18 +12,18 @@
 
 **The type scale is deliberate and well-reasoned.** A constrained set of sizes, not random pixel values:
 
-| Size | Use | Notes |
-|------|-----|-------|
-| 0.625rem (10px) | `.scope-label` | Metadata micro-type |
-| 0.6875rem (11px) | `.tech-pill`, table headers, `.metric-label` | System labels |
-| 0.75rem (12px) | Footer, `.project-card strong` | De-emphasized text |
-| 0.8125rem (13px) | Nav, `.back-nav`, h3 labels, `.cs-tagline` context | UI chrome |
-| 0.875rem (14px) | `.data-table`, `.bar-comparison-label`, `.scope-value` | Data display |
-| 0.9375rem (15px) | Body text in case studies, project cards, skills | Primary reading |
-| 1rem (16px) | Desktop body, `#about` text | Upgraded reading |
-| 1.0625rem (17px) | `#about` lead paragraph, `.cs-tagline` | Emphasis |
-| 1.125rem (18px) | `.summary`, `.formula`, `.insight-callout` | Editorial voice |
-| 1.25rem (20px) | `.project-card h3`, desktop `.summary` | Card titles |
+| Size             | Use                                                    | Notes               |
+| ---------------- | ------------------------------------------------------ | ------------------- |
+| 0.625rem (10px)  | `.scope-label`                                         | Metadata micro-type |
+| 0.6875rem (11px) | `.tech-pill`, table headers, `.metric-label`           | System labels       |
+| 0.75rem (12px)   | Footer, `.project-card strong`                         | De-emphasized text  |
+| 0.8125rem (13px) | Nav, `.back-nav`, h3 labels, `.cs-tagline` context     | UI chrome           |
+| 0.875rem (14px)  | `.data-table`, `.bar-comparison-label`, `.scope-value` | Data display        |
+| 0.9375rem (15px) | Body text in case studies, project cards, skills       | Primary reading     |
+| 1rem (16px)      | Desktop body, `#about` text                            | Upgraded reading    |
+| 1.0625rem (17px) | `#about` lead paragraph, `.cs-tagline`                 | Emphasis            |
+| 1.125rem (18px)  | `.summary`, `.formula`, `.insight-callout`             | Editorial voice     |
+| 1.25rem (20px)   | `.project-card h3`, desktop `.summary`                 | Card titles         |
 
 This is a near-perfect minor third type scale with intentional deviations. Using 15px as default body rather than 16px is a mature choice; it creates more air between body and heading tiers.
 
@@ -55,7 +55,7 @@ This is typographic craftsmanship that most developers skip entirely.
 
 The comparison cards specifically suffer. "REJECTED: BINARY APPROACH" in tiny uppercase muted type looks like a label for something below it, not a title for the content beside it. These need a different treatment — perhaps the project card's Lora style, or at minimum a slightly larger/darker variant of the label pattern.
 
-**The tagline uses `×` (multiplication sign) as a separator.** *"Product × Operations × Program."* The `×` character renders differently across systems. On macOS it looks clean; on Windows with certain font stacks it can look like a lowercase "x" or misalign vertically. Consider `·` (middle dot, `&middot;`) or `|` for guaranteed cross-platform consistency, or test on Windows/Chrome.
+**The tagline uses `×` (multiplication sign) as a separator.** _"Product × Operations × Program."_ The `×` character renders differently across systems. On macOS it looks clean; on Windows with certain font stacks it can look like a lowercase "x" or misalign vertically. Consider `·` (middle dot, `&middot;`) or `|` for guaranteed cross-platform consistency, or test on Windows/Chrome.
 
 **No `font-feature-settings` for Inter.** Inter supports `tnum` for tabular numbers (which should be used in `.metric-number`, `.stage-value`, and data tables), and several stylistic sets. At minimum, add:
 
@@ -75,13 +75,13 @@ to any element displaying numbers in columns — without it, proportional figure
 
 **The neutral palette is sophisticated.** Five gray tones with clear roles:
 
-| Token | Hex | Role |
-|-------|-----|------|
+| Token             | Hex       | Role                                   |
+| ----------------- | --------- | -------------------------------------- |
 | `--color-heading` | `#1a1a1a` | Headings, CTA button, highest contrast |
-| `--color-text` | `#3d3d3d` | Body text |
-| `--color-muted` | `#6b6b6b` | De-emphasized labels, h3, metadata |
-| `--color-light` | `#a0a0a0` | Lightest text (footer, scope labels) |
-| `--color-border` | `#e5e5e5` | Structural dividers |
+| `--color-text`    | `#3d3d3d` | Body text                              |
+| `--color-muted`   | `#6b6b6b` | De-emphasized labels, h3, metadata     |
+| `--color-light`   | `#a0a0a0` | Lightest text (footer, scope labels)   |
+| `--color-border`  | `#e5e5e5` | Structural dividers                    |
 
 Each step is optically distinct — not just numerically different. The jump from `#6b6b6b` to `#a0a0a0` is the widest, correctly placing the biggest contrast gap between "readable muted" and "barely-there light."
 
@@ -163,8 +163,8 @@ However, the border-left treatment means the "Rejected" card (gray border) and "
 
 ```html
 <div class="comparison">
-    <div class="comparison-before link-card">...</div>
-    <div class="comparison-after link-card">...</div>
+  <div class="comparison-before link-card">...</div>
+  <div class="comparison-after link-card">...</div>
 </div>
 ```
 
@@ -193,8 +193,8 @@ This repurposes a "before/after" component as a "two-column link grid." The `.li
 ```css
 a:focus-visible,
 .cta-button:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
 ```
 
@@ -206,14 +206,14 @@ This gives keyboard navigation the same polish as mouse navigation.
 
 ## Priority Design Fixes
 
-| Priority | Issue | Category | Impact |
-|----------|-------|----------|--------|
-| 1 | Darken `--color-light` from `#a0a0a0` to `#767676`+ | Color | WCAG AA compliance failure |
-| 2 | Add `font-feature-settings: 'tnum' 1` to numeric elements | Typography | Tabular number alignment in metrics/tables |
-| 3 | Differentiate h3 treatments for comparison card titles | Typography | Hierarchy clarity |
-| 4 | Reduce hero height to `60vh` or content-driven | Layout | Content visibility above fold |
-| 5 | Scale `.metric-number` responsively | Components | Visual impact at all viewports |
-| 6 | Add `:focus-visible` states | Interaction | Keyboard navigation polish |
-| 7 | Distinguish table `.highlight` semantics | Components | Row background for chosen vs text color for labels |
-| 8 | Standardize `border-radius` to `4px` | Components | Visual consistency |
-| 9 | Remove dead `.bar-fill` transition or implement scroll animation | Interaction | Code cleanliness |
+| Priority | Issue                                                            | Category    | Impact                                             |
+| -------- | ---------------------------------------------------------------- | ----------- | -------------------------------------------------- |
+| 1        | Darken `--color-light` from `#a0a0a0` to `#767676`+              | Color       | WCAG AA compliance failure                         |
+| 2        | Add `font-feature-settings: 'tnum' 1` to numeric elements        | Typography  | Tabular number alignment in metrics/tables         |
+| 3        | Differentiate h3 treatments for comparison card titles           | Typography  | Hierarchy clarity                                  |
+| 4        | Reduce hero height to `60vh` or content-driven                   | Layout      | Content visibility above fold                      |
+| 5        | Scale `.metric-number` responsively                              | Components  | Visual impact at all viewports                     |
+| 6        | Add `:focus-visible` states                                      | Interaction | Keyboard navigation polish                         |
+| 7        | Distinguish table `.highlight` semantics                         | Components  | Row background for chosen vs text color for labels |
+| 8        | Standardize `border-radius` to `4px`                             | Components  | Visual consistency                                 |
+| 9        | Remove dead `.bar-fill` transition or implement scroll animation | Interaction | Code cleanliness                                   |

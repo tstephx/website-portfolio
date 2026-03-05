@@ -1,7 +1,8 @@
 <!-- project: website-portfolio -->
+
 # SQL/R Portfolio Integration Design
 
-*Design for integrating Amazon SQL queries and R analytics scripts into the MCP portfolio server, portfolio website, and LinkedIn content pipeline.*
+_Design for integrating Amazon SQL queries and R analytics scripts into the MCP portfolio server, portfolio website, and LinkedIn content pipeline._
 
 ---
 
@@ -37,10 +38,10 @@ The actual `.sql`, `.R`, or `.txt` file, preserved exactly. This is the "show-do
 ```yaml
 ---
 case_study: contract-transfer
-business_problem: "Tracking 209 transfer candidates across 689 attributes"
+business_problem: 'Tracking 209 transfer candidates across 689 attributes'
 key_techniques: [CTE, ROW_NUMBER, window_functions, multi-schema_join]
-result: "Replaced scattered spreadsheets with real-time pipeline visibility"
-date_range: "2023-2025"
+result: 'Replaced scattered spreadsheets with real-time pipeline visibility'
+date_range: '2023-2025'
 ---
 ```
 
@@ -49,13 +50,15 @@ This keeps evidence self-documenting. The MCP server can parse frontmatter for t
 #### Layer 2: Summary (curated narrative, new markdown per cluster)
 
 A 200-500 word narrative per evidence cluster that answers:
+
 - What business problem did this solve?
 - What techniques did I use?
 - What was the result?
 
 Written in first person, story-first. References the raw file(s). This is the "enlightenment" layer.
 
-**Writing standards for summaries** (per *Writing That Works*):
+**Writing standards for summaries** (per _Writing That Works_):
+
 - Lead with the result/conclusion, then explain how you got there. Never bury the point.
 - Be concrete, not abstract. "Reduced cycle time from 17 weeks to 2 weeks" not "significantly improved efficiency."
 - Cut relentlessly. First editing pass asks only: "What can I get rid of?"
@@ -88,12 +91,12 @@ Each of the 4 existing case study pages gets a new **"Data & Analysis"** section
 
 #### Evidence-to-Case-Study Mapping
 
-| Case Study | SQL Evidence | R Evidence |
-|---|---|---|
-| `contract-transfer.html` | CT Transfer Tracker, CT Case Tracker, CT WBR Summary, Defect Analysis queries (v1-v3) | CT.Data scripts (7 files: before/after KPI, correlation, hit percentage, survivorship, performance), Model Tuning (Correlation write-up, DLA logistic regression) |
-| `pinnacle-scoring.html` | Pinnacle.Query.1, Pinnacle Active SQL | tier rankings R, Pinnacle projected R, DAX analysis |
-| `dsp-application.html` | RFI.AM.Module, Acq.AM.Console.Module, Application Queries (Notion), Time to Completion (Notion) | Application R EXIT |
-| `pinnacle-automation.html` | Quality_BR_Merge SQL, QUALITY Whole Code (Notion), SLS Performance (Notion) | station_distance_analysis R, SLS_TT modeling |
+| Case Study                 | SQL Evidence                                                                                    | R Evidence                                                                                                                                                        |
+| -------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `contract-transfer.html`   | CT Transfer Tracker, CT Case Tracker, CT WBR Summary, Defect Analysis queries (v1-v3)           | CT.Data scripts (7 files: before/after KPI, correlation, hit percentage, survivorship, performance), Model Tuning (Correlation write-up, DLA logistic regression) |
+| `pinnacle-scoring.html`    | Pinnacle.Query.1, Pinnacle Active SQL                                                           | tier rankings R, Pinnacle projected R, DAX analysis                                                                                                               |
+| `dsp-application.html`     | RFI.AM.Module, Acq.AM.Console.Module, Application Queries (Notion), Time to Completion (Notion) | Application R EXIT                                                                                                                                                |
+| `pinnacle-automation.html` | Quality_BR_Merge SQL, QUALITY Whole Code (Notion), SLS Performance (Notion)                     | station_distance_analysis R, SLS_TT modeling                                                                                                                      |
 
 #### Section Template (consistent across all 4 pages)
 
@@ -102,12 +105,12 @@ Each "Data & Analysis" section follows the same structure:
 1. **Narrative intro** (2-3 sentences from the Summary layer) - What problem this data infrastructure solved, why I built it myself. Lead with the result, then explain.
 2. **Technique callout pills** (reuses existing `.tech-pill` CSS component) - `CTE`, `Window Functions`, `ROW_NUMBER Deduplication`, `Logistic Regression`, etc.
 3. **Annotated code snippet** (1 key query, syntax-highlighted with Prism.js or similar, inline comments explaining business logic) - The most impressive/representative query from the cluster
-4. **Interpretation paragraph** - What the data revealed and what business decision it drove. Per *Exploratory Data Analysis* (de Castro): "Never show a chart or query result without interpretation. The interpretation demonstrates analytical thinking, not the code itself."
+4. **Interpretation paragraph** - What the data revealed and what business decision it drove. Per _Exploratory Data Analysis_ (de Castro): "Never show a chart or query result without interpretation. The interpretation demonstrates analytical thinking, not the code itself."
 5. **Expandable "Full Query" toggle** (HTML `<details>/<summary>`) - For visitors who want the complete Evidence layer without cluttering the page
 
 This keeps pages scannable (curiosity) while offering depth (enlightenment) for those who want it.
 
-#### Data Storytelling Principles (per *Exploratory Data Analysis*)
+#### Data Storytelling Principles (per _Exploratory Data Analysis_)
 
 Each visualization or code snippet follows this flow:
 **Question being answered -> Method used -> Visual/Code -> Interpretation -> Business implication**
@@ -193,6 +196,7 @@ Take one SQL pattern (CTE deduplication, window functions for ranking), explain 
 Logistic regression for capacity planning, survivorship analysis, correlation modeling. The narrative: you don't wait for resources when your program needs answers. You build.
 
 **One-off thought pieces**
+
 - "689 attributes taught me more about my program than any dashboard"
 - "Why I stopped asking for reports and started writing queries"
 - "The SQL query that saved $13M in exit costs"
@@ -201,13 +205,14 @@ Logistic regression for capacity planning, survivorship analysis, correlation mo
 
 Per HBR storytelling chapter + StoryBrand: Never lead with "look at my SQL." Always lead with the business problem, show the insight, then reveal you built it yourself. The code is the plot twist, not the headline.
 
-#### LinkedIn Post Formula (per *Copywriter's Handbook* + *Complete Copywriter* + *LinkedIn for Personal Branding*)
+#### LinkedIn Post Formula (per _Copywriter's Handbook_ + _Complete Copywriter_ + _LinkedIn for Personal Branding_)
 
 **The 4U's for hooks** (priority order): Useful, Ultra-specific, Unique, Urgent. Number headlines outperform all other types (36% preference).
 
 **PAS structure:** Problem (1-2 sentences naming a recognized pain) -> Agitate (2-3 sentences making it emotionally real - describe, don't emote) -> Solution (your specific approach with a concrete detail).
 
 **Post template (~1300 chars):**
+
 ```
 [HOOK: Number + ultra-specific benefit. Create information gap.]
 [PROBLEM: 1-2 sentences naming a recognized pain.]
@@ -219,6 +224,7 @@ Per HBR storytelling chapter + StoryBrand: Never lead with "look at my SQL." Alw
 ```
 
 **Tactical rules:**
+
 - 80% engaging with others, 20% own posts
 - Keep 80% informational/helpful, <20% self-promotional
 - Put links in comments (algorithm penalizes external links)
@@ -232,9 +238,10 @@ Per HBR storytelling chapter + StoryBrand: Never lead with "look at my SQL." Alw
 
 > "I'm a PM who doesn't just manage data scientists - I AM the data scientist when needed. When Amazon's DSP programs needed analytics infrastructure and there was no data team available, I built it myself: production Redshift pipelines, R statistical models, logistic regression for capacity planning. This isn't a recent hobby - it's years of deliberate practice in data analysis that directly drove $25M+ in business outcomes."
 
-#### Deliberate Practice Framing (per *The Professional* - Frost)
+#### Deliberate Practice Framing (per _The Professional_ - Frost)
 
 **Critical language shift:** Never say "self-taught." Say "deliberate practice." Frost connects deliberate practice (Ericsson's research) to surgeons, chess masters, elite athletes. The four features:
+
 1. Clearly defined goals (specific SQL/R capabilities needed for each program)
 2. Actual deliberateness (concentrated effort, not passive exposure)
 3. Informative feedback (tested against real business outcomes)
@@ -246,11 +253,11 @@ Per HBR storytelling chapter + StoryBrand: Never lead with "look at my SQL." Alw
 
 #### Per-Audience Framing
 
-| Audience | Lead With | Show | Prove With |
-|---|---|---|---|
-| Hiring managers | Business outcomes + metrics | Technical depth as differentiator | STAR stories with SQL/R proof points |
-| Portfolio visitors | Visual case study narrative | Annotated code snippets | Expandable full queries |
-| LinkedIn network | Contrarian PM-who-codes angle | Business insight from data | Code as the plot twist |
+| Audience           | Lead With                     | Show                              | Prove With                           |
+| ------------------ | ----------------------------- | --------------------------------- | ------------------------------------ |
+| Hiring managers    | Business outcomes + metrics   | Technical depth as differentiator | STAR stories with SQL/R proof points |
+| Portfolio visitors | Visual case study narrative   | Annotated code snippets           | Expandable full queries              |
+| LinkedIn network   | Contrarian PM-who-codes angle | Business insight from data        | Code as the plot twist               |
 
 ---
 
@@ -259,6 +266,7 @@ Per HBR storytelling chapter + StoryBrand: Never lead with "look at my SQL." Alw
 This design is grounded in research from 10 books in Taylor's library (~120K words of source material):
 
 ### Round 1: Storytelling, Branding, Authority
+
 1. **HBR Guide to Your Job Search** (Ch5: Storytelling) - Emotion drives hiring; blend statistics into narrative; always begin with audience in mind
 2. **Reverse the Search** (Ch8: Irresistible Candidate) - Story Toolbox + CAR Method; 63% remember stories vs 5% stats; Show-Don't-Tell is the most persuasive approach
 3. **LinkedIn for Personal Branding** (Ch3: Be Found) - Keywords + SEO for discoverability; "industry language" matters; profile should trigger "I need to meet this person"
@@ -267,6 +275,7 @@ This design is grounded in research from 10 books in Taylor's library (~120K wor
 6. **The Professional** (Ch11: Success) - Five Ps of Success; relationships over transactions; continuous learning as differentiator
 
 ### Round 2: Writing, Visualization, Practice, Copywriting
+
 7. **Writing That Works** (Ch1, 12, 13) - Lead with what matters; cut relentlessly; be concrete; self-editing checklist; formatting for scannability
 8. **Exploratory Data Analysis** (Ch2, 7, 13) - Data storytelling design process; interpretation imperative; dashboard layout; color principles; question->method->viz->interpretation->implication flow
 9. **The Professional** (Ch7, 8, 10, 11) - Deliberate practice (Ericsson); 70:20:10 model; Prime Capabilities; growth mindset; AI-proof positioning
@@ -302,5 +311,5 @@ Full research synthesis saved at: `~/.claude/knowledge/technical-portfolio-story
 
 ---
 
-*Design created: 2026-02-12*
-*Brainstorming session grounded in book library research from 10 sources (~120K words)*
+_Design created: 2026-02-12_
+_Brainstorming session grounded in book library research from 10 sources (~120K words)_

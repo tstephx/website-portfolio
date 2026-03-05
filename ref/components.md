@@ -1,4 +1,5 @@
 # Case Study Components Reference
+
 **Source:** `css/case-study.css` | **Last verified:** 2026-03-04
 
 Reusable visual components for case study pages (`work/*/` and `projects/`). All components use CSS design tokens — no hardcoded colors.
@@ -7,22 +8,23 @@ Reusable visual components for case study pages (`work/*/` and `projects/`). All
 
 ## Page Structure
 
-| Class | Purpose |
-|---|---|
-| `.case-study` | Page wrapper — sets typography, max-width |
-| `.back-nav` | Top navigation link back to homepage |
-| `.cs-header` | Hero section: title, tagline, tech pills |
-| `.cs-tagline` | Subtitle/summary line under h1 |
-| `.tech-pills` / `.tech-pill` | Tag chips for tools/methods used |
-| `.cs-section` | Content section with styled h2/h3/p/ul |
-| `.cs-cta` | Bottom call-to-action block with button |
-| `.reading-progress` | Thin progress bar at top of page (requires `js/progress-bar.js`) |
+| Class                        | Purpose                                                          |
+| ---------------------------- | ---------------------------------------------------------------- |
+| `.case-study`                | Page wrapper — sets typography, max-width                        |
+| `.back-nav`                  | Top navigation link back to homepage                             |
+| `.cs-header`                 | Hero section: title, tagline, tech pills                         |
+| `.cs-tagline`                | Subtitle/summary line under h1                                   |
+| `.tech-pills` / `.tech-pill` | Tag chips for tools/methods used                                 |
+| `.cs-section`                | Content section with styled h2/h3/p/ul                           |
+| `.cs-cta`                    | Bottom call-to-action block with button                          |
+| `.reading-progress`          | Thin progress bar at top of page (requires `js/progress-bar.js`) |
 
 ---
 
 ## Data Display Components
 
 ### Metrics Row
+
 ```html
 <div class="metrics-row">
   <div class="metric-card">
@@ -34,6 +36,7 @@ Reusable visual components for case study pages (`work/*/` and `projects/`). All
 ```
 
 ### Bar Comparison
+
 ```html
 <div class="bar-comparison">
   <div class="bar-comparison-item">
@@ -45,9 +48,11 @@ Reusable visual components for case study pages (`work/*/` and `projects/`). All
   </div>
 </div>
 ```
+
 Add `.muted` to `.bar-fill` for secondary/gray bars.
 
 ### Funnel Chart
+
 ```html
 <div class="funnel-chart">
   <div class="funnel-stage">
@@ -57,9 +62,11 @@ Add `.muted` to `.bar-fill` for secondary/gray bars.
   </div>
 </div>
 ```
+
 Add `.chart-label` div below funnel for axis label.
 
 ### Vote Comparison
+
 ```html
 <div class="vote-comparison">
   <div class="vote-scenario scenario-old">
@@ -73,21 +80,34 @@ Add `.chart-label` div below funnel for axis label.
 ```
 
 ### Data Table
+
 ```html
 <div class="data-table-wrapper">
   <table class="data-table">
-    <caption>Optional caption</caption>
-    <thead><tr><th>Col</th></tr></thead>
+    <caption>
+      Optional caption
+    </caption>
+    <thead>
+      <tr>
+        <th>Col</th>
+      </tr>
+    </thead>
     <tbody>
-      <tr><td>Value</td></tr>
-      <tr class="chosen"><td>Highlighted row</td></tr>
+      <tr>
+        <td>Value</td>
+      </tr>
+      <tr class="chosen">
+        <td>Highlighted row</td>
+      </tr>
     </tbody>
   </table>
 </div>
 ```
+
 Cell modifiers: `.highlight`, `.old-value`, `.new-value`
 
 ### Formula Box
+
 ```html
 <div class="formula-box">
   <div class="formula-label">Formula Name</div>
@@ -101,6 +121,7 @@ Cell modifiers: `.highlight`, `.old-value`, `.new-value`
 ## Comparison Components
 
 ### Before/After Comparison
+
 ```html
 <div class="comparison">
   <div class="comparison-before">
@@ -113,6 +134,7 @@ Cell modifiers: `.highlight`, `.old-value`, `.new-value`
   </div>
 </div>
 ```
+
 `.comparison-label` renders in DM Mono caps. Do not use `<h3>` inside comparison blocks.
 
 ---
@@ -120,14 +142,17 @@ Cell modifiers: `.highlight`, `.old-value`, `.new-value`
 ## Callout Components
 
 ### Insight Callout
+
 ```html
 <div class="insight-callout">
   <p><strong>Key insight:</strong> Supporting detail.</p>
 </div>
 ```
+
 Used to frame a results section before the metrics-row.
 
 ### Scope Callout
+
 ```html
 <div class="scope-callout">
   <div class="scope-item">
@@ -140,9 +165,11 @@ Used to frame a results section before the metrics-row.
   </div>
 </div>
 ```
+
 Do not use "Design Strategist" in My Role — use actual PM title.
 
 ### Stat Highlight (inside insight-callout)
+
 ```html
 <div class="stat-highlight">
   <span class="stat-number">92</span>
@@ -156,6 +183,7 @@ Do not use "Design Strategist" in My Role — use actual PM title.
 ## Layout Components
 
 ### Process Timeline
+
 ```html
 <div class="process-timeline">
   <div class="timeline-item completed">
@@ -167,35 +195,39 @@ Do not use "Design Strategist" in My Role — use actual PM title.
 ```
 
 ### Chart Container
+
 ```html
 <div class="chart-container">
   <canvas id="myChart"></canvas>
 </div>
 <div class="chart-label">X-axis label</div>
 ```
+
 Use `.chart-pair` to place two charts side by side.
 
 ### Figure
+
 ```html
 <figure class="cs-figure">
-  <img src="..." alt="...">
+  <img src="..." alt="..." />
   <figcaption>Caption</figcaption>
 </figure>
 ```
+
 Use `.cs-figure-wide` for full-width figures, `.cs-figure-pair` for side-by-side.
 
 ### Mermaid Diagram
+
 ```html
 <div class="mermaid-container">
-  <div class="mermaid">
-    flowchart LR
-      A --> B
-  </div>
+  <div class="mermaid">flowchart LR A --> B</div>
 </div>
 ```
+
 Config in `js/mermaid-init.js`. Use `flowchart LR/TD` or `stateDiagram-v2`.
 
 ### Lessons List
+
 ```html
 <ul class="lessons-list">
   <li>Lesson item</li>
@@ -205,6 +237,7 @@ Config in `js/mermaid-init.js`. Use `flowchart LR/TD` or `stateDiagram-v2`.
 ---
 
 ## Notes
+
 - Every new case study page must include `.reading-progress` as first `<body>` child
 - Charts must use token-driven JS pattern (see CLAUDE.md or `ref/chartjs-pattern.md`)
 - Avoid h2 phrasing in first person — reframe as outcomes, not narrator statements

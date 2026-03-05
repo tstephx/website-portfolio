@@ -10,14 +10,14 @@
 
 ## Access Model
 
-| Path | Access Level | Auth | Search Indexed |
-|------|-------------|------|----------------|
-| `/` (homepage) | Public | None | Yes |
-| `/resume.html` | Public | None | No (noindex) |
-| `/work/*` | **Protected** | NGINX basic auth | No |
-| `/projects/*` | Public | None | Yes |
-| `/css/`, `/js/`, `/images/` | Public | None | N/A |
-| `/401.html`, `/401-thanks.html` | Public | None | No (noindex) |
+| Path                            | Access Level  | Auth             | Search Indexed |
+| ------------------------------- | ------------- | ---------------- | -------------- |
+| `/` (homepage)                  | Public        | None             | Yes            |
+| `/resume.html`                  | Public        | None             | No (noindex)   |
+| `/work/*`                       | **Protected** | NGINX basic auth | No             |
+| `/projects/*`                   | Public        | None             | Yes            |
+| `/css/`, `/js/`, `/images/`     | Public        | None             | N/A            |
+| `/401.html`, `/401-thanks.html` | Public        | None             | No (noindex)   |
 
 ## Credential Workflow
 
@@ -68,7 +68,7 @@ Allow: /
 ### Meta tag in every `/work/*.html` `<head>`
 
 ```html
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="noindex, nofollow" />
 ```
 
 ### X-Robots-Tag header
@@ -94,13 +94,13 @@ A styled mini landing page, not a server error. Matches the portfolio's design s
 
 ```html
 <form action="https://formsubmit.co/hi@taylor.email" method="POST">
-    <input type="text" name="name" placeholder="Your name" required>
-    <input type="email" name="email" placeholder="Work email" required>
-    <input type="hidden" name="_subject" value="Portfolio Access Request">
-    <input type="hidden" name="_next" value="https://taylorstephens.dev/401-thanks.html">
-    <input type="hidden" name="_honey" style="display:none">
-    <input type="hidden" name="_captcha" value="true">
-    <button type="submit">Request Access</button>
+  <input type="text" name="name" placeholder="Your name" required />
+  <input type="email" name="email" placeholder="Work email" required />
+  <input type="hidden" name="_subject" value="Portfolio Access Request" />
+  <input type="hidden" name="_next" value="https://taylorstephens.dev/401-thanks.html" />
+  <input type="hidden" name="_honey" style="display:none" />
+  <input type="hidden" name="_captcha" value="true" />
+  <button type="submit">Request Access</button>
 </form>
 ```
 
@@ -146,15 +146,15 @@ This sets expectations **before** visitors click a case study link and encounter
 
 ## Files Changed
 
-| File | Action | Description |
-|------|--------|-------------|
-| `401.html` | **Create** | Custom auth error page with access request form |
-| `401-thanks.html` | **Create** | Form submission confirmation page |
-| `robots.txt` | **Create** | Search engine crawl directives |
-| `index.html` | **Modify** | Add CTA note near work case study cards |
-| `work/*/*.html` (6 files) | **Modify** | Add `<meta name="robots" content="noindex, nofollow">` |
-| Whatbox `nginx.conf` | **Modify** | Add `/work/` auth block, error_page directive, X-Robots-Tag |
-| Whatbox `htpasswd.conf` | **Modify** | Add `portfolio` user entry |
+| File                      | Action     | Description                                                 |
+| ------------------------- | ---------- | ----------------------------------------------------------- |
+| `401.html`                | **Create** | Custom auth error page with access request form             |
+| `401-thanks.html`         | **Create** | Form submission confirmation page                           |
+| `robots.txt`              | **Create** | Search engine crawl directives                              |
+| `index.html`              | **Modify** | Add CTA note near work case study cards                     |
+| `work/*/*.html` (6 files) | **Modify** | Add `<meta name="robots" content="noindex, nofollow">`      |
+| Whatbox `nginx.conf`      | **Modify** | Add `/work/` auth block, error_page directive, X-Robots-Tag |
+| Whatbox `htpasswd.conf`   | **Modify** | Add `portfolio` user entry                                  |
 
 ---
 

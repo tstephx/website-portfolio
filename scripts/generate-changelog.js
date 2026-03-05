@@ -13,11 +13,10 @@ const ROOT = path.resolve(__dirname, '..');
 const OUTPUT = path.join(ROOT, 'CHANGELOG.md');
 
 // Get all commits: hash | date | subject — uses execFileSync (no shell injection risk)
-const raw = execFileSync(
-  'git',
-  ['log', '--pretty=format:%H|%ad|%s', '--date=short'],
-  { cwd: ROOT, encoding: 'utf8' }
-).trim();
+const raw = execFileSync('git', ['log', '--pretty=format:%H|%ad|%s', '--date=short'], {
+  cwd: ROOT,
+  encoding: 'utf8',
+}).trim();
 
 if (!raw) {
   console.error('No git history found.');
@@ -25,9 +24,9 @@ if (!raw) {
 }
 
 const TYPES = {
-  feat:  '### Features',
-  fix:   '### Bug Fixes',
-  docs:  '### Documentation',
+  feat: '### Features',
+  fix: '### Bug Fixes',
+  docs: '### Documentation',
   style: '### Style',
   chore: '### Chores / Maintenance',
 };
@@ -90,4 +89,6 @@ for (const month of sortedMonths) {
 }
 
 fs.writeFileSync(OUTPUT, lines.join('\n'), 'utf8');
-console.log(`✓ CHANGELOG.md written (${sortedMonths.length} month(s), ${raw.split('\n').length} commits)`);
+console.log(
+  `✓ CHANGELOG.md written (${sortedMonths.length} month(s), ${raw.split('\n').length} commits)`
+);

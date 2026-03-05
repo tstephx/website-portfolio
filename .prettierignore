@@ -1,0 +1,8 @@
+node_modules/
+tests/report/
+tests/snapshots/
+playwright-report/
+test-results/
+CHANGELOG.md
+# Malformed HTML that Prettier cannot parse
+work/charge-back-processing/chargeback-parsing.html

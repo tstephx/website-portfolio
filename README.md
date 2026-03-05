@@ -22,14 +22,14 @@ js/progress-bar.js          # Reading progress bar (JS fallback for Safari/Firef
 
 ## Case Studies
 
-| Page | Topic | Key Visual |
-|---|---|---|
-| contract-transfer | Process redesign, 17x volume | Before/after capability bars |
-| pinnacle-scoring | Scoring methodology, 198 interviews | Vote comparison diagrams |
-| dsp-application | Competitive intelligence, 18 countries | Essay time dominance chart |
-| pinnacle-automation | SQL pipeline, 8 root causes | Funnel chart |
-| pinnacle-distance | Geospatial analysis, 130K+ pairs | Coverage curve + fill rate |
-| chargeback-parsing | R text mining, 92% time reduction | Email transformation + scaling |
+| Page                | Topic                                  | Key Visual                     |
+| ------------------- | -------------------------------------- | ------------------------------ |
+| contract-transfer   | Process redesign, 17x volume           | Before/after capability bars   |
+| pinnacle-scoring    | Scoring methodology, 198 interviews    | Vote comparison diagrams       |
+| dsp-application     | Competitive intelligence, 18 countries | Essay time dominance chart     |
+| pinnacle-automation | SQL pipeline, 8 root causes            | Funnel chart                   |
+| pinnacle-distance   | Geospatial analysis, 130K+ pairs       | Coverage curve + fill rate     |
+| chargeback-parsing  | R text mining, 92% time reduction      | Email transformation + scaling |
 
 ## Run Locally
 

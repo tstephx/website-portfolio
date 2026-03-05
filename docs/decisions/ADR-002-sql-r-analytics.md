@@ -1,4 +1,5 @@
 # ADR-002: SQL/R Analytics — "Under the Hood" Sections
+
 **Date:** 2026-02-14 | **Status:** Implemented (Phase 1) | **Supersedes:** 2026-02-12-sql-r-portfolio-integration-design.md
 
 ## Decision
@@ -19,6 +20,7 @@ pipeline. That scope was correct strategically but too large to ship in one pass
 
 The Feb 14 decision scoped to two pages where the technical evidence was strongest
 and most self-contained:
+
 - **pinnacle-automation.html** — 3 SQL snippets from a 6-step Redshift pipeline
   (LAG window function for consecutive tier validation, Haversine distance via
   CROSS JOIN, two-tier fallback via NOT EXISTS)

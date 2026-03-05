@@ -6,21 +6,21 @@ const { test, expect } = require('@playwright/test');
  */
 
 test('Global stylesheet loads', async ({ page }) => {
-  const cssRequest = page.waitForResponse(r => r.url().includes('styles.css'));
+  const cssRequest = page.waitForResponse((r) => r.url().includes('styles.css'));
   await page.goto('/');
   const resp = await cssRequest;
   expect(resp.status()).toBe(200);
 });
 
 test('Case study stylesheet loads on work pages', async ({ page }) => {
-  const cssRequest = page.waitForResponse(r => r.url().includes('case-study.css'));
+  const cssRequest = page.waitForResponse((r) => r.url().includes('case-study.css'));
   await page.goto('/work/contract-transfer/contract-transfer.html');
   const resp = await cssRequest;
   expect(resp.status()).toBe(200);
 });
 
 test('Progress bar JS loads on case study pages', async ({ page }) => {
-  const jsRequest = page.waitForResponse(r => r.url().includes('progress-bar.js'));
+  const jsRequest = page.waitForResponse((r) => r.url().includes('progress-bar.js'));
   await page.goto('/work/contract-transfer/contract-transfer.html');
   const resp = await jsRequest;
   expect(resp.status()).toBe(200);

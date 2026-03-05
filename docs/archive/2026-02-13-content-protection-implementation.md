@@ -15,6 +15,7 @@
 ### Task 1: Create robots.txt
 
 **Files:**
+
 - Create: `robots.txt`
 
 **Step 1: Create the file**
@@ -45,6 +46,7 @@ git commit -m "feat: add robots.txt to block /work/ from crawlers"
 ### Task 2: Add noindex meta tag to all 6 work HTML files
 
 **Files:**
+
 - Modify: `work/contract-transfer/contract-transfer.html`
 - Modify: `work/bpr-scoring-pinnacle/pinnacle-scoring.html`
 - Modify: `work/cfa-dsp-application/dsp-application.html`
@@ -57,7 +59,7 @@ git commit -m "feat: add robots.txt to block /work/ from crawlers"
 In each file's `<head>`, add this line immediately after the `<meta name="viewport" ...>` tag (line 5):
 
 ```html
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="noindex, nofollow" />
 ```
 
 All 6 files have the same `<head>` structure. The insertion point is between line 5 (`<meta name="viewport"...>`) and line 6 (`<meta name="description"...>`).
@@ -89,6 +91,7 @@ git commit -m "feat: add noindex meta tag to all work case study pages"
 ### Task 3: Create custom 401 error page (401.html)
 
 **Files:**
+
 - Create: `401.html`
 
 **Step 1: Create the file**
@@ -106,17 +109,18 @@ Form implementation:
 
 ```html
 <form action="https://formsubmit.co/hi@taylor.email" method="POST">
-    <input type="text" name="name" placeholder="Your name" required>
-    <input type="email" name="email" placeholder="Work email" required>
-    <input type="hidden" name="_subject" value="Portfolio Access Request">
-    <input type="hidden" name="_next" value="https://taylorstephens.dev/401-thanks.html">
-    <input type="hidden" name="_honey" style="display:none">
-    <input type="hidden" name="_captcha" value="true">
-    <button type="submit">Request Access</button>
+  <input type="text" name="name" placeholder="Your name" required />
+  <input type="email" name="email" placeholder="Work email" required />
+  <input type="hidden" name="_subject" value="Portfolio Access Request" />
+  <input type="hidden" name="_next" value="https://taylorstephens.dev/401-thanks.html" />
+  <input type="hidden" name="_honey" style="display:none" />
+  <input type="hidden" name="_captcha" value="true" />
+  <button type="submit">Request Access</button>
 </form>
 ```
 
 Key details:
+
 - `_honey` is a hidden honeypot field for spam prevention
 - `_captcha` enables Formsubmit's built-in CAPTCHA
 - `_next` redirects to the thank-you page after submission
@@ -127,6 +131,7 @@ Style the page inline (self-contained, no external CSS dependency) using the sam
 **Step 2: Verify**
 
 Open `401.html` in a browser. Confirm:
+
 - Fonts load (Inter for body, Lora for heading)
 - Form fields are visible and styled
 - Submit button is styled with accent color
@@ -145,6 +150,7 @@ git commit -m "feat: add custom 401 error page with access request form"
 ### Task 4: Create thank-you page (401-thanks.html)
 
 **Files:**
+
 - Create: `401-thanks.html`
 
 **Step 1: Create the file**
@@ -174,6 +180,7 @@ git commit -m "feat: add 401 thank-you confirmation page"
 ### Task 5: Add homepage CTA near case study cards
 
 **Files:**
+
 - Modify: `index.html:58-59`
 
 **Step 1: Add the CTA note**
@@ -181,7 +188,11 @@ git commit -m "feat: add 401 thank-you confirmation page"
 After the `<h2>Featured Projects</h2>` on line 59, add a styled note:
 
 ```html
-<p class="auth-notice">Case studies contain proprietary work from my time at Amazon and are password-protected. <a href="mailto:hi@taylor.email?subject=Portfolio%20Access%20Request">Request access</a> or enter credentials if you have them.</p>
+<p class="auth-notice">
+  Case studies contain proprietary work from my time at Amazon and are password-protected.
+  <a href="mailto:hi@taylor.email?subject=Portfolio%20Access%20Request">Request access</a> or enter
+  credentials if you have them.
+</p>
 ```
 
 **Step 2: Add minimal styling**
@@ -190,9 +201,9 @@ In `css/styles.css`, add a style for `.auth-notice`:
 
 ```css
 .auth-notice {
-    font-size: 0.9rem;
-    color: var(--color-muted);
-    margin-bottom: 2rem;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  margin-bottom: 2rem;
 }
 ```
 
@@ -214,6 +225,7 @@ git commit -m "feat: add password-protection notice to homepage case study secti
 ### Task 6: Configure NGINX — auth block + error page + X-Robots-Tag
 
 **Files:**
+
 - Modify: `~/whatbox/.config/nginx/nginx.conf` (local mirror)
 - Deploy: `echobyte@cucumber.whatbox.ca:~/.config/nginx/nginx.conf` (remote)
 
@@ -236,6 +248,7 @@ In the **port 33080 server block** (line 65-87), add these lines after the `loca
 Apply the **identical block** to the port 16370 server block (line 92-112), in the same position relative to its location blocks.
 
 **Important notes:**
+
 - `401.html` lives at the site root (outside `/work/`), so it's served without auth
 - The static asset regex `location ~*` (line 77/102) takes precedence over the prefix `/work/` location, so CSS/JS/images under `/work/` serve without auth — this is intentional
 - `X-Robots-Tag` header covers non-HTML files (PDFs, images) served from `/work/`
@@ -285,6 +298,7 @@ Expected: `200` (after htpasswd is set up in Task 7)
 ### Task 7: Set up htpasswd credentials
 
 **Files:**
+
 - Modify: `/home/echobyte/.config/nginx/htpasswd.conf` (remote only)
 
 **Step 1: Add the portfolio user**
@@ -320,6 +334,7 @@ Expected: `portfolio:{SSHA}...` (hashed password)
 ### Task 8: Deploy website files and activate Formsubmit
 
 **Files:**
+
 - Deploy: `401.html`, `401-thanks.html`, `robots.txt` to remote
 
 **Step 1: Push to GitHub**
@@ -339,14 +354,14 @@ Test by submitting the form yourself from the live 401 page. Check email for the
 
 **Step 3: Final verification checklist**
 
-| Test | Expected |
-|------|----------|
-| `curl` `/work/` page without auth | 401 |
-| `curl` `/work/` page with auth | 200 |
-| Browser → `/work/` page → Cancel → 401 page | Custom form page |
-| Submit form on 401 page | Redirect to 401-thanks.html |
-| `curl` `/projects/` page | 200 (no auth) |
-| `curl` `/` (homepage) | 200 (no auth) |
-| `curl -I` `/work/` page | X-Robots-Tag: noindex, nofollow |
-| `curl` `/robots.txt` | Disallow: /work/ |
-| Google "site:taylorstephens.dev/work" | No results (may take days) |
+| Test                                        | Expected                        |
+| ------------------------------------------- | ------------------------------- |
+| `curl` `/work/` page without auth           | 401                             |
+| `curl` `/work/` page with auth              | 200                             |
+| Browser → `/work/` page → Cancel → 401 page | Custom form page                |
+| Submit form on 401 page                     | Redirect to 401-thanks.html     |
+| `curl` `/projects/` page                    | 200 (no auth)                   |
+| `curl` `/` (homepage)                       | 200 (no auth)                   |
+| `curl -I` `/work/` page                     | X-Robots-Tag: noindex, nofollow |
+| `curl` `/robots.txt`                        | Disallow: /work/                |
+| Google "site:taylorstephens.dev/work"       | No results (may take days)      |

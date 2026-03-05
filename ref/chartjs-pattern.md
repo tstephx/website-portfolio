@@ -1,4 +1,5 @@
 # Chart.js Token-Driven Pattern
+
 **Source:** `CLAUDE.md` | **Last verified:** 2026-03-04
 
 All Chart.js charts must read colors from CSS custom properties via `getComputedStyle`. Never hardcode hex values in chart config.
@@ -12,19 +13,27 @@ All Chart.js charts must read colors from CSS custom properties via `getComputed
 ```javascript
 window.addEventListener('DOMContentLoaded', () => {
   const css = getComputedStyle(document.documentElement);
-  const token = (name, fallback) => (css.getPropertyValue(name).trim() || fallback);
+  const token = (name, fallback) => css.getPropertyValue(name).trim() || fallback;
 
   const accent = token('--color-accent', '#1a3a6b');
-  const green  = token('--color-success', '#16a34a');
-  const red    = token('--color-danger', '#dc2626');
-  const muted  = token('--color-muted', '#6b6b6b');
-  const text   = token('--color-text', '#3d3d3d');
+  const green = token('--color-success', '#16a34a');
+  const red = token('--color-danger', '#dc2626');
+  const muted = token('--color-muted', '#6b6b6b');
+  const text = token('--color-text', '#3d3d3d');
 
   const hexToRgba = (hex, a = 1) => {
     const h = hex.replace('#', '');
-    const full = h.length === 3 ? h.split('').map(c => c + c).join('') : h;
+    const full =
+      h.length === 3
+        ? h
+            .split('')
+            .map((c) => c + c)
+            .join('')
+        : h;
     const n = parseInt(full, 16);
-    const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+    const r = (n >> 16) & 255,
+      g = (n >> 8) & 255,
+      b = n & 255;
     return `rgba(${r}, ${g}, ${b}, ${a})`;
   };
 
@@ -44,30 +53,34 @@ window.addEventListener('DOMContentLoaded', () => {
 
 ## Color Variables
 
-| Variable | Token | Default fallback |
-|---|---|---|
-| `accent` | `--color-accent` | `#1a3a6b` |
-| `green` | `--color-success` | `#16a34a` |
-| `red` | `--color-danger` | `#dc2626` |
-| `muted` | `--color-muted` | `#6b6b6b` |
-| `text` | `--color-text` | `#3d3d3d` |
+| Variable | Token             | Default fallback |
+| -------- | ----------------- | ---------------- |
+| `accent` | `--color-accent`  | `#1a3a6b`        |
+| `green`  | `--color-success` | `#16a34a`        |
+| `red`    | `--color-danger`  | `#dc2626`        |
+| `muted`  | `--color-muted`   | `#6b6b6b`        |
+| `text`   | `--color-text`    | `#3d3d3d`        |
 
 ---
 
 ## Common Dataset Patterns
 
 ### Bar chart (single dataset)
+
 ```javascript
-datasets: [{
-  label: 'Value',
-  data: [72, 85, 91],
-  backgroundColor: hexToRgba(accent, 0.8),
-  borderColor: accent,
-  borderWidth: 1
-}]
+datasets: [
+  {
+    label: 'Value',
+    data: [72, 85, 91],
+    backgroundColor: hexToRgba(accent, 0.8),
+    borderColor: accent,
+    borderWidth: 1,
+  },
+];
 ```
 
 ### Bar chart (before/after)
+
 ```javascript
 datasets: [
   { label: 'Before', data: [...], backgroundColor: hexToRgba(red, 0.7) },
@@ -76,6 +89,7 @@ datasets: [
 ```
 
 ### Line chart (multiple series)
+
 ```javascript
 datasets: [
   {
@@ -107,6 +121,7 @@ datasets: [
 ```
 
 Use `.chart-pair` to place two charts side by side:
+
 ```html
 <div class="chart-pair">
   <div class="chart-container"><canvas id="chartA"></canvas></div>
@@ -117,6 +132,7 @@ Use `.chart-pair` to place two charts side by side:
 ---
 
 ## Script Tag (work pages, 2 deep)
+
 ```html
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 ```
@@ -126,6 +142,7 @@ CDN version: **4.4.0** — do not upgrade without testing all existing charts.
 ---
 
 ## Notes
+
 - `Chart.defaults.scale.ticks.color` uses `grid` (muted+opacity), not `text` — keeps axis labels subtle
 - Always call `hexToRgba` for fill/background; use raw token string for border
 - Legend is hidden by default on single-dataset charts (use `plugins: { legend: { display: false } }`)

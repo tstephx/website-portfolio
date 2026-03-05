@@ -20,7 +20,7 @@ The code is well above average for a self-built portfolio. The design system is 
 
 **CSS architecture.** Custom properties for the full color system, clean mobile-first breakpoints at 640/1024/1280, hover states scoped to desktop only (most people get this wrong), print stylesheet, skip link for accessibility. The separation of `styles.css` (global) from `case-study.css` (component) is the right instinct.
 
-**Content structure.** The case study follows a Problem → Architecture → Decisions → Results → Lessons arc that reads naturally. The "Decision Points" section with rejected/chosen comparison cards is a standout — it shows *how you think*, not just what you built. That's exactly what hiring managers want to see.
+**Content structure.** The case study follows a Problem → Architecture → Decisions → Results → Lessons arc that reads naturally. The "Decision Points" section with rejected/chosen comparison cards is a standout — it shows _how you think_, not just what you built. That's exactly what hiring managers want to see.
 
 **Component library.** A reusable set of patterns: `.metrics-row`, `.comparison`, `.insight-callout`, `.data-table`, `.bar-comparison`, `.scope-callout`, `.mermaid-container`. These are consistent across pages and well-designed.
 
@@ -52,10 +52,14 @@ The accessibility baseline is good (skip link, semantic HTML, `alt` text on imag
 #### 3. Content Issue: Bar Chart Widths Don't Map to Data
 
 ```html
-<div class="bar-fill" style="width: 100%"></div>  <!-- Knowledge retrieval -->
-<div class="bar-fill" style="width: 95%"></div>   <!-- Book ingestion -->
-<div class="bar-fill" style="width: 90%"></div>    <!-- Session context -->
-<div class="bar-fill" style="width: 85%"></div>    <!-- Cross-book research -->
+<div class="bar-fill" style="width: 100%"></div>
+<!-- Knowledge retrieval -->
+<div class="bar-fill" style="width: 95%"></div>
+<!-- Book ingestion -->
+<div class="bar-fill" style="width: 90%"></div>
+<!-- Session context -->
+<div class="bar-fill" style="width: 85%"></div>
+<!-- Cross-book research -->
 ```
 
 These widths are arbitrary and descending — they look like a ranking rather than representing the actual magnitude of improvement. "10–15 min → <5ms" is a 180,000× improvement; "$15–20 min manual → $0.03 automated" is a cost comparison, not a time comparison. They're mixing units.
@@ -70,9 +74,9 @@ The `.data-table` elements have no horizontal scroll wrapper on narrow screens. 
 
 ```css
 .data-table {
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 ```
 
@@ -83,7 +87,7 @@ The `.data-table` elements have no horizontal scroll wrapper on narrow screens. 
 **Fix:** Create a 1200×630 social card image and add:
 
 ```html
-<meta property="og:image" content="https://taylorstephens.dev/images/og-mcp-ecosystem.png">
+<meta property="og:image" content="https://taylorstephens.dev/images/og-mcp-ecosystem.png" />
 ```
 
 #### 6. Minor Code Quality
@@ -94,14 +98,14 @@ The `.data-table` elements have no horizontal scroll wrapper on narrow screens. 
 
 ### Case Study Priority Order
 
-| Priority | Issue | Impact |
-|----------|-------|--------|
-| 1 | Bar chart data integrity | Content credibility — fix or remove misleading widths |
-| 2 | Table accessibility | Add captions, table wrapper for mobile overflow |
-| 3 | Mermaid diagram accessibility | ARIA labels for screen readers |
-| 4 | OG image | LinkedIn/Slack sharing appearance |
-| 5 | Mermaid → static SVG | Performance and reliability |
-| 6 | Minor items | Security level, mobile table scroll |
+| Priority | Issue                         | Impact                                                |
+| -------- | ----------------------------- | ----------------------------------------------------- |
+| 1        | Bar chart data integrity      | Content credibility — fix or remove misleading widths |
+| 2        | Table accessibility           | Add captions, table wrapper for mobile overflow       |
+| 3        | Mermaid diagram accessibility | ARIA labels for screen readers                        |
+| 4        | OG image                      | LinkedIn/Slack sharing appearance                     |
+| 5        | Mermaid → static SVG          | Performance and reliability                           |
+| 6        | Minor items                   | Security level, mobile table scroll                   |
 
 ---
 
@@ -137,11 +141,11 @@ This is the biggest issue on the page and it's not a code problem.
 
 The `<title>`, `og:title`, `twitter:title`, meta description, and tagline all say **"Program Manager."** But the target is **Principal/Lead Design Strategist** roles. Every hiring manager or recruiter who lands on this page gets an immediate signal that doesn't match the role being pursued.
 
-The tagline reads: *"Product × Operations × Program | Builder from Zero | Former Amazon PM"*
+The tagline reads: _"Product × Operations × Program | Builder from Zero | Former Amazon PM"_
 
 This positions as an ops/program generalist. The case studies (scoring methodology design, application redesign, MCP ecosystem architecture) actually demonstrate design strategy and systems thinking — but the wrapper doesn't frame them that way.
 
-**Fix:** This isn't about inflating — it's about framing. The work *is* design strategy work. Consider:
+**Fix:** This isn't about inflating — it's about framing. The work _is_ design strategy work. Consider:
 
 - Title: `Taylor Stephens | Design Strategist` or `Taylor Stephens | Design & Systems Strategy`
 - Tagline: Something that signals designing systems, not just managing programs
@@ -152,11 +156,17 @@ This is a judgment call about positioning, but right now the page actively works
 #### 2. `loading="lazy"` on Above-the-Fold Headshot
 
 ```html
-<img src="images/headshot.jpg" alt="Taylor Stephens, Program Manager"
-     class="headshot" loading="lazy" width="300" height="300">
+<img
+  src="images/headshot.jpg"
+  alt="Taylor Stephens, Program Manager"
+  class="headshot"
+  loading="lazy"
+  width="300"
+  height="300"
+/>
 ```
 
-The headshot is in the hero — it's the first thing visible on page load. `loading="lazy"` tells the browser to *defer* loading it until it's near the viewport, which is counterproductive for above-the-fold content. On slower connections, visitors see a blank circle before the image appears.
+The headshot is in the hero — it's the first thing visible on page load. `loading="lazy"` tells the browser to _defer_ loading it until it's near the viewport, which is counterproductive for above-the-fold content. On slower connections, visitors see a blank circle before the image appears.
 
 **Fix:** Remove `loading="lazy"` or switch to `loading="eager"` (the default). Keep the `width` and `height` attributes — those prevent layout shift.
 
@@ -164,7 +174,8 @@ The headshot is in the hero — it's the first thing visible on page load. `load
 
 ```html
 <nav>
-    <ul>
+  <ul></ul>
+</nav>
 ```
 
 Screen readers announce this as just "navigation" with no context. On pages with multiple `<nav>` elements (case study pages have both the main header nav and `.back-nav`), this creates ambiguity.
@@ -172,7 +183,7 @@ Screen readers announce this as just "navigation" with no context. On pages with
 **Fix:**
 
 ```html
-<nav aria-label="Main navigation">
+<nav aria-label="Main navigation"></nav>
 ```
 
 #### 4. Missing `og:image`
@@ -182,8 +193,8 @@ When someone shares `taylorstephens.dev` on LinkedIn, Slack, or Twitter, it rend
 **Fix:**
 
 ```html
-<meta property="og:image" content="https://taylorstephens.dev/images/og-homepage.png">
-<meta property="twitter:image" content="https://taylorstephens.dev/images/og-homepage.png">
+<meta property="og:image" content="https://taylorstephens.dev/images/og-homepage.png" />
+<meta property="twitter:image" content="https://taylorstephens.dev/images/og-homepage.png" />
 ```
 
 Even a simple card with name, title, and a clean background is better than nothing.
@@ -194,14 +205,14 @@ Three cards with very different levels of substance:
 
 - **MCP Ecosystem** — Strong. Metrics in the meta line, clear scope, specific outcome. Reads as a serious project.
 - **tap-sevenrooms** — Thin. One sentence that won't mean anything to someone who doesn't know what Singer taps are. No metrics, no context on why it matters, no sense of complexity.
-- **_Lab Environment** — Vague. Describes a philosophy, not a project. No concrete deliverable or measurable outcome.
+- **\_Lab Environment** — Vague. Describes a philosophy, not a project. No concrete deliverable or measurable outcome.
 
 The MCP Ecosystem card carries the section; the other two dilute it.
 
 **Options:**
 
-- **Strengthen the descriptions:** Add a concrete metric or technical detail to each. For tap-sevenrooms: how many API endpoints, data volume, who used it. For _Lab: what specific workflow did it enable, what was the measurable change.
-- **Remove the weaker cards:** Two strong entries beat three uneven ones. If tap-sevenrooms and _Lab don't have case study pages with real depth behind them, they may not be earning their spot on the homepage.
+- **Strengthen the descriptions:** Add a concrete metric or technical detail to each. For tap-sevenrooms: how many API endpoints, data volume, who used it. For \_Lab: what specific workflow did it enable, what was the measurable change.
+- **Remove the weaker cards:** Two strong entries beat three uneven ones. If tap-sevenrooms and \_Lab don't have case study pages with real depth behind them, they may not be earning their spot on the homepage.
 - **Visual differentiation:** Make the MCP Ecosystem card visually dominant — a featured card treatment with a border accent or slightly larger type — so it reads as the flagship with the others as supporting.
 
 #### 6. Skills Section: Doesn't Reflect Actual Stack
@@ -219,14 +230,14 @@ The personal projects demonstrate 79,000 lines of Python, SQLite, FastMCP, sente
 **Fix:**
 
 ```html
-<link rel="canonical" href="https://taylorstephens.dev/">
+<link rel="canonical" href="https://taylorstephens.dev/" />
 ```
 
 #### 8. Hero Height Pushes Content Below Fold
 
 ```css
 #hero {
-    min-height: 85vh;
+  min-height: 85vh;
 }
 ```
 
@@ -244,15 +255,15 @@ On most laptops (768–900px viewport height), 85vh means the name, tagline, and
 
 ### Homepage Priority Order
 
-| Priority | Issue | Impact |
-|----------|-------|--------|
-| 1 | Positioning/title mismatch | Highest-impact change — affects how every visitor frames everything else |
-| 2 | Personal projects card weight | Strengthen or trim the weaker cards |
-| 3 | Skills section gap | Add actual technical stack |
-| 4 | `loading="lazy"` removal | Headshot render performance |
-| 5 | `og:image` | Social sharing appearance |
-| 6 | Hero height reduction | Content visibility above fold |
-| 7 | Nav `aria-label`, canonical URL, theme-color | Quick wins |
+| Priority | Issue                                        | Impact                                                                   |
+| -------- | -------------------------------------------- | ------------------------------------------------------------------------ |
+| 1        | Positioning/title mismatch                   | Highest-impact change — affects how every visitor frames everything else |
+| 2        | Personal projects card weight                | Strengthen or trim the weaker cards                                      |
+| 3        | Skills section gap                           | Add actual technical stack                                               |
+| 4        | `loading="lazy"` removal                     | Headshot render performance                                              |
+| 5        | `og:image`                                   | Social sharing appearance                                                |
+| 6        | Hero height reduction                        | Content visibility above fold                                            |
+| 7        | Nav `aria-label`, canonical URL, theme-color | Quick wins                                                               |
 
 ---
 

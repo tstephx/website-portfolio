@@ -1,9 +1,11 @@
 # CLAUDE.md — Portfolio Website
+
 <!-- project-name: website-portfolio -->
 
 **DO NOT scan directories on startup.** This project is small and well-documented.
 
 ## Canonical Entry Points
+
 - Homepage: `index.html` (6 work cards + 3 personal cards)
 - Work case studies: `work/*/*.html` (2 levels deep; paths use `../../`)
 - Project pages: `projects/*.html` (1 level deep; paths use `../`)
@@ -19,17 +21,20 @@ cd website-portfolio && python3 -m http.server 8000
 ```
 
 ## Hard Rules
+
 - Always use existing CSS custom properties (57 tokens in `css/styles.css :root`). Do not add new tokens without updating the design doc.
 - Fluid typography uses `clamp()` — do NOT add font-size media query overrides.
 - Chart.js colors must read from CSS tokens via `getComputedStyle`, never hardcoded hex values.
 - Do not scan `images/` or evidence files in `work/` subdirectories unless explicitly asked.
 
 ## Path Conventions
+
 - Work pages (2 deep): `../../css/`, `../../js/`, siblings via `../subfolder/file.html`
 - Project pages (1 deep): `../css/`, `../js/`
 - Link chain (work case studies, circular): CT → scoring → DSP → automation → distance → chargeback → CT
 
 ## Design System
+
 - Token reference: `ref/css-tokens.md` — all 57 tokens with values and usage notes
 - Component reference: `ref/components.md` — all case-study components with usage snippets
 - ADR: `docs/decisions/ADR-001-css-token-system.md`
@@ -41,19 +46,27 @@ All charts must use this pattern — no hardcoded color values. **Exception:** e
 ```javascript
 window.addEventListener('DOMContentLoaded', () => {
   const css = getComputedStyle(document.documentElement);
-  const token = (name, fallback) => (css.getPropertyValue(name).trim() || fallback);
+  const token = (name, fallback) => css.getPropertyValue(name).trim() || fallback;
 
   const accent = token('--color-accent', '#1a3a6b');
-  const green  = token('--color-success', '#16a34a');
-  const red    = token('--color-danger', '#dc2626');
-  const muted  = token('--color-muted', '#6b6b6b');
-  const text   = token('--color-text', '#3d3d3d');
+  const green = token('--color-success', '#16a34a');
+  const red = token('--color-danger', '#dc2626');
+  const muted = token('--color-muted', '#6b6b6b');
+  const text = token('--color-text', '#3d3d3d');
 
   const hexToRgba = (hex, a = 1) => {
     const h = hex.replace('#', '');
-    const full = h.length === 3 ? h.split('').map(c => c + c).join('') : h;
+    const full =
+      h.length === 3
+        ? h
+            .split('')
+            .map((c) => c + c)
+            .join('')
+        : h;
     const n = parseInt(full, 16);
-    const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+    const r = (n >> 16) & 255,
+      g = (n >> 8) & 255,
+      b = n & 255;
     return `rgba(${r}, ${g}, ${b}, ${a})`;
   };
 
@@ -78,6 +91,7 @@ window.addEventListener('DOMContentLoaded', () => {
 After each prompt: code review via `/superpowers:requesting-code-review`, fix issues, then add homepage card + update link chain.
 
 ### Definition of Done (new pages)
+
 - [ ] Paths correct for depth (`../../` for work, `../` for projects)
 - [ ] Has `<link rel="canonical">` pointing to production URL
 - [ ] Has `<div class="reading-progress"></div>` as first `<body>` child
@@ -87,6 +101,7 @@ After each prompt: code review via `/superpowers:requesting-code-review`, fix is
 - [ ] Chart.js uses token-driven pattern (no hardcoded colors)
 
 ## Documentation
+
 - ADRs: `docs/decisions/` — permanent decision log, ~1 page each, numbered ADR-NNN
 - Active work: `docs/active/` — open items only; files >14 days old are stale, flag them
 - Archive: `docs/archive/` — executed plans, reviews, audits, and source design docs; read-only reference
@@ -96,20 +111,24 @@ After each prompt: code review via `/superpowers:requesting-code-review`, fix is
 ## Common Tasks
 
 ### Modify styling
+
 - Global: `css/styles.css` — Case study: `css/case-study.css`
 - Use existing tokens. Do not invent new ones.
 
 ### Update diagrams
+
 - Mermaid diagrams inline in HTML, config in `js/mermaid-init.js`
 - Use `flowchart LR/TD` or `stateDiagram-v2`
 
 ## Git
+
 - Branch: `main` — Remote: `origin` (github.com:tstephx/website-portfolio.git)
 - Commit style: `feat:`, `fix:`, `docs:`, `style:`
 
 ---
 
 ## Reference Docs (`ref/`)
+
 - `ref/site-map.md` — all pages, paths, link chain, asset directories
 - `ref/css-tokens.md` — all 57 design tokens with values and usage
 - `ref/components.md` — case study component library with usage snippets
@@ -117,4 +136,4 @@ After each prompt: code review via `/superpowers:requesting-code-review`, fix is
 
 ---
 
-*Last updated: 2026-03-04*
+_Last updated: 2026-03-04_
