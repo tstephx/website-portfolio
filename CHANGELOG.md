@@ -4,12 +4,26 @@
 
 ## 2026-03
 
+### Features
+- `2d33f93` add Playwright testing infrastructure + changelog automation
+
 ### Bug Fixes
 - `d93e5d5` comparison-label audit + docs restructure
 
 ### Documentation
+- `a68c73f` fix 2 CLAUDE.md inaccuracies flagged by scaffold audit
 - `e51725e` add ref/ directory with site map, CSS tokens, and component reference
 - `9b142a4` clean up project structure and update CLAUDE.md
+
+### Style
+- `cd7b634` apply 4 typography/design refinements to case-study components
+
+### Chores / Maintenance
+- `b64ade6` add ESLint, Prettier, stylelint; apply first-run formatting
+
+### Other
+- `311ee4c` perf: performance improvements — fonts, images, chart CLS
+- `2886327` test: add mobile visual regression snapshots
 
 ## 2026-02
 
