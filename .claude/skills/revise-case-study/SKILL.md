@@ -30,14 +30,15 @@ Read these files:
 
 1. The confirmed draft file
 2. `docs/active/content-writing-standards.md` (voice, tone, anti-patterns)
-3. `work/{{slug}}/evidence*.md` (if any exist — for cross-referencing)
-4. `work/{{slug}}/revision-log.md` (if exists — for delta comparison)
+3. `ref/components.md` (component library — for outline suggestions)
+4. `work/{{slug}}/evidence*.md` (if any exist — for cross-referencing)
+5. `work/{{slug}}/revision-log.md` (if exists — for delta comparison)
 
 ## Step 3: Pre-Check (Content-First Questions)
 
 Check if the draft has a one-sentence test (spine) at the top — a single sentence capturing "I [did X] which [achieved Y] despite [constraint Z]."
 
-**Detection heuristic:** Look for (a) a section headed "One-Sentence Test" or "Spine", or (b) a blockquote in the first 20 lines containing the pattern "I [verb]... which [outcome]... despite [constraint]." If neither found, treat as missing.
+**Detection heuristic:** Look for (a) a section headed "One-Sentence Test" or "Spine", or (b) the first blockquote in the first 20 lines containing the pattern "I [verb]... which [outcome]... despite [constraint]." If neither found, treat as missing.
 
 **If missing**, prompt the user to answer these 4 questions before proceeding:
 
@@ -83,7 +84,7 @@ Does every metric connect to business impact?
 | "94% fill rate" | Has baseline   | —                             |
 ```
 
-- **First-Sentence Test:** Extract first sentence of each paragraph. Does it front-load the key information?
+- **First-Sentence Test:** Extract first sentence of each prose paragraph in Problem, Root Cause, Solution, Results, and Lessons sections. (Skip the spine, Scope metadata, tables, and sections with fewer than two sentences.) Does it front-load the key information?
 
 ```
 P1: PASS  "The process had no owner..."
@@ -116,7 +117,7 @@ Apply Strunk's rules to every sentence. Produce a rewrite table with **inline ch
 |   |                                   |            |                                | edit     |
 ```
 
-**Cap at 15 items**, prioritized by severity (R10 passive voice > R12 vague language > R18 weak endings > R11 negative form > R13 wordiness > R16 word order). If more violations exist, note: "15 of N violations shown. Remaining are minor (R13, R16) — will surface on re-run if still present."
+**Cap at 15 items**, prioritized by severity (R10 passive voice > R12 vague language > R18 weak endings > R11 negative form > R13 wordiness > R16 word order). If total violations exceed 15, note: "15 of N violations shown. Remaining are minor (R13, R16) — will surface on re-run if still present."
 
 **Also flag:**
 - Jargon used without definition (with suggested parenthetical)
@@ -125,9 +126,9 @@ Apply Strunk's rules to every sentence. Produce a rewrite table with **inline ch
 
 User choices are collected in Step 5 (Phase A pause), not here.
 
-### 4d. Rubric Scoring
+### 4d. Rubric Scoring (Provisional)
 
-Score 8 criteria, each 1-5. Total: /40.
+Score 8 criteria, each 1-5. Total: /40. Voice (criterion 6) is scored provisionally against the original prose. It is recomputed in Phase B after user prose choices are collected.
 
 | # | Criterion | What it measures | 1 (fail) | 5 (pass) |
 |---|-----------|-----------------|----------|----------|
@@ -148,9 +149,9 @@ Score 8 criteria, each 1-5. Total: /40.
 3. Match found → verify number matches source; flag discrepancies
 4. No match found → flag as "unverifiable claim — no source in evidence files"
 
-### 4e. Outline Generation
+### 4e. Outline Generation (Provisional)
 
-Generate the proposed outline in this format, applying all accepted Strunk's rewrites:
+Draft a proposed outline in this format using the suggested Strunk's rewrites. This is provisional — the final outline presented in Phase B will reflect the user's actual accept/reject/edit choices from Phase A.
 
 ```markdown
 # [Tension-Driven Headline]
@@ -215,9 +216,9 @@ Present the report in two phases:
 
 **Wait for user to make all inline choices (accept/reject/edit per row) before continuing.**
 
-**Phase B** (present after prose choices are resolved):
-6. **Rubric Score** (8 criteria with scores, total — Voice score reflects accepted rewrites)
-7. **Proposed Outline** (with all accepted rewrites applied)
+**Phase B** (present after prose choices are resolved — recompute before displaying):
+6. **Rubric Score** (recompute Voice score based on accepted rewrites; other 7 criteria unchanged)
+7. **Proposed Outline** (update provisional outline to reflect user's actual accept/reject/edit choices)
 
 ### Delta Summary (re-runs only)
 
@@ -259,7 +260,7 @@ On **no**:
 
 Append to `work/{{slug}}/revision-log.md` (create if it doesn't exist).
 
-On first run, verify `work/*/revision-log.md` is covered by `.gitignore`. If not, warn the user.
+On first run, verify `work/*/revision-log.md` is covered by `.gitignore`. If not, warn the user — then write the file anyway (the warning is informational, not a gate).
 
 Format:
 
@@ -288,7 +289,7 @@ Outcome: [Approved / Blocked (score X/40)]
 ---
 ```
 
-**Issue ID format:** `[Criterion.Type.Location]` for precise delta matching.
+**Issue ID format:** `[Criterion.Type.Location]` for delta matching. Note: Location is positional (paragraph number). If paragraphs are inserted or deleted between runs, expect false "resolved" and false "new" flags — this is a known limitation.
 - `[Voice.R10.P3]` — Strunk's Rule 10 violation in paragraph 3
 - `[Accuracy.Inconsistency.Markets]` — internal contradiction about market count
 - `[Arc.Missing.Lessons]` — required section absent
