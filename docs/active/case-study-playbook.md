@@ -24,12 +24,14 @@ If you can't answer all four, don't write yet.
 **Input:** Evidence files (`.md`, `.jsx` dashboards) in the `work/[slug]/` directory.
 
 **What to do:**
+
 - Read all evidence files
 - Read an existing case study as template (e.g., `work/contract-transfer/contract-transfer.html`)
 - Map evidence → sections, identifying which data supports which claim
 - Produce an outline — not HTML yet
 
 **Outline format:**
+
 ```
 H1: [Headline — specific, tension-driven, no jargon]
 Tagline: [One-line summary with scope]
@@ -67,6 +69,7 @@ Section 5 — Lessons Worth Stealing
 **Input:** Approved outline + evidence + template structure.
 
 **Rules:**
+
 - Every claim gets a number
 - Use components from `ref/components.md`
 - Chart.js follows token-driven pattern from `ref/chartjs-pattern.md`
@@ -77,6 +80,7 @@ Section 5 — Lessons Worth Stealing
 **Input:** Dashboard `.jsx` files (if they exist).
 
 **What to do:**
+
 - Identify which visualizations add understanding (not decoration)
 - Propose Chart.js implementations before building
 - Only add charts that make the data clearer than a table would
@@ -103,20 +107,21 @@ A good headline creates tension and specificity. The reader should think "how?" 
 
 ### Anti-patterns to avoid
 
-| Anti-pattern | Example | Fix |
-|---|---|---|
-| Self-congratulatory | "I brilliantly discovered" | "The data showed" |
-| Blaming others | "The team was failing" | "The process had no owner" |
-| Vague claims | "Significantly improved" | "Reduced 70% (9.6 → 2.9 weeks)" |
-| Jargon without context | "BPR scoring methodology" | "The interview scoring system (BPR)" |
-| Passive voice | "Errors were eliminated" | "The script eliminated errors" |
-| Generic sections | "Overview" / "Background" | "The $482K Problem" / "Why 77% of Panels Disagreed" |
+| Anti-pattern           | Example                    | Fix                                                 |
+| ---------------------- | -------------------------- | --------------------------------------------------- |
+| Self-congratulatory    | "I brilliantly discovered" | "The data showed"                                   |
+| Blaming others         | "The team was failing"     | "The process had no owner"                          |
+| Vague claims           | "Significantly improved"   | "Reduced 70% (9.6 → 2.9 weeks)"                     |
+| Jargon without context | "BPR scoring methodology"  | "The interview scoring system (BPR)"                |
+| Passive voice          | "Errors were eliminated"   | "The script eliminated errors"                      |
+| Generic sections       | "Overview" / "Background"  | "The $482K Problem" / "Why 77% of Panels Disagreed" |
 
 ### Lessons section
 
 Header: "Lessons Worth Stealing" (not "What This Taught Me" — frame for the reader).
 
 Each lesson should be:
+
 - One sentence, actionable
 - Transferable beyond this specific project
 - Something the reader can use tomorrow
@@ -137,4 +142,4 @@ Each lesson should be:
 
 ---
 
-*Created: 2026-03-04*
+_Created: 2026-03-04_

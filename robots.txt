@@ -1,5 +1,4 @@
 User-agent: *
-Disallow: /work/
-
-User-agent: *
 Allow: /
+
+Sitemap: https://taylorstephens.io/sitemap.xml

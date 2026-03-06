@@ -106,7 +106,7 @@
                 </div>
                 <div class="comparison-after">
                     <p class="comparison-label"><strong>Extracted Structured Row</strong></p>
-                    <div class="data-table-wrapper">
+                    <div class="data-table-wrapper" tabindex="0">
                     <table class="data-table" style="margin: 0">
                         <caption>8 fields extracted from a single chargeback notification</caption>
                         <tbody>
@@ -163,7 +163,7 @@
             <h3>Boundary Extraction Map</h3>
             <p>Each field is isolated using the email template&rsquo;s own sentence structure as delimiters. The left/right boundary words bracket the target data &mdash; no fragile regex on the values themselves.</p>
 
-            <div class="data-table-wrapper"><table class="data-table">
+            <div class="data-table-wrapper" tabindex="0"><table class="data-table">
                 <caption>8 fields extracted per email using rm_between() boundary markers</caption>
                 <thead>
                     <tr>
@@ -227,7 +227,7 @@
 
             <h3>Before vs. After: Process Transformation</h3>
 
-            <div class="data-table-wrapper"><table class="data-table">
+            <div class="data-table-wrapper" tabindex="0"><table class="data-table">
                 <caption>What changed at each step of the chargeback processing workflow</caption>
                 <thead>
                     <tr>

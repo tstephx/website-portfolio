@@ -53,14 +53,14 @@ Checks for: anti-patterns (hero badges, decorative blobs, generic fonts), design
 
 After the audits, categorize findings:
 
-| Category | Action | Tool |
-|---|---|---|
-| Content is weak | Rewrite first, then reassess layout | `/content-audit` results |
-| Layout breaks on mobile | Fix overflow/wrapping | `/ui-refactor` |
-| Spacing feels wrong | Check against design tokens | `/design-system-principles` |
-| Component looks dated | Targeted CSS update | `/ui-refactor` |
-| Need a completely new layout | Full design process | `/frontend-design-pro:design` |
-| Accessibility violation | Fix contrast/structure | Run axe-core tests |
+| Category                     | Action                              | Tool                          |
+| ---------------------------- | ----------------------------------- | ----------------------------- |
+| Content is weak              | Rewrite first, then reassess layout | `/content-audit` results      |
+| Layout breaks on mobile      | Fix overflow/wrapping               | `/ui-refactor`                |
+| Spacing feels wrong          | Check against design tokens         | `/design-system-principles`   |
+| Component looks dated        | Targeted CSS update                 | `/ui-refactor`                |
+| Need a completely new layout | Full design process                 | `/frontend-design-pro:design` |
+| Accessibility violation      | Fix contrast/structure              | Run axe-core tests            |
 
 **Rule: never change layout to fix a content problem.** If a section feels too long, the fix is editing the words — not adding columns.
 
@@ -163,6 +163,7 @@ Or use Playwright MCP to interact with the site visually:
 - **ADR** in `docs/decisions/ADR-001-css-token-system.md` — why tokens exist
 
 **Hard rules:**
+
 - Use existing tokens. Don't invent new ones without updating the design doc.
 - Fluid typography uses `clamp()` — no font-size media query overrides.
 - Chart.js colors via `getComputedStyle`, never hardcoded hex.
@@ -193,4 +194,4 @@ Something looks off
 
 ---
 
-*Created: 2026-03-04*
+_Created: 2026-03-04_

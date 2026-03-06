@@ -14,13 +14,13 @@ Run through this before every push to production. The `/deploy` skill automates 
 
 ### If you changed...
 
-| What changed | Extra check |
-|---|---|
-| CSS tokens or styles | `npm run test:visual` — review screenshot diffs |
-| Case study content | Verify link chain: CT → scoring → DSP → automation → distance → chargeback → CT |
-| New page added | `ref/site-map.md` updated, `npm run lint:html` script includes new page |
-| Images | All three formats exist (jpg, webp, avif), `<picture>` element used |
-| Chart.js | Token-driven pattern, no hardcoded hex colors |
+| What changed         | Extra check                                                                     |
+| -------------------- | ------------------------------------------------------------------------------- |
+| CSS tokens or styles | `npm run test:visual` — review screenshot diffs                                 |
+| Case study content   | Verify link chain: CT → scoring → DSP → automation → distance → chargeback → CT |
+| New page added       | `ref/site-map.md` updated, `npm run lint:html` script includes new page         |
+| Images               | All three formats exist (jpg, webp, avif), `<picture>` element used             |
+| Chart.js             | Token-driven pattern, no hardcoded hex colors                                   |
 
 ## 2. Push to GitHub
 
@@ -41,6 +41,7 @@ curl -sI https://taylorstephens.io | grep -E 'HTTP|server|x-frame|strict-transpo
 ```
 
 Expected:
+
 - `HTTP/2 200`
 - `server: cloudflare`
 - `x-frame-options: SAMEORIGIN`
@@ -89,4 +90,4 @@ The skill runs `npm run check`, pushes, pulls, and verifies headers automaticall
 
 ---
 
-*Created: 2026-03-04*
+_Created: 2026-03-04_

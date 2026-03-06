@@ -8,15 +8,15 @@
 
 ## Test Files (Playwright)
 
-| File | Tests | What it covers |
-|---|---|---|
-| `pages.spec.js` | 14 pages × 3 checks | HTTP 200, page title, canonical tag, reading-progress bar |
-| `link-chain.spec.js` | 6 links | Circular case study chain: CT → scoring → DSP → automation → distance → chargeback → CT |
-| `a11y.spec.js` | 14 pages | WCAG 2.1 AA via axe-core — contrast, headings, landmarks, ARIA |
-| `layout.spec.js` | 14 pages × 3 viewports | Horizontal overflow at 1280px, 390px, 320px; tap targets on mobile |
-| `visual.spec.js` | 14 pages × 2 viewports | Screenshot regression — desktop (1280×720) and mobile (390×844) |
-| `assets.spec.js` | Static assets | Image/font files exist and load |
-| `changelog.spec.js` | 1 | Changelog generation script works |
+| File                 | Tests                  | What it covers                                                                          |
+| -------------------- | ---------------------- | --------------------------------------------------------------------------------------- |
+| `pages.spec.js`      | 14 pages × 3 checks    | HTTP 200, page title, canonical tag, reading-progress bar                               |
+| `link-chain.spec.js` | 6 links                | Circular case study chain: CT → scoring → DSP → automation → distance → chargeback → CT |
+| `a11y.spec.js`       | 14 pages               | WCAG 2.1 AA via axe-core — contrast, headings, landmarks, ARIA                          |
+| `layout.spec.js`     | 14 pages × 3 viewports | Horizontal overflow at 1280px, 390px, 320px; tap targets on mobile                      |
+| `visual.spec.js`     | 14 pages × 2 viewports | Screenshot regression — desktop (1280×720) and mobile (390×844)                         |
+| `assets.spec.js`     | Static assets          | Image/font files exist and load                                                         |
+| `changelog.spec.js`  | 1                      | Changelog generation script works                                                       |
 
 ---
 
@@ -67,17 +67,17 @@ npm run format        # Prettier write mode
 
 ## Dependencies
 
-| Package | Version | Purpose |
-|---|---|---|
-| `@playwright/test` | ^1.58 | Test runner + browser automation |
-| `@axe-core/playwright` | latest | WCAG accessibility auditing |
-| `eslint` | ^10.0 | JavaScript linting |
-| `stylelint` | ^17.4 | CSS linting |
-| `stylelint-config-standard` | ^40.0 | Stylelint base config |
-| `@double-great/stylelint-a11y` | ^3.4 | CSS accessibility rules |
-| `prettier` | ^3.8 | Code formatting |
-| `html-validate` | ^10.11 | HTML validation |
-| `linkinator` | ^7.6 | Link checking |
+| Package                        | Version | Purpose                          |
+| ------------------------------ | ------- | -------------------------------- |
+| `@playwright/test`             | ^1.58   | Test runner + browser automation |
+| `@axe-core/playwright`         | latest  | WCAG accessibility auditing      |
+| `eslint`                       | ^10.0   | JavaScript linting               |
+| `stylelint`                    | ^17.4   | CSS linting                      |
+| `stylelint-config-standard`    | ^40.0   | Stylelint base config            |
+| `@double-great/stylelint-a11y` | ^3.4    | CSS accessibility rules          |
+| `prettier`                     | ^3.8    | Code formatting                  |
+| `html-validate`                | ^10.11  | HTML validation                  |
+| `linkinator`                   | ^7.6    | Link checking                    |
 
 ---
 

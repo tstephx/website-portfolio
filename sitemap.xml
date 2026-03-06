@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://taylorstephens.io/</loc><priority>1.0</priority></url>
+  <url><loc>https://taylorstephens.io/resume.html</loc><priority>0.8</priority></url>
+  <url><loc>https://taylorstephens.io/work/contract-transfer/contract-transfer.html</loc><priority>0.9</priority></url>
+  <url><loc>https://taylorstephens.io/work/bpr-scoring-pinnacle/pinnacle-scoring.html</loc><priority>0.9</priority></url>
+  <url><loc>https://taylorstephens.io/work/cfa-dsp-application/dsp-application.html</loc><priority>0.9</priority></url>
+  <url><loc>https://taylorstephens.io/work/pinnacle-program-selection/pinnacle-automation.html</loc><priority>0.9</priority></url>
+  <url><loc>https://taylorstephens.io/work/pinnacle-station/pinnacle-distance.html</loc><priority>0.9</priority></url>
+  <url><loc>https://taylorstephens.io/work/charge-back-processing/chargeback-parsing.html</loc><priority>0.9</priority></url>
+  <url><loc>https://taylorstephens.io/projects/mcp-ecosystem.html</loc><priority>0.7</priority></url>
+  <url><loc>https://taylorstephens.io/projects/tap-sevenrooms.html</loc><priority>0.6</priority></url>
+  <url><loc>https://taylorstephens.io/projects/lab-environment.html</loc><priority>0.6</priority></url>
+  <url><loc>https://taylorstephens.io/projects/book-library-mcp.html</loc><priority>0.6</priority></url>
+  <url><loc>https://taylorstephens.io/projects/agentic-pipeline.html</loc><priority>0.6</priority></url>
+  <url><loc>https://taylorstephens.io/projects/claude-innit.html</loc><priority>0.6</priority></url>
+</urlset>

@@ -16,7 +16,10 @@ const SNAPSHOT_PAGES = [
   { path: '/work/bpr-scoring-pinnacle/pinnacle-scoring.html', name: 'work-pinnacle-scoring' },
   { path: '/work/cfa-dsp-application/dsp-application.html', name: 'work-dsp-application' },
   { path: '/work/charge-back-processing/chargeback-parsing.html', name: 'work-chargeback-parsing' },
-  { path: '/work/pinnacle-program-selection/pinnacle-automation.html', name: 'work-pinnacle-automation' },
+  {
+    path: '/work/pinnacle-program-selection/pinnacle-automation.html',
+    name: 'work-pinnacle-automation',
+  },
   { path: '/work/pinnacle-station/pinnacle-distance.html', name: 'work-pinnacle-distance' },
   // Project pages
   { path: '/projects/mcp-ecosystem.html', name: 'project-mcp-ecosystem' },

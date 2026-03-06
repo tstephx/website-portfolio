@@ -17,15 +17,15 @@ Or use `/check` which runs both and reports a summary table.
 
 ## Individual Test Files
 
-| File | What it tests | When to run |
-|---|---|---|
-| `pages.spec.js` | Every page loads (200), has title, has canonical tag, case studies have reading-progress bar | After adding/removing pages |
-| `link-chain.spec.js` | Circular link chain: CT → scoring → DSP → automation → distance → chargeback → CT | After changing "Next:" links in case studies |
-| `a11y.spec.js` | WCAG 2.1 AA via axe-core on all 14 pages — contrast, headings, landmarks, ARIA | After changing colors, text, or HTML structure |
-| `layout.spec.js` | Horizontal overflow at 1280px, 390px, 320px; tap target sizes on mobile | After changing CSS layout, padding, or widths |
-| `visual.spec.js` | Screenshot comparison at desktop + mobile for all 14 pages | After any visual change (CSS, content, images) |
-| `assets.spec.js` | Static assets exist and load correctly | After adding/moving images or fonts |
-| `changelog.spec.js` | Changelog generation works | After modifying the changelog script |
+| File                 | What it tests                                                                                | When to run                                    |
+| -------------------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| `pages.spec.js`      | Every page loads (200), has title, has canonical tag, case studies have reading-progress bar | After adding/removing pages                    |
+| `link-chain.spec.js` | Circular link chain: CT → scoring → DSP → automation → distance → chargeback → CT            | After changing "Next:" links in case studies   |
+| `a11y.spec.js`       | WCAG 2.1 AA via axe-core on all 14 pages — contrast, headings, landmarks, ARIA               | After changing colors, text, or HTML structure |
+| `layout.spec.js`     | Horizontal overflow at 1280px, 390px, 320px; tap target sizes on mobile                      | After changing CSS layout, padding, or widths  |
+| `visual.spec.js`     | Screenshot comparison at desktop + mobile for all 14 pages                                   | After any visual change (CSS, content, images) |
+| `assets.spec.js`     | Static assets exist and load correctly                                                       | After adding/moving images or fonts            |
+| `changelog.spec.js`  | Changelog generation works                                                                   | After modifying the changelog script           |
 
 ### Run a single file
 
@@ -48,10 +48,12 @@ npx playwright test --grep "Homepage" --project=chromium
 **Cause:** Text color doesn't have enough contrast against its background.
 
 **Fix:** Check the token being used. Common swaps:
+
 - `--color-light` (#767676) → `--color-muted` (#6b6b6b) or `--color-text` (#3d3d3d)
 - Verify with: contrast ratio must be >= 4.5:1 for normal text, >= 3:1 for large text (18px+ bold or 24px+)
 
 **Debug:**
+
 ```bash
 node -e "
 (async () => {
@@ -79,6 +81,7 @@ node -e "
 **Cause:** An element is wider than the viewport.
 
 **Fix:** Find the element:
+
 ```bash
 # In Playwright evaluate:
 document.querySelectorAll('*').forEach(el => {
@@ -89,6 +92,7 @@ document.querySelectorAll('*').forEach(el => {
 ```
 
 Common fixes:
+
 - Add `max-width: 100%` + `overflow-x: auto` to the container
 - Tables: ensure `.data-table-wrapper` wraps the table
 - Charts: `.chart-container` already has `overflow-x: auto`
@@ -98,6 +102,7 @@ Common fixes:
 **Cause:** Screenshots don't match baselines.
 
 **If changes are intentional:**
+
 ```bash
 /update-snapshots
 ```
@@ -109,6 +114,7 @@ Common fixes:
 **Cause:** A "Next:" link in a case study points to the wrong page or the circular chain is broken.
 
 **Fix:** Check CLAUDE.md for the current chain order:
+
 ```
 CT → scoring → DSP → automation → distance → chargeback → CT
 ```
@@ -151,4 +157,4 @@ Then run `npm test` to generate initial snapshots for the new page.
 
 ---
 
-*Created: 2026-03-04*
+_Created: 2026-03-04_

@@ -127,7 +127,7 @@
           dimensions. Fixing any one alone would leave the others to cause the next failure.
         </p>
 
-        <div class="data-table-wrapper">
+        <div class="data-table-wrapper" tabindex="0">
           <table class="data-table">
             <caption>
               8 root causes diagnosed across data, process, and tooling
@@ -329,7 +329,7 @@
             Window functions validate that a DSP held Tier 1 across consecutive quarters &mdash; not just once. This
             single clause prevents one-quarter flukes from qualifying DSPs for three-year contracts.
           </p>
-          <pre><code>static_tier AS (
+          <pre tabindex="0"><code>static_tier AS (
     SELECT dsp_id, snapshot_date, adjusted_tier,
         LAG(adjusted_tier, 1) OVER (
             PARTITION BY dsp_id ORDER BY snapshot_date
@@ -351,7 +351,7 @@ WHERE adjusted_tier = 1 AND prev_tier = 1</code></pre>
             Every station paired with every other station, distance computed via Haversine formula. Deterministic
             &mdash; same inputs always produce the same output, unlike traffic-dependent alternatives.
           </p>
-          <pre><code>station_pairs AS (
+          <pre tabindex="0"><code>station_pairs AS (
     SELECT a.station_code AS station_a,
            b.station_code AS station_b,
         3959 * ACOS(
@@ -375,7 +375,7 @@ WHERE adjusted_tier = 1 AND prev_tier = 1</code></pre>
             Policy encoded as SQL: candidates within 50 miles get priority. Remote stations with no nearby candidates
             fall back to the 5 closest within 250 miles. The fallback never competes with primary matches.
           </p>
-          <pre><code>WHERE distance_miles &lt;= 50
+          <pre tabindex="0"><code>WHERE distance_miles &lt;= 50
    OR (distance_miles &lt;= 250
        AND proximity_rank &lt;= 5
        AND NOT EXISTS (
@@ -439,7 +439,7 @@ WHERE adjusted_tier = 1 AND prev_tier = 1</code></pre>
           distance module is reusable for any station-pair proximity calculation across the network.
         </p>
 
-        <div class="data-table-wrapper">
+        <div class="data-table-wrapper" tabindex="0">
           <table class="data-table">
             <caption>
               System transformation: before and after automation

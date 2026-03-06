@@ -5,11 +5,14 @@
 ## 2026-03
 
 ### Features
+- `d34dc6f` design refinements, a11y testing, and documentation overhaul
+- `20a7502` expand visual regression coverage from 4 to 14 pages
 - `e2d0913` add html-validate + linkinator, fix raw HTML entities and parser errors
 - `d9de4a0` add og:image social card meta to all 14 pages (L5)
 - `2d33f93` add Playwright testing infrastructure + changelog automation
 
 ### Bug Fixes
+- `47934c8` sharpen scoring + automation Approach one-liners on homepage
 - `d992b12` add SRI hashes + pin CDN versions (M3, M4)
 - `f68ca74` replace hardcoded Chart.js colors with CSS token variables (H1)
 - `16c16dc` resolve all critical/high audit findings

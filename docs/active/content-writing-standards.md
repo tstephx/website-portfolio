@@ -8,13 +8,13 @@ Voice, tone, and quality rules for all portfolio content. Run `/content-audit` t
 
 **One sentence:** Professional, specific, reader-focused — like explaining your work to a smart colleague over coffee.
 
-| Attribute | Do | Don't |
-|---|---|---|
-| **Tone** | Confident and direct | Arrogant or self-congratulatory |
-| **Specificity** | "Reduced 70% (9.6 → 2.9 weeks)" | "Significantly improved" |
-| **Framing** | "The process had no owner" | "The team was failing" |
-| **Perspective** | "Here's what the data showed" | "I brilliantly discovered" |
-| **Audience** | Write for the reader's benefit | Write about your feelings |
+| Attribute       | Do                              | Don't                           |
+| --------------- | ------------------------------- | ------------------------------- |
+| **Tone**        | Confident and direct            | Arrogant or self-congratulatory |
+| **Specificity** | "Reduced 70% (9.6 → 2.9 weeks)" | "Significantly improved"        |
+| **Framing**     | "The process had no owner"      | "The team was failing"          |
+| **Perspective** | "Here's what the data showed"   | "I brilliantly discovered"      |
+| **Audience**    | Write for the reader's benefit  | Write about your feelings       |
 
 ---
 
@@ -99,8 +99,7 @@ Always precede with an insight callout — one sentence that frames why the numb
 
 ```html
 <div class="insight-callout">
-  A program declining for 18 months recovered to near-perfect fill rates
-  in a single quarter.
+  A program declining for 18 months recovered to near-perfect fill rates in a single quarter.
 </div>
 ```
 
@@ -109,6 +108,7 @@ Then the metrics row with specific numbers.
 ### Lessons Worth Stealing
 
 Frame for the reader, not about you. Each lesson should be:
+
 - One sentence, actionable
 - Transferable beyond this project
 - Something the reader can apply tomorrow
@@ -150,16 +150,16 @@ Each card has: title, tagline, Challenge, Approach (with link), Result.
 
 ## Common Mistakes (with fixes)
 
-| Mistake | Example | Fix |
-|---|---|---|
-| Weasel words | "significantly", "greatly", "dramatically" | Replace with the actual number |
-| Passive voice | "Errors were eliminated" | "The script eliminated errors" |
-| Talking to yourself | "What This Taught Me" | "Lessons Worth Stealing" |
-| Burying the lede | Result in paragraph 4 | Result in the first sentence |
-| Jargon without context | "BPR methodology redesign" | "Interview scoring redesign (BPR)" |
-| Competing CTAs | "Read more" + "Contact me" + "See resume" | One primary CTA per section |
-| Dense walls | 8+ line paragraphs | Break at 4 lines max, use visual components |
+| Mistake                | Example                                    | Fix                                         |
+| ---------------------- | ------------------------------------------ | ------------------------------------------- |
+| Weasel words           | "significantly", "greatly", "dramatically" | Replace with the actual number              |
+| Passive voice          | "Errors were eliminated"                   | "The script eliminated errors"              |
+| Talking to yourself    | "What This Taught Me"                      | "Lessons Worth Stealing"                    |
+| Burying the lede       | Result in paragraph 4                      | Result in the first sentence                |
+| Jargon without context | "BPR methodology redesign"                 | "Interview scoring redesign (BPR)"          |
+| Competing CTAs         | "Read more" + "Contact me" + "See resume"  | One primary CTA per section                 |
+| Dense walls            | 8+ line paragraphs                         | Break at 4 lines max, use visual components |
 
 ---
 
-*Created: 2026-03-04*
+_Created: 2026-03-04_

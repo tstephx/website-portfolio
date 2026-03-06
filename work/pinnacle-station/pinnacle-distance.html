@@ -172,7 +172,7 @@
           ></canvas>
         </div>
 
-        <div class="data-table-wrapper">
+        <div class="data-table-wrapper" tabindex="0">
           <table class="data-table">
             <caption>
               Coverage matrix: percentage of stations with N+ eligible DSPs within distance
@@ -244,7 +244,7 @@
           protecting nothing.
         </div>
 
-        <div class="data-table-wrapper">
+        <div class="data-table-wrapper" tabindex="0">
           <table class="data-table">
             <caption>
               Performance: distance-breaking DSPs (n=17) vs. non-breakers (n=91)
@@ -347,7 +347,7 @@
             Vincenty Ellipsoid accounts for Earth&rsquo;s flattening at the poles &mdash; more precise than Haversine
             over long distances. The full Cartesian product generates every possible station pair for analysis.
           </p>
-          <pre><code>library(geosphere)
+          <pre tabindex="0"><code>library(geosphere)
 
 # All pairwise station combinations (~130,000 pairs)
 pairs &lt;- expand.grid(
@@ -373,7 +373,7 @@ pairs$distance_mi &lt;- distVincentyEllipsoid(
             Sweeping from 50 to 200 miles in 10-mile increments. At each threshold, compute the percentage of stations
             with 1, 3, or 5+ eligible DSPs nearby. This produced the coverage matrix that made the policy case.
           </p>
-          <pre><code>thresholds &lt;- seq(50, 200, by = 10)
+          <pre tabindex="0"><code>thresholds &lt;- seq(50, 200, by = 10)
 results &lt;- data.frame()
 
 for (d in thresholds) {
@@ -403,7 +403,7 @@ for (d in thresholds) {
             &mdash; CSAT (+800 bps), DSP Quality (+10 pp), Safety (100% vs 97%). The assumption that distance degrades
             performance was wrong.
           </p>
-          <pre><code>breakers &lt;- pinnacle_dsps %&gt;%
+          <pre tabindex="0"><code>breakers &lt;- pinnacle_dsps %&gt;%
     filter(distance_break == TRUE)       # n = 17
 non_breakers &lt;- pinnacle_dsps %&gt;%
     filter(distance_break == FALSE)      # n = 91
@@ -498,7 +498,7 @@ comparison &lt;- bind_rows(
           environments.
         </p>
 
-        <div class="data-table-wrapper">
+        <div class="data-table-wrapper" tabindex="0">
           <table class="data-table">
             <caption>
               How R analysis translated to SQL production
@@ -593,7 +593,7 @@ comparison &lt;- bind_rows(
           5-closest-stations fallback is systematic and encoded in the production SQL pipeline.
         </p>
 
-        <div class="data-table-wrapper">
+        <div class="data-table-wrapper" tabindex="0">
           <table class="data-table">
             <caption>
               System transformation: before and after
