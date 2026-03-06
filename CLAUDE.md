@@ -111,7 +111,7 @@ After each prompt: code review via `/superpowers:requesting-code-review`, fix is
 
 ## Automation (Skills, Agents, Hooks)
 
-- 7 skills: `/deploy`, `/new-case-study`, `/check`, `/update-snapshots`, `/content-audit`, `/link-check`, design-tokens (Claude-only)
+- 8 skills: `/deploy`, `/new-case-study`, `/revise-case-study`, `/check`, `/update-snapshots`, `/content-audit`, `/link-check`, design-tokens (Claude-only)
 - 3 agents: accessibility-reviewer, content-reviewer, visual-regression-watcher
 - 3 hooks: block lock/env edits, auto-format (Prettier), HTML validate
 - Full reference: `ref/automation.md`

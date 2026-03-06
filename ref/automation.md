@@ -2,7 +2,7 @@
 
 Skills, agents, and hooks configured for this project.
 
-**Last verified:** 2026-03-04
+**Last verified:** 2026-03-05
 
 ---
 
@@ -17,6 +17,7 @@ Skills, agents, and hooks configured for this project.
 | `/content-audit`    | User-only   | Analysis     | Score pages on content-first principles (accurate, useful, clear, findable, purposeful) |
 | `/design-tokens`    | Claude-only | Context      | Load CSS tokens + component reference before styling work                               |
 | `/link-check`       | User-only   | Verification | Run linkinator + link-chain Playwright test                                             |
+| `/revise-case-study`| User-only   | Analysis     | 8-criterion rubric scoring of case study drafts → approved outline for `/new-case-study` |
 
 **User-only** = must be invoked with `/skill-name` — Claude won't trigger automatically.
 **Claude-only** = Claude invokes when relevant — not available as a slash command.
