@@ -34,9 +34,9 @@
     <header>
       <nav aria-label="Main navigation">
         <ul>
-          <li><a href="#about">About</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#personal-projects">Side Projects</a></li>
+          <li><a href="resume.html">Resume</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -61,171 +61,107 @@
           <h1>Taylor Stephens</h1>
           <p class="tagline">Strategic Program Manager | AI Infrastructure &amp; Systems Design | Former Amazon PM</p>
           <p class="summary">
-            I'm the person you call when a critical process doesn't exist yet, is falling apart, or costs millions more
-            than it should &mdash; I've fixed all three.
+            I&rsquo;m the person you call when a critical process doesn&rsquo;t exist yet, is falling apart, or costs
+            millions more than it should &mdash; I&rsquo;ve fixed all three.
+          </p>
+          <p class="summary">
+            UW MBA, former Amazon PM, one-way-ticket-to-Bangkok traveler. I watch F1 strategy calls and Arsenal set
+            pieces the way most people watch Netflix.
           </p>
           <a href="#projects" class="cta-button">View My Work</a>
         </div>
       </section>
 
-      <section id="about">
-        <h2>About Me</h2>
-        <p>
-          I specialize in the problems that don&rsquo;t have an owner yet. At Amazon, that meant inheriting a process
-          that took four months per case, where each failure cost half a million dollars, and no one had written down
-          how it was supposed to work.
-        </p>
-        <p>
-          My instinct isn&rsquo;t to patch &mdash; it&rsquo;s to dig. I trace problems upstream until I find the
-          structural breakdown, not the visible symptom. That&rsquo;s how a four-month process becomes two weeks, how a
-          crashing spreadsheet becomes a SQL pipeline, and how a 55% launch decline turns into a 94% fill rate. The case
-          studies below show the pattern: diagnose the system, rebuild the infrastructure, measure the result.
-        </p>
-        <p>
-          When I&rsquo;m not rebuilding systems, I&rsquo;m watching them &mdash; F1 strategy calls and Arsenal set
-          pieces are my version of relaxation. I&rsquo;m a UW MBA who once bought a one-way ticket to Bangkok and spent
-          18 months figuring it out across Asia and Latin America. Always happy to swap travel tips or argue about tire
-          strategy.
-        </p>
-      </section>
-
       <section id="projects">
         <h2>Featured Projects</h2>
-        <p class="auth-notice">
-          Case studies contain proprietary work from my time at Amazon and are password-protected.
-          <a href="mailto:hi@taylor.email?subject=Portfolio%20Access%20Request">Request access</a> or enter credentials
-          if you have them.
-        </p>
 
-        <article class="project-card">
-          <h3><a href="work/contract-transfer/contract-transfer.html">Contract Transfer Process Redesign</a></h3>
-          <p class="project-meta">CT Program Owner &amp; Process Architect | 17x Volume Growth | Solo</p>
-          <p>
-            <strong>Challenge:</strong> Amazon's DSP ownership transfer process had no SOP, no standardized
-            communications (4 emails to candidates, zero to owners), and no formalized vetting criteria. Volume was
-            exploding from 5 to 87 annual cases with no additional staff. Each failed exit cost $482K&ndash;$504K.
-          </p>
-          <p>
-            <strong>Approach:</strong> Built a 14-week operational system from scratch &mdash; the playbook behind a 70%
-            faster decision cycle.
-            <a href="work/contract-transfer/contract-transfer.html">Read the full case study &rarr;</a>
-          </p>
-          <p>
-            <strong>Result:</strong> Median decision time dropped 70% (9.6 &rarr; 2.9 weeks). Prevented $13M in exit
-            costs across 29 transfers. Legacy transferees maintained quality at +1,800 basis points vs. network average.
-            SOP adopted as foundation for 2025 Legacy strategy &mdash; named owner of 3 of 4 implementation workstreams.
-          </p>
-        </article>
+        <div class="card-stack">
+          <article class="card">
+            <span class="card-category">Competitive Intelligence</span>
+            <h3 class="card-title">
+              <a href="work/cfa-dsp-application/dsp-application.html">DSP Application Redesign</a>
+            </h3>
+            <p class="card-narrative">
+              Applied to a competitor&rsquo;s franchise program as competitive intelligence, then turned the findings
+              into a redesign spec spanning 18 countries. Secured the engineering investment against a
+              multimillion-dollar entitlement.
+            </p>
+            <div class="card-outcome">
+              <div class="stat">
+                <span class="stat-value">101</span>
+                <span class="stat-label">Requirements specced</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">18&times;</span>
+                <span class="stat-label">Eng. investment secured</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">74% &rarr; ~40%</span>
+                <span class="stat-label">Abandonment, projected</span>
+              </div>
+            </div>
+            <a href="work/cfa-dsp-application/dsp-application.html" class="card-link"
+              >Read case study <span class="arrow">&rarr;</span></a
+            >
+          </article>
 
-        <article class="project-card">
-          <h3>
-            <a href="work/bpr-scoring-pinnacle/pinnacle-scoring.html">Pinnacle BPR Scoring Methodology Redesign</a>
-          </h3>
-          <p class="project-meta">
-            Measurement System Design | 198 Interviews &amp; 36 Panelists | 5 Production Artifacts
-          </p>
-          <p>
-            <strong>Challenge:</strong> Amazon's gateway interview for DSP expansion saw approval rates collapse from
-            85.7% to 56.0% &mdash; a 29.7 percentage-point drop. 77% of panels showed 30+ point scoring gaps between
-            panelists on the same candidate. Horror cases included one candidate scored 5 by one panelist and 57 by
-            another.
-          </p>
-          <p>
-            <strong>Approach:</strong> Reverse-engineered 198 interviews and found three failure modes no one had
-            identified &mdash; including one candidate scored 5 by one panelist and 57 by another.
-            <a href="work/bpr-scoring-pinnacle/pinnacle-scoring.html">Read the full case study &rarr;</a>
-          </p>
-          <p>
-            <strong>Result:</strong> Eliminated the single-dissent veto problem entirely. Reduced 30+ point scoring gaps
-            from 77% of panels to a target under 15 points. Shipped 5 production artifacts including an 18-page
-            methodology spec and scoring template with 60+ diagnostic questions. Restored the approval pathway to a
-            65&ndash;70% target rate.
-          </p>
-        </article>
+          <article class="card">
+            <span class="card-category">Process Design</span>
+            <h3 class="card-title">
+              <a href="work/contract-transfer/contract-transfer.html">Contract Transfer Process Redesign</a>
+            </h3>
+            <p class="card-narrative">
+              Inherited a process with no SOP, no owner, and volume exploding. Built a 14-week operational system that
+              prevented eight figures in contract exit costs across 29 transfers, then owned 3 of 4 workstreams as the
+              program scaled nationally.
+            </p>
+            <div class="card-outcome">
+              <div class="stat">
+                <span class="stat-value">70% faster</span>
+                <span class="stat-label">Decision cycle</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">17&times; volume</span>
+                <span class="stat-label">Absorbed, zero added staff</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">29 transfers</span>
+                <span class="stat-label">Zero failures</span>
+              </div>
+            </div>
+            <a href="work/contract-transfer/contract-transfer.html" class="card-link"
+              >Read case study <span class="arrow">&rarr;</span></a
+            >
+          </article>
 
-        <article class="project-card">
-          <h3><a href="work/cfa-dsp-application/dsp-application.html">DSP Application Redesign</a></h3>
-          <p class="project-meta">Competitive Intelligence | 101 Requirements | 18 Countries | $10.9M Entitlement</p>
-          <p>
-            <strong>Challenge:</strong> Amazon's delivery partner application hadn't been updated since 2018. It had a
-            74% abandonment rate, a 15% post-approval failure rate, and only 23% of approved candidates converted to
-            program inclination &mdash; a ratio of 1 in 135 starts to a single inclined candidate.
-          </p>
-          <p>
-            <strong>Approach:</strong> Applied to a competitor&rsquo;s franchise program as competitive intelligence,
-            then turned the findings into a 101-requirement redesign.
-            <a href="work/cfa-dsp-application/dsp-application.html">Read the full case study &rarr;</a>
-          </p>
-          <p>
-            <strong>Result:</strong> Projected completion from 26% to 60% (+131%), inclination from 23% to 46% (+100%),
-            and post-approval failure from 15% to under 8% ($149K annual vetting savings). Secured 4.60 SDEs (from 0.25
-            initial allocation) against $10.9&ndash;11.3M WW entitlement.
-          </p>
-        </article>
-
-        <article class="project-card">
-          <h3><a href="work/pinnacle-program-selection/pinnacle-automation.html">Pinnacle Selection Automation</a></h3>
-          <p class="project-meta">8 Root Causes | 6-Step SQL Pipeline | Haversine Formula | 2,620 DSPs</p>
-          <p>
-            <strong>Challenge:</strong> The Pinnacle eligibility process ran on a 55+ MB Excel file with INDEX-MATCH
-            calculations across 24,000 rows that regularly crashed. Traffic-dependent distances were non-deterministic,
-            data lagged by a quarter, and 20 eligible candidates were bypassed to RTO &mdash; violating the
-            program&rsquo;s own 5-lever prioritization hierarchy. Launches dropped 55% (93 to 42).
-          </p>
-          <p>
-            <strong>Approach:</strong> Traced a 55% launch decline to a crashing 55MB spreadsheet &mdash; then replaced
-            it with a deterministic SQL pipeline.
-            <a href="work/pinnacle-program-selection/pinnacle-automation.html">Read the full case study &rarr;</a>
-          </p>
-          <p>
-            <strong>Result:</strong> Pinnacle fill rate jumped from 57.9% to 94.1% (+36 pp), with July hitting 100%
-            across 8 targets. Preserved 20 candidates, restored the 5-lever hierarchy, and enabled BDM team expansion
-            from 1 to 5 members. Data refresh improved from quarterly to monthly (3&times; faster).
-          </p>
-        </article>
-
-        <article class="project-card">
-          <h3><a href="work/pinnacle-station/pinnacle-distance.html">Pinnacle Station Distance Analysis</a></h3>
-          <p class="project-meta">Geospatial Analysis (R) | 130K+ Station Pairs | Vincenty Ellipsoid | Policy Change</p>
-          <p>
-            <strong>Challenge:</strong> Amazon&rsquo;s Pinnacle expansion program had a 50-mile distance cap that
-            hadn&rsquo;t been questioned since launch in May 2022. Launches dropped 55% (93 to 42), 20 eligible
-            candidates were bypassed for less-qualified RTOs, and only 47% of the eligible pool was reached for
-            outreach. ~33% of Pinnacle-eligible DSPs were structurally excluded by geography, not performance.
-          </p>
-          <p>
-            <strong>Approach:</strong> Computed 130,000+ pairwise geodesic distances to prove the eligibility cap was
-            excluding top performers.
-            <a href="work/pinnacle-station/pinnacle-distance.html">Read the full case study &rarr;</a>
-          </p>
-          <p>
-            <strong>Result:</strong> Approved 3-tier prioritization (Pop-Up &rarr; &le;50mi &rarr; 5-closest fallback)
-            raised station coverage from 63.9% to 96.0%. Fill rate jumped from 57.9% to 94.1% (+36 pp), with July
-            hitting 100%. Operationalized into a 6-step SQL pipeline on Amazon Redshift replacing the crash-prone Excel
-            file.
-          </p>
-        </article>
-        <article class="project-card">
-          <h3><a href="work/charge-back-processing/chargeback-parsing.html">Chargeback Email Parsing Automation</a></h3>
-          <p class="project-meta">R / Text Mining | Boundary Extraction | 92% Time Reduction | Self-Initiated</p>
-          <p>
-            <strong>Challenge:</strong> Stripe chargeback notifications arrived as unstructured email prose with 8 data
-            fields buried in continuous text. Processing each batch required ~2 hours of manual transcription into a
-            Google Sheets tracker &mdash; opening each email, scanning for fields like 26-character account IDs and
-            dispute numbers, and typing each value by hand.
-          </p>
-          <p>
-            <strong>Approach:</strong> Turned unstructured email prose into structured data with a text mining script
-            that scales to any batch size.
-            <a href="work/charge-back-processing/chargeback-parsing.html">Read the full case study &rarr;</a>
-          </p>
-          <p>
-            <strong>Result:</strong> Processing time dropped 92% (~2 hours to ~10 minutes). Eliminated transcription
-            errors entirely &mdash; programmatic extraction from source text replaced manual reading and typing. The
-            batch architecture meant time savings scaled with volume: parsing was constant-time regardless of batch
-            size.
-          </p>
-        </article>
+          <article class="card">
+            <span class="card-category">Technical Solution</span>
+            <h3 class="card-title">
+              <a href="work/pinnacle-program-selection/pinnacle-automation.html">Selection Automation</a>
+            </h3>
+            <p class="card-narrative">
+              Traced a launch decline to a spreadsheet that crashed mid-calculation. Built a SQL pipeline that restored
+              the selection rankings and scaled the team from one coordinator to five.
+            </p>
+            <div class="card-outcome">
+              <div class="stat">
+                <span class="stat-value">57% &rarr; 94%</span>
+                <span class="stat-label">Fill rate</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">Quarterly &rarr; monthly</span>
+                <span class="stat-label">Data refresh</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">1 &rarr; 5</span>
+                <span class="stat-label">Team expansion</span>
+              </div>
+            </div>
+            <a href="work/pinnacle-program-selection/pinnacle-automation.html" class="card-link"
+              >Read case study <span class="arrow">&rarr;</span></a
+            >
+          </article>
+        </div>
       </section>
 
       <section id="personal-projects">
@@ -267,51 +203,19 @@
       <section id="skills">
         <h2>Skills &amp; Experience</h2>
 
-        <div class="skills-grid">
-          <div class="skill-category">
-            <h3>What I Do</h3>
-            <ul>
-              <li>Zero-to-One Process Builds</li>
-              <li>Root Cause Analysis (5-Why)</li>
-              <li>Cross-Functional Program Leadership</li>
-              <li>Stakeholder Management (14+ teams)</li>
-              <li>Scoring &amp; Methodology Design</li>
-              <li>Change Management</li>
-            </ul>
-          </div>
-          <div class="skill-category">
-            <h3>How I Work</h3>
-            <ul>
-              <li>SQL &amp; Amazon Redshift</li>
-              <li>R (Statistical &amp; Geospatial)</li>
-              <li>Excel (Advanced / VBA)</li>
-              <li>Salesforce &amp; Pardot</li>
-              <li>Jira / Confluence / Asana</li>
-              <li>QuickSight &amp; Tableau</li>
-            </ul>
-          </div>
-          <div class="skill-category">
-            <h3>Where I've Been</h3>
-            <ul>
-              <li>Amazon &mdash; Last Mile / DSP Programs</li>
-              <li>Two-Sided Marketplaces</li>
-              <li>Partner &amp; Vendor Operations</li>
-              <li>Financial Modeling &amp; P&amp;L Analysis</li>
-              <li>Competitive Benchmarking</li>
-              <li>Crisis Response (COVID pivot, 10 days)</li>
-            </ul>
-          </div>
-          <div class="skill-category">
-            <h3>AI &amp; Technical</h3>
-            <ul>
-              <li>Python &amp; FastMCP</li>
-              <li>MCP Protocol &amp; Server Design</li>
-              <li>SQLite / Amazon Redshift</li>
-              <li>AI/LLM Integration</li>
-              <li>Semantic Search &amp; Embeddings</li>
-              <li>GitHub / API Development</li>
-            </ul>
-          </div>
+        <div class="skill-tags">
+          <span>Zero-to-One Process Builds</span>
+          <span>Root Cause Analysis</span>
+          <span>Cross-Functional Leadership</span>
+          <span>Stakeholder Management</span>
+          <span>SQL &amp; Redshift</span>
+          <span>R (Statistical &amp; Geospatial)</span>
+          <span>Python &amp; FastMCP</span>
+          <span>Jira / Confluence / Asana</span>
+          <span>Financial Modeling</span>
+          <span>Change Management</span>
+          <span>Competitive Benchmarking</span>
+          <span>AI/LLM Integration</span>
         </div>
 
         <div class="certifications">

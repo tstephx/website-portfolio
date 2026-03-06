@@ -3,40 +3,25 @@ const { test, expect } = require('@playwright/test');
 
 /**
  * Work case study circular link chain
- * CT → scoring → DSP → automation → distance → chargeback → CT
+ * DSP → CT → automation → DSP
  * Source of truth: ref/site-map.md
  */
 
 const CHAIN = [
   {
-    path: '/work/contract-transfer/contract-transfer.html',
-    nextHref: /pinnacle-scoring/,
-    name: 'Contract Transfer',
-  },
-  {
-    path: '/work/bpr-scoring-pinnacle/pinnacle-scoring.html',
-    nextHref: /dsp-application/,
-    name: 'Pinnacle Scoring',
-  },
-  {
     path: '/work/cfa-dsp-application/dsp-application.html',
-    nextHref: /pinnacle-automation/,
+    nextHref: /contract-transfer/,
     name: 'DSP Application',
   },
   {
+    path: '/work/contract-transfer/contract-transfer.html',
+    nextHref: /pinnacle-automation/,
+    name: 'Contract Transfer',
+  },
+  {
     path: '/work/pinnacle-program-selection/pinnacle-automation.html',
-    nextHref: /pinnacle-distance/,
-    name: 'Pinnacle Automation',
-  },
-  {
-    path: '/work/pinnacle-station/pinnacle-distance.html',
-    nextHref: /chargeback-parsing/,
-    name: 'Pinnacle Distance',
-  },
-  {
-    path: '/work/charge-back-processing/chargeback-parsing.html',
-    nextHref: /contract-transfer/,
-    name: 'Chargeback Parsing (→ back to start)',
+    nextHref: /dsp-application/,
+    name: 'Selection Automation (→ back to start)',
   },
 ];
 

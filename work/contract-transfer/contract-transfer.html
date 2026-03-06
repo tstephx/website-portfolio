@@ -6,14 +6,14 @@
     <meta name="robots" content="noindex, nofollow" />
     <meta
       name="description"
-      content="Case study: Redesigning Amazon's DSP ownership transfer process from zero documentation to handling 87 annual cases — preventing $13M in exit costs as a team of one."
+      content="Case study: Redesigning Amazon's DSP ownership transfer process from zero documentation to handling 87 annual cases — preventing eight figures in exit costs as a team of one."
     />
     <title>Contract Transfer Process Redesign | Taylor Stephens</title>
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
     <meta property="og:title" content="Contract Transfer Process Redesign | Taylor Stephens" />
     <meta
       property="og:description"
-      content="From zero documentation to 87 annual transfer cases. Designed the complete operational system for Amazon's DSP ownership transfers — preventing $13M in exit costs."
+      content="From zero documentation to 87 annual transfer cases. Designed the complete operational system for Amazon's DSP ownership transfers — preventing eight figures in exit costs."
     />
     <meta property="og:type" content="article" />
     <meta property="og:image" content="https://taylorstephens.io/images/headshot.jpg" />
@@ -44,13 +44,13 @@
         <h1>From Zero Documentation to 87 Cases a Year &mdash; Solo</h1>
         <p class="cs-tagline">
           I inherited Amazon&rsquo;s DSP ownership transfer process with no SOP, no communication framework, and no data
-          infrastructure &mdash; then designed the complete operational system that&rsquo;s prevented $13M in exit
-          costs.
+          infrastructure &mdash; then designed the complete operational system that&rsquo;s prevented eight figures in
+          exit costs.
         </p>
         <div class="tech-pills">
           <span class="tech-pill">Service Design</span>
           <span class="tech-pill">Process Architecture</span>
-          <span class="tech-pill">SQL / Redshift</span>
+          <span class="tech-pill">SQL / Data Warehouse</span>
           <span class="tech-pill">Stakeholder Governance</span>
         </div>
       </header>
@@ -66,7 +66,7 @@
         </div>
         <div class="scope-item">
           <span class="scope-label">Teams Coordinated</span>
-          <span class="scope-value">6 (BC, BDM, NH, Acquisitions, DRR, Legal)</span>
+          <span class="scope-value">6 cross-functional teams</span>
         </div>
         <div class="scope-item">
           <span class="scope-label">Artifacts Created</span>
@@ -80,10 +80,11 @@
           Amazon delivers billions of packages through a network of independent Delivery Service Partners (DSPs) &mdash;
           small business owners who operate fleets of vans and drivers under the Amazon brand. When a DSP owner needs to
           exit, their business must be transferred to a new owner without disrupting deliveries. The stakes cut both
-          ways: a failed exit costs Amazon $482K&ndash;$504K in backfill, onboarding, and ramp costs, while dropping
-          network capacity by 7.7% with only 39.6% of routes recovered. But transferring to the wrong person is equally
-          dangerous &mdash; a new owner who can&rsquo;t maintain capacity reliability, safety standards, or financial
-          viability ends up exiting involuntarily, triggering the same $482K+ cost all over again.
+          ways: a failed exit costs Amazon nearly half a million dollars in backfill, onboarding, and ramp costs, while
+          dropping network capacity significantly, with only under half of routes recovered. But transferring to the
+          wrong person is equally dangerous &mdash; a new owner who can&rsquo;t maintain capacity reliability, safety
+          standards, or financial viability ends up exiting involuntarily, triggering the same nearly half a million
+          cost all over again.
         </p>
         <p>
           When I inherited this process, it was broken. There was no SOP, no standardized communications &mdash; just 4
@@ -135,14 +136,14 @@
             distinct transfer-type paths.
           </li>
           <li>
-            <strong>Build the data infrastructure:</strong> Create SQL-based analytics on Amazon Redshift tracking 689
-            data attributes across 209 candidates &mdash; replacing scattered spreadsheets with a single source of
-            truth.
+            <strong>Build the data infrastructure:</strong> Create SQL-based analytics on a data warehouse tracking
+            nearly 700 data attributes across over 200 candidates &mdash; replacing scattered spreadsheets with a single
+            source of truth.
           </li>
           <li>
             <strong>Institutionalize the knowledge:</strong> Author a comprehensive SOP with 13 appendices, 19
-            communication templates, a BC/BDM Playbook, vetting rubrics, and a governance model &mdash; every artifact
-            standalone so any team member could execute without tribal knowledge.
+            communication templates, a Field Team Playbook, vetting rubrics, and a governance model &mdash; every
+            artifact standalone so any team member could execute without tribal knowledge.
           </li>
         </ul>
 
@@ -192,11 +193,12 @@
 
         <h3>Stakeholder Governance</h3>
         <p>
-          The transfer process spanned 6 teams &mdash; BCs (first contact), BDMs (candidate relationship), NH
-          (supervision), Acquisitions (vetting execution), DRR (enhanced screening), and Legal (agreement review). Each
-          had different requirements and unclear boundaries, causing inconsistent candidate experiences and confusion
-          about decision authority. I defined explicit roles for each team and designed a 5-stakeholder consensus model
-          for approvals &mdash; a governance layer unique to CT that doesn&rsquo;t exist in standard DSP recruiting.
+          The transfer process spanned 6 teams &mdash; field coaches (first contact), business development (candidate
+          relationship), operations (supervision), Acquisitions (vetting execution), enhanced screening, and Legal
+          (agreement review). Each had different requirements and unclear boundaries, causing inconsistent candidate
+          experiences and confusion about decision authority. I defined explicit roles for each team and designed a
+          5-stakeholder consensus model for approvals &mdash; a governance layer unique to CT that doesn&rsquo;t exist
+          in standard DSP recruiting.
         </p>
       </section>
 
@@ -214,9 +216,9 @@
             <div class="timeline-week">Phase 1</div>
             <div class="timeline-title">Notification &amp; Intake</div>
             <div class="timeline-desc">
-              DSP Owner notifies BC of intent. CT PM validates eligibility (no open BOCs, not at-risk). Candidate
-              completes application + Buyer Supplementary Questionnaire &mdash; a new artifact I designed for
-              CT-specific data collection.
+              DSP Owner notifies field team of intent. CT PM validates eligibility (no open compliance issues, not
+              at-risk). Candidate completes application + Buyer Supplementary Questionnaire &mdash; a new artifact I
+              designed for CT-specific data collection.
             </div>
           </div>
           <div class="timeline-item completed">
@@ -224,26 +226,27 @@
             <div class="timeline-title">Vetting (6 Steps)</div>
             <div class="timeline-desc">
               Application Review (6-dimension rubric: leadership, coaching ability, logistics experience, customer
-              obsession, grit) &rarr; Background/Credit Check &rarr; HireVue (10 questions) &rarr; Enhanced Vetting
-              &rarr; Station Visit &rarr; Interview Loop (3&times;45 min, 6 competencies). Front-loaded to catch
-              disqualifiers early &mdash; 34% rejected within 2 weeks at the cheapest gates, before Amazon invests in
-              expensive later stages.
+              obsession, grit) &rarr; Background/Credit Check &rarr; video interview platform (10 questions) &rarr;
+              Enhanced Vetting &rarr; Station Visit &rarr; Interview Loop (3&times;45 min, 6 competencies). Front-loaded
+              to catch disqualifiers early &mdash; 34% rejected within 2 weeks at the cheapest gates, before Amazon
+              invests in expensive later stages.
             </div>
           </div>
           <div class="timeline-item completed">
             <div class="timeline-week">Phase 3 &mdash; 2 weeks</div>
             <div class="timeline-title">Approvals (100% Consensus)</div>
             <div class="timeline-desc">
-              5-stakeholder panel: BC Manager, Acquisitions Manager, NH Manager, Legal, NH Director. Interview pass &ne;
-              acceptance &mdash; a deliberate design difference from standard DSP recruiting.
+              5-stakeholder panel: field team manager, Acquisitions Manager, operations manager, Legal, operations
+              director. Interview pass &ne; acceptance &mdash; a deliberate design difference from standard DSP
+              recruiting.
             </div>
           </div>
           <div class="timeline-item completed">
             <div class="timeline-week">Phase 4 &mdash; 7 weeks</div>
             <div class="timeline-title">Onboarding &amp; Transition</div>
             <div class="timeline-desc">
-              Conditional offer via Ownership Transfer Agreement. DSPi &amp; OEW training. 45-day minimum supportive
-              transition period. Fleet transferred as-is.
+              Conditional offer via Ownership Transfer Agreement. Onboarding training programs. 45-day minimum
+              supportive transition period. Fleet transferred as-is.
             </div>
           </div>
           <div class="timeline-item completed">
@@ -361,9 +364,9 @@
             <span class="metric-subtitle">5 &rarr; 87 cases/year</span>
           </div>
           <div class="metric-card">
-            <span class="metric-number">$13M</span>
+            <span class="metric-number">eight figures</span>
             <span class="metric-label">Exit Costs Prevented</span>
-            <span class="metric-subtitle">29 transfers &times; $482K avg = $13.9M</span>
+            <span class="metric-subtitle">across 29 transfers</span>
           </div>
           <div class="metric-card">
             <span class="metric-number">70%</span>
@@ -392,14 +395,14 @@
           from the data: Fast Track (34% of cases, decision within 2 weeks at the cheapest gates), Standard (28%,
           2&ndash;6 weeks through full vetting), and Extended (38%, 6+ weeks for investigation-level complexity). Speed
           matters here in a specific way: the longer a transfer drags, the more likely a DSP owner is to abandon the
-          process and exit unmanaged &mdash; triggering exactly the $482K cost the transfer was meant to prevent.
+          process and exit unmanaged &mdash; triggering exactly the cost the transfer was meant to prevent.
         </p>
 
         <p>
-          The 29 completed transfers prevented an estimated $13M in exit-related costs. Each successful transfer
-          eliminates the $482K&ndash;$504K cost of a DSP exit and preserves 100% of network capacity &mdash; compared to
-          the 7.7% capacity drop and 60.4% permanent route loss that comes with an unmanaged exit. But the real proof
-          that the vetting works: Legacy transferees maintained quality at +1,800 basis points above the network
+          The 29 completed transfers prevented eight figures in exit-related costs. Each successful transfer eliminates
+          nearly half a million dollars in exit costs and preserves 100% of network capacity &mdash; compared to the
+          significant capacity drop and majority of routes permanently lost that comes with an unmanaged exit. But the
+          real proof that the vetting works: Legacy transferees maintained quality significantly above the network
           average. The process didn&rsquo;t just move faster &mdash; it selected better.
         </p>
 
@@ -437,12 +440,7 @@
       </section>
 
       <section class="cs-cta">
-        <p>
-          Next:
-          <a href="../bpr-scoring-pinnacle/pinnacle-scoring.html">Pinnacle BPR Scoring Methodology Redesign</a> &middot;
-          Related: <a href="../pinnacle-program-selection/pinnacle-automation.html">Pinnacle Automation</a> &middot;
-          <a href="../pinnacle-station/pinnacle-distance.html">Distance Analysis</a>
-        </p>
+        <p>Next: <a href="../pinnacle-program-selection/pinnacle-automation.html">Selection Automation</a></p>
       </section>
     </main>
 

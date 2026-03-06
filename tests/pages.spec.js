@@ -21,11 +21,6 @@ const PAGES = [
     name: 'Contract Transfer',
   },
   {
-    path: '/work/bpr-scoring-pinnacle/pinnacle-scoring.html',
-    title: /Pinnacle/i,
-    name: 'Pinnacle Scoring',
-  },
-  {
     path: '/work/cfa-dsp-application/dsp-application.html',
     title: /DSP/i,
     name: 'DSP Application',
@@ -34,16 +29,6 @@ const PAGES = [
     path: '/work/pinnacle-program-selection/pinnacle-automation.html',
     title: /Automation/i,
     name: 'Pinnacle Automation',
-  },
-  {
-    path: '/work/pinnacle-station/pinnacle-distance.html',
-    title: /Distance/i,
-    name: 'Pinnacle Distance',
-  },
-  {
-    path: '/work/charge-back-processing/chargeback-parsing.html',
-    title: /Chargeback/i,
-    name: 'Chargeback Parsing',
   },
 ];
 

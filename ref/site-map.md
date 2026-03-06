@@ -1,23 +1,20 @@
 # Site Map & Page Index
 
-**Last verified:** 2026-03-04
+**Last verified:** 2026-03-05
 
 ---
 
 ## Homepage
 
-`index.html` — 3 personal info cards + 9 project cards
+`index.html` — 3 work cards (V2.1 narrative-led) + 3 personal project cards + skill tags
 
-### Work Cards (6)
+### Work Cards (3)
 
-| Title                                     | Path                                                       |
-| ----------------------------------------- | ---------------------------------------------------------- |
-| Contract Transfer Process Redesign        | `work/contract-transfer/contract-transfer.html`            |
-| Pinnacle BPR Scoring Methodology Redesign | `work/bpr-scoring-pinnacle/pinnacle-scoring.html`          |
-| DSP Application Redesign                  | `work/cfa-dsp-application/dsp-application.html`            |
-| Pinnacle Selection Automation             | `work/pinnacle-program-selection/pinnacle-automation.html` |
-| Pinnacle Station Distance Analysis        | `work/pinnacle-station/pinnacle-distance.html`             |
-| Chargeback Email Parsing Automation       | `work/charge-back-processing/chargeback-parsing.html`      |
+| Title                             | Path                                                       |
+| --------------------------------- | ---------------------------------------------------------- |
+| DSP Application Redesign          | `work/cfa-dsp-application/dsp-application.html`            |
+| Contract Transfer Process Redesign | `work/contract-transfer/contract-transfer.html`           |
+| Selection Automation              | `work/pinnacle-program-selection/pinnacle-automation.html` |
 
 ### Project Cards (3 shown on homepage)
 
@@ -37,11 +34,11 @@
 
 ---
 
-## Work Case Study Link Chain (circular)
+## Work Case Study Link Chain (circular, 3 pages)
 
-`contract-transfer` → `pinnacle-scoring` → `dsp-application` → `pinnacle-automation` → `pinnacle-distance` → `chargeback-parsing` → `contract-transfer`
+`dsp-application` → `contract-transfer` → `pinnacle-automation` → `dsp-application`
 
-Each page has a "Next:" footer link. When adding/reordering, update all 6 links to keep the chain intact.
+Each page has a "Next:" footer link. When adding/reordering, update all 3 links to keep the chain intact.
 
 ---
 
@@ -49,7 +46,7 @@ Each page has a "Next:" footer link. When adding/reordering, update all 6 links 
 
 | Page       | Path              | Notes                          |
 | ---------- | ----------------- | ------------------------------ |
-| Resume     | `resume.html`     | Not linked from homepage cards |
+| Resume     | `resume.html`     | Linked from nav                |
 | 401 Auth   | `401.html`        | Basic auth gate                |
 | 401 Thanks | `401-thanks.html` | Post-auth redirect             |
 

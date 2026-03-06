@@ -6,7 +6,7 @@
 
 ## Canonical Entry Points
 
-- Homepage: `index.html` (6 work cards + 3 personal cards)
+- Homepage: `index.html` (3 work cards V2.1 + 3 personal cards + skill tags)
 - Work case studies: `work/*/*.html` (2 levels deep; paths use `../../`)
 - Project pages: `projects/*.html` (1 level deep; paths use `../`)
 - Global styling tokens: `css/styles.css` (57 custom properties in `:root`)
@@ -31,7 +31,7 @@ cd website-portfolio && python3 -m http.server 8000
 
 - Work pages (2 deep): `../../css/`, `../../js/`, siblings via `../subfolder/file.html`
 - Project pages (1 deep): `../css/`, `../js/`
-- Link chain (work case studies, circular): CT → scoring → DSP → automation → distance → chargeback → CT
+- Link chain (work case studies, circular): DSP → CT → automation → DSP
 
 ## Design System
 

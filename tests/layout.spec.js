@@ -16,14 +16,11 @@ const PAGES = [
   { path: '/projects/book-library-mcp.html', name: 'Book Library MCP' },
   { path: '/projects/claude-innit.html', name: 'claude-innit' },
   { path: '/work/contract-transfer/contract-transfer.html', name: 'Contract Transfer' },
-  { path: '/work/bpr-scoring-pinnacle/pinnacle-scoring.html', name: 'Pinnacle Scoring' },
   { path: '/work/cfa-dsp-application/dsp-application.html', name: 'DSP Application' },
   {
     path: '/work/pinnacle-program-selection/pinnacle-automation.html',
     name: 'Pinnacle Automation',
   },
-  { path: '/work/pinnacle-station/pinnacle-distance.html', name: 'Pinnacle Distance' },
-  { path: '/work/charge-back-processing/chargeback-parsing.html', name: 'Chargeback Parsing' },
 ];
 
 // ===== MOBILE LAYOUT (390px — iPhone 13) =====
