@@ -974,6 +974,195 @@
   }
 }
 
+/* ===== ICON CARDS — 2x2 grid for problem decomposition ===== */
+.icon-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin: 3rem 0;
+}
+
+.icon-card {
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.icon-card-icon {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-sm);
+  color: var(--color-accent);
+}
+
+.icon-card-title {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: var(--space-xs);
+  color: var(--color-text);
+}
+
+.icon-card-desc {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+/* ===== PULL QUOTE — closing thesis statement ===== */
+.pull-quote {
+  position: relative;
+  padding: 3rem 3rem 3rem 4rem;
+  margin: 4rem 0;
+  border-left: 4px solid var(--color-accent);
+  background: var(--color-surface);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.pull-quote::before {
+  content: "\201C";
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  font-size: 3rem;
+  font-family: var(--font-sans);
+  color: var(--color-accent);
+  line-height: 1;
+  opacity: 0.3;
+}
+
+.pull-quote p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* ===== TL;DR COLLAPSIBLE SUMMARY ===== */
+.tldr-summary {
+  margin: var(--space-lg) 0 3rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.tldr-summary summary {
+  padding: var(--space-md) var(--space-lg);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-muted);
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.tldr-summary summary::before {
+  content: "\25B6";
+  font-size: 0.7em;
+  transition: transform 0.2s ease;
+}
+
+.tldr-summary[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.tldr-summary summary::-webkit-details-marker {
+  display: none;
+}
+
+.tldr-summary .tldr-content {
+  padding: 0 var(--space-lg) var(--space-lg);
+}
+
+.tldr-summary .tldr-content ul {
+  margin: 0;
+  padding-left: var(--space-lg);
+}
+
+.tldr-summary .tldr-content li {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: var(--space-sm);
+  color: var(--color-text);
+}
+
+/* ===== DECISION CARDS — side-by-side option comparison ===== */
+.decision-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin: 3rem 0;
+}
+
+.decision-card {
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-border);
+}
+
+.decision-card.rejected {
+  opacity: 0.65;
+  border-color: var(--color-border);
+  background: var(--color-surface);
+}
+
+.decision-card.chosen {
+  border-color: var(--color-accent);
+  background: var(--color-accent-light, rgba(26, 58, 107, 0.12));
+}
+
+.decision-card-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-sm);
+}
+
+.decision-card.rejected .decision-card-label {
+  color: var(--color-muted);
+}
+
+.decision-card.chosen .decision-card-label {
+  color: var(--color-accent);
+}
+
+.decision-card-title {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: var(--space-sm);
+  color: var(--color-text);
+}
+
+.decision-card-desc {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+/* ===== CTA SECONDARY LINK ===== */
+.cs-cta .secondary-link {
+  display: block;
+  text-align: center;
+  margin-top: var(--space-md);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.cs-cta .secondary-link a {
+  color: var(--color-muted);
+  text-decoration: underline;
+}
+
 /* =========================================
    NARROW (≤380px)
    ========================================= */
@@ -1008,6 +1197,14 @@
   }
 
   .chart-pair {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .icon-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .decision-cards {
     grid-template-columns: 1fr 1fr;
   }
 

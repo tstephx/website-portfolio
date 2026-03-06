@@ -236,6 +236,81 @@ Config in `js/mermaid-init.js`. Use `flowchart LR/TD` or `stateDiagram-v2`.
 
 ---
 
+## New Components (2026-03-06)
+
+### Icon Cards
+
+2x2 grid for problem decomposition. Stacks to 1-col on mobile.
+
+```html
+<div class="icon-cards">
+  <div class="icon-card">
+    <div class="icon-card-icon">&#x26A0;</div>
+    <div class="icon-card-title">Card Title</div>
+    <div class="icon-card-desc">Short description of the problem or concept.</div>
+  </div>
+</div>
+```
+
+### Pull Quote
+
+Styled closing thesis statement with accent border and large opening quote mark.
+
+```html
+<div class="pull-quote">
+  <p>The application wasn't collecting bad data — it was asking the wrong kind of questions.</p>
+</div>
+```
+
+### TL;DR Collapsible Summary
+
+Collapsible summary near the top of case study pages. Uses native `<details>`.
+
+```html
+<details class="tldr-summary">
+  <summary>Quick Summary</summary>
+  <div class="tldr-content">
+    <ul>
+      <li>Key point one</li>
+      <li>Key point two</li>
+      <li>Key point three</li>
+    </ul>
+  </div>
+</details>
+```
+
+### Decision Cards
+
+Side-by-side comparison cards with chosen/rejected states.
+
+```html
+<div class="decision-cards">
+  <div class="decision-card rejected">
+    <div class="decision-card-label">Option A</div>
+    <div class="decision-card-title">Rejected Approach</div>
+    <div class="decision-card-desc">Why this was considered and rejected.</div>
+  </div>
+  <div class="decision-card chosen">
+    <div class="decision-card-label">Option B — Chosen</div>
+    <div class="decision-card-title">Selected Approach</div>
+    <div class="decision-card-desc">Why this was the better path.</div>
+  </div>
+</div>
+```
+
+### CTA Secondary Link
+
+Secondary link below the main CTA button. Use inside `.cs-cta`.
+
+```html
+<section class="cs-cta">
+  <a href="..." class="cta-button">Read next: Title <span class="arrow">&rarr;</span></a>
+  <p class="secondary-link"><a href="...">Get in touch</a></p>
+</section>
+```
+
+---
+
 ## Notes
 
 - Every new case study page must include `.reading-progress` as first `<body>` child
