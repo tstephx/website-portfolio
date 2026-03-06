@@ -1,6 +1,6 @@
 ---
 name: revise-case-study
-description: Analyze a case study draft against an 8-criterion rubric, produce a scored report with inline rewrite choices, and generate an approved outline for /new-case-study Prompt 2
+description: Use when a markdown case study draft needs content quality scoring before building the HTML page with /new-case-study
 disable-model-invocation: true
 args:
   - name: slug
