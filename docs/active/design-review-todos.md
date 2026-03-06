@@ -5,21 +5,24 @@ _Pages reviewed: all 6 work case studies, all 6 project pages, index.html_
 
 ---
 
-## UNFIXED — From This Session's Reviews
+## FIXED — From This Session's Reviews (2026-03-04)
 
 ### chargeback-parsing.html
 
-- [ ] **Chart legend consistency** — `timeChart` has `legend: display: false`, `scalingChart` has `legend: display: true`. Either add a legend to the time chart or label the bars via annotation. Currently the time chart bars are red/green with no legend — understandable but inconsistent with the scaling chart which shows a legend.
+- [x] **Chart legend consistency** — Accepted as intentional. `timeChart` is a single-dataset bar chart where x-axis labels ("Manual"/"Automated") serve the same purpose as a legend. `scalingChart` is a multi-dataset line chart that needs a legend to distinguish the two lines. Different chart types, different needs.
+- [x] **Unwrapped data-table** — The email comparison table inside `.comparison-after` was missing a `.data-table-wrapper` for mobile overflow scroll. Wrapped it.
 
 ### pinnacle-distance.html
 
-- [ ] **Counter-intuitive finding table** — the table showing shorter distances ≠ better conversion has no `insight-callout` framing above it. The `insight-callout` that was added during the session appears above the section, but the table itself still lands cold. Consider a short framing sentence directly before the table.
+- [x] **Counter-intuitive finding table** — Already had insight-callout + framing paragraph before the performance comparison table. No change needed.
+- [x] **Results insight-callout** — Added insight-callout before results metrics-row (was the only page missing one out of 6).
 
 ### All case studies (cross-cutting)
 
-- [ ] **`.comparison` h3 tags** — the new `.comparison-label` CSS class was added and applied to `chargeback-parsing.html`, but `pinnacle-distance.html` and any other pages using `.comparison` blocks with `<h3>` column headers still use the old `h3` style. Audit and update all `.comparison-before h3` / `.comparison-after h3` to `<p class="comparison-label">`.
-  - Check: `work/pinnacle-station/pinnacle-distance.html`
-  - Check: `work/bpr-scoring-pinnacle/pinnacle-scoring.html`
+- [x] **`.comparison` h3 tags** — Audited all `.comparison` blocks across all pages. All use `<p class="comparison-label">` already. The `<h3>` tags in mcp-ecosystem deep-dive cards are intentional (`.link-card` navigation elements, not before/after comparisons).
+- [x] **Results insight-callout audit** — All 6 work case studies now have insight-callouts before their results metrics-row.
+- [x] **Chart.js token pattern** — Fixed in commit `f68ca74` (replaced hardcoded hex colors with CSS token variables across all 6 case studies).
+- [x] **`og:image`** — Fixed in commit `d9de4a0` (added social card meta to all 14 pages).
 
 ---
 
@@ -27,24 +30,20 @@ _Pages reviewed: all 6 work case studies, all 6 project pages, index.html_
 
 ### Typography & Spacing
 
-- [ ] **Case study h2 underline width** — `h2::after` is `2em` (updated from 2.5rem). On long h2 titles this reads well; on short ones (2–3 words) the underline feels too wide. Consider `min(2em, 100%)` or a fixed `2.5rem` cap.
+- [x] **Case study h2 underline width** — Already uses `min(2em, 100%)` in `case-study.css:96`. No change needed.
 - [ ] **`cs-tagline` font** — currently Epilogue (sans). A single Newsreader italic sentence here would distinguish the tagline from the tech-pills below and add editorial character. Worth prototyping on one page.
 - [ ] **Metric card numbers** — currently Epilogue 700. Cormorant Garamond at large weight would make the numbers feel more editorial and less dashboard-y. Prototype on one page before rolling out.
 
 ### Visual Hierarchy
 
-- [ ] **`scope-callout` visual weight** — the scope-callout sits between the header and first section but has minimal visual presence. A subtle left-border or background tint (matching `--color-accent-light`) would help it read as a distinct "card" rather than a continuation of the header.
-- [ ] **`process-timeline` last item** — the green dot treatment for the final step (added in this session) works well on `chargeback-parsing.html`. Confirm it also applies correctly on `pinnacle-automation.html` which uses "Step 1/2/3" labels — the CSS targets `.timeline-item:last-child` so it should be automatic, but visually verify.
+- [x] **`scope-callout` visual weight** — Already has `border-left: 3px solid var(--color-accent)` and `background-color: var(--color-accent-light)` in `case-study.css:788-789`. No change needed.
+- [x] **`process-timeline` last item** — Green dot + title color applied via `.timeline-item:last-child.completed` in `case-study.css:611-618`. Works on all pages using the component.
 - [ ] **`funnel-chart` labels** — on `pinnacle-automation.html`, the funnel stage labels are left-aligned text. A monospace font (DM Mono) for the stage counts (`2,620`, `222`, etc.) would make the numbers more scannable and give the funnel a data-display feel.
 
 ### Content & Narrative
 
-- [ ] **All 6 case studies: results section insight-callout audit** — confirmed added on `chargeback-parsing.html` and `pinnacle-automation.html`. Verify the other 4 pages have a framing callout before their metrics-row:
-  - `pinnacle-distance.html` — check
-  - `pinnacle-scoring.html` — check
-  - `dsp-application.html` — check
-  - `contract-transfer.html` — check
-- [ ] **`cs-cta` "Related:" links** — audit all 6 case studies to confirm the circular link chain is intact and no page has a duplicate "Next" + "Related" pointing to the same destination (fixed on automation, may exist elsewhere).
+- [x] **All 6 case studies: results section insight-callout audit** — All 6 confirmed with insight-callout before results metrics-row (pinnacle-distance was the last one added, 2026-03-04).
+- [x] **`cs-cta` "Related:" links** — Audited all 6 case studies. Circular link chain intact: CT → scoring → DSP → automation → distance → chargeback → CT. No duplicate Next + Related pointing to same destination.
 - [ ] **Leadership quote pattern** — the `pinnacle-automation.html` leadership quote (`<em>"The acquisition team will create a script..."</em>`) is the only page with external attribution. This is powerful. Look for similar quotes or documented outcomes in other case studies that could be surfaced this way.
 
 ### Index / Homepage
@@ -54,9 +53,9 @@ _Pages reviewed: all 6 work case studies, all 6 project pages, index.html_
 
 ### Cross-Cutting Technical
 
-- [ ] **Chart.js token pattern** — all 6 case studies use hardcoded hex colors in Chart.js scripts (accepted exception, per CLAUDE.md). If a color token ever changes, 6 files need manual updates. Consider a one-time refactor to `getComputedStyle` pattern when doing a CSS token refresh.
-- [ ] **Mobile: `.data-table` overflow scroll** — flagged in `TODO.md`, still unresolved. Wide tables (root causes table, before/after tables) likely break on narrow viewports.
-- [ ] **`og:image`** — all case studies missing social card images. Low priority until site goes public.
+- [x] **Chart.js token pattern** — Fixed in commit `f68ca74`. All 6 case studies now use `getComputedStyle` pattern to read CSS tokens.
+- [x] **Mobile: `.data-table` overflow scroll** — `.data-table-wrapper` already has `overflow-x: auto` in `case-study.css`. Audited all tables: one unwrapped table in chargeback comparison fixed (2026-03-04). All tables now wrapped.
+- [x] **`og:image`** — Fixed in commit `d9de4a0`. All 14 pages have social card meta.
 
 ---
 

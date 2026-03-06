@@ -149,6 +149,22 @@ a {
   transition: color var(--transition);
 }
 
+p a,
+li a:not(.cta-button) {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent-light);
+  text-underline-offset: 0.15em;
+  transition:
+    color var(--transition),
+    text-decoration-color var(--transition);
+}
+
+p a:hover,
+li a:not(.cta-button):hover {
+  color: var(--color-accent-hover);
+  text-decoration-color: var(--color-accent-hover);
+}
+
 a:hover {
   color: var(--color-accent-hover);
 }
@@ -214,6 +230,7 @@ nav li:last-child a {
 
 /* ===== HERO ===== */
 #hero {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -221,7 +238,18 @@ nav li:last-child a {
   text-align: center;
   padding: 4rem 1.5rem;
   animation: fadeIn 0.8s ease-out both;
-  background: radial-gradient(ellipse at 50% 40%, var(--color-accent-light) 0%, transparent 70%);
+}
+
+#hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    var(--color-accent-light) 0%,
+    transparent 70%
+  );
+  z-index: -1;
 }
 
 @keyframes fadeIn {
@@ -275,6 +303,7 @@ nav li:last-child a {
   background-color: var(--color-heading);
   color: var(--color-bg);
   text-decoration: none;
+  border: 2px solid var(--color-heading);
   border-radius: 3px;
   font-size: 0.8125rem;
   font-weight: 600;
@@ -282,6 +311,8 @@ nav li:last-child a {
   text-transform: uppercase;
   transition:
     background-color var(--transition),
+    color var(--transition),
+    border-color var(--transition),
     transform var(--transition),
     box-shadow var(--transition);
 }
@@ -644,7 +675,8 @@ footer {
   }
 
   .cta-button:hover {
-    background-color: var(--color-heading);
+    background-color: var(--color-bg);
+    color: var(--color-heading);
     text-decoration: none;
     transform: translateY(-1px);
     box-shadow: var(--shadow-hover);

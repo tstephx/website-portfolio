@@ -1,5 +1,6 @@
 {
   "extends": ["stylelint-config-standard"],
+  "plugins": ["@double-great/stylelint-a11y"],
   "rules": {
     "custom-property-pattern": null,
     "selector-class-pattern": null,

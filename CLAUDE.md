@@ -99,6 +99,22 @@ After each prompt: code review via `/superpowers:requesting-code-review`, fix is
 - [ ] Index card added in appropriate section
 - [ ] "Next:" link chain updated (circular)
 - [ ] Chart.js uses token-driven pattern (no hardcoded colors)
+- [ ] Added to all 4 test files (pages, a11y, layout, visual) + `lint:html` script
+- [ ] `npm run check` and `npm test` pass (including axe-core a11y)
+
+## Testing
+
+- 7 Playwright spec files: pages, link-chain, a11y (axe-core), layout (3 viewports), visual regression, assets, changelog
+- Linting: ESLint + Stylelint (with a11y plugin) + Prettier + html-validate + Linkinator
+- Quick run: `npm run check` (lint) then `npm test` (Playwright), or use `/check`
+- Full reference: `ref/testing.md`
+
+## Automation (Skills, Agents, Hooks)
+
+- 7 skills: `/deploy`, `/new-case-study`, `/check`, `/update-snapshots`, `/content-audit`, `/link-check`, design-tokens (Claude-only)
+- 3 agents: accessibility-reviewer, content-reviewer, visual-regression-watcher
+- 3 hooks: block lock/env edits, auto-format (Prettier), HTML validate
+- Full reference: `ref/automation.md`
 
 ## Documentation
 
@@ -134,6 +150,17 @@ After each prompt: code review via `/superpowers:requesting-code-review`, fix is
 - `ref/components.md` — case study component library with usage snippets
 - `ref/chartjs-pattern.md` — Chart.js token-driven boilerplate, color variables, dataset patterns
 - `ref/deploy.md` — deployment workflow (git pull on Whatbox), Cloudflare config, header verification
+- `ref/testing.md` — test architecture, 7 spec files, npm scripts, dependencies
+- `ref/automation.md` — skills, agents, hooks index with descriptions
+
+## Guides (`docs/active/`)
+
+- `docs/active/layout-review-guide.md` — 5-phase workflow for reviewing/improving site layout
+- `docs/active/deployment-checklist.md` — pre-deploy verification, push/pull steps, rollback
+- `docs/active/case-study-playbook.md` — 3-prompt pattern end-to-end with content strategy
+- `docs/active/content-writing-standards.md` — voice, tone, anti-patterns, before/after examples
+- `docs/active/testing-cheat-sheet.md` — which test to run when, common failures and fixes
+- `docs/active/design-system-usage.md` — when to use which token, component selection guide
 
 ---
 

@@ -106,6 +106,7 @@
                 </div>
                 <div class="comparison-after">
                     <p class="comparison-label"><strong>Extracted Structured Row</strong></p>
+                    <div class="data-table-wrapper">
                     <table class="data-table" style="margin: 0">
                         <caption>8 fields extracted from a single chargeback notification</caption>
                         <tbody>
@@ -118,7 +119,8 @@
                             <tr><td>Customer</td><td>James Liao</td></tr>
                             <tr><td>Email</td><td>jlaimaeos@gmail.com</td></tr>
                         </tbody>
-                    </table></div>
+                    </table>
+                    </div></div>
                 </div>
             </div>
         </section>
@@ -329,7 +331,7 @@
         </section>
 
         <section class="cs-section" id="lessons">
-            <h2>What This Taught Me</h2>
+            <h2>Lessons Worth Stealing</h2>
             <ul class="lessons-list">
                 <li>The best automation targets are format problems, not volume problems. The data existed in every email &mdash; it was just trapped in the wrong structure. Recognizing that distinction saved hours of accumulated manual work.</li>
                 <li>Right-size the solution to the problem. An API integration would have been over-engineered. Export-to-folder plus a script was simple, dependency-free, and solved the problem completely. The 10 minutes of remaining manual work wasn&rsquo;t worth eliminating.</li>
