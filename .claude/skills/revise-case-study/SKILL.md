@@ -22,7 +22,7 @@ Glob `work/{{slug}}/case-study-draft*.md`.
 
 - **One match:** Confirm with user — "Found `case-study-draft.md` — use this?"
 - **Multiple matches:** List all and ask which to analyze.
-- **No matches:** Stop with error — "No case-study-draft*.md found in `work/{{slug}}/`."
+- **No matches:** Stop — "No case-study-draft*.md found in `work/{{slug}}/`."
 
 ## Step 2: Load Inputs
 
@@ -31,77 +31,46 @@ Read these files:
 1. The confirmed draft file
 2. `docs/active/content-writing-standards.md` (voice, tone, anti-patterns)
 3. `ref/components.md` (component library — for outline suggestions)
-4. `work/{{slug}}/evidence*.md` (if any exist — for cross-referencing)
+4. `work/{{slug}}/evidence*.md` (if any — for cross-referencing)
 5. `work/{{slug}}/revision-log.md` (if exists — for delta comparison)
 
-## Step 3: Pre-Check (Content-First Questions)
+## Step 3: Pre-Check (Spine)
 
-Check if the draft has a one-sentence test (spine) at the top — a single sentence capturing "I [did X] which [achieved Y] despite [constraint Z]."
+Check if draft has a one-sentence test (spine): "I [did X] which [achieved Y] despite [constraint Z]."
 
-**Detection heuristic:** Look for (a) a section headed "One-Sentence Test" or "Spine", or (b) the first blockquote in the first 20 lines containing the pattern "I [verb]... which [outcome]... despite [constraint]." If neither found, treat as missing.
-
-**If missing**, prompt the user to answer these 4 questions before proceeding:
+**Detection:** Look for (a) section headed "One-Sentence Test" or "Spine", or (b) the first blockquote in the first 20 lines matching the pattern. If neither found, prompt user:
 
 1. Who is this for?
 2. What do they need to believe about you?
 3. What should they do after reading?
 4. How will you know it worked?
 
-**If present**, skip — the draft is past that stage.
+If present, skip.
 
 ## Step 4: Single-Pass Analysis
 
-Run all five checks in one pass. Do not present intermediate results.
-
-**Analysis vs. presentation:** Analysis runs in one pass (Steps 4a–4e). The report is presented in two phases: sections 1–5 first (pause for prose choices in section 5), then sections 6–7 (rubric + outline with choices applied).
+Run all five checks in one pass. Do not present intermediate results. Voice score and outline are **provisional** — recomputed in Phase B after user prose choices.
 
 ### 4a. Structure Check
 
 Does the arc work? (Problem → Insight → Solution → Result → Lessons)
 
-- **Missing sections:** List any required sections absent from the draft. Required: Problem, Root Cause (or Insight), Solution, Results, Lessons Worth Stealing.
-- **Sections that don't earn their space:** Flag any section that restates another or adds no new information.
-- **H2 Headline Test:** Table of every H2 as written, pass/fail, and suggested rewrite. A passing H2: the reader who reads only the headings can reconstruct the story arc.
-
-```
-| H2 as written            | Passes? | Suggested rewrite                |
-|--------------------------|---------|----------------------------------|
-| "Background"             | Fail    | "The $482K Problem"              |
-| "Results"                | Fail    | "94% Fill in One Quarter"        |
-| "What Was Blocking Them" | Pass    | —                                |
-```
+- **Missing sections:** Required: Problem, Root Cause (or Insight), Solution, Results, Lessons Worth Stealing.
+- **Redundant sections:** Flag any section that restates another.
+- **H2 Headline Test:** Table: `H2 as written | Passes? | Suggested rewrite`. Pass = reader reconstructs story arc from headings alone. e.g., "Background" → Fail → "The $482K Problem"
 
 ### 4b. Strategy Check
 
-Does every metric connect to business impact?
-
-- **So-What Checklist:** Table of every metric. Every number must answer "why should a HM care?" Projected and confirmed metrics held to the same standard — the "projected" qualifier is a labeling concern handled by Accuracy.
-
-```
-| Metric          | Impact stated? | HM cares because...          |
-|-----------------|----------------|-------------------------------|
-| "70% faster"    | Bare number    | "Unblocked 29 transfers"      |
-| "94% fill rate" | Has baseline   | —                             |
-```
-
-- **First-Sentence Test:** Extract first sentence of each prose paragraph in Problem, Root Cause, Solution, Results, and Lessons sections. (Skip the spine, Scope metadata, tables, and sections with fewer than two sentences.) Does it front-load the key information?
-
-```
-P1: PASS  "The process had no owner..."
-P2: FAIL  "After careful analysis of..." → lead with the finding
-P3: PASS  "Approval rates recovered from 56% to the target."
-```
-
-- **Length Check:** Total prose word count (excluding comments, tables, headers). Flag if over 1200 words. Scored under Scanability; does not independently block.
+- **So-What Checklist:** Table every metric: `Metric | Impact stated? | HM cares because...`. Every number must answer "why should a HM care?" e.g., "70% faster" → Bare number → "Unblocked 29 transfers"
+- **First-Sentence Test:** Extract first sentence of each prose paragraph in Problem, Root Cause, Solution, Results, Lessons. (Skip spine, Scope, tables, sections < 2 sentences.) Does it front-load key info? Format: `P1: PASS/FAIL "sentence" → fix`
+- **Length Check:** Prose word count (excluding comments, tables, headers). Flag if >1200 words. Scored under Scanability.
 
 ### 4c. Prose Check (Elements of Style)
 
-Apply Strunk's rules to every sentence. Produce a rewrite table with **inline choice per item**: accept the rewrite, reject (keep original), or edit (provide your own version).
+Apply Strunk's rules. Rewrite table with **inline choice per item**: accept / reject / edit.
 
-**Rules checked (with rubric criterion mapping):**
-
-| Strunk's Rule | Description | Feeds Criterion |
-|---------------|-------------|-----------------|
+| Rule | Description | Feeds Criterion |
+|------|-------------|-----------------|
 | R10 | Active voice | Voice |
 | R11 | Positive form | Voice |
 | R12 | Specific/concrete | Specificity |
@@ -109,201 +78,90 @@ Apply Strunk's rules to every sentence. Produce a rewrite table with **inline ch
 | R16 | Related words together | Scanability |
 | R18 | Emphatic words at end | So-What |
 
-```
-| # | Original                          | Rule       | Rewrite                        | Decision |
-|---|-----------------------------------|------------|--------------------------------|----------|
-| 1 | "The process was redesigned to     | R10: passive| "I redesigned the process,     | accept / |
-|   |  improve efficiency"              |            |  cutting cycle time 70%"       | reject / |
-|   |                                   |            |                                | edit     |
-```
+Table format: `# | Original | Rule | Rewrite | Decision`
 
-**Cap at 15 items**, prioritized by severity (R10 passive voice > R12 vague language > R18 weak endings > R11 negative form > R13 wordiness > R16 word order). If total violations exceed 15, note: "15 of N violations shown. Remaining are minor (R13, R16) — will surface on re-run if still present."
+**Cap at 15 items**, priority: R10 > R12 > R18 > R11 > R13 > R16. If total violations exceed 15, note count and that remaining are minor.
 
-**Also flag:**
-- Jargon used without definition (with suggested parenthetical)
-- Sanitization issues (internal dollar amounts, program codes) if present
-- Third-person voice instances that need conversion to first person (flagged, not auto-converted — user decides phrasing)
-
-User choices are collected in Step 5 (Phase A pause), not here.
+**Also flag:** jargon without definition, sanitization issues, third-person voice (flagged, not auto-converted). Choices collected in Step 5 Phase A pause.
 
 ### 4d. Rubric Scoring (Provisional)
 
-Score 8 criteria, each 1-5. Total: /40. Voice (criterion 6) is scored provisionally against the original prose. It is recomputed in Phase B after user prose choices are collected.
+8 criteria, each 1-5, total /40. Voice scored provisionally; recomputed in Phase B.
 
-| # | Criterion | What it measures | 1 (fail) | 5 (pass) |
-|---|-----------|-----------------|----------|----------|
-| 1 | **Arc** | Problem → Insight → Solution → Result → Lessons present and ordered | Sections missing or out of order | Clear tension, turning point, payoff, transferable lesson |
-| 2 | **So-What** | Every metric connects to business impact | Bare numbers without context | Every number answers "why should a HM care?" |
-| 3 | **Scanability** | H2s tell the story; first sentences front-load; under 1200 words | Generic headers, buried ledes, over-length | H2s alone reconstruct the arc; first sentences carry key info; concise |
-| 4 | **Specificity** | Numbers beat adjectives; claims are concrete | "Significantly improved" | "Reduced 70% (16.98 → 2.28 weeks)" |
-| 5 | **Context** | Every number has a baseline and derivation | Numbers float without anchoring | Before → after stated; denominator or derivation provided |
-| 6 | **Voice** | Active, reader-focused, jargon defined on first use | Passive voice, self-congratulatory, undefined acronyms | Direct, for the reader, terms explained |
-| 7 | **One Lesson** | Case study teaches one clear, transferable thing | Unclear takeaway or multiple competing messages | Reader can state the lesson in one sentence |
-| 8 | **Accuracy** | Numbers are internally consistent, math checks out, claims traceable to evidence | Contradictions, arithmetic errors, unverifiable claims | All numbers cross-check; evidence files support claims |
+| # | Criterion | 1 (fail) | 5 (pass) |
+|---|-----------|----------|----------|
+| 1 | **Arc** | Sections missing or disordered | Clear tension, turning point, payoff, lesson |
+| 2 | **So-What** | Bare numbers without context | Every number answers "why should a HM care?" |
+| 3 | **Scanability** | Generic headers, buried ledes, >1200w | H2s reconstruct arc; first sentences front-load |
+| 4 | **Specificity** | "Significantly improved" | "Reduced 70% (16.98 → 2.28 weeks)" |
+| 5 | **Context** | Numbers without anchoring | Before → after; derivation provided |
+| 6 | **Voice** | Passive, self-congratulatory, undefined acronyms | Active, reader-focused, jargon defined |
+| 7 | **One Lesson** | Unclear or competing messages | Reader states lesson in one sentence |
+| 8 | **Accuracy** | Contradictions, unverifiable claims | All numbers cross-check; evidence supports |
 
-**Accuracy without evidence files:** Cap at 4/5. Note in report: "Accuracy capped at 4 — no evidence files available for cross-referencing."
+**Accuracy without evidence files:** Cap at 4/5.
 
-**Evidence cross-referencing (when evidence files exist):**
-1. Extract every numeric claim from the draft
-2. Search evidence files for corresponding source data
-3. Match found → verify number matches source; flag discrepancies
-4. No match found → flag as "unverifiable claim — no source in evidence files"
+**Evidence cross-referencing:** Extract numeric claims → search evidence files → verify matches → flag discrepancies or unverifiable claims.
 
 ### 4e. Outline Generation (Provisional)
 
-Draft a proposed outline in this format using the suggested Strunk's rewrites. This is provisional — the final outline presented in Phase B will reflect the user's actual accept/reject/edit choices from Phase A.
+Draft outline using suggested rewrites. Updated in Phase B after user choices.
 
 ```markdown
 # [Tension-Driven Headline]
-
-[Tagline: Role/Scope | Scale Indicator | Key Constraint]
-
+[Tagline: Role/Scope | Scale | Constraint]
 Tech: [tool/method pills]
-
 ---
-
-## Scope
-Timeline | Role | Teams | Artifacts
-
-## The Problem
-<!-- suggest: insight-callout -->
-- What was broken (with numbers + baselines)
-- Why it mattered (cost/impact, connected to business outcome)
-
-## Root Cause
-- What you found that others missed
-- Supporting data (with derivation)
-
-## The Solution
-- What you built/changed
-- How it worked (process, not just result)
-
-## Results
-<!-- suggest: insight-callout -->
-<!-- suggest: metrics-row -->
-- Metrics table: Before | After (or Projected, labeled)
-- Every number has a baseline and derivation
-
-## Lessons Worth Stealing
-- 3-4 transferable insights
-- One sentence each, actionable, reader-focused
-
+## Scope — Timeline | Role | Teams | Artifacts
+## The Problem — what was broken (numbers + baselines), why it mattered
+## Root Cause — what you found that others missed, supporting data
+## The Solution — what you built/changed, how it worked
+## Results — metrics table (Before | After), baselines and derivations
+## Lessons Worth Stealing — 3-4 transferable insights, one sentence each
 ---
-
-## Revision Notes
-[Extracted editorial comments from the draft, preserved for context]
+## Revision Notes — extracted editorial comments
 ```
 
-**Outline rules:**
-- Accepted Strunk's rewrites applied; rejected items keep original phrasing
-- Jargon defined on first use
-- Numbers anchored with baselines and derivations
-- Internal inconsistencies resolved
-- Third-person voice instances flagged with `<!-- VOICE: convert to first person -->` (not auto-converted)
-- Component suggestions as HTML comments referencing `ref/components.md` names. If a suggested component doesn't exist in the library, note it as "proposed new component."
-- Editorial comments (`<!-- CHANGE: ... -->`) extracted to Revision Notes appendix
+**Rules:** Apply accepted rewrites; keep rejected originals. Define jargon on first use. Anchor numbers with baselines. Flag third-person with `<!-- VOICE: convert to first person -->`. Suggest components via HTML comments referencing `ref/components.md` (note if proposed component is new). Extract `<!-- CHANGE: ... -->` to Revision Notes.
 
 ## Step 5: Present the Report
 
-Present the report in two phases:
-
 **Phase A** (present first, then pause):
-1. **Top 3 Issues** (priority-ranked, one sentence each: problem + fix)
-2. **Delta Summary** (re-runs only — see format below)
-3. **Structure Section** (missing sections, redundant sections, H2 headline test table)
-4. **Strategy Section** (so-what checklist, first-sentence test, length check)
-5. **Prose Section** (Strunk's rewrite table)
+1. **Top 3 Issues** (priority-ranked, one sentence each)
+2. **Delta Summary** (re-runs only — see below)
+3. **Structure Section** (4a results)
+4. **Strategy Section** (4b results)
+5. **Prose Section** (4c rewrite table)
 
-**Wait for user to make all inline choices (accept/reject/edit per row) before continuing.**
+**Wait for user inline choices (accept/reject/edit per row).**
 
-**Phase B** (present after prose choices are resolved — recompute before displaying):
-6. **Rubric Score** (recompute Voice score based on accepted rewrites; other 7 criteria unchanged)
-7. **Proposed Outline** (update provisional outline to reflect user's actual accept/reject/edit choices)
+**Phase B** (after choices resolved — recompute before displaying):
+6. **Rubric Score** (recompute Voice; other 7 unchanged)
+7. **Proposed Outline** (apply user's choices)
 
 ### Delta Summary (re-runs only)
 
-If `revision-log.md` exists, show:
-
-```
-DELTA: 5 of 8 issues resolved since last run. 3 remaining.
-Score: 24/40 → 31/40 (+7)
-
-Resolved: [Voice.R10.P3], [SoWhat.M2], [Arc.Missing.Lessons], ...
-Remaining: [Accuracy.Inconsistency.Markets], [Context.M4], ...
-```
+If `revision-log.md` exists: `DELTA: X of Y issues resolved. Z remaining. Score: old → new (+diff). Resolved: [IDs]. Remaining: [IDs].`
 
 ## Step 6: Gate
 
-**If score < 28/40 OR any criterion < 3:**
+**Score < 28/40 OR any criterion < 3:** Show outline for reference. "Score below threshold (X/40). Edit draft and re-run `/revise-case-study {{slug}}`." Do NOT write `outline-approved.md`. DO append revision log.
 
-Display the outline for reference, then:
-
-> **Score below threshold (X/40).** The outline above is for reference only — it cannot be approved at this score. Edit the draft and re-run `/revise-case-study {{slug}}`.
-
-Do NOT show an approval prompt. Do NOT write `outline-approved.md`. DO still append to `revision-log.md` (so the next run can compute a delta).
-
-**If score >= 28/40 AND all criteria >= 3:**
-
-Display the outline, then:
-
-> **Approve this outline? Write to `outline-approved.md`?** [yes/no]
-
-On **yes**:
-1. Write `work/{{slug}}/outline-approved.md`
-2. Append to `work/{{slug}}/revision-log.md`
-3. Message: "Outline approved. Run `/new-case-study {{slug}}` — skip to Prompt 2 (HTML build). The outline is the content source; Prompt 2 handles layout and components."
-
-On **no**:
-- Ask what to change. User can edit the draft and re-run, or request specific outline adjustments.
+**Score >= 28/40 AND all >= 3:** "Approve this outline? Write to `outline-approved.md`?" On yes: write file, append log, message "Run `/new-case-study {{slug}}` — skip to Prompt 2." On no: ask what to change.
 
 ## Step 7: Append Revision Log
 
-Append to `work/{{slug}}/revision-log.md` (create if it doesn't exist).
+Append to `work/{{slug}}/revision-log.md` (create if needed). On first run, warn if not in `.gitignore` (informational, not a gate).
 
-On first run, verify `work/*/revision-log.md` is covered by `.gitignore`. If not, warn the user — then write the file anyway (the warning is informational, not a gate).
+Format: `## Run: [YYYY-MM-DD HH:MM]` → `Rubric: [total]/40` table (8 criteria + scores) → `Issues: [N] total` list with `[Criterion.Type.Location]` IDs and summaries → `Outcome: [Approved / Blocked (score X/40)]`
 
-Format:
-
-```markdown
-## Run: [YYYY-MM-DD HH:MM]
-
-Rubric: [total]/40
-| Criterion | Score |
-|-----------|-------|
-| Arc       | X     |
-| So-What   | X     |
-| Scanability | X   |
-| Specificity | X   |
-| Context   | X     |
-| Voice     | X     |
-| One Lesson | X    |
-| Accuracy  | X     |
-
-Issues: [N] total
-1. [Criterion.Type.Location] Issue summary
-2. [Criterion.Type.Location] Issue summary
-...
-
-Outcome: [Approved / Blocked (score X/40)]
-
----
-```
-
-**Issue ID format:** `[Criterion.Type.Location]` for delta matching. Note: Location is positional (paragraph number). If paragraphs are inserted or deleted between runs, expect false "resolved" and false "new" flags — this is a known limitation.
-- `[Voice.R10.P3]` — Strunk's Rule 10 violation in paragraph 3
-- `[Accuracy.Inconsistency.Markets]` — internal contradiction about market count
-- `[Arc.Missing.Lessons]` — required section absent
-- `[SoWhat.M2]` — metric #2 lacks business impact
-- `[Context.M4]` — metric #4 has no baseline
+**Issue ID examples:** `[Voice.R10.P3]` (Rule 10 in paragraph 3), `[SoWhat.M2]` (metric #2 lacks impact). Location is positional — insertions/deletions between runs cause false deltas (known limitation).
 
 ---
 
 ## What This Skill Does NOT Do
 
-- **Does not build HTML** — hands off to `/new-case-study` Prompt 2
-- **Does not invoke `/elements-of-style`** — Strunk's rules are embedded in the Prose section
-- **Does not invoke `/content-first-design`** — uses its core questions in the pre-check only
-- **Does not dispatch `content-reviewer` agent** — agent's checks are folded into the rubric
-- **Does not search book-library** — principles are baked into the 8 rubric criteria
-- **Does not simulate a hiring manager** — the so-what checklist catches the same failures deterministically
-- **Does not auto-convert voice** — flags third-person instances for user decision
+- Does not build HTML (→ `/new-case-study` Prompt 2)
+- Does not invoke `/elements-of-style` or `/content-first-design` — rules embedded in rubric
+- Does not dispatch `content-reviewer` agent — checks folded into rubric
+- Does not auto-convert voice — flags for user decision
