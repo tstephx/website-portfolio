@@ -19,16 +19,9 @@
     <meta property="og:image" content="https://taylorstephens.io/images/headshot.jpg" />
     <link rel="canonical" href="https://taylorstephens.io/work/cfa-dsp-application/" />
     <meta name="theme-color" content="#1a3a6b" />
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="stylesheet" href="../../css/fonts.css" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <link rel="stylesheet" href="../../css/case-study.css" />
-    <script
-      src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
-      integrity="sha384-vsrfeLOOY6KuIYKDlmVH5UiBmgIdB1oEf7p01YgWHuqmOHfZr374+odEv96n9tNC"
-      crossorigin="anonymous"
-      defer
-    ></script>
     <script src="../../js/progress-bar.js" defer></script>
   </head>
   <body>
@@ -110,8 +103,8 @@
             approved candidates showed program interest. Filtering happened too late.
           </li>
           <li>
-            <strong>Impossible to iterate</strong>&mdash;adding 14 questions classified as XL (10&ndash;12 months
-            engineering). Blocked every program expansion.
+            <strong>Impossible to iterate</strong>&mdash;adding 14 questions flagged as a 10&ndash;12 month engineering
+            effort. Blocked every program expansion.
           </li>
         </ul>
         <p>
@@ -180,7 +173,7 @@
         </p>
         <ul>
           <li><strong>BRD</strong>&mdash;101 requirements across 6 epics, each traceable to a CFA benchmark finding</li>
-          <li><strong>WW DSP Tech Vision 2025</strong>&mdash;executive narrative for senior leadership</li>
+          <li><strong>Global DSP Tech Vision 2025</strong>&mdash;executive narrative for senior leadership</li>
           <li>
             <strong>Annual operating plan escalation</strong> (co-authored)&mdash;I owned entitlement quantification and
             competitive framing
@@ -192,7 +185,7 @@
       <section class="cs-section" id="decision">
         <h2>The Pardot Decision</h2>
         <div class="insight-callout">
-          When engineering classified the 32-question update as XL (12 months), I proposed a Pardot (marketing
+          When engineering flagged the 32-question update as a 12-month effort, I proposed a Pardot (marketing
           automation platform) integration that bypassed the constraint entirely.
         </div>
         <p>
@@ -281,9 +274,9 @@
         </div>
 
         <p>
-          9,419 additional approved applications per year (15,699 &rarr; 25,118). 87% more program-inclined candidates
-          (421 &rarr; 786). 2,200+ hours removed from manual review annually. The team now updates the application
-          quarterly without an engineering ticket&mdash;across every program and market.
+          9,419 additional approved applications per year (15,699 &rarr; 25,118). 365 more program-inclined candidates
+          per year (421 &rarr; 786). 2,200+ hours removed from manual review annually. The team now updates the
+          application quarterly without an engineering ticket&mdash;across every program and market.
         </p>
       </section>
 
@@ -333,37 +326,5 @@
     <footer>
       <p>&copy; <span id="copy-year">2026</span> Taylor Stephens. All rights reserved.</p>
     </footer>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        var css = getComputedStyle(document.documentElement);
-        var token = function (name, fallback) {
-          return css.getPropertyValue(name).trim() || fallback;
-        };
-        var hexToRgba = function (hex, a) {
-          var h = hex.replace('#', '');
-          if (h.length === 3)
-            h = h
-              .split('')
-              .map(function (c) {
-                return c + c;
-              })
-              .join('');
-          var n = parseInt(h, 16);
-          return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')';
-        };
-        var accent = token('--color-accent', '#1a3a6b');
-        var green = token('--color-success', '#16a34a');
-        var muted = hexToRgba(token('--color-muted', '#6b6b6b'), 0.3);
-        var text = token('--color-text', '#3d3d3d');
-        var grid = hexToRgba(token('--color-muted', '#6b6b6b'), 0.25);
-
-        Chart.defaults.color = text;
-        Chart.defaults.borderColor = grid;
-        Chart.defaults.plugins.legend.labels.color = text;
-        Chart.defaults.scale.grid.color = grid;
-        Chart.defaults.scale.ticks.color = grid;
-      });
-    </script>
   </body>
 </html>

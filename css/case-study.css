@@ -1116,7 +1116,7 @@
 
 .decision-card.chosen {
   border-color: var(--color-accent);
-  background: var(--color-accent-light, rgba(26, 58, 107, 0.12));
+  background: var(--color-accent-light);
 }
 
 .decision-card-label {
@@ -1147,6 +1147,14 @@
   font-size: 0.875rem;
   line-height: 1.6;
   color: var(--color-muted);
+}
+
+/* ===== LESSONS SECTION — visually distinct wrapper ===== */
+.lessons-section {
+  padding: var(--space-lg);
+  background: var(--color-bg-alt);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
 }
 
 /* ===== CTA SECONDARY LINK ===== */

@@ -1,6 +1,6 @@
 # Case Study Components Reference
 
-**Source:** `css/case-study.css` | **Last verified:** 2026-03-04
+**Source:** `css/case-study.css` | **Last verified:** 2026-03-06
 
 Reusable visual components for case study pages (`work/*/` and `projects/`). All components use CSS design tokens — no hardcoded colors.
 
