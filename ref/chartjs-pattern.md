@@ -134,10 +134,10 @@ Use `.chart-pair` to place two charts side by side:
 ## Script Tag (work pages, 2 deep)
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 ```
 
-CDN version: **4.4.0** — do not upgrade without testing all existing charts.
+CDN version: **4.4.7** — do not upgrade without testing all existing charts.
 
 ---
 

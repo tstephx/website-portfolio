@@ -388,7 +388,7 @@
     </footer>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
+      window.addEventListener('DOMContentLoaded', function () {
         var css = getComputedStyle(document.documentElement);
         var token = function (name, fallback) {
           return css.getPropertyValue(name).trim() || fallback;
@@ -433,7 +433,7 @@
                 data: [56, 20, 12, 12],
                 backgroundColor: [accent, green, hexToRgba(muted, 0.5), red],
                 borderWidth: 2,
-                borderColor: '#fff',
+                borderColor: token('--color-bg', '#ffffff'),
               },
             ],
           },
