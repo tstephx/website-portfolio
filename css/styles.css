@@ -295,6 +295,9 @@ nav li:last-child a {
 
 .summary + .summary {
   margin-top: -1.5em;
+  font-size: 0.9375rem;
+  color: var(--color-muted);
+  font-style: italic;
 }
 
 .cta-button {
@@ -480,7 +483,7 @@ section {
 
 .card-category {
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -539,9 +542,9 @@ section {
 
 .card-outcome .stat-value {
   font-family: var(--font-sans);
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  color: var(--color-heading);
+  color: var(--color-accent);
   line-height: 1.2;
   letter-spacing: -0.02em;
 }

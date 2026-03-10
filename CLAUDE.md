@@ -82,9 +82,12 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 ```
 
-## Case Study Workflow (3-Prompt Pattern)
+## Case Study Workflow
 
-1. **Research & Structure:** Read evidence `.md` and dashboard `.jsx` in `work/` subdirectory. Read existing case study as template. Produce outline mapping sections to data. Don't create the file yet.
+**Content quality gate:** Run `/revise-case-study <slug>` on `work/<slug>/case-study-draft.md` first. Scores draft on 8-criterion rubric (28/40 minimum, no criterion below 3). On approval, writes `outline-approved.md`.
+
+**3-Prompt Pattern (via `/new-case-study <slug>`):**
+1. **Research & Structure:** Read evidence `.md` and dashboard `.jsx` in `work/` subdirectory. Read existing case study as template. Produce outline mapping sections to data. Don't create the file yet. (Skip if `outline-approved.md` exists — go to Prompt 2.)
 2. **Create HTML:** Build page from approved outline using template structure, design tokens, and Chart.js pattern above. Every claim gets a number.
 3. **Graphics Review:** Read `.jsx` dashboard, identify visualizations to add. Propose before making changes.
 
@@ -161,7 +164,61 @@ After each prompt: code review via `/superpowers:requesting-code-review`, fix is
 - `docs/active/content-writing-standards.md` — voice, tone, anti-patterns, before/after examples
 - `docs/active/testing-cheat-sheet.md` — which test to run when, common failures and fixes
 - `docs/active/design-system-usage.md` — when to use which token, component selection guide
+- `docs/active/JTBD.md` — audience personas, jobs-to-be-done, 15-second scan spec
+- `docs/active/feedback-request-template.md` — structured feedback template for portfolio reviews
+- `docs/active/portfolio-expansion-plan.md` — candidate projects for future portfolio pages
+- `docs/active/design-review-todos.md` — unfixed design review findings and future work
 
 ---
 
-_Last updated: 2026-03-04_
+## Design Context
+
+### Users
+
+Three audiences, each with different time budgets and jobs-to-be-done (full analysis: `docs/active/JTBD.md`):
+
+| Audience | Time Budget | Job |
+|----------|-------------|-----|
+| Hiring manager | 30–90s homepage, 3–5min case study | "Is this person senior enough to shortlist?" |
+| Recruiter | 15–30s homepage only | "Can I justify passing this candidate through?" |
+| Peer PM | 2–5min, curiosity-driven | "What kind of problems does this person solve?" |
+
+The portfolio succeeds when a hiring manager can name a specific metric after 30 seconds, and wants to discuss a case study in an interview after 5 minutes.
+
+### Brand Personality
+
+**Confident, Warm, Clear** — authority without arrogance, approachable but unmistakably senior. Like a good 1:1 with a strong PM who respects your time.
+
+**Voice:** Professional, specific, reader-focused. Every claim gets a number. Lead with results, then explain. No weasel words, no self-congratulation. (Full standards: `docs/active/content-writing-standards.md`)
+
+**Emotional targets:**
+- Primary: Confidence + Calm ("this person is senior and in control"), Sharpness + Precision ("this person thinks clearly")
+- Secondary: Warmth + Competence ("I'd want to work with them"), Curiosity + Respect ("how did they do that?")
+
+### Aesthetic Direction
+
+**Visual tone:** The restraint is the signal. Clean, precise, intentional — every element earns its place. The design itself demonstrates analytical rigor without being cold.
+
+**References:**
+- **Apple product pages** — dramatic reveals, large type, strong visual hierarchy, each scroll feels intentional
+- **Stripe / Linear** — engineering-meets-design precision, generous whitespace, subtle depth, no wasted elements
+
+**Anti-references (the site must NOT resemble):**
+- Generic template sites (Squarespace/Wix cookie-cutter layouts)
+- Developer portfolios (dark mode, terminal aesthetics, animated code)
+- Corporate/Enterprise (blue-gray monotony, stock photos, "synergy" language)
+- Over-designed Dribbble (glassmorphism, 3D elements, micro-animations everywhere)
+
+**Theme:** Light mode only (dark mode tokens prepped but not active). Navy accent (#1a3a6b) as the sole brand color — no gradients, no secondary hues. The palette is intentionally narrow: near-black, warm gray, navy, white.
+
+### Design Principles
+
+1. **Scannable before readable.** Metrics, headings, and visual hierarchy must deliver value at a 15-second glance. Paragraphs are for the second pass.
+2. **Precision is personality.** Specific numbers, tight typography, intentional spacing — the craft signals the same rigor shown in the case studies.
+3. **Earn every element.** No decoration without purpose. If a component doesn't help a hiring manager decide, it doesn't belong.
+4. **Warmth through restraint.** Generous whitespace, serif warmth in headings, subtle transitions. Confidence comes from what's left out, not what's added.
+5. **Content drives the design, not the reverse.** Components serve the narrative. Choose the simplest visualization that makes the data clear. A metrics row beats a chart for 3 numbers.
+
+---
+
+_Last updated: 2026-03-10_

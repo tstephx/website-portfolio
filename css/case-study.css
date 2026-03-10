@@ -77,7 +77,13 @@
 
 /* ===== SECTION HEADINGS ===== */
 .cs-section {
-  margin-bottom: 2.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-bottom: 0;
+}
+
+.cs-section#results {
+  padding-top: 3.5rem;
 }
 
 .cs-section h2 {
