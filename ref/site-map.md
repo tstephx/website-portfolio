@@ -10,11 +10,11 @@
 
 ### Work Cards (3)
 
-| Title                             | Path                                                       |
-| --------------------------------- | ---------------------------------------------------------- |
-| DSP Application Redesign          | `work/cfa-dsp-application/dsp-application.html`            |
-| Contract Transfer Process Redesign | `work/contract-transfer/contract-transfer.html`           |
-| Selection Automation              | `work/pinnacle-program-selection/pinnacle-automation.html` |
+| Title                              | Path                                                       |
+| ---------------------------------- | ---------------------------------------------------------- |
+| DSP Application Redesign           | `work/cfa-dsp-application/dsp-application.html`            |
+| Contract Transfer Process Redesign | `work/contract-transfer/contract-transfer.html`            |
+| Selection Automation               | `work/pinnacle-program-selection/pinnacle-automation.html` |
 
 ### Project Cards (3 shown on homepage)
 
@@ -44,11 +44,11 @@ Each page has a "Next:" footer link. When adding/reordering, update all 3 links 
 
 ## Standalone Pages
 
-| Page       | Path              | Notes                          |
-| ---------- | ----------------- | ------------------------------ |
-| Resume     | `resume.html`     | Linked from nav                |
-| 401 Auth   | `401.html`        | Basic auth gate                |
-| 401 Thanks | `401-thanks.html` | Post-auth redirect             |
+| Page       | Path              | Notes              |
+| ---------- | ----------------- | ------------------ |
+| Resume     | `resume.html`     | Linked from nav    |
+| 401 Auth   | `401.html`        | Basic auth gate    |
+| 401 Thanks | `401-thanks.html` | Post-auth redirect |
 
 ---
 

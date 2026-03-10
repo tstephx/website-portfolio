@@ -87,6 +87,7 @@ window.addEventListener('DOMContentLoaded', () => {
 **Content quality gate:** Run `/revise-case-study <slug>` on `work/<slug>/case-study-draft.md` first. Scores draft on 8-criterion rubric (28/40 minimum, no criterion below 3). On approval, writes `outline-approved.md`.
 
 **3-Prompt Pattern (via `/new-case-study <slug>`):**
+
 1. **Research & Structure:** Read evidence `.md` and dashboard `.jsx` in `work/` subdirectory. Read existing case study as template. Produce outline mapping sections to data. Don't create the file yet. (Skip if `outline-approved.md` exists — go to Prompt 2.)
 2. **Create HTML:** Build page from approved outline using template structure, design tokens, and Chart.js pattern above. Every claim gets a number.
 3. **Graphics Review:** Read `.jsx` dashboard, identify visualizations to add. Propose before making changes.
@@ -177,11 +178,11 @@ After each prompt: code review via `/superpowers:requesting-code-review`, fix is
 
 Three audiences, each with different time budgets and jobs-to-be-done (full analysis: `docs/active/JTBD.md`):
 
-| Audience | Time Budget | Job |
-|----------|-------------|-----|
-| Hiring manager | 30–90s homepage, 3–5min case study | "Is this person senior enough to shortlist?" |
-| Recruiter | 15–30s homepage only | "Can I justify passing this candidate through?" |
-| Peer PM | 2–5min, curiosity-driven | "What kind of problems does this person solve?" |
+| Audience       | Time Budget                        | Job                                             |
+| -------------- | ---------------------------------- | ----------------------------------------------- |
+| Hiring manager | 30–90s homepage, 3–5min case study | "Is this person senior enough to shortlist?"    |
+| Recruiter      | 15–30s homepage only               | "Can I justify passing this candidate through?" |
+| Peer PM        | 2–5min, curiosity-driven           | "What kind of problems does this person solve?" |
 
 The portfolio succeeds when a hiring manager can name a specific metric after 30 seconds, and wants to discuss a case study in an interview after 5 minutes.
 
@@ -192,6 +193,7 @@ The portfolio succeeds when a hiring manager can name a specific metric after 30
 **Voice:** Professional, specific, reader-focused. Every claim gets a number. Lead with results, then explain. No weasel words, no self-congratulation. (Full standards: `docs/active/content-writing-standards.md`)
 
 **Emotional targets:**
+
 - Primary: Confidence + Calm ("this person is senior and in control"), Sharpness + Precision ("this person thinks clearly")
 - Secondary: Warmth + Competence ("I'd want to work with them"), Curiosity + Respect ("how did they do that?")
 
@@ -200,10 +202,12 @@ The portfolio succeeds when a hiring manager can name a specific metric after 30
 **Visual tone:** The restraint is the signal. Clean, precise, intentional — every element earns its place. The design itself demonstrates analytical rigor without being cold.
 
 **References:**
+
 - **Apple product pages** — dramatic reveals, large type, strong visual hierarchy, each scroll feels intentional
 - **Stripe / Linear** — engineering-meets-design precision, generous whitespace, subtle depth, no wasted elements
 
 **Anti-references (the site must NOT resemble):**
+
 - Generic template sites (Squarespace/Wix cookie-cutter layouts)
 - Developer portfolios (dark mode, terminal aesthetics, animated code)
 - Corporate/Enterprise (blue-gray monotony, stock photos, "synergy" language)

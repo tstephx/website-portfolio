@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Card Redesign — V2: Narrative-Led</title>
+    <style>
+      /* ===== DESIGN SYSTEM (mirrors css/styles.css tokens) ===== */
+      :root {
+        --color-text: #3d3d3d;
+        --color-heading: #1a1a1a;
+        --color-muted: #6b6b6b;
+        --color-light: #767676;
+        --color-accent: #1a3a6b;
+        --color-accent-hover: #142e55;
+        --color-accent-light: rgba(26, 58, 107, 0.12);
+        --color-bg: #ffffff;
+        --color-bg-alt: #fafafa;
+        --color-border: #e5e5e5;
+        --color-border-light: #f0f0f0;
+        --color-surface: #ffffff;
+        --color-success: #16a34a;
+        --color-success-light: #dcfce7;
+        --color-danger: #dc2626;
+
+        --font-sans: 'Epilogue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+        --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+        --font-mono: 'DM Mono', 'Fira Mono', monospace;
+
+        --max-width: 720px;
+        --baseline: 1.5rem;
+        --space-xs: 0.5rem;
+        --space-sm: 1rem;
+        --space-md: 1.5rem;
+        --space-lg: 2rem;
+        --radius-sm: 3px;
+        --radius-md: 4px;
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
+        --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.06);
+        --transition-fast: 0.15s ease;
+        --transition-base: 0.25s ease;
+      }
+
+      /* ===== FONTS ===== */
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Mono:wght@400;500&family=Epilogue:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap');
+
+      /* ===== RESET ===== */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        font-size: 16px;
+        line-height: 1.5;
+        color: var(--color-text);
+        background-color: var(--color-bg);
+      }
+
+      /* ===== PAGE SHELL ===== */
+      .design-label {
+        font-family: var(--font-mono);
+        font-size: 0.6875rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-light);
+        text-align: center;
+        padding: 2rem 1rem 0.5rem;
+      }
+
+      .design-label span {
+        background: var(--color-bg-alt);
+        padding: 0.25em 0.75em;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--color-border-light);
+      }
+
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 2rem 1.5rem 4rem;
+      }
+
+      /* ===== SECTION HEADER ===== */
+      .section-header {
+        margin-bottom: 2rem;
+      }
+
+      .section-header h2 {
+        font-family: var(--font-serif);
+        font-size: clamp(1.5rem, 1.25rem + 1vw, 1.75rem);
+        font-weight: 600;
+        color: var(--color-heading);
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        margin-bottom: 0.5em;
+      }
+
+      .section-header h2::after {
+        content: '';
+        display: block;
+        width: 2em;
+        height: 2px;
+        background: linear-gradient(to right, var(--color-accent), var(--color-accent-hover));
+        margin-top: 0.75em;
+        border-radius: 1px;
+      }
+
+      /* ===== V2: NARRATIVE-LED CARDS ===== */
+
+      /*
+       * CONCEPT: The hook sentence IS the card. No separate metric block.
+       * Instead, key metrics are styled inline — larger, display font,
+       * accent color — so they pop out of the narrative flow.
+       *
+       * This reads more like editorial writing but still gives the
+       * recruiter scannable numbers.
+       *
+       * Visual hierarchy: hook (with inline metrics) > title > link
+       */
+
+      .card-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .card {
+        padding: 2rem 1.5rem;
+        margin: 0 -1.5rem;
+        border-bottom: 1px solid var(--color-border);
+        transition:
+          transform var(--transition-fast),
+          box-shadow var(--transition-fast),
+          background-color var(--transition-fast);
+        border-radius: var(--radius-md);
+        position: relative;
+      }
+
+      .card:first-child {
+        border-top: 1px solid var(--color-border-light);
+      }
+
+      .card:last-child {
+        border-bottom: none;
+      }
+
+      /* ---- Category pill ---- */
+      .card-category {
+        font-family: var(--font-mono);
+        font-size: 0.625rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--color-accent);
+        background: var(--color-accent-light);
+        padding: 0.25em 0.625em;
+        border-radius: var(--radius-sm);
+        display: inline-block;
+        margin-bottom: 0.75rem;
+      }
+
+      /* ---- Title ---- */
+      .card-title {
+        font-family: var(--font-serif);
+        font-size: 1.1875rem;
+        font-weight: 600;
+        color: var(--color-heading);
+        letter-spacing: -0.01em;
+        text-transform: none;
+        margin-bottom: 0.625rem;
+        line-height: 1.3;
+      }
+
+      .card-title a {
+        color: inherit;
+        text-decoration: none;
+        transition: color var(--transition-base);
+      }
+
+      .card-title a:hover {
+        color: var(--color-accent);
+      }
+
+      /* ---- Narrative hook with inline metrics ---- */
+      .card-narrative {
+        font-family: var(--font-serif);
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--color-text);
+        max-width: 60ch;
+        margin-bottom: 0.75rem;
+      }
+
+      .card-narrative .metric {
+        font-family: var(--font-sans);
+        font-size: 1.05em;
+        font-weight: 700;
+        color: var(--color-accent);
+        letter-spacing: -0.01em;
+        white-space: nowrap;
+      }
+
+      /* ---- Outcome bar ---- */
+      .card-outcome {
+        display: flex;
+        align-items: baseline;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        padding-top: 0.625rem;
+        border-top: 1px solid var(--color-border-light);
+        margin-top: 0.25rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .card-outcome .stat {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-outcome .stat-value {
+        font-family: var(--font-sans);
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--color-heading);
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+
+      .card-outcome .stat-label {
+        font-family: var(--font-mono);
+        font-size: 0.625rem;
+        color: var(--color-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-top: 0.1rem;
+      }
+
+      /* ---- CTA ---- */
+      .card-link {
+        font-family: var(--font-sans);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--color-accent);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        transition: color var(--transition-base);
+      }
+
+      .card-link:hover {
+        color: var(--color-accent-hover);
+      }
+
+      .card-link .arrow {
+        display: inline-block;
+        transition: transform var(--transition-base);
+      }
+
+      .card-link:hover .arrow {
+        transform: translateX(3px);
+      }
+
+      /* ---- Desktop hover ---- */
+      @media (min-width: 1024px) {
+        .card {
+          padding: 2.5rem 1.5rem;
+        }
+
+        .card:hover {
+          transform: translateY(-2px);
+          box-shadow: var(--shadow-hover);
+          background-color: var(--color-bg);
+        }
+      }
+
+      /* ===== ANNOTATION ===== */
+      .annotation {
+        font-family: var(--font-mono);
+        font-size: 0.6875rem;
+        color: var(--color-light);
+        background: var(--color-bg-alt);
+        border: 1px dashed var(--color-border);
+        border-radius: var(--radius-md);
+        padding: 1rem 1.25rem;
+        margin-top: 2rem;
+        line-height: 1.7;
+      }
+
+      .annotation strong {
+        color: var(--color-muted);
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="design-label">
+      <span>V2: Narrative-Led &mdash; Homepage Cards Redesign</span>
+    </p>
+
+    <div class="container">
+      <div class="section-header">
+        <h2>Featured Projects</h2>
+      </div>
+
+      <div class="card-stack">
+        <!-- Card 1: Contract Transfer -->
+        <article class="card">
+          <span class="card-category">Process Design</span>
+          <h3 class="card-title">
+            <a href="#">Contract Transfer Process Redesign</a>
+          </h3>
+          <p class="card-narrative">
+            No SOP, no owner, and volume exploding
+            <span class="metric">17&times;</span> with no additional staff. Built a 14-week operational system from
+            scratch that cut decision time by <span class="metric">70%</span> and prevented eight figures in exit costs.
+          </p>
+          <div class="card-outcome">
+            <div class="stat">
+              <span class="stat-value">9.6 &rarr; 2.9 wk</span>
+              <span class="stat-label">Decision cycle</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">29 transfers</span>
+              <span class="stat-label">Zero failures</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">3 of 4</span>
+              <span class="stat-label">Workstreams owned</span>
+            </div>
+          </div>
+          <a href="#" class="card-link">Read case study <span class="arrow">&rarr;</span></a>
+        </article>
+
+        <!-- Card 2: Scoring Redesign -->
+        <article class="card">
+          <span class="card-category">Measurement Design</span>
+          <h3 class="card-title">
+            <a href="#">Scoring Methodology Redesign</a>
+          </h3>
+          <p class="card-narrative">
+            An expansion interview&rsquo;s approval rate collapsed by
+            <span class="metric">~30 pp</span>. Reverse-engineered <span class="metric">198 interviews</span> and found
+            three failure modes no one had identified &mdash; including one candidate scored 5 by one panelist and 57 by
+            another.
+          </p>
+          <div class="card-outcome">
+            <div class="stat">
+              <span class="stat-value">3 failure modes</span>
+              <span class="stat-label">Identified</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">5 artifacts</span>
+              <span class="stat-label">Shipped to production</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">36 panelists</span>
+              <span class="stat-label">Retrained</span>
+            </div>
+          </div>
+          <a href="#" class="card-link">Read case study <span class="arrow">&rarr;</span></a>
+        </article>
+
+        <!-- Card 3: Selection Automation -->
+        <article class="card">
+          <span class="card-category">Technical Solution</span>
+          <h3 class="card-title">
+            <a href="#">Selection Automation &amp; Distance Analysis</a>
+          </h3>
+          <p class="card-narrative">
+            Traced a <span class="metric">55%</span> launch decline to a crashing 55MB spreadsheet. Replaced it with a
+            deterministic SQL pipeline, computed <span class="metric">130K+</span> geodesic distances, and proved the
+            eligibility cap was excluding top performers.
+          </p>
+          <div class="card-outcome">
+            <div class="stat">
+              <span class="stat-value">57% &rarr; 94%</span>
+              <span class="stat-label">Fill rate</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">64% &rarr; 96%</span>
+              <span class="stat-label">Station coverage</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">1 &rarr; 5</span>
+              <span class="stat-label">Team expansion</span>
+            </div>
+          </div>
+          <a href="#" class="card-link">Read case study <span class="arrow">&rarr;</span></a>
+        </article>
+
+        <!-- Card 4: DSP Application -->
+        <article class="card">
+          <span class="card-category">Competitive Intelligence</span>
+          <h3 class="card-title">
+            <a href="#">Delivery Partner Application Redesign</a>
+          </h3>
+          <p class="card-narrative">
+            Applied to a competitor&rsquo;s franchise program as intelligence, then turned the findings into a
+            <span class="metric">101-requirement</span> redesign across <span class="metric">18 countries</span>.
+            Secured 18&times; the initial engineering allocation against a multimillion-dollar entitlement.
+          </p>
+          <div class="card-outcome">
+            <div class="stat">
+              <span class="stat-value">74% &rarr; ~40%</span>
+              <span class="stat-label">Abandonment (projected)</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">18&times;</span>
+              <span class="stat-label">Eng. investment secured</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">101</span>
+              <span class="stat-label">Requirements specced</span>
+            </div>
+          </div>
+          <a href="#" class="card-link">Read case study <span class="arrow">&rarr;</span></a>
+        </article>
+      </div>
+
+      <div class="annotation">
+        <strong>Design notes:</strong> Narrative-Led variant. The hook sentence is the card &mdash; metrics are styled
+        inline with Cormorant Garamond at 1.25em so they pop out of the prose. Below: an outcome bar with 3 stats per
+        card (Cormorant display + DM Mono labels). Category pills add keyword density. This variant reads more like
+        editorial writing but still gives recruiters scannable numbers. Note: Distance + Automation merged into one card
+        to reduce from 6 to 4.
+      </div>
+    </div>
+  </body>
+</html>

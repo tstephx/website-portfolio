@@ -2,22 +2,22 @@
 
 Skills, agents, and hooks configured for this project.
 
-**Last verified:** 2026-03-05
+**Last verified:** 2026-03-06
 
 ---
 
 ## Skills (`.claude/skills/`)
 
-| Skill               | Invocation  | Type         | What it does                                                                            |
-| ------------------- | ----------- | ------------ | --------------------------------------------------------------------------------------- |
-| `/deploy`           | User-only   | Side effect  | Push to GitHub + pull on Whatbox + verify headers                                       |
-| `/new-case-study`   | User-only   | Scaffold     | Create evidence file, walk through 3-prompt pattern, integrate                          |
-| `/check`            | User-only   | Verification | Run full `npm run check` + `npm test`, report summary table                             |
-| `/update-snapshots` | User-only   | Side effect  | Update Playwright visual baselines after confirming changes                             |
-| `/content-audit`    | User-only   | Analysis     | Score pages on content-first principles (accurate, useful, clear, findable, purposeful) |
-| `/design-tokens`    | Claude-only | Context      | Load CSS tokens + component reference before styling work                               |
-| `/link-check`       | User-only   | Verification | Run linkinator + link-chain Playwright test                                             |
-| `/revise-case-study`| User-only   | Analysis     | 8-criterion rubric scoring of case study drafts → approved outline for `/new-case-study` |
+| Skill                | Invocation  | Type         | What it does                                                                             |
+| -------------------- | ----------- | ------------ | ---------------------------------------------------------------------------------------- |
+| `/deploy`            | User-only   | Side effect  | Push to GitHub + pull on Whatbox + verify headers                                        |
+| `/new-case-study`    | User-only   | Scaffold     | Create evidence file, walk through 3-prompt pattern, integrate                           |
+| `/check`             | User-only   | Verification | Run full `npm run check` + `npm test`, report summary table                              |
+| `/update-snapshots`  | User-only   | Side effect  | Update Playwright visual baselines after confirming changes                              |
+| `/content-audit`     | User-only   | Analysis     | Score pages on content-first principles (accurate, useful, clear, findable, purposeful)  |
+| `/design-tokens`     | Claude-only | Context      | Load CSS tokens + component reference before styling work                                |
+| `/link-check`        | User-only   | Verification | Run linkinator + link-chain Playwright test                                              |
+| `/revise-case-study` | User-only   | Analysis     | 8-criterion rubric scoring of case study drafts → approved outline for `/new-case-study` |
 
 **User-only** = must be invoked with `/skill-name` — Claude won't trigger automatically.
 **Claude-only** = Claude invokes when relevant — not available as a slash command.

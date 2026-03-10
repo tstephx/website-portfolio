@@ -76,12 +76,12 @@
 
 ## Inputs
 
-| Input | Required | Purpose |
-|-------|----------|---------|
-| `work/[slug]/case-study-draft*.md` | Yes | Glob pattern — show matches and confirm with user before reading |
-| `work/[slug]/evidence*.md` | No | Cross-reference metrics against source data; flag unverifiable claims |
-| `docs/active/content-writing-standards.md` | Auto-loaded | Voice, tone, anti-pattern reference |
-| `work/[slug]/revision-log.md` | Auto-read if exists | Previous run's scores for delta comparison |
+| Input                                      | Required            | Purpose                                                               |
+| ------------------------------------------ | ------------------- | --------------------------------------------------------------------- |
+| `work/[slug]/case-study-draft*.md`         | Yes                 | Glob pattern — show matches and confirm with user before reading      |
+| `work/[slug]/evidence*.md`                 | No                  | Cross-reference metrics against source data; flag unverifiable claims |
+| `docs/active/content-writing-standards.md` | Auto-loaded         | Voice, tone, anti-pattern reference                                   |
+| `work/[slug]/revision-log.md`              | Auto-read if exists | Previous run's scores for delta comparison                            |
 
 **Draft discovery:** The skill globs `work/[slug]/case-study-draft*.md`. If exactly one file matches, confirm with user ("Found `case-study-draft-v2.md` — use this?"). If multiple match, list them and ask which to analyze. If none match, stop with error.
 
@@ -163,14 +163,14 @@ Strunk's rules applied to every sentence. Produces a rewrite table with **inline
 
 Rules checked (with rubric criterion mapping):
 
-| Strunk's Rule | Description | Feeds Criterion |
-|---------------|-------------|-----------------|
-| R10 | Active voice | Voice |
-| R11 | Positive form | Voice |
-| R12 | Specific/concrete | Specificity |
-| R13 | Omit needless words | Scanability |
-| R16 | Related words together | Scanability |
-| R18 | Emphatic words at end | So-What |
+| Strunk's Rule | Description            | Feeds Criterion |
+| ------------- | ---------------------- | --------------- |
+| R10           | Active voice           | Voice           |
+| R11           | Positive form          | Voice           |
+| R12           | Specific/concrete      | Specificity     |
+| R13           | Omit needless words    | Scanability     |
+| R16           | Related words together | Scanability     |
+| R18           | Emphatic words at end  | So-What         |
 
 ```
 | # | Original                          | Rule       | Rewrite                        | Decision |
@@ -181,6 +181,7 @@ Rules checked (with rubric criterion mapping):
 ```
 
 Also flags:
+
 - Jargon used without definition (with suggested parenthetical)
 - Sanitization issues (internal dollar amounts, program codes) if present
 - Third-person voice instances that need conversion to first person (flagged, not auto-converted — user decides phrasing)
@@ -191,22 +192,23 @@ Also flags:
 
 **Hard block threshold:** 28+ overall, no individual criterion below 3. Below threshold = full report displayed (including proposed outline for reference) but no approval prompt shown and no `outline-approved.md` written. User must edit the draft and re-run.
 
-| # | Criterion | What it measures | 1 (fail) | 5 (pass) |
-|---|-----------|-----------------|----------|----------|
-| 1 | **Arc** | Problem → Insight → Solution → Result → Lessons present and ordered | Sections missing or out of order | Clear tension, turning point, payoff, transferable lesson |
-| 2 | **So-What** | Every metric connects to business impact | Bare numbers without context | Every number answers "why should a HM care?" |
-| 3 | **Scanability** | H2s tell the story; first sentences front-load; under 1200 words | Generic headers, buried ledes, over-length | H2s alone reconstruct the arc; first sentences carry key info; concise |
-| 4 | **Specificity** | Numbers beat adjectives; claims are concrete | "Significantly improved" | "Reduced 70% (16.98 → 2.28 weeks)" |
-| 5 | **Context** | Every number has a baseline and derivation | Numbers float without anchoring | Before → after stated; denominator or derivation provided |
-| 6 | **Voice** | Active, reader-focused, jargon defined on first use | Passive voice, self-congratulatory, undefined acronyms | Direct, for the reader, terms explained |
-| 7 | **One Lesson** | Case study teaches one clear, transferable thing | Unclear takeaway or multiple competing messages | Reader can state the lesson in one sentence |
-| 8 | **Accuracy** | Numbers are internally consistent, math checks out, claims traceable to evidence | Contradictions, arithmetic errors, unverifiable claims | All numbers cross-check; evidence files support claims |
+| #   | Criterion       | What it measures                                                                 | 1 (fail)                                               | 5 (pass)                                                               |
+| --- | --------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------- |
+| 1   | **Arc**         | Problem → Insight → Solution → Result → Lessons present and ordered              | Sections missing or out of order                       | Clear tension, turning point, payoff, transferable lesson              |
+| 2   | **So-What**     | Every metric connects to business impact                                         | Bare numbers without context                           | Every number answers "why should a HM care?"                           |
+| 3   | **Scanability** | H2s tell the story; first sentences front-load; under 1200 words                 | Generic headers, buried ledes, over-length             | H2s alone reconstruct the arc; first sentences carry key info; concise |
+| 4   | **Specificity** | Numbers beat adjectives; claims are concrete                                     | "Significantly improved"                               | "Reduced 70% (16.98 → 2.28 weeks)"                                     |
+| 5   | **Context**     | Every number has a baseline and derivation                                       | Numbers float without anchoring                        | Before → after stated; denominator or derivation provided              |
+| 6   | **Voice**       | Active, reader-focused, jargon defined on first use                              | Passive voice, self-congratulatory, undefined acronyms | Direct, for the reader, terms explained                                |
+| 7   | **One Lesson**  | Case study teaches one clear, transferable thing                                 | Unclear takeaway or multiple competing messages        | Reader can state the lesson in one sentence                            |
+| 8   | **Accuracy**    | Numbers are internally consistent, math checks out, claims traceable to evidence | Contradictions, arithmetic errors, unverifiable claims | All numbers cross-check; evidence files support claims                 |
 
 **Accuracy scoring without evidence files:** When no `evidence*.md` files exist in the work directory, Accuracy is capped at 4/5. Internal consistency can still be verified, but claims cannot be traced to source data. The report notes: "Accuracy capped at 4 — no evidence files available for cross-referencing."
 
 ### Proposed Outline
 
 Full restructured outline in `case-study-playbook.md` format with:
+
 - Accepted Strunk's rewrites applied (rejected items keep original phrasing)
 - Jargon defined on first use
 - Numbers anchored with baselines and derivations
@@ -242,38 +244,48 @@ Tech: [tool/method pills]
 ---
 
 ## Scope
+
 Timeline | Role | Teams | Artifacts
 
 ## The Problem
+
 <!-- suggest: insight-callout -->
+
 - What was broken (with numbers + baselines)
 - Why it mattered (cost/impact, connected to business outcome)
 
 ## Root Cause
+
 - What you found that others missed
 - Supporting data (with derivation)
 
 ## The Solution
+
 - What you built/changed
 - How it worked (process, not just result)
 
 ## Results
+
 <!-- suggest: insight-callout -->
 <!-- suggest: metrics-row -->
+
 - Metrics table: Before | After (or Projected, labeled)
 - Every number has a baseline and derivation
 
 ## Lessons Worth Stealing
+
 - 3-4 transferable insights
 - One sentence each, actionable, reader-focused
 
 ---
 
 ## Revision Notes
+
 [Extracted editorial comments from the draft, preserved for context]
 ```
 
 **What's already done in this file:**
+
 - Strunk's rewrites applied (per inline choices)
 - Jargon defined on first use
 - Numbers anchored with baselines and derivations
@@ -283,6 +295,7 @@ Timeline | Role | Teams | Artifacts
 - Editorial comments extracted to appendix
 
 **What `/new-case-study` Prompt 2 does with it:**
+
 - Reads this outline + `ref/components.md` + `ref/chartjs-pattern.md`
 - Builds the HTML using design tokens and case study CSS
 - Uses component suggestions as starting points (can override)
@@ -302,21 +315,23 @@ Each run appends to `work/[slug]/revision-log.md` (gitignored — verify `work/*
 Rubric: 24/40
 | Criterion | Score |
 |-----------|-------|
-| Arc       | 3     |
-| So-What   | 2     |
-| ...       | ...   |
+| Arc | 3 |
+| So-What | 2 |
+| ... | ... |
 
 Issues: 8 total
+
 1. [Arc.Missing.Lessons] Lessons Worth Stealing section absent
 2. [SoWhat.M2] "70% faster" — bare number, no business impact stated
 3. [Voice.R10.P3] "The process was redesigned" — passive voice
 4. [Accuracy.Inconsistency.Markets] "17 markets" in P2 vs "18 markets" in P7
-...
+   ...
 
 ---
 ```
 
 **Issue ID format:** `[Criterion.Type.Location]` — enables precise delta matching across runs. Examples:
+
 - `[Voice.R10.P3]` — Strunk's Rule 10 violation in paragraph 3
 - `[Accuracy.Inconsistency.Markets]` — internal contradiction about market count
 - `[Arc.Missing.Lessons]` — required section absent
@@ -324,6 +339,7 @@ Issues: 8 total
 - `[Context.M4]` — metric #4 has no baseline
 
 On subsequent runs, the skill reads the last entry and computes a delta:
+
 - Issues resolved (ID present in last run, absent now)
 - Issues remaining (ID present in both runs)
 - New issues (ID absent in last run, present now)
@@ -346,15 +362,15 @@ This informs the **Accuracy** criterion score. A draft with multiple unverifiabl
 
 ## Relationship to Existing Tools
 
-| Tool | Role | Relationship |
-|------|------|-------------|
-| `/content-first-design` | Upstream philosophy | `/revise-case-study` checks for one-sentence test; if missing, prompts the 4 content-first questions. The skill itself is not invoked — just its core questions. |
-| `/new-case-study` | Downstream HTML builder | Receives `outline-approved.md` at Prompt 2; does not touch prose. Component suggestions are advisory. |
-| `/elements-of-style` | Embedded | Strunk's rules run inside the Prose section; not invoked separately |
-| `content-reviewer` agent | Replaced for this workflow | Agent's checks are folded into the rubric; no need to dispatch separately |
-| `/content-audit` | Complementary | Content-audit scores existing published pages; revise-case-study scores drafts pre-publication |
-| `content-writing-standards.md` | Reference | Auto-loaded; anti-patterns checked against this doc |
-| `JTBD.md` | Informing doc | Audience time budgets (HM: 3-5 min, recruiter: 15-30 sec) informed rubric design and 1200-word ceiling; not loaded at runtime |
+| Tool                           | Role                       | Relationship                                                                                                                                                     |
+| ------------------------------ | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/content-first-design`        | Upstream philosophy        | `/revise-case-study` checks for one-sentence test; if missing, prompts the 4 content-first questions. The skill itself is not invoked — just its core questions. |
+| `/new-case-study`              | Downstream HTML builder    | Receives `outline-approved.md` at Prompt 2; does not touch prose. Component suggestions are advisory.                                                            |
+| `/elements-of-style`           | Embedded                   | Strunk's rules run inside the Prose section; not invoked separately                                                                                              |
+| `content-reviewer` agent       | Replaced for this workflow | Agent's checks are folded into the rubric; no need to dispatch separately                                                                                        |
+| `/content-audit`               | Complementary              | Content-audit scores existing published pages; revise-case-study scores drafts pre-publication                                                                   |
+| `content-writing-standards.md` | Reference                  | Auto-loaded; anti-patterns checked against this doc                                                                                                              |
+| `JTBD.md`                      | Informing doc              | Audience time budgets (HM: 3-5 min, recruiter: 15-30 sec) informed rubric design and 1200-word ceiling; not loaded at runtime                                    |
 
 ---
 

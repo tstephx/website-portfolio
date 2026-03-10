@@ -5,6 +5,11 @@
 ## 2026-03
 
 ### Features
+- `3c5697c` rebuild Contract Transfer and Pinnacle case studies from approved outlines
+- `5e40116` rebuild DSP Application case study from approved outline
+- `a87f864` add 5 new case study components (icon-card, pull-quote, tldr, decision-card, cta-secondary)
+- `52a1e0d` add /revise-case-study skill — 8-criterion rubric for case study drafts
+- `fdd7a0b` pre-launch overhaul — curate to 3 case studies, sanitize, redesign homepage
 - `d34dc6f` design refinements, a11y testing, and documentation overhaul
 - `20a7502` expand visual regression coverage from 4 to 14 pages
 - `e2d0913` add html-validate + linkinator, fix raw HTML entities and parser errors
@@ -12,6 +17,12 @@
 - `2d33f93` add Playwright testing infrastructure + changelog automation
 
 ### Bug Fixes
+- `7115c60` address code review findings on batch 2
+- `b5982a4` address code review findings on batch 1
+- `b8af1d6` resolve 7 ambiguities found by subagent testing
+- `bd0ff84` rewrite /revise-case-study description to CSO trigger format
+- `290c653` sharpen Card 1 narrative — active voice, concrete language
+- `4675ac0` pre-launch fixes — a11y, formatting, SEO, 404 page
 - `47934c8` sharpen scoring + automation Approach one-liners on homepage
 - `d992b12` add SRI hashes + pin CDN versions (M3, M4)
 - `f68ca74` replace hardcoded Chart.js colors with CSS token variables (H1)
@@ -25,6 +36,8 @@
 - `9b142a4` clean up project structure and update CLAUDE.md
 
 ### Style
+- `7f13299` update visual regression snapshots for rebuilt case studies
+- `25f96a1` compress /revise-case-study SKILL.md 42% (2075 → 1207 words)
 - `cd7b634` apply 4 typography/design refinements to case-study components
 
 ### Chores / Maintenance

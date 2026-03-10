@@ -1,0 +1,137 @@
+# A 55MB Spreadsheet Was Deciding Who Got to Expand — and Getting It Wrong
+
+**Pinnacle Program Automation | 2,620 Partners, 8.5% Tier 1 | 8 Root Causes | Solo Build**
+
+`SQL / Data Warehouse` `Haversine Geospatial` `Window Functions` `Process Automation`
+
+---
+
+## Quick Summary
+
+- A reward program for top-performing delivery partners broke down—launches dropped 55% and 20 eligible candidates were bypassed entirely—because the eligibility process ran on a crashing 55MB Excel file.
+- Diagnosed 8 root causes across data, process, and tooling. Replaced the entire system with a 6-stage SQL pipeline using Haversine distance for deterministic eligibility.
+- Fill rate jumped from 57.9% to 94.1% (+36 percentage points), hitting 100% in July. Zero candidates bypassed. Outreach team expanded from 1 to 5.
+
+---
+
+|                |                                                                    |
+| -------------- | ------------------------------------------------------------------ |
+| **Timeline**   | Q3–Q4 2024 (10 weeks: 2 diagnosis + 4 build + 4 validation)        |
+| **My Role**    | PM, Pinnacle Operations, DSP Acquisitions                          |
+| **Teams**      | Capacity planning, Business Intelligence, Operations, Outreach     |
+| **Constraint** | No engineering resources, no data team—wrote all SQL independently |
+
+---
+
+## The Reward Mechanism That Stopped Rewarding
+
+Amazon's Pinnacle program offers top-performing delivery partners—the 8.5% of 2,620 operators who consistently achieve Tier 1 performance—a path to expand into a second station. It depends on one thing working correctly: identifying eligible partners.
+
+In 2024, that identification process broke down. Launches dropped 55% (93 to 42). The process bypassed 20 longstanding eligible candidates, handing their slots to net-new partners instead—violating the program's own prioritization hierarchy. The reward mechanism wasn't rewarding the right people.
+
+### Eight Root Causes Behind a 55% Decline
+
+The program ran on a 55+MB Excel file with index-match calculations across 24,000 rows. It crashed regularly. But the Excel collapse was only one of eight failures I diagnosed:
+
+- **Non-deterministic distance metric**—eligibility used commute times that factored in live traffic. The same route could measure 49 miles one month and 52 the next. A partner could be eligible in October and ineligible in November.
+- **Stale data**—eligibility refreshed quarterly while performance updated monthly. Partners who earned Tier 1 mid-quarter were invisible until the next refresh.
+- **Double-counting**—reported eligibility counts included partners already in the program, making capacity planning unreliable.
+- **Missing vetting history**—12-month wait times and prior flags lived outside the eligibility system. Anyone wanting that data had to cross-reference manually.
+- **Broken prioritization**—the tracker listed a quality score tiebreaker that never existed. The framework didn't match strategy documents.
+
+Each failure compounded the others. Twenty candidates slipped through the gaps.
+
+---
+
+## The Decision That Made Eligibility Deterministic
+
+The existing system used commute times to measure candidate proximity. The data was available, integrated, and familiar. Swapping it for a custom mathematical formula required additional development, introduced an unfamiliar metric, and would need to be explained and defended.
+
+The problem was that commute times aren't a fixed property of geography. They're a function of traffic—and traffic changes. A partner's eligibility would shift month to month based on highway congestion on one particular Tuesday.
+
+I chose the Haversine formula: a standard great-circle distance calculation using Earth's radius as a constant. The distance between two stations is now a fixed number. It doesn't change between measurement cycles. That's the only kind of metric that can support a program where eligibility has to be deterministic.
+
+The 250-mile fallback was a second design choice with real stakes. A hard 50-mile cutoff would strand expansion sites in remote regions. The fallback extends the search only when no 50-mile match exists—preserving the primary threshold while ensuring no site gets orphaned.
+
+---
+
+## What Changed
+
+### 57.9% to 94.1%. Here's how the pipeline works.
+
+I designed and built a six-stage SQL pipeline on a data warehouse that replaced the Excel process entirely. Each stage addresses a specific diagnosed root cause:
+
+1. **Lock snapshot dates**—quarterly configuration pins performance scores, eliminating the data lag that made eligible partners invisible mid-cycle.
+2. **Validate consecutive Tier 1**—checks sustained performance across two quarters, filtering single-quarter spikes.
+3. **Integrate vetting history**—joins exclusion status and reconsideration dates directly into the query, replacing manual cross-referencing.
+4. **Map station coordinates**—loads latitude and longitude from the master station table for distance computation.
+5. **Calculate Haversine distances**—replaces traffic-dependent commute times with mathematically consistent straight-line distance.
+6. **Rank by policy-encoded priority**—applies the approved hierarchy (tenure first, performance second, proximity third) with intelligent 250-mile fallback for remote stations.
+
+The output—a ranked, pre-validated candidate list per expansion site—feeds directly into the 8-day approvals process and the 3-week vetting cycle.
+
+### 20 candidates preserved. Prioritization tenets restored.
+
+The program's 5-lever sourcing hierarchy ranks expansion of existing high-performers at Rank 3. Net-new partners sit at Rank 5—last resort. In 2024, twenty Rank 3 candidates were skipped and those slots went directly to Rank 5.
+
+The pipeline enforces the hierarchy mechanically. Every open target checks the full eligible pool before any fallback is triggered. The prioritization tenets are no longer dependent on whoever is running the tracker that week.
+
+### What the pipeline enabled.
+
+The automation eliminated the need for the bloated Excel file. Removing double-counted partners reduced the reported eligible pool from 155 to 105 (fluctuating monthly), giving capacity planning accurate numbers for the first time. The SQL infrastructure became the basis for a Salesforce migration initiated in Q4 2024, and the reliable candidate pipeline supported expanding the outreach team from 1 to 5 members.
+
+I created the script that enabled the workstream. Leadership credited it by name in program documentation—the only workstream in that document attributed to a specific person.
+
+---
+
+## 57.9% to 94.1%: What the Numbers Show
+
+> The crashing file wasn't just an inconvenience—it was actively misrouting the network's best operators. The pipeline fixed the tooling, the data, and the rules simultaneously.
+
+| Metric    | Value               | Detail                 |
+| --------- | ------------------- | ---------------------- |
+| **94.1%** | Fill Rate           | Up from 57.9% (+36 pp) |
+| **100%**  | July Fill Rate      | 8 targets, +35 pp YTD  |
+| **0**     | Candidates Bypassed | Down from 20           |
+| **1 → 5** | Outreach Team       | 5x capacity            |
+
+### Eligibility Funnel: Full Network → Ranked Candidates
+
+| Stage                          | Count              |
+| ------------------------------ | ------------------ |
+| Full Partner Network           | 2,620              |
+| Tier 1 Designation             | ~222 (~8.5%)       |
+| Consecutive Tier 1             | ~180               |
+| Tenure Qualified (12+ months)  | ~160               |
+| Vetting Clear                  | ~140               |
+| Distance Matched & Prioritized | Ranked per station |
+
+### System Transformation: Before and After
+
+| Before                                | After                                 |
+| ------------------------------------- | ------------------------------------- |
+| 55+ MB Excel file (crashes regularly) | 6-stage SQL pipeline (data warehouse) |
+| Traffic-dependent commute distances   | Haversine constant (deterministic)    |
+| Quarterly data refresh                | Monthly integration (3x faster)       |
+| Double-counting in reports            | Deduplicated (155 → 105 accurate)     |
+| 20 candidates bypassed                | 0 candidates missed                   |
+| 57.9% fill rate (42 launches)         | 94.1% fill rate (100% in July)        |
+| 1 outreach team member                | 5 outreach team members               |
+
+In 2024, the program missed 20 eligible candidates and delivered 42 launches where 93 should have happened. The root cause wasn't strategy—it was a broken identification process that couldn't be trusted.
+
+A SQL pipeline replaced a spreadsheet. Mathematical precision replaced traffic-dependent variability. Vetting history was integrated rather than manually cross-referenced. The prioritization hierarchy was encoded so it couldn't be violated by whoever opened the file. The program now identifies the right candidates, in the right order, every time the query runs.
+
+---
+
+## Lessons Worth Stealing
+
+- **When a program is declining, diagnose whether it's strategy or infrastructure before changing strategy.** Pinnacle didn't need a new approach—it needed a working spreadsheet.
+
+- **An eligibility system built on variable inputs produces variable outputs.** If the same query gives different answers on different days, the query isn't the problem—the inputs are.
+
+- **If you can't rerun the process and get the same answer, you don't have a process.** Determinism isn't a nice-to-have—it's the minimum bar for any system that decides who gets an opportunity.
+
+---
+
+> A reward mechanism is only as good as the infrastructure behind it. When top performers don't receive the opportunities they've earned, the program hasn't failed—the process has.
