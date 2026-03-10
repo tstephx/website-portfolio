@@ -361,6 +361,13 @@ section {
   margin-bottom: 0.5em;
 }
 
+.section-intro {
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
 #personal-projects .project-card p:last-child {
   color: var(--color-muted);
   font-size: 0.875rem;

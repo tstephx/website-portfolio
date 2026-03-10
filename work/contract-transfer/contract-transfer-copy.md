@@ -1,6 +1,6 @@
 # From 17 Weeks to 2.3 — Without Lowering the Bar
 
-**Ownership Transfer Process Architecture | 89% Rejection Rate, $13M+ in Exit Costs Avoided | Solo Program Owner**
+**Process Architecture | $13M in Exit Costs Avoided | 87% Faster Decisions | Solo Program Owner**
 
 `SQL Analytics` `Process Architecture` `SOP Design` `Stakeholder Governance`
 
@@ -95,7 +95,7 @@ The vetting sequence was ordered by cost:
 
 ### End-to-end process tracking. Six defect categories.
 
-I built a SQL analytics system tracking end-to-end attributes—from application through final approval—because our CRM couldn't be configured for the workflow. Before this, there was no way to diagnose where the process broke down—only that it was slow.
+I built a SQL analytics system tracking end-to-end attributes—from application through final approval—because our CRM didn't support the workflow configuration. Before this, there was no way to diagnose where the process broke down—only that it was slow.
 
 The data surfaced six defect categories. The two largest weren't what anyone expected—not process design flaws, but a strict sequential dependency that didn't need to exist and missed actions from unclear ownership between teams.
 

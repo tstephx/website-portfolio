@@ -862,6 +862,14 @@
   color: var(--color-heading);
 }
 
+/* ===== PROJECTED NOTE ===== */
+.projected-note {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
 /* ===== STAT HIGHLIGHT ===== */
 .stat-highlight {
   display: inline-flex;

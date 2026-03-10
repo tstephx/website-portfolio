@@ -29,6 +29,7 @@ test.describe('DSP Application — consistency', () => {
     const meta = await page.getAttribute('meta[name="description"]', 'content');
     // Guard against old wrong values creeping back
     expect(meta).not.toMatch(/4\.6/);
+    expect(meta).not.toMatch(/17 (?:countries|markets)/);
     expect(meta).not.toMatch(/18 (?:countries|markets)/);
     expect(meta).not.toContain("Amazon's DSP");
   });
@@ -36,7 +37,7 @@ test.describe('DSP Application — consistency', () => {
   test('tagline matches body values', async ({ page }) => {
     await page.goto(slug);
     const tagline = await textOf(page.locator('.cs-tagline'));
-    expect(tagline).toContain('17 Global Markets');
+    expect(tagline).toContain('20 Global Markets');
     expect(tagline).toContain('3.8 Engineers');
   });
 
@@ -45,9 +46,9 @@ test.describe('DSP Application — consistency', () => {
     const dspCard = page.locator('article.card', { hasText: 'DSP Application' });
     const statValues = await dspCard.locator('.stat-value').allTextContents();
     const stats = statValues.join(' ');
-    // Body: 15× multiplier, 17 countries, 101 requirements
+    // Body: 20 markets, 15× multiplier, 74% abandonment
+    expect(stats).toContain('20');
     expect(stats).toContain('15');
-    expect(stats).toContain('101');
     expect(stats).not.toContain('18×');
   });
 

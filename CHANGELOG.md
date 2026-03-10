@@ -18,6 +18,7 @@
 - `2d33f93` add Playwright testing infrastructure + changelog automation
 
 ### Bug Fixes
+- `4232f67` align site-wide content to case study bodies as source of truth
 - `7115c60` address code review findings on batch 2
 - `b5982a4` address code review findings on batch 1
 - `b8af1d6` resolve 7 ambiguities found by subagent testing

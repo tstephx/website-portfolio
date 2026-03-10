@@ -1,13 +1,13 @@
 # A 55MB Spreadsheet Was Deciding Who Got to Expand — and Getting It Wrong
 
-**Pinnacle Program Automation | 2,620 Partners, 8.5% Tier 1 | 8 Root Causes | Solo Build**
+**Pinnacle Program Automation | 57.9% → 94.1% Fill Rate | 7 Root Causes | Solo Build**
 
 `SQL / Data Warehouse` `Haversine Geospatial` `Window Functions` `Process Automation`
 
 ## Quick Summary
 
 - A reward program for top-performing delivery partners broke down — launches dropped 55% and 20 eligible candidates were bypassed entirely — because the eligibility process ran on a crashing 55+MB Excel file.
-- Diagnosed 8 root causes across data, process, and tooling. Replaced the entire system with a 6-stage SQL pipeline using Haversine distance for deterministic eligibility.
+- Diagnosed 7 root causes across data, process, and tooling. Replaced the entire system with a 6-stage SQL pipeline using Haversine distance for deterministic eligibility.
 - Fill rate jumped from 57.9% to 94.1% (+36 percentage points), hitting 100% in July. Zero candidates bypassed. Outreach team expanded from 1 to 5.
 
 ## Scope
@@ -25,9 +25,9 @@ Amazon's Pinnacle program offers top-performing delivery partners — the 8.5% o
 
 In 2024, that identification process broke down. Launches dropped 55% (93 to 42). The process bypassed 20 longstanding eligible candidates, handing their slots to net-new partners instead — violating the program's own prioritization hierarchy. The reward mechanism wasn't rewarding the right people.
 
-### Eight Root Causes Behind a 55% Decline
+### Seven Root Causes Behind a 55% Decline
 
-The selection program ran on a 55+MB Excel file with index-match calculations across 24,000 rows, pairing partners with stations within a 50-mile radius. It crashed regularly, failing to pull all data. But the Excel collapse was only one of eight failures I diagnosed:
+The selection program ran on a 55+MB Excel file with index-match calculations across 24,000 rows, pairing partners with stations within a 50-mile radius. It crashed regularly, failing to pull all data. But the Excel collapse was only one of seven failures I diagnosed:
 
 - **Non-deterministic distance metric** — eligibility used commute times that varied with live traffic. The same route measured 49 miles one month and 52 the next. A partner could be eligible in October and ineligible in November.
 - **Rural exclusion** — a hard 50-mile cutoff discriminated against top performers in areas with no stations within range. Eligible partners were invisible to the system by geography alone.
@@ -36,7 +36,7 @@ The selection program ran on a 55+MB Excel file with index-match calculations ac
 - **Missing vetting history** — 12-month wait times and prior flags lived outside the eligibility system. Accessing it required manual cross-referencing.
 - **Broken prioritization** — the tracker listed a quality score tiebreaker that never existed. The framework didn't match strategy documents.
 
-Each failure compounded the others. Twenty candidates slipped through the gaps.
+Each failure compounded the others. Twenty eligible candidates were bypassed entirely.
 
 ## The Decision That Made Eligibility Deterministic
 
@@ -73,7 +73,7 @@ The pipeline enforces the hierarchy mechanically. Every open target checks the f
 
 A process that took hours collapsed to 10 minutes. The automation eliminated the bloated Excel file. Removing double-counted partners reduced the reported eligible pool from 155 to 105 (fluctuating monthly), giving capacity planning its first accurate numbers. The SQL infrastructure became the basis for a Salesforce migration that began in Q4 2024, and the reliable candidate pipeline enabled the outreach team to expand from 1 to 5 members.
 
-I created the script that enabled the workstream. Leadership credited it by name in program documentation — the only workstream tied by name to a specific person.
+I created the script that enabled the workstream. Leadership included it by name in the program's official documentation — unusual for a PM deliverable in an engineering-adjacent domain.
 
 ## 57.9% to 94.1%: What the Numbers Show
 
