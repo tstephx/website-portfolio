@@ -42,11 +42,9 @@ I identified Chick-fil-A's franchise application as the benchmark: 40,000 applic
 
 I then directed the entire Acquisitions team through the same process to build shared conviction.
 
-### Amazon Application vs. CFA Application
+**Amazon Application** — 60+ fields, 65% free-text, open-ended essays, 3+ hours, inconsistent and unscoreable responses
 
-| Amazon Application                                                                             | CFA Application                                                                                          |
-| ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| 60+ fields, 65% free-text, open-ended essays, 3+ hours, inconsistent and unscoreable responses | 80+ fields, 75% structured dropdowns, numerical inputs, under 1 hour, scoreable and consistent responses |
+**CFA Application** — 80+ fields, 75% structured dropdowns, numerical inputs, under 1 hour, scoreable and consistent responses
 
 Statistical analysis of 25,830 records confirmed reviewer scores diverged measurably—the application design was the root cause. CFA collects _more_ data in _less_ time through better input design. The fix wasn't fewer questions. It was better questions.
 
@@ -87,7 +85,7 @@ Pardot was already in the tech stack. Using it for form management and progressi
 
 ## 9,419 More Approved Applications Per Year
 
-> One franchise application submitted on a Tuesday night. Fourteen months later: 101 requirements, 18x the initial engineering allocation, $10.9M+ in identified entitlement across 17 countries.
+> One franchise application submitted on a Tuesday night. Fourteen months later: 101 requirements, 18× the initial engineering allocation, $10.9M+ in identified entitlement across 17 countries.
 
 | Metric     | Value               | Detail                 |
 | ---------- | ------------------- | ---------------------- |
@@ -124,3 +122,9 @@ _Metrics reflect projected targets from the approved roadmap, not confirmed post
 ---
 
 > The application wasn't collecting bad data—it was asking the wrong kind of questions. The fix wasn't fewer questions. It was better ones.
+
+---
+
+Next: [Contract Transfer Process Redesign](../contract-transfer/contract-transfer.html) →
+
+[Get in touch](../../index.html#contact)
