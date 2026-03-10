@@ -32,15 +32,15 @@ The Delivery Service Partner (DSP) Acquisitions team needed to scale Amazon's pa
 - **Wrong candidates getting through**—62% rejection rate post-submission, but only 23% of approved candidates showed program interest. Filtering happened too late.
 - **Impossible to iterate**—adding 14 questions flagged as a 10–12 month engineering effort. Blocked every program expansion.
 
-$2.1M+ annually in lost candidate conversion entitlement. The team projected a 33% recruiting cost increase for 2024. The constraint was the story: 0.25 Software Development Engineers (engineers) allocated for work that required 4.6.
+$2.1M+ annually in lost candidate conversion entitlement. The team projected a 33% recruiting cost increase for 2024. The constraint was the story: 0.25 Software Development Engineers allocated for work that required 4.6.
 
 ---
 
 ## What the Benchmark Revealed
 
-I identified Chick-fil-A's franchise application as the benchmark: 40,000 applicants per year, ~0.2% acceptance rate, same model (individual operators running a branded business). Then I applied—October 17, 2023, using personal information. Every screen documented, every question cataloged by type and completion time, built into a comparison spreadsheet.
+I identified Chick-fil-A's franchise application as the benchmark: 40,000 applicants per year, ~0.2% acceptance rate, same model (individual operators running a branded business). Then I applied—October 17, 2023, using personal information. Every screen documented, every question cataloged by type and completion time.
 
-Then I directed the entire Acquisitions team through the same process to build shared conviction.
+I then directed the entire Acquisitions team through the same process to build shared conviction.
 
 ### Amazon Application vs. CFA Application
 
@@ -54,16 +54,16 @@ Statistical analysis of 25,830 records confirmed reviewer scores diverged measur
 
 ## From CFA Application to $10.9M+ Roadmap
 
-I owned strategy end-to-end—diagnosis, Business Requirements Document (BRD), roadmap. No one assigned this.
+I owned strategy end-to-end—diagnosis, BRD, roadmap. No one assigned this.
 
-Central constraint: engineering allocation for 2024 was **0.25 engineers**. The work required **4.6**.
+Central constraint: the 2024 engineering allocation was **0.25 engineers**. The work required **4.6**.
 
 ### Architecture Redesign
 
 - Replaced 20 open-ended questions with single-response structured inputs
 - Eliminated resume upload; replaced with 30 standardized work history fields
 - Added upstream qualification gate (modeled on CFA's Expression of Interest)
-- Designed modular, country-agnostic architecture: 6 programs, 17 markets, quarterly content management system updates without engineering
+- Designed modular, country-agnostic architecture: 6 programs, 17 markets, quarterly CMS updates without engineering
 
 ### Evidence Chain That Moved Resources
 
@@ -81,7 +81,7 @@ Each document cited the same benchmark. By the time I requested 4.6 engineers, l
 
 > When engineering flagged the 32-question update as a 12-month effort, I proposed a Pardot (marketing automation platform) integration that bypassed the constraint entirely.
 
-Pardot was already in the tech stack. Using it for form management and progressive profiling compressed development from 12 months to 3–4—unblocking the $10.9M+ roadmap. The Acquisition team gained the ability to iterate on questions without engineering dependencies.
+Pardot was already in the tech stack. Using it for form management and progressive profiling compressed development from 12 months to 3–4—unblocking the $10.9M+ roadmap. The Acquisition team could now iterate on questions without engineering dependencies.
 
 ---
 

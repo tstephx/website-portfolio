@@ -88,8 +88,8 @@
         <h2>The Reward Mechanism That Stopped Rewarding</h2>
         <p>
           Amazon&rsquo;s Pinnacle program offers top-performing delivery partners&mdash;the 8.5% of 2,620 operators who
-          consistently achieve Tier 1 performance&mdash;a path to expand into a second station. It depends on one thing
-          working correctly: identifying eligible partners.
+          consistently achieve Tier 1 performance&mdash;a path to expand into a second station. It depends on one thing:
+          identifying eligible partners.
         </p>
         <p>
           In 2024, that identification process broke down. Launches dropped 55% (93 to 42). The process bypassed 20
@@ -104,9 +104,9 @@
         </p>
         <ul>
           <li>
-            <strong>Non-deterministic distance metric</strong>&mdash;eligibility used commute times that factored in
-            live traffic. The same route could measure 49 miles one month and 52 the next. A partner could be eligible
-            in October and ineligible in November.
+            <strong>Non-deterministic distance metric</strong>&mdash;eligibility used commute times that varied with
+            live traffic. The same route measured 49 miles one month and 52 the next. A partner could be eligible in
+            October and ineligible in November.
           </li>
           <li>
             <strong>Stale data</strong>&mdash;eligibility refreshed quarterly while performance updated monthly.
@@ -118,7 +118,7 @@
           </li>
           <li>
             <strong>Missing vetting history</strong>&mdash;12-month wait times and prior flags lived outside the
-            eligibility system. Anyone wanting that data had to cross-reference manually.
+            eligibility system. Accessing it required manual cross-referencing.
           </li>
           <li>
             <strong>Broken prioritization</strong>&mdash;the tracker listed a quality score tiebreaker that never
@@ -133,12 +133,12 @@
         <p>
           The existing system used commute times to measure candidate proximity. The data was available, integrated, and
           familiar. Swapping it for a custom mathematical formula required additional development, introduced an
-          unfamiliar metric, and would need to be explained and defended.
+          unfamiliar metric, and required explaining and defending.
         </p>
         <p>
           The problem was that commute times aren&rsquo;t a fixed property of geography. They&rsquo;re a function of
-          traffic&mdash;and traffic changes. A partner&rsquo;s eligibility would shift month to month based on highway
-          congestion on one particular Tuesday.
+          traffic&mdash;and traffic changes. A partner&rsquo;s eligibility shifted month to month on whatever highway
+          congestion happened on one Tuesday.
         </p>
         <p>
           I chose the Haversine formula: a standard great-circle distance calculation using Earth&rsquo;s radius as a
@@ -189,27 +189,26 @@
         </ol>
         <p>
           The output&mdash;a ranked, pre-validated candidate list per expansion site&mdash;feeds directly into the 8-day
-          approvals process and the 3-week vetting cycle.
+          approval process and the 3-week vetting cycle.
         </p>
 
         <h3>20 candidates preserved. Prioritization tenets restored.</h3>
         <p>
           The program&rsquo;s 5-lever sourcing hierarchy ranks expansion of existing high-performers at Rank 3. Net-new
-          partners sit at Rank 5&mdash;last resort. In 2024, twenty Rank 3 candidates were skipped and those slots went
+          partners sit at Rank 5&mdash;last resort. In 2024, twenty Rank 3 candidates were skipped; their slots went
           directly to Rank 5.
         </p>
         <p>
           The pipeline enforces the hierarchy mechanically. Every open target checks the full eligible pool before any
-          fallback is triggered. The prioritization tenets are no longer dependent on whoever is running the tracker
-          that week.
+          fallback is triggered. The prioritization tenets no longer depend on whoever is running the tracker that week.
         </p>
 
         <h3>What the pipeline enabled.</h3>
         <p>
           The automation eliminated the need for the bloated Excel file. Removing double-counted partners reduced the
-          reported eligible pool from 155 to 105 (fluctuating monthly), giving capacity planning accurate numbers for
-          the first time. The SQL infrastructure became the basis for a Salesforce migration initiated in Q4 2024, and
-          the reliable candidate pipeline supported expanding the outreach team from 1 to 5 members.
+          reported eligible pool from 155 to 105 (fluctuating monthly), giving capacity planning its first accurate
+          numbers. The SQL infrastructure became the basis for a Salesforce migration initiated in Q4 2024, and the
+          reliable candidate pipeline supported expanding the outreach team from 1 to 5 members.
         </p>
         <p>
           I created the script that enabled the workstream. Leadership credited it by name in program
@@ -322,14 +321,13 @@
 
         <p>
           In 2024, the program missed 20 eligible candidates and delivered 42 launches where 93 should have happened.
-          The root cause wasn&rsquo;t strategy&mdash;it was a broken identification process that couldn&rsquo;t be
-          trusted.
+          The root cause wasn&rsquo;t strategy&mdash;it was a broken identification process.
         </p>
         <p>
           A SQL pipeline replaced a spreadsheet. Mathematical precision replaced traffic-dependent variability. Vetting
-          history was integrated rather than manually cross-referenced. The prioritization hierarchy was encoded so it
-          couldn&rsquo;t be violated by whoever opened the file. The program now identifies the right candidates, in the
-          right order, every time the query runs.
+          history was integrated, not manually cross-referenced. Encoding the prioritization hierarchy removed
+          dependence on whoever opened the file. The program now identifies the right candidates, in the right order,
+          every time the query runs.
         </p>
       </section>
 
