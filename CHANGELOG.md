@@ -31,18 +31,22 @@
 - `d93e5d5` comparison-label audit + docs restructure
 
 ### Documentation
+- `299a879` regenerate DSP and Pinnacle copy markdown from current HTML
 - `9a3fc85` add deploy ref, update site-map for fonts + headshot variants
 - `a68c73f` fix 2 CLAUDE.md inaccuracies flagged by scaffold audit
 - `e51725e` add ref/ directory with site map, CSS tokens, and component reference
 - `9b142a4` clean up project structure and update CLAUDE.md
 
 ### Style
+- `9e4a1d0` Elements of Style copy-edit on DSP and Pinnacle case studies
 - `d6abd43` format all files with Prettier, commit prior session work
 - `7f13299` update visual regression snapshots for rebuilt case studies
 - `25f96a1` compress /revise-case-study SKILL.md 42% (2075 → 1207 words)
 - `cd7b634` apply 4 typography/design refinements to case-study components
 
 ### Chores / Maintenance
+- `432af34` update changelog, gitignore design screenshots
+- `6c1b121` commit .claude tooling, update .gitignore
 - `507a691` remove _headers (nginx/Cloudflare stack — use CF Transform Rules instead)
 - `b64ade6` add ESLint, Prettier, stylelint; apply first-run formatting
 

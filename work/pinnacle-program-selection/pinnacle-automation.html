@@ -6,14 +6,14 @@
     <meta name="robots" content="noindex, nofollow" />
     <meta
       name="description"
-      content="A 55MB spreadsheet was deciding who got to expand — and getting it wrong. Diagnosed 8 root causes, built a 6-stage SQL pipeline, increased Pinnacle fill rate from 57.9% to 94.1%."
+      content="A 55+MB spreadsheet was deciding who got to expand — and getting it wrong. Diagnosed 8 root causes, built a 6-stage SQL pipeline, increased Pinnacle fill rate from 57.9% to 94.1%."
     />
     <title>Selection Automation | Taylor Stephens</title>
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
     <meta property="og:title" content="Selection Automation | Taylor Stephens" />
     <meta
       property="og:description"
-      content="A 55MB spreadsheet was deciding who got to expand — and getting it wrong. 8 root causes diagnosed, 6-stage SQL pipeline built, fill rate from 57.9% to 94.1%."
+      content="A 55+MB spreadsheet was deciding who got to expand — and getting it wrong. 8 root causes diagnosed, 6-stage SQL pipeline built, fill rate from 57.9% to 94.1%."
     />
     <meta property="og:type" content="article" />
     <meta property="og:image" content="https://taylorstephens.io/images/headshot.jpg" />
@@ -50,7 +50,7 @@
           <ul>
             <li>
               A reward program for top-performing delivery partners broke down&mdash;launches dropped 55% and 20
-              eligible candidates were bypassed entirely&mdash;because the eligibility process ran on a crashing 55MB
+              eligible candidates were bypassed entirely&mdash;because the eligibility process ran on a crashing 55+MB
               Excel file.
             </li>
             <li>
@@ -99,14 +99,19 @@
 
         <h3>Eight Root Causes Behind a 55% Decline</h3>
         <p>
-          The program ran on a 55+MB Excel file with index-match calculations across 24,000 rows. It crashed regularly.
-          But the Excel collapse was only one of eight failures I diagnosed:
+          The selection program ran on a 55+MB Excel file with index-match calculations across 24,000 rows, pairing
+          partners with stations within a 50-mile radius. It crashed regularly, failing to pull all data. But the Excel
+          collapse was only one of eight failures I diagnosed:
         </p>
         <ul>
           <li>
             <strong>Non-deterministic distance metric</strong>&mdash;eligibility used commute times that varied with
             live traffic. The same route measured 49 miles one month and 52 the next. A partner could be eligible in
             October and ineligible in November.
+          </li>
+          <li>
+            <strong>Rural exclusion</strong>&mdash;a hard 50-mile cutoff discriminated against top performers in areas
+            with no stations within range. Eligible partners were invisible to the system by geography alone.
           </li>
           <li>
             <strong>Stale data</strong>&mdash;eligibility refreshed quarterly while performance updated monthly.
@@ -143,11 +148,11 @@
         <p>
           I chose the Haversine formula: a standard great-circle distance calculation using Earth&rsquo;s radius as a
           constant. The distance between two stations is now a fixed number. It doesn&rsquo;t change between measurement
-          cycles. That&rsquo;s the only kind of metric that can support a program where eligibility has to be
+          cycles. That&rsquo;s the only kind of metric that can support a program where eligibility must be
           deterministic.
         </p>
         <p>
-          The 250-mile fallback was a second design choice with real stakes. A hard 50-mile cutoff would strand
+          The 200-mile fallback was a second design choice with real stakes. A hard 50-mile cutoff would strand
           expansion sites in remote regions. The fallback extends the search only when no 50-mile match
           exists&mdash;preserving the primary threshold while ensuring no site gets orphaned.
         </p>
@@ -184,7 +189,7 @@
           </li>
           <li>
             <strong>Rank by policy-encoded priority</strong>&mdash;applies the approved hierarchy (tenure first,
-            performance second, proximity third) with intelligent 250-mile fallback for remote stations.
+            performance second, proximity third) with intelligent 200-mile fallback for remote stations.
           </li>
         </ol>
         <p>
@@ -199,20 +204,22 @@
           directly to Rank 5.
         </p>
         <p>
-          The pipeline enforces the hierarchy mechanically. Every open target checks the full eligible pool before any
-          fallback is triggered. The prioritization tenets no longer depend on whoever is running the tracker that week.
+          The pipeline enforces the hierarchy mechanically. Every open target checks the full eligible pool before
+          triggering any fallback. The prioritization tenets no longer depend on whoever is running the tracker that
+          week.
         </p>
 
         <h3>What the pipeline enabled.</h3>
         <p>
-          The automation eliminated the need for the bloated Excel file. Removing double-counted partners reduced the
-          reported eligible pool from 155 to 105 (fluctuating monthly), giving capacity planning its first accurate
-          numbers. The SQL infrastructure became the basis for a Salesforce migration initiated in Q4 2024, and the
-          reliable candidate pipeline supported expanding the outreach team from 1 to 5 members.
+          A process that took hours collapsed to 10 minutes. The automation eliminated the bloated Excel file. Removing
+          double-counted partners reduced the reported eligible pool from 155 to 105 (fluctuating monthly), giving
+          capacity planning its first accurate numbers. The SQL infrastructure became the basis for a Salesforce
+          migration that began in Q4 2024, and the reliable candidate pipeline enabled the outreach team to expand from
+          1 to 5 members.
         </p>
         <p>
           I created the script that enabled the workstream. Leadership credited it by name in program
-          documentation&mdash;the only workstream in that document attributed to a specific person.
+          documentation&mdash;the only workstream tied by name to a specific person.
         </p>
       </section>
 
@@ -288,7 +295,7 @@
             </thead>
             <tbody>
               <tr>
-                <td class="old-value">55+ MB Excel file (crashes regularly)</td>
+                <td class="old-value">55+ MB Excel file (crashes regularly, failing to pull all data)</td>
                 <td class="new-value">6-stage SQL pipeline (data warehouse)</td>
               </tr>
               <tr>
@@ -315,19 +322,23 @@
                 <td class="old-value">1 outreach team member</td>
                 <td class="new-value">5 outreach team members</td>
               </tr>
+              <tr>
+                <td class="old-value">Hours per eligibility run</td>
+                <td class="new-value">10 minutes per run</td>
+              </tr>
             </tbody>
           </table>
         </div>
 
         <p>
-          In 2024, the program missed 20 eligible candidates and delivered 42 launches where 93 should have happened.
-          The root cause wasn&rsquo;t strategy&mdash;it was a broken identification process.
+          In 2024, the program missed 20 eligible candidates and delivered 42 launches where 93 were expected. The root
+          cause wasn&rsquo;t strategy&mdash;it was a broken identification process.
         </p>
         <p>
-          A SQL pipeline replaced a spreadsheet. Mathematical precision replaced traffic-dependent variability. Vetting
-          history was integrated, not manually cross-referenced. Encoding the prioritization hierarchy removed
-          dependence on whoever opened the file. The program now identifies the right candidates, in the right order,
-          every time the query runs.
+          A SQL pipeline replaced a spreadsheet. Mathematical precision replaced traffic-dependent variability. The
+          pipeline integrated vetting history directly, eliminating manual cross-referencing. Encoding the
+          prioritization hierarchy removed dependence on whoever opened the file. The program now identifies the right
+          candidates, in the right order, every time the query runs.
         </p>
       </section>
 

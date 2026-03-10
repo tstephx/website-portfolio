@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex, nofollow" />
     <meta
       name="description"
-      content="From 17 weeks to 2.3 — without lowering the bar. Redesigning Amazon's DSP ownership transfer from zero documentation to $13M in avoided exit costs."
+      content="From 17 weeks to 2.3 — without lowering the bar. Redesigning ownership transfer from zero documentation to $13M in avoided exit costs."
     />
     <title>Contract Transfer Process Redesign | Taylor Stephens</title>
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
@@ -36,7 +36,7 @@
       <header class="cs-header">
         <h1>From 17 Weeks to 2.3 &mdash; Without Lowering the Bar</h1>
         <p class="cs-tagline">
-          Ownership Transfer Process Architecture | 89% Rejection Rate, $13M+ in Risk Mitigated | Solo Program Owner
+          Ownership Transfer Process Architecture | 89% Rejection Rate, $13M+ in Exit Costs Avoided | Solo Program Owner
         </p>
         <div class="tech-pills">
           <span class="tech-pill">SQL Analytics</span>
@@ -51,8 +51,8 @@
         <div class="tldr-content">
           <ul>
             <li>
-              Inherited a transfer process with zero documentation, no data infrastructure, and 29 active cases plus a
-              15-case backlog across 8 teams. Decisions averaged 17 weeks.
+              Inherited a transfer process with zero documentation, no data infrastructure, and a 15-case backlog.
+              Decisions averaged 17 weeks.
             </li>
             <li>
               Reframed the program from customer service to network protection&mdash;making the 89% rejection rate
@@ -97,8 +97,7 @@
         <p>
           I inherited the Owner Transfer process in Q3 2022. It was a one-person operation with no infrastructure: cases
           lived in email threads and a shared spreadsheet, there were no standardized stages, no SLAs, and no defined
-          criteria for what &ldquo;approved&rdquo; or &ldquo;rejected&rdquo; meant. I walked into 29 active cases, a
-          15-case backlog awaiting final decision, and zero documentation.
+          criteria for what &ldquo;approved&rdquo; or &ldquo;rejected&rdquo; meant. I walked into a 15-case backlog awaiting final decision and zero documentation.
         </p>
         <p>
           The process dated to 2019 for third-party sales&mdash;strangers buying a delivery business&mdash;but by 2022,
@@ -190,14 +189,14 @@
           The data supported Option B. When a partner exits, it costs the network $482K+ and degrades station capacity
           by 7.7%. Only 39.6% of routes recover. A successful transfer prevents all of that. A bad
           transfer&mdash;approving an unqualified buyer who degrades performance&mdash;creates all of that damage plus
-          the cost of an involuntary exit later.
+          the cost of eventually removing and replacing them.
         </p>
         <p>
-          I didn&rsquo;t lead with &ldquo;we should keep rejecting 89%.&rdquo; I led with the exit costs. That shifted
-          the conversation. Stakeholders stopped asking &ldquo;why is this taking so long?&rdquo; and started asking
-          &ldquo;will the network be protected?&rdquo; When CT was a service function, the program was a low-priority
-          case queue. When it was a network protection function, leadership endorsed formalizing it as succession
-          infrastructure.
+          I didn&rsquo;t lead with &ldquo;we should keep rejecting 89%.&rdquo; I led with exit costs and post-approval
+          transfer performance. That shifted the conversation. Stakeholders stopped asking &ldquo;why is this taking so
+          long?&rdquo; and started asking &ldquo;do we have conviction in this candidate&rsquo;s success?&rdquo; When CT
+          was a service function, the program was a low-priority case queue. When it was a network protection function,
+          leadership endorsed formalizing it as succession infrastructure.
         </p>
         <p>Once the framing was set, everything else was engineering the system to match.</p>
       </section>
@@ -207,9 +206,9 @@
 
         <h3>Front-loading the cheapest gates first.</h3>
         <p>
-          I designed a 14-week, 21-milestone framework spanning five phases: Notification &rarr; Intake &rarr; Vetting
-          &rarr; Approvals &rarr; Onboarding&mdash;7 weeks for vetting and approvals, 7 weeks for onboarding. Each phase
-          had defined SLAs, explicit ownership assignments, and documented handoff criteria across eight teams.
+          I designed a 14-week, 21-milestone framework spanning four phases: Intake &rarr; Vetting &rarr; Approvals
+          &rarr; Onboarding&mdash;6 weeks for vetting and approvals, 8 weeks for onboarding. Each phase had defined
+          SLAs, explicit ownership assignments, and documented handoff criteria across eight teams.
         </p>
         <p>
           The critical design decision was front-loading the cheapest gates. Without front-loaded disqualification,
@@ -243,6 +242,7 @@
             <div class="timeline-week">Week 6</div>
             <div class="timeline-title">Final Approval</div>
           </div>
+          <div class="timeline-phase-divider">Onboarding Phase</div>
           <div class="timeline-item completed">
             <div class="timeline-week">Week 7&ndash;14</div>
             <div class="timeline-title">Onboarding</div>
@@ -252,12 +252,12 @@
         <h3>End-to-end process tracking. Six defect categories.</h3>
         <p>
           I built a SQL analytics system tracking end-to-end attributes&mdash;from application through final
-          approval&mdash;because our CRM couldn&rsquo;t. Before this, there was no way to diagnose where the process
-          broke down&mdash;only that it was slow.
+          approval&mdash;because our CRM didn&rsquo;t support the workflow configuration. Before this, there was no way
+          to diagnose where the process broke down&mdash;only that it was slow.
         </p>
         <p>
           The data surfaced six defect categories. The two largest weren&rsquo;t what anyone expected&mdash;not process
-          design flaws, but a strict sequential dependency that didn&rsquo;t need to exist and missed actions caused by
+          design flaws, but a strict sequential dependency that didn&rsquo;t need to exist and missed actions from
           unclear ownership between teams.
         </p>
 
@@ -319,12 +319,12 @@
 
         <p>
           I authored 19 email templates covering both partner owners and candidates across the full
-          lifecycle&mdash;separate tracks, separate tone, legally reviewed language throughout. The program went from 4
+          lifecycle&mdash;separate tracks, separate tone, Legal-reviewed language throughout. The program went from 4
           candidate-only emails to full coverage, eliminating the silences that drove escalations.
         </p>
         <p>
           I wrote the CT Process Playbook: end-to-end process mapping with rubrics, workflows, and timelines. I designed
-          a 5-stakeholder consensus approval model requiring unanimous agreement before any transfer was confirmed.
+          a 5-stakeholder consensus approval model requiring unanimous agreement before approving any transfer.
         </p>
         <p>The program no longer lived or died on one person&rsquo;s knowledge.</p>
       </section>
@@ -381,13 +381,13 @@
           <li>
             <strong>Front-load the cheapest gates.</strong>
             The people who don&rsquo;t qualify should find out in days, not months&mdash;and the team&rsquo;s expensive
-            resources should never touch a candidate who could have been screened out with a credit check.
+            resources should never touch a candidate a credit check would have eliminated.
           </li>
           <li>
             <strong>Pipeline sequencing matters as much as decision quality.</strong>
             Our rejections were always defensible. The problem was candidates traveling three stages downstream before
-            those decisions were applied. Fixing <em>where</em> decisions happen can matter more than fixing
-            <em>how</em> they&rsquo;re made.
+            those decisions took effect. Fixing <em>where</em> decisions happen can matter more than fixing
+            <em>how</em> you make them.
           </li>
           <li>
             <strong

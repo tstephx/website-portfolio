@@ -6,7 +6,7 @@
 
 ## Quick Summary
 
-- A reward program for top-performing delivery partners broke down — launches dropped 55% and 20 eligible candidates were bypassed entirely — because the eligibility process ran on a crashing 55MB Excel file.
+- A reward program for top-performing delivery partners broke down — launches dropped 55% and 20 eligible candidates were bypassed entirely — because the eligibility process ran on a crashing 55+MB Excel file.
 - Diagnosed 8 root causes across data, process, and tooling. Replaced the entire system with a 6-stage SQL pipeline using Haversine distance for deterministic eligibility.
 - Fill rate jumped from 57.9% to 94.1% (+36 percentage points), hitting 100% in July. Zero candidates bypassed. Outreach team expanded from 1 to 5.
 
@@ -27,9 +27,10 @@ In 2024, that identification process broke down. Launches dropped 55% (93 to 42)
 
 ### Eight Root Causes Behind a 55% Decline
 
-The program ran on a 55+MB Excel file with index-match calculations across 24,000 rows. It crashed regularly. But the Excel collapse was only one of eight failures I diagnosed:
+The selection program ran on a 55+MB Excel file with index-match calculations across 24,000 rows, pairing partners with stations within a 50-mile radius. It crashed regularly, failing to pull all data. But the Excel collapse was only one of eight failures I diagnosed:
 
 - **Non-deterministic distance metric** — eligibility used commute times that varied with live traffic. The same route measured 49 miles one month and 52 the next. A partner could be eligible in October and ineligible in November.
+- **Rural exclusion** — a hard 50-mile cutoff discriminated against top performers in areas with no stations within range. Eligible partners were invisible to the system by geography alone.
 - **Stale data** — eligibility refreshed quarterly while performance updated monthly. Partners who earned Tier 1 mid-quarter were invisible until the next refresh.
 - **Double-counting** — reported eligibility counts included partners already in the program, making capacity planning unreliable.
 - **Missing vetting history** — 12-month wait times and prior flags lived outside the eligibility system. Accessing it required manual cross-referencing.
@@ -43,9 +44,9 @@ The existing system used commute times to measure candidate proximity. The data 
 
 The problem was that commute times aren't a fixed property of geography. They're a function of traffic — and traffic changes. A partner's eligibility shifted month to month on whatever highway congestion happened on one Tuesday.
 
-I chose the Haversine formula: a standard great-circle distance calculation using Earth's radius as a constant. The distance between two stations is now a fixed number. It doesn't change between measurement cycles. That's the only kind of metric that can support a program where eligibility has to be deterministic.
+I chose the Haversine formula: a standard great-circle distance calculation using Earth's radius as a constant. The distance between two stations is now a fixed number. It doesn't change between measurement cycles. That's the only kind of metric that can support a program where eligibility must be deterministic.
 
-The 250-mile fallback was a second design choice with real stakes. A hard 50-mile cutoff would strand expansion sites in remote regions. The fallback extends the search only when no 50-mile match exists — preserving the primary threshold while ensuring no site gets orphaned.
+The 200-mile fallback was a second design choice with real stakes. A hard 50-mile cutoff would strand expansion sites in remote regions. The fallback extends the search only when no 50-mile match exists — preserving the primary threshold while ensuring no site gets orphaned.
 
 ## What Changed
 
@@ -58,7 +59,7 @@ I designed and built a six-stage SQL pipeline on a data warehouse that replaced 
 3. **Integrate vetting history** — joins exclusion status and reconsideration dates directly into the query, replacing manual cross-referencing.
 4. **Map station coordinates** — loads latitude and longitude from the master station table for distance computation.
 5. **Calculate Haversine distances** — replaces traffic-dependent commute times with mathematically consistent straight-line distance.
-6. **Rank by policy-encoded priority** — applies the approved hierarchy (tenure first, performance second, proximity third) with intelligent 250-mile fallback for remote stations.
+6. **Rank by policy-encoded priority** — applies the approved hierarchy (tenure first, performance second, proximity third) with intelligent 200-mile fallback for remote stations.
 
 The output — a ranked, pre-validated candidate list per expansion site — feeds directly into the 8-day approval process and the 3-week vetting cycle.
 
@@ -66,13 +67,13 @@ The output — a ranked, pre-validated candidate list per expansion site — fee
 
 The program's 5-lever sourcing hierarchy ranks expansion of existing high-performers at Rank 3. Net-new partners sit at Rank 5 — last resort. In 2024, twenty Rank 3 candidates were skipped; their slots went directly to Rank 5.
 
-The pipeline enforces the hierarchy mechanically. Every open target checks the full eligible pool before any fallback is triggered. The prioritization tenets no longer depend on whoever is running the tracker that week.
+The pipeline enforces the hierarchy mechanically. Every open target checks the full eligible pool before triggering any fallback. The prioritization tenets no longer depend on whoever is running the tracker that week.
 
 ### What the pipeline enabled.
 
-The automation eliminated the need for the bloated Excel file. Removing double-counted partners reduced the reported eligible pool from 155 to 105 (fluctuating monthly), giving capacity planning its first accurate numbers. The SQL infrastructure became the basis for a Salesforce migration initiated in Q4 2024, and the reliable candidate pipeline supported expanding the outreach team from 1 to 5 members.
+A process that took hours collapsed to 10 minutes. The automation eliminated the bloated Excel file. Removing double-counted partners reduced the reported eligible pool from 155 to 105 (fluctuating monthly), giving capacity planning its first accurate numbers. The SQL infrastructure became the basis for a Salesforce migration that began in Q4 2024, and the reliable candidate pipeline enabled the outreach team to expand from 1 to 5 members.
 
-I created the script that enabled the workstream. Leadership credited it by name in program documentation — the only workstream in that document attributed to a specific person.
+I created the script that enabled the workstream. Leadership credited it by name in program documentation — the only workstream tied by name to a specific person.
 
 ## 57.9% to 94.1%: What the Numbers Show
 
@@ -98,19 +99,20 @@ I created the script that enabled the workstream. Leadership credited it by name
 
 ### System transformation: before and after automation
 
-| Before                                | After                                 |
-| ------------------------------------- | ------------------------------------- |
-| 55+ MB Excel file (crashes regularly) | 6-stage SQL pipeline (data warehouse) |
-| Traffic-dependent commute distances   | Haversine constant (deterministic)    |
-| Quarterly data refresh                | Monthly integration (3x faster)       |
-| Double-counting in reports            | Deduplicated (155 → 105 accurate)     |
-| 20 candidates bypassed                | 0 candidates missed                   |
-| 57.9% fill rate (42 launches)         | 94.1% fill rate (100% in July)        |
-| 1 outreach team member                | 5 outreach team members               |
+| Before                                                          | After                                 |
+| --------------------------------------------------------------- | ------------------------------------- |
+| 55+ MB Excel file (crashes regularly, failing to pull all data) | 6-stage SQL pipeline (data warehouse) |
+| Traffic-dependent commute distances                             | Haversine constant (deterministic)    |
+| Quarterly data refresh                                          | Monthly integration (3x faster)       |
+| Double-counting in reports                                      | Deduplicated (155 → 105 accurate)     |
+| 20 candidates bypassed                                          | 0 candidates missed                   |
+| 57.9% fill rate (42 launches)                                   | 94.1% fill rate (100% in July)        |
+| 1 outreach team member                                          | 5 outreach team members               |
+| Hours per eligibility run                                       | 10 minutes per run                    |
 
-In 2024, the program missed 20 eligible candidates and delivered 42 launches where 93 should have happened. The root cause wasn't strategy — it was a broken identification process.
+In 2024, the program missed 20 eligible candidates and delivered 42 launches where 93 were expected. The root cause wasn't strategy — it was a broken identification process.
 
-A SQL pipeline replaced a spreadsheet. Mathematical precision replaced traffic-dependent variability. Vetting history was integrated, not manually cross-referenced. Encoding the prioritization hierarchy removed dependence on whoever opened the file. The program now identifies the right candidates, in the right order, every time the query runs.
+A SQL pipeline replaced a spreadsheet. Mathematical precision replaced traffic-dependent variability. The pipeline integrated vetting history directly, eliminating manual cross-referencing. Encoding the prioritization hierarchy removed dependence on whoever opened the file. The program now identifies the right candidates, in the right order, every time the query runs.
 
 ## Lessons Worth Stealing
 

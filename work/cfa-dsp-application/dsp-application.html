@@ -35,7 +35,7 @@
     <main id="main-content" class="case-study">
       <header class="cs-header">
         <h1>74% of the people who started Amazon&rsquo;s delivery partner application never finished it.</h1>
-        <p class="cs-tagline">Competitive Intelligence | 17 Global Markets | 0.25 &rarr; 4.6 Engineers Secured</p>
+        <p class="cs-tagline">Competitive Intelligence | 17 Global Markets | 0.25 &rarr; 3.8 Engineers Secured</p>
         <div class="tech-pills">
           <span class="tech-pill">Marketing Automation</span>
           <span class="tech-pill">CMS Architecture</span>
@@ -58,7 +58,7 @@
             </li>
             <li>
               An evidence chain&mdash;requirements specification, technology roadmap, annual operating plan
-              escalation&mdash;secured 4.6 engineers against a $10.9M+ roadmap, up from 0.25.
+              escalation&mdash;secured 3.8 engineers against a $10.9M+ roadmap, up from 0.25.
             </li>
           </ul>
         </div>
@@ -87,30 +87,44 @@
         <h2>The $2.1M+ Problem</h2>
         <p>
           The Delivery Service Partner (DSP) Acquisitions team needed to scale Amazon&rsquo;s partner network across 17
-          global markets. The application&mdash;unchanged since 2018&mdash;was broken in four compounding ways:
+          global markets. The application&mdash;unchanged since 2018&mdash;was broken in six compounding ways:
         </p>
         <ul>
           <li>
             <strong>74% abandonment</strong>&mdash;55% dropped on page two at the resume upload. No visibility into who
-            was leaving or why.
+            dropped, at which step, or why.
           </li>
           <li>
-            <strong>Unusable data</strong>&mdash;20 open-ended questions produced inconsistent responses across 25,830
-            records. Statistical analysis confirmed reviewer scores diverged measurably.
+            <strong>Poor candidate data quality</strong>&mdash;20 open-ended questions produced inconsistent responses
+            across 25,830 records. Resume uploads contained valuable experience data locked in unstructured PDFs that
+            couldn&rsquo;t be parsed or scored. Statistical analysis confirmed reviewer scores diverged measurably.
           </li>
           <li>
             <strong>Wrong candidates getting through</strong>&mdash;62% rejection rate post-submission, but only 23% of
             approved candidates showed program interest. Filtering happened too late.
           </li>
           <li>
-            <strong>Impossible to iterate</strong>&mdash;adding 14 questions flagged as a 10&ndash;12 month engineering
-            effort. Blocked every program expansion.
+            <strong>Misrouted applicants</strong>&mdash;candidates searching for the DSP program landed on the Delivery
+            Driver application instead, losing qualified leads before they reached the right form.
+          </li>
+          <li>
+            <strong>Broken UX</strong>&mdash;not mobile-friendly despite majority mobile traffic. Question difficulty
+            sequenced easy&ndash;hardest&ndash;medium instead of progressive. No tooltips, no input guardrails, no
+            confirmation step validation. Email couldn&rsquo;t match an existing Amazon account, forcing applicants to
+            create throwaway addresses. Questions reflected 2018 program needs while the business had evolved through
+            2024.
+          </li>
+          <li>
+            <strong>Costly to iterate</strong>&mdash;updating 10 questions flagged as a &ldquo;large&rdquo; engineering
+            effort. Adding new questions hit the same wall. Existing code was brittle&mdash;converting a free-response
+            field to multi-select was scoped as a feature. No A/B testing, no candidate tracking. Every program update
+            stalled.
           </li>
         </ul>
         <p>
           $2.1M+ annually in lost candidate conversion entitlement. The team projected a 33% recruiting cost increase
-          for 2024. The constraint was the story: 0.25 Software Development Engineers allocated for work that required
-          4.6.
+          for 2024. The constraint was the story: the work required 3.8 Software Development Engineers; the team had
+          0.25.
         </p>
       </section>
 
@@ -119,8 +133,8 @@
         <p>
           I identified Chick-fil-A&rsquo;s franchise application as the benchmark: 40,000 applicants per year, ~0.2%
           acceptance rate, same model (individual operators running a branded business). Then I applied&mdash;October
-          17, 2023, using personal information. Every screen documented, every question cataloged by type and completion
-          time.
+          17, 2023, using personal information. I documented every screen and cataloged every question by type and
+          completion time.
         </p>
         <p>I then directed the entire Acquisitions team through the same process to build shared conviction.</p>
 
@@ -149,7 +163,7 @@
         <p>I owned strategy end-to-end&mdash;diagnosis, BRD, roadmap. No one assigned this.</p>
         <p>
           Central constraint: the 2024 engineering allocation was <strong>0.25 engineers</strong>. The work required
-          <strong>4.6</strong>.
+          <strong>3.8</strong>.
         </p>
 
         <h3>Architecture Redesign</h3>
@@ -161,11 +175,12 @@
             Designed modular, country-agnostic architecture: 6 programs, 17 markets, quarterly CMS updates without
             engineering
           </li>
+          <li>Mobile-responsive redesign expanding reach from US/CA desktop-only to worldwide mobile-friendly</li>
         </ul>
 
         <h3>Evidence Chain That Moved Resources</h3>
         <p>
-          Each document cited the same benchmark. By the time I requested 4.6 engineers, leadership had seen the
+          Each document cited the same benchmark. By the time I requested 3.8 engineers, leadership had seen the
           evidence three times:
         </p>
         <ul>
@@ -176,7 +191,7 @@
             competitive framing
           </li>
         </ul>
-        <p>0.25 &rarr; 4.6 engineers secured against $10.9M+ in identified entitlement.</p>
+        <p>0.25 &rarr; 3.8 engineers secured against $10.9M+ in identified entitlement.</p>
       </section>
 
       <section class="cs-section" id="decision">
@@ -196,8 +211,8 @@
         <h2>9,419 More Approved Applications Per Year</h2>
 
         <div class="insight-callout">
-          One franchise application submitted on a Tuesday night. Fourteen months later: 101 requirements, 18&times; the
-          initial engineering allocation, $10.9M+ in identified entitlement across 17 countries.
+          I submitted one franchise application on a Tuesday night. Fourteen months later: 101 requirements, 15&times;
+          the initial engineering allocation, $10.9M+ in identified entitlement across 17 countries.
         </div>
 
         <div class="metrics-row">
@@ -217,7 +232,7 @@
             <span class="metric-subtitle">Down from 10&ndash;12 months</span>
           </div>
           <div class="metric-card">
-            <span class="metric-number">4.6</span>
+            <span class="metric-number">3.8</span>
             <span class="metric-label">Engineers Secured</span>
             <span class="metric-subtitle">Up from 0.25</span>
           </div>
@@ -259,7 +274,7 @@
               <tr>
                 <td>Engineering secured</td>
                 <td class="old-value">0.25 engineers</td>
-                <td class="new-value">4.6 engineers</td>
+                <td class="new-value">3.8 engineers</td>
               </tr>
               <tr>
                 <td>Annual entitlement captured</td>
@@ -272,8 +287,8 @@
 
         <p>
           9,419 additional approved applications per year (15,699 &rarr; 25,118). 365 more program-inclined candidates
-          per year (421 &rarr; 786). 2,200+ hours removed from manual review annually. The team now updates the
-          application quarterly without an engineering ticket&mdash;across every program and market.
+          per year (421 &rarr; 786). The redesign removes 2,200+ hours from manual review annually. The team now updates
+          the application quarterly without an engineering ticket&mdash;across every program and market.
         </p>
       </section>
 
@@ -296,7 +311,7 @@
           <li>
             <strong>Resource escalations win on evidence chains, not urgency.</strong>
             BRD &rarr; Tech Vision &rarr; annual operating plan&mdash;each document cited the same benchmark. By the
-            time I requested 4.6 engineers, leadership had seen the evidence three times.
+            time I requested 3.8 engineers, leadership had seen the evidence three times.
           </li>
           <li>
             <strong>When engineering says &ldquo;12 months,&rdquo; look for the architectural shortcut.</strong>

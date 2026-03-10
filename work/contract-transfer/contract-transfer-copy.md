@@ -1,6 +1,6 @@
 # From 17 Weeks to 2.3 — Without Lowering the Bar
 
-**Ownership Transfer Process Architecture | 89% Rejection Rate, $13M+ in Risk Mitigated | Solo Program Owner**
+**Ownership Transfer Process Architecture | 89% Rejection Rate, $13M+ in Exit Costs Avoided | Solo Program Owner**
 
 `SQL Analytics` `Process Architecture` `SOP Design` `Stakeholder Governance`
 
@@ -8,7 +8,7 @@
 
 ## Quick Summary
 
-- Inherited a transfer process with zero documentation, no data infrastructure, and 29 active cases plus a 15-case backlog across 8 teams. Decisions averaged 17 weeks.
+- Inherited a transfer process with zero documentation, no data infrastructure, and a 15-case backlog. Decisions averaged 17 weeks.
 - Reframed the program from customer service to network protection—making the 89% rejection rate defensible instead of damning—and built the operating system around that framing.
 - Decision time dropped 87% (16.98 → 2.28 weeks), 29 successful transfers, approved candidates performed +18 pp above network average, and the SOP became the foundation for a $25M program expansion strategy.
 
@@ -26,7 +26,7 @@
 
 ## A $482K+ Problem No One Had Written Down
 
-I inherited the Owner Transfer process in Q3 2022. It was a one-person operation with no infrastructure: cases lived in email threads and a shared spreadsheet, there were no standardized stages, no SLAs, and no defined criteria for what "approved" or "rejected" meant. I walked into 29 active cases, a 15-case backlog awaiting final decision, and zero documentation.
+I inherited the Owner Transfer process in Q3 2022. It was a one-person operation with no infrastructure: cases lived in email threads and a shared spreadsheet, there were no standardized stages, no SLAs, and no defined criteria for what "approved" or "rejected" meant. I walked into a 15-case backlog awaiting final decision and zero documentation.
 
 The process dated to 2019 for third-party sales—strangers buying a delivery business—but by 2022, volume and complexity had outgrown it. Every decision, status update, and rejection letter started from scratch. Institutional knowledge spread across teams. Nobody had built the system to diagnose why decisions averaged 17 weeks.
 
@@ -34,16 +34,16 @@ The bottleneck was stakeholder conviction. Every failed transfer became a partne
 
 ### Four Failures Contributing to Decision Paralysis
 
-1. **📋 No one knew how it worked**
+1. **No one knew how it worked**
    The process lived in institutional knowledge across eight teams—field coaches, development managers, Acquisitions, Legal, network operations, screening, support services, Marketing Technology. No role boundaries, no decision authority, no documentation.
 
-2. **📨 Candidates and owners were left in silence**
+2. **Candidates and owners were left in silence**
    Only 4 standardized communications existed—all to candidates. DSP owners received nothing across the lifecycle. No status updates, no expectations, no next steps.
 
-3. **🔍 Vetting lacked scrutiny and standardization**
+3. **Vetting lacked scrutiny and standardization**
    No rubric backed the 89% rejection rate. Different reviewers caught disqualifying factors at different stages—wasting time and creating legal exposure on rejections no one could document.
 
-4. **⚠ Decisions took 3+ months on average**
+4. **Decisions took 3+ months on average**
    Without data to justify a decision either way, stakeholders deferred. Every stalled case risked becoming a $482K+ exit.
 
 ---
@@ -66,9 +66,9 @@ Success = the network stays intact, bad transfers don't happen. An 89% rejection
 
 **Leadership aligned on Option B.**
 
-The data supported Option B. When a partner exits, it costs the network $482K+ and degrades station capacity by 7.7%. Only 39.6% of routes recover. A successful transfer prevents all of that. A bad transfer—approving an unqualified buyer who degrades performance—creates all of that damage plus the cost of an involuntary exit later.
+The data supported Option B. When a partner exits, it costs the network $482K+ and degrades station capacity by 7.7%. Only 39.6% of routes recover. A successful transfer prevents all of that. A bad transfer—approving an unqualified buyer who degrades performance—creates all of that damage plus the cost of eventually removing and replacing them.
 
-I didn't lead with "we should keep rejecting 89%." I led with the exit costs. That shifted the conversation. Stakeholders stopped asking "why is this taking so long?" and started asking "will the network be protected?" When CT was a service function, the program was a low-priority case queue. When it was a network protection function, leadership endorsed formalizing it as succession infrastructure.
+I didn't lead with "we should keep rejecting 89%." I led with exit costs and post-approval transfer performance. That shifted the conversation. Stakeholders stopped asking "why is this taking so long?" and started asking "do we have conviction in this candidate's success?" When CT was a service function, the program was a low-priority case queue. When it was a network protection function, leadership endorsed formalizing it as succession infrastructure.
 
 Once the framing was set, everything else was engineering the system to match.
 
@@ -78,7 +78,7 @@ Once the framing was set, everything else was engineering the system to match.
 
 ### Front-loading the cheapest gates first.
 
-I designed a 14-week, 21-milestone framework spanning five phases: Notification → Intake → Vetting → Approvals → Onboarding—7 weeks for vetting and approvals, 7 weeks for onboarding. Each phase had defined SLAs, explicit ownership assignments, and documented handoff criteria across eight teams.
+I designed a 14-week, 21-milestone framework spanning four phases: Intake → Vetting → Approvals → Onboarding—6 weeks for vetting and approvals, 8 weeks for onboarding. Each phase had defined SLAs, explicit ownership assignments, and documented handoff criteria across eight teams.
 
 The critical design decision was front-loading the cheapest gates. Without front-loaded disqualification, candidates who would ultimately fail were advancing deep into the pipeline—consuming station visits, interview loops, and enhanced vetting hours—before getting rejected at month three for something that could have been caught at week one.
 
@@ -91,13 +91,13 @@ The vetting sequence was ordered by cost:
 | Week 4    | Station Visit & Enhanced Vetting |                                                                    |
 | Week 5    | Interview Loop                   |                                                                    |
 | Week 6    | Final Approval                   |                                                                    |
-| Week 7–14 | Onboarding                       |                                                                    |
+| Week 7–14 | Onboarding                       | _(separate phase)_                                                 |
 
 ### End-to-end process tracking. Six defect categories.
 
-I built a SQL analytics system tracking end-to-end attributes—from application through final approval—because our CRM couldn't. Before this, no one could diagnose where the process broke down—only that it was slow.
+I built a SQL analytics system tracking end-to-end attributes—from application through final approval—because our CRM couldn't be configured for the workflow. Before this, there was no way to diagnose where the process broke down—only that it was slow.
 
-The data surfaced six defect categories. The two largest surprised everyone—not process design flaws, but an unnecessary sequential dependency and missed actions from unclear ownership between teams.
+The data surfaced six defect categories. The two largest weren't what anyone expected—not process design flaws, but a strict sequential dependency that didn't need to exist and missed actions from unclear ownership between teams.
 
 | Category                           | %       | Cases | Root Cause                      |
 | ---------------------------------- | ------- | ----- | ------------------------------- |
@@ -110,9 +110,9 @@ The data surfaced six defect categories. The two largest surprised everyone—no
 
 None of that was visible before the tracking infrastructure existed. Once it was, the fixes were clear.
 
-I authored 19 email templates covering both partner owners and candidates across the lifecycle—separate tracks, separate tone, legally reviewed language throughout. The program went from 4 candidate-only emails to full coverage, eliminating the silences that drove escalations.
+I authored 19 email templates covering both partner owners and candidates across the full lifecycle—separate tracks, separate tone, Legal-reviewed language throughout. The program went from 4 candidate-only emails to full coverage, eliminating the silences that drove escalations.
 
-I wrote the CT Process Playbook: end-to-end process mapping with rubrics, workflows, and timelines. I designed a 5-stakeholder consensus approval model requiring unanimous agreement before confirming any transfer.
+I wrote the CT Process Playbook: end-to-end process mapping with rubrics, workflows, and timelines. I designed a 5-stakeholder consensus approval model requiring unanimous agreement before approving any transfer.
 
 The program no longer lived or died on one person's knowledge.
 
@@ -138,8 +138,8 @@ Annual case volume grew from 5 cases in 2020 to 87 in 2024, with zero backlog. T
 
 - **Question the framing before questioning the program.** If 89% rejection looks like failure, ask whether you're measuring against the right mission before assuming the process is broken. The reframe only held because I built the analytics to make it provable—you can't defend a counterintuitive position to leadership on intuition alone.
 
-- **Front-load the cheapest gates.** The people who don't qualify should find out in days, not months—and the team's expensive resources should never touch a candidate who could have been screened out with a credit check.
+- **Front-load the cheapest gates.** The people who don't qualify should find out in days, not months—and the team's expensive resources should never touch a candidate a credit check would have eliminated.
 
-- **Pipeline sequencing matters as much as decision quality.** Our rejections were always defensible. The problem was candidates traveling three stages downstream before those decisions were applied. Fixing _where_ decisions happen can matter more than fixing _how_ they're made.
+- **Pipeline sequencing matters as much as decision quality.** Our rejections were always defensible. The problem was candidates traveling three stages downstream before those decisions took effect. Fixing _where_ decisions happen can matter more than fixing _how_ you make them.
 
 - **A process held together by one person's institutional knowledge is not a process—it's a liability.** If the program dies when someone leaves, you don't have a program. Documentation isn't overhead; it's what makes the work durable.
