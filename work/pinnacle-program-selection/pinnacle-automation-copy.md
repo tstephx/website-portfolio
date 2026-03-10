@@ -8,7 +8,7 @@
 
 - A reward program for top-performing delivery partners broke down — launches dropped 55% and 20 eligible candidates were bypassed entirely — because the eligibility process ran on a crashing 55+MB Excel file.
 - Diagnosed 7 root causes across data, process, and tooling. Replaced the entire system with a 6-stage SQL pipeline using Haversine distance for deterministic eligibility.
-- Fill rate jumped from 57.9% to 94.1% (+36 percentage points), hitting 100% in July. Zero candidates bypassed. Outreach team expanded from 1 to 5.
+- Fill rate jumped from 57.9% to 94.1% (+36 percentage points), hitting 100% in July. Zero candidates bypassed. Pinnacle team expanded from 3 to 10.
 
 ## Scope
 
@@ -71,7 +71,7 @@ The pipeline enforces the hierarchy mechanically. Every open target checks the f
 
 ### What the pipeline enabled.
 
-A process that took hours collapsed to 10 minutes. The automation eliminated the bloated Excel file. Removing double-counted partners reduced the reported eligible pool from 155 to 105 (fluctuating monthly), giving capacity planning its first accurate numbers. The SQL infrastructure became the basis for a Salesforce migration that began in Q4 2024, and the reliable candidate pipeline enabled the outreach team to expand from 1 to 5 members.
+A process that took hours collapsed to 10 minutes. The automation eliminated the bloated Excel file. Removing double-counted partners reduced the reported eligible pool from 155 to 105 (fluctuating monthly), giving capacity planning its first accurate numbers. The SQL infrastructure became the basis for a Salesforce migration that began in Q4 2024, and the reliable candidate pipeline enabled the Pinnacle team to expand from 3 to 10 members.
 
 I created the script that enabled the workstream. Leadership included it by name in the program's official documentation — unusual for a PM deliverable in an engineering-adjacent domain.
 
@@ -84,7 +84,7 @@ I created the script that enabled the workstream. Leadership included it by name
 | **Fill Rate**           | 94.1% (up from 57.9%, +36 pp) |
 | **July Fill Rate**      | 100% (8 targets, +35 pp YTD)  |
 | **Candidates Bypassed** | 0 (down from 20)              |
-| **Outreach Team**       | 1 → 5 (5x capacity)           |
+| **Pinnacle Team**       | 3 → 10 (3× capacity)          |
 
 ### Eligibility Funnel: Full Network → Ranked Candidates
 
@@ -107,7 +107,7 @@ I created the script that enabled the workstream. Leadership included it by name
 | Double-counting in reports                                      | Deduplicated (155 → 105 accurate)     |
 | 20 candidates bypassed                                          | 0 candidates missed                   |
 | 57.9% fill rate (42 launches)                                   | 94.1% fill rate (100% in July)        |
-| 1 outreach team member                                          | 5 outreach team members               |
+| 3 Pinnacle team members                                         | 10 Pinnacle team members              |
 | Hours per eligibility run                                       | 10 minutes per run                    |
 
 In 2024, the program missed 20 eligible candidates and delivered 42 launches where 93 were expected. The root cause wasn't strategy — it was a broken identification process.
