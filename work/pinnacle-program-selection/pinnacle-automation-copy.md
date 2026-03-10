@@ -114,6 +114,12 @@ In 2024, the program missed 20 eligible candidates and delivered 42 launches whe
 
 A SQL pipeline replaced a spreadsheet. Mathematical precision replaced traffic-dependent variability. The pipeline integrated vetting history directly, eliminating manual cross-referencing. Encoding the prioritization hierarchy removed dependence on whoever opened the file. The program now identifies the right candidates, in the right order, every time the query runs.
 
+### Post-automation: the program kept growing.
+
+By May 2025, the eligible pool had grown **43% year-over-year to 441 DSPs** — even after tightening Leadership & Engagement, Positive Environment, and Strategic Communicator qualification screens. 118 DSPs were actively in the program. The SQL pipeline migrated to an Asana workflow with automated candidate identification, heuristics-based allocation, and a quality-aligned vetting block. Acceptance held at **77%**, exits stayed at **zero year-to-date**, and blended Quality reached 66.7% (+270 bps month-over-month).
+
+The constraint shifted: only 37 Pinnacle opportunities opened in the trailing twelve months (−46% YoY), with 5 targets unfilled. The pipeline solved identification. The gap moved to the business side.
+
 ## Lessons Worth Stealing
 
 - **When a program is declining, diagnose whether it's strategy or infrastructure before changing strategy.** Pinnacle didn't need a new approach — it needed a working spreadsheet.
