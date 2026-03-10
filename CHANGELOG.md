@@ -5,6 +5,7 @@
 ## 2026-03
 
 ### Features
+- `43fe031` design system audit — resume integration, a11y fixes, visual hierarchy
 - `3c5697c` rebuild Contract Transfer and Pinnacle case studies from approved outlines
 - `5e40116` rebuild DSP Application case study from approved outline
 - `a87f864` add 5 new case study components (icon-card, pull-quote, tldr, decision-card, cta-secondary)
@@ -36,6 +37,7 @@
 - `9b142a4` clean up project structure and update CLAUDE.md
 
 ### Style
+- `d6abd43` format all files with Prettier, commit prior session work
 - `7f13299` update visual regression snapshots for rebuilt case studies
 - `25f96a1` compress /revise-case-study SKILL.md 42% (2075 → 1207 words)
 - `cd7b634` apply 4 typography/design refinements to case-study components

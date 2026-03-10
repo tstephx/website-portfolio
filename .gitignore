@@ -27,6 +27,7 @@ work/**/*draft*.md
 # Audit & review screenshots (ephemeral)
 audit-*.png
 review-*.png
+designs/*.png
 
 # Playwright MCP (local browser state)
 .playwright-mcp/
