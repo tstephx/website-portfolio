@@ -23,3 +23,10 @@ PORTFOLIO_EXPANSION_PLAN.md
 TODO.md
 /archive/
 work/**/*draft*.md
+
+# Audit & review screenshots (ephemeral)
+audit-*.png
+review-*.png
+
+# Playwright MCP (local browser state)
+.playwright-mcp/
