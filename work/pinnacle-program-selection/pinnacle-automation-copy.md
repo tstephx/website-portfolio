@@ -1,4 +1,4 @@
-# A 55MB Spreadsheet Was Deciding Who Got to Expand — and Getting It Wrong
+# A 55+MB Spreadsheet Was Deciding Who Got to Expand — and Getting It Wrong
 
 **Pinnacle Program Automation | 57.9% → 94.1% Fill Rate | 7 Root Causes | Solo Build**
 
@@ -27,8 +27,9 @@ In 2024, that identification process broke down. Launches dropped 55% (93 to 42)
 
 ### Seven Root Causes Behind a 55% Decline
 
-The selection program ran on a 55+MB Excel file with index-match calculations across 24,000 rows, pairing partners with stations within a 50-mile radius. It crashed regularly, failing to pull all data. But the Excel collapse was only one of seven failures I diagnosed:
+The selection program ran on a 55+MB Excel file pairing partners with stations within a 50-mile radius. I diagnosed seven failures:
 
+- **Tooling collapse** — the 55+MB Excel file with index-match calculations across 24,000 rows crashed regularly, failing to pull all data. The primary identification tool was unreliable.
 - **Non-deterministic distance metric** — eligibility used commute times that varied with live traffic. The same route measured 49 miles one month and 52 the next. A partner could be eligible in October and ineligible in November.
 - **Rural exclusion** — a hard 50-mile cutoff discriminated against top performers in areas with no stations within range. Eligible partners were invisible to the system by geography alone.
 - **Stale data** — eligibility refreshed quarterly while performance updated monthly. Partners who earned Tier 1 mid-quarter were invisible until the next refresh.

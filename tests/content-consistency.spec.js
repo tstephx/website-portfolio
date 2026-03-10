@@ -38,7 +38,7 @@ test.describe('DSP Application — consistency', () => {
     await page.goto(slug);
     const tagline = await textOf(page.locator('.cs-tagline'));
     expect(tagline).toContain('20 Global Markets');
-    expect(tagline).toContain('3.8 Engineers');
+    expect(tagline).toContain('$2.1M+');
   });
 
   test('homepage card stat matches body', async ({ page }) => {
@@ -46,10 +46,10 @@ test.describe('DSP Application — consistency', () => {
     const dspCard = page.locator('article.card', { hasText: 'DSP Application' });
     const statValues = await dspCard.locator('.stat-value').allTextContents();
     const stats = statValues.join(' ');
-    // Body: 20 markets, 15× multiplier, 74% abandonment
+    // Body: 20 markets, 15× multiplier, 26%→60% completion
     expect(stats).toContain('20');
     expect(stats).toContain('15');
-    expect(stats).not.toContain('18×');
+    expect(stats).toContain('60%');
   });
 
   test('no anonymization violations in meta/tagline', async ({ page }) => {

@@ -1,6 +1,6 @@
 # 74% of the people who started Amazon's delivery partner application never finished it.
 
-**Competitive Intelligence | 20 Global Markets | 0.25 → 3.8 Engineers Secured**
+**Competitive Intelligence | $2.1M+ in Annual Entitlement | 20 Global Markets**
 
 `Marketing Automation` `CMS Architecture` `Statistical Analysis` `Chick-fil-A Benchmark`
 
@@ -23,14 +23,14 @@
 
 The Delivery Service Partner (DSP) Acquisitions team needed to scale Amazon's partner network across 20 global markets. The application—unchanged since 2018—was broken in six compounding ways:
 
-- **74% abandonment**—55% dropped on page two at the resume upload. No visibility into who dropped, at which step, or why.
-- **Poor candidate data quality**—32 questions—including 5 long-form essays—produced inconsistent responses across 25,830 records. Resume uploads contained valuable experience data locked in unstructured PDFs that couldn't be parsed or scored. Statistical analysis confirmed reviewer scores diverged measurably.
-- **Wrong candidates getting through**—62% rejection rate post-submission, but only 23% of approved candidates showed program interest. Filtering happened too late.
+- **74% abandonment**—55% dropped at the Education, Military & Work History section—the page requiring the resume upload. No visibility into who dropped, at which step, or why.
+- **Poor candidate data quality**—32 questions—including 5 long-form essays—produced inconsistent responses across 25,830 records. Resume uploads contained valuable experience data locked in unstructured PDFs that couldn't be parsed or scored. A one-way ANOVA across six reviewers returned F = 430.9 (p < 2e-16)—the application design, not reviewer judgment, was driving score divergence.
+- **Wrong candidates getting through**—62% rejection rate post-submission, but only 23% of approved candidates showed program interest. Each candidate who reached the final interview cost $319 versus $15 at application review. Filtering happened too late.
 - **Misrouted applicants**—candidates searching for the DSP program landed on the Delivery Driver application instead, losing qualified leads before they reached the right form.
 - **Broken UX**—not mobile-friendly despite majority mobile traffic. Question difficulty sequenced easy–hardest–medium instead of progressive. No tooltips, no input guardrails, no confirmation step validation. Email couldn't match an existing Amazon account, forcing applicants to create throwaway addresses. Questions reflected 2018 program needs while the business had evolved through 2024.
 - **Costly to iterate**—updating 10 questions flagged as a "large" engineering effort. Adding new questions hit the same wall. Existing code was brittle—converting a free-response field to multi-select was scoped as a feature. No A/B testing, no candidate tracking. Every program update stalled.
 
-$2.1M+ annually in lost candidate conversion entitlement. The team projected a 33% recruiting cost increase for 2024. The constraint was the story: the work required 3.8 Software Development Engineers; the team had 0.25.
+Of 2.9 million marketing page visitors in 2023, only 415 became program-inclined—a 0.014% end-to-end conversion rate. Total annual vetting cost: $1.9M. $2.1M+ annually in lost candidate conversion entitlement. The team projected a 33% recruiting cost increase for 2024. The constraint was the story: the work required 3.8 Software Development Engineers; the team had 0.25.
 
 ## What the Benchmark Revealed
 
@@ -42,7 +42,7 @@ I then directed the entire Acquisitions team through the same process to build s
 | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | ~80 fields, 65% free-text, open-ended essays, 3+ hours, inconsistent and unscoreable responses | 80+ fields, 75% structured dropdowns, numerical inputs, under 1 hour, scoreable and consistent responses |
 
-Statistical analysis of 25,830 records confirmed reviewer scores diverged measurably—the application design was the root cause. CFA collects _more_ data in _less_ time through better input design. The fix wasn't fewer questions. It was better questions.
+The ANOVA confirmed it: reviewer scores diverged at F = 430.9 across 25,830 records—the application design was the root cause. CFA collects _more_ data in _less_ time through better input design. The fix wasn't fewer questions. It was better questions.
 
 ## From Benchmark to Engineering Roadmap
 

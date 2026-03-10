@@ -28,9 +28,9 @@
 
 I inherited the Owner Transfer process in Q3 2022. It was a one-person operation with no infrastructure: cases lived in email threads and a shared spreadsheet, there were no standardized stages, no SLAs, and no defined criteria for what "approved" or "rejected" meant. I walked into a 15-case backlog awaiting final decision and zero documentation.
 
-The process dated to 2019 for third-party sales—strangers buying a delivery business—but by 2022, volume and complexity had outgrown it. Every decision, status update, and rejection letter started from scratch. Institutional knowledge spread across teams. Nobody had built the system to diagnose why decisions averaged 17 weeks.
+The program started in 2020 for third-party sales—strangers buying a delivery business—but by 2022, requests had grown 274% year-over-year (23 to 63). The process also covered two additional use cases: entity restructures (23% of volume) and survivorship transfers when an owner died or became incapacitated (5%)—each with different vetting requirements. Every decision, status update, and rejection letter started from scratch. Institutional knowledge spread across teams. Nobody had built the system to diagnose why decisions averaged 17 weeks.
 
-The bottleneck was stakeholder conviction. Every failed transfer became a partner exit, and each exit cost the network $482K+ in lost delivery capacity. Without an SOP, without data infrastructure, without standardized communications, stakeholders had no basis for confidence—so rather than risk a bad approval, they deferred—waiting until they felt certain.
+The bottleneck was stakeholder conviction. Every failed transfer risked becoming a partner exit—39% of rejected partners subsequently left the network—and each exit cost $482K+ in lost delivery capacity. Without an SOP, without data infrastructure, without standardized communications, stakeholders had no basis for confidence—so rather than risk a bad approval, they deferred—waiting until they felt certain.
 
 ### Four Failures Contributing to Decision Paralysis
 
@@ -80,16 +80,16 @@ Once the framing was set, everything else was engineering the system to match.
 
 I designed a 14-week, 21-milestone framework spanning four phases: Intake → Vetting → Approvals → Onboarding—6 weeks for vetting and approvals, 8 weeks for onboarding. Each phase had defined SLAs, explicit ownership assignments, and documented handoff criteria across eight teams.
 
-The critical design decision was front-loading the cheapest gates. Without front-loaded disqualification, candidates who would ultimately fail were advancing deep into the pipeline—consuming station visits, interview loops, and enhanced vetting hours—before getting rejected at month three for something that could have been caught at week one.
+The critical design decision was front-loading the cheapest gates. The rejection data told me where: 24% of candidates failed at application review, 30% at the interview loop, and 20% at final approval—an 89% cumulative fail rate. Without front-loaded disqualification, candidates who would ultimately fail were advancing deep into the pipeline—consuming station visits, interview loops, and enhanced vetting hours—before getting rejected at month three for something that could have been caught at week one.
 
-The vetting sequence was ordered by cost:
+I designed six sequential gates, ordered by cost:
 
-| Week      | Stage                            | Details                                                            |
-| --------- | -------------------------------- | ------------------------------------------------------------------ |
-| Week 1    | Application                      | Review & Risk Assessment                                           |
-| Week 2–3  | Screening                        | Background & Credit Check → Financial Assessment → Phone Interview |
-| Week 4    | Station Visit & Enhanced Vetting |                                                                    |
-| Week 5    | Interview Loop                   |                                                                    |
+| Week      | Stage                                           | Details                                                                     |
+| --------- | ----------------------------------------------- | --------------------------------------------------------------------------- |
+| Week 1    | Application Review                              | Rubric-scored evaluation across 7 competency areas                          |
+| Week 2–3  | Background & Credit Check + Video Assessment    | Third-party screening → Financial assessment → Behavioral video interview   |
+| Week 4    | Enhanced Vetting & Station Visit                | Conflict-of-interest screening → week-long station immersion                |
+| Week 5    | Interview Loop                                  | 6 core competency assessment with bar-raiser questions                      |
 | Week 6    | Final Approval                   |                                                                    |
 | Week 7–14 | Onboarding                       | _(separate phase)_                                                 |
 

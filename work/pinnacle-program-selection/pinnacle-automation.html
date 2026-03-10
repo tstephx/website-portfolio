@@ -34,7 +34,7 @@
 
     <main id="main-content" class="case-study">
       <header class="cs-header">
-        <h1>A 55MB Spreadsheet Was Deciding Who Got to Expand &mdash; and Getting It Wrong</h1>
+        <h1>A 55+MB Spreadsheet Was Deciding Who Got to Expand &mdash; and Getting It Wrong</h1>
         <p class="cs-tagline">
           Pinnacle Program Automation | 57.9% &rarr; 94.1% Fill Rate | 7 Root Causes | Solo Build
         </p>
@@ -101,11 +101,14 @@
 
         <h3>Seven Root Causes Behind a 55% Decline</h3>
         <p>
-          The selection program ran on a 55+MB Excel file with index-match calculations across 24,000 rows, pairing
-          partners with stations within a 50-mile radius. It crashed regularly, failing to pull all data. But the Excel
-          collapse was only one of seven failures I diagnosed:
+          The selection program ran on a 55+MB Excel file pairing partners with stations within a 50-mile radius. I
+          diagnosed seven failures:
         </p>
         <ul>
+          <li>
+            <strong>Tooling collapse</strong>&mdash;the 55+MB Excel file with index-match calculations across 24,000
+            rows crashed regularly, failing to pull all data. The primary identification tool was unreliable.
+          </li>
           <li>
             <strong>Non-deterministic distance metric</strong>&mdash;eligibility used commute times that varied with
             live traffic. The same route measured 49 miles one month and 52 the next. A partner could be eligible in

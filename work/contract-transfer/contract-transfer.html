@@ -13,7 +13,7 @@
     <meta property="og:title" content="Contract Transfer Process Redesign | Taylor Stephens" />
     <meta
       property="og:description"
-      content="From 17 weeks to 2.3 — without lowering the bar. From zero documentation to $13M in avoided exit costs."
+      content="From 17 weeks to 2.3 — without lowering the bar. Redesigning ownership transfer from zero documentation to $13M in avoided exit costs."
     />
     <meta property="og:type" content="article" />
     <meta property="og:image" content="https://taylorstephens.io/images/headshot.jpg" />
@@ -101,16 +101,18 @@
           awaiting final decision and zero documentation.
         </p>
         <p>
-          The process dated to 2019 for third-party sales&mdash;strangers buying a delivery business&mdash;but by 2022,
-          volume and complexity had outgrown it. Every decision, status update, and rejection letter started from
-          scratch. Institutional knowledge spread across teams. Nobody had built the system to diagnose why decisions
-          averaged 17 weeks.
+          The program started in 2020 for third-party sales&mdash;strangers buying a delivery business&mdash;but by
+          2022, requests had grown 274% year-over-year (23 to 63). The process also covered two additional use cases:
+          entity restructures (23% of volume) and survivorship transfers when an owner died or became incapacitated
+          (5%)&mdash;each with different vetting requirements. Every decision, status update, and rejection letter
+          started from scratch. Institutional knowledge spread across teams. Nobody had built the system to diagnose why
+          decisions averaged 17 weeks.
         </p>
         <p>
-          The bottleneck was stakeholder conviction. Every failed transfer became a partner exit, and each exit cost the
-          network $482K+ in lost delivery capacity. Without an SOP, without data infrastructure, without standardized
-          communications, stakeholders had no basis for confidence&mdash;so rather than risk a bad approval, they
-          deferred&mdash;waiting until they felt certain.
+          The bottleneck was stakeholder conviction. Every failed transfer risked becoming a partner exit&mdash;39% of
+          rejected partners subsequently left the network&mdash;and each exit cost $482K+ in lost delivery capacity.
+          Without an SOP, without data infrastructure, without standardized communications, stakeholders had no basis
+          for confidence&mdash;so rather than risk a bad approval, they deferred&mdash;waiting until they felt certain.
         </p>
 
         <h3>Four Failures Contributing to Decision Paralysis</h3>
@@ -212,32 +214,35 @@
           SLAs, explicit ownership assignments, and documented handoff criteria across eight teams.
         </p>
         <p>
-          The critical design decision was front-loading the cheapest gates. Without front-loaded disqualification,
-          candidates who would ultimately fail were advancing deep into the pipeline&mdash;consuming station visits,
-          interview loops, and enhanced vetting hours&mdash;before getting rejected at month three for something that
-          could have been caught at week one.
+          The critical design decision was front-loading the cheapest gates. The rejection data told me where: 24% of
+          candidates failed at application review, 30% at the interview loop, and 20% at final approval&mdash;an 89%
+          cumulative fail rate. Without front-loaded disqualification, candidates who would ultimately fail were
+          advancing deep into the pipeline&mdash;consuming station visits, interview loops, and enhanced vetting
+          hours&mdash;before getting rejected at month three for something that could have been caught at week one.
         </p>
-        <p>The vetting sequence was ordered by cost:</p>
+        <p>I designed six sequential gates, ordered by cost:</p>
         <div class="process-timeline">
           <div class="timeline-item completed">
             <div class="timeline-week">Week 1</div>
-            <div class="timeline-title">Application</div>
-            <div class="timeline-desc">Review &amp; Risk Assessment</div>
+            <div class="timeline-title">Application Review</div>
+            <div class="timeline-desc">Rubric-scored evaluation across 7 competency areas</div>
           </div>
           <div class="timeline-item completed">
             <div class="timeline-week">Week 2&ndash;3</div>
-            <div class="timeline-title">Screening</div>
+            <div class="timeline-title">Background &amp; Credit Check + Video Assessment</div>
             <div class="timeline-desc">
-              Background &amp; Credit Check &rarr; Financial Assessment &rarr; Phone Interview
+              Third-party screening &rarr; Financial assessment &rarr; Behavioral video interview
             </div>
           </div>
           <div class="timeline-item completed">
             <div class="timeline-week">Week 4</div>
-            <div class="timeline-title">Station Visit &amp; Enhanced Vetting</div>
+            <div class="timeline-title">Enhanced Vetting &amp; Station Visit</div>
+            <div class="timeline-desc">Conflict-of-interest screening &rarr; week-long station immersion</div>
           </div>
           <div class="timeline-item completed">
             <div class="timeline-week">Week 5</div>
             <div class="timeline-title">Interview Loop</div>
+            <div class="timeline-desc">6 core competency assessment with bar-raiser questions</div>
           </div>
           <div class="timeline-item completed">
             <div class="timeline-week">Week 6</div>
