@@ -52,6 +52,27 @@ test.describe('DSP Application — consistency', () => {
     expect(stats).toContain('60%');
   });
 
+  test('og:description matches meta description', async ({ page }) => {
+    await page.goto(slug);
+    const meta = await page.getAttribute('meta[name="description"]', 'content');
+    const og = await page.getAttribute('meta[property="og:description"]', 'content');
+    expect(og).toBe(meta);
+  });
+
+  test('quick summary contains key metrics', async ({ page }) => {
+    await page.goto(slug);
+    const summary = await textOf(page.locator('.tldr-content'));
+    expect(summary).toContain('20');
+    expect(summary).toContain('101');
+  });
+
+  test('resume bullet references DSP redesign', async ({ page }) => {
+    await page.goto('/resume.html');
+    const main = await textOf(page.locator('main'));
+    expect(main).toContain('DSP application redesign');
+    expect(main).toMatch(/26%.*60%/);
+  });
+
   test('no anonymization violations in meta/tagline', async ({ page }) => {
     await page.goto(slug);
     const meta = await page.getAttribute('meta[name="description"]', 'content');
@@ -74,6 +95,28 @@ test.describe('Contract Transfer — consistency', () => {
     const meta = await page.getAttribute('meta[name="description"]', 'content');
     expect(meta).not.toContain("Amazon's DSP");
     expect(meta).not.toContain("Amazon's");
+  });
+
+  test('og:description matches meta description', async ({ page }) => {
+    await page.goto(slug);
+    const meta = await page.getAttribute('meta[name="description"]', 'content');
+    const og = await page.getAttribute('meta[property="og:description"]', 'content');
+    expect(og).toBe(meta);
+  });
+
+  test('quick summary contains key metrics', async ({ page }) => {
+    await page.goto(slug);
+    const summary = await textOf(page.locator('.tldr-content'));
+    expect(summary).toMatch(/87%|86\.6/);
+    expect(summary).toContain('29');
+  });
+
+  test('resume bullet references CT metrics', async ({ page }) => {
+    await page.goto('/resume.html');
+    const main = await textOf(page.locator('main'));
+    expect(main).toContain('Contract Transfer');
+    expect(main).toMatch(/86\.6%/);
+    expect(main).toContain('$13M');
   });
 
   test('tagline says "Exit Costs Avoided" not "Risk Mitigated"', async ({ page }) => {
@@ -145,6 +188,20 @@ test.describe('Pinnacle Automation — consistency', () => {
     const text = await textOf(summary);
     expect(text).toContain('55+MB');
     expect(text).not.toMatch(/(?<!\+)55MB/); // no bare "55MB" without the +
+  });
+
+  test('tagline contains key metrics', async ({ page }) => {
+    await page.goto(slug);
+    const tagline = await textOf(page.locator('.cs-tagline'));
+    expect(tagline).toMatch(/57\.9%/);
+    expect(tagline).toMatch(/94\.1%/);
+  });
+
+  test('resume bullet references Pinnacle metrics', async ({ page }) => {
+    await page.goto('/resume.html');
+    const main = await textOf(page.locator('main'));
+    expect(main).toMatch(/57\.9%.*94\.1%/);
+    expect(main).toContain('Pinnacle');
   });
 
   test('body mentions 200-mile fallback (not 250)', async ({ page }) => {

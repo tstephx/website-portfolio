@@ -924,6 +924,10 @@ footer {
   .card-outcome .stat-value {
     font-size: 1rem;
   }
+
+  .card-outcome .stat:last-child {
+    display: none;
+  }
 }
 
 /* =========================================
