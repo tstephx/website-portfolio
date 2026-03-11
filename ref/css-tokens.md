@@ -1,28 +1,30 @@
 # CSS Design Tokens Reference
 
-**Source:** `css/styles.css :root` | **Last verified:** 2026-03-04
+**Source:** `css/styles.css :root` | **Last verified:** 2026-03-11
 
 All 57 custom properties defined in `:root`. Never hardcode values that have a token. Use `getComputedStyle` in JS to read tokens (see CLAUDE.md Chart.js pattern).
+
+**Palette:** Slate + Rose-Clay + Warm Cream (Scandinavian editorial direction, adopted 2026-03-10)
 
 ---
 
 ## Colors
 
-| Token                  | Value                  | Use                          |
-| ---------------------- | ---------------------- | ---------------------------- |
-| `--color-text`         | `#3d3d3d`              | Body text                    |
-| `--color-heading`      | `#1a1a1a`              | Headings                     |
-| `--color-muted`        | `#6b6b6b`              | Secondary/caption text       |
-| `--color-light`        | `#767676`              | Tertiary text                |
-| `--color-accent`       | `#1a3a6b`              | Primary brand color, links   |
-| `--color-accent-hover` | `#142e55`              | Hover state for accent       |
-| `--color-accent-light` | `rgba(26,58,107,0.12)` | Accent tint backgrounds      |
-| `--color-bg`           | `#ffffff`              | Page background              |
-| `--color-bg-alt`       | `#fafafa`              | Alternate section background |
-| `--color-border`       | `#e5e5e5`              | Default borders              |
-| `--color-border-light` | `#f0f0f0`              | Subtle borders               |
-| `--color-surface`      | `#ffffff`              | Card/surface background      |
-| `--color-heading-inv`  | `#ffffff`              | Inverted heading (dark bg)   |
+| Token                  | Value                     | Use                          |
+| ---------------------- | ------------------------- | ---------------------------- |
+| `--color-text`         | `#4a4a4a`                 | Body text                    |
+| `--color-heading`      | `#3b4252`                 | Headings (slate)             |
+| `--color-muted`        | `#736a62`                 | Secondary/caption text       |
+| `--color-light`        | `#6b6b6b`                 | Tertiary text                |
+| `--color-accent`       | `#975c4f`                 | Primary brand color (rose-clay), links |
+| `--color-accent-hover` | `#8e584c`                 | Hover state for accent       |
+| `--color-accent-light` | `rgba(151,92,79,0.12)`    | Accent tint backgrounds      |
+| `--color-bg`           | `#faf8f5`                 | Page background (warm cream) |
+| `--color-bg-alt`       | `#f0ede8`                 | Alternate section background |
+| `--color-border`       | `#e0dbd5`                 | Default borders              |
+| `--color-border-light` | `#ede9e4`                 | Subtle borders               |
+| `--color-surface`      | `#ffffff`                 | Card/surface background      |
+| `--color-heading-inv`  | `#faf8f5`                 | Inverted heading (dark bg)   |
 
 ### Semantic Colors
 
