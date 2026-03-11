@@ -231,11 +231,6 @@ nav li:last-child a {
 /* ===== HERO ===== */
 #hero {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: min(70vh, 600px);
-  text-align: center;
   padding: 4rem 1.5rem;
   animation: fadeIn 0.8s ease-out both;
 }
@@ -260,7 +255,14 @@ nav li:last-child a {
 }
 
 .hero-content {
-  max-width: 600px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.hero-headshot {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .headshot {
@@ -268,7 +270,6 @@ nav li:last-child a {
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 0 auto 2rem;
   filter: grayscale(15%);
   transition: filter var(--transition);
 }
@@ -288,7 +289,7 @@ nav li:last-child a {
   font-size: var(--font-size-summary);
   line-height: 1.7;
   color: var(--color-text);
-  margin: 0 auto 2em;
+  margin: 0 0 2em;
   max-width: 520px;
   text-wrap: pretty;
 }
@@ -318,6 +319,11 @@ nav li:last-child a {
     border-color var(--transition),
     transform var(--transition),
     box-shadow var(--transition);
+}
+
+.hero-cta {
+  background-color: transparent;
+  color: var(--color-heading);
 }
 
 /* hover/active styles scoped to desktop — see desktop media query */
@@ -757,6 +763,32 @@ footer {
 }
 
 /* =========================================
+   HERO SPLIT (768px+)
+   ========================================= */
+@media screen and (min-width: 768px) {
+  .hero-content {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .hero-headshot {
+    margin-bottom: 0;
+    justify-content: flex-end;
+  }
+
+  .headshot {
+    width: 150px;
+    height: 150px;
+  }
+
+  #hero::before {
+    background: radial-gradient(ellipse at 30% 50%, var(--color-accent-light) 0%, transparent 60%);
+  }
+}
+
+/* =========================================
    TABLET (640px+)
    ========================================= */
 @media screen and (min-width: 640px) {
@@ -782,11 +814,6 @@ footer {
     border-bottom: none;
     padding: 1em 0;
     position: relative;
-  }
-
-  .headshot {
-    width: 140px;
-    height: 140px;
   }
 
   .skills-grid {
@@ -825,11 +852,6 @@ footer {
 
   nav ul {
     justify-content: flex-end;
-  }
-
-  .headshot {
-    width: 150px;
-    height: 150px;
   }
 
   .skills-grid {
@@ -894,6 +916,14 @@ footer {
   .cta-button:active {
     transform: translateY(0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .hero-cta:hover {
+    background-color: var(--color-heading);
+    border-color: var(--color-heading);
+    color: var(--color-bg);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-hover);
   }
 
   .project-card:hover,
@@ -1034,7 +1064,6 @@ h2 {
   }
 
   #hero {
-    min-height: auto;
     padding: 2rem 0;
   }
 

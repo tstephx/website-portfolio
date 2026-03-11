@@ -5,6 +5,7 @@
 ## 2026-03
 
 ### Features
+- `47e3ef0` batch 2 — case study polish, resume redesign, content sync tests
 - `6e38047` replace DSP decision section with three-path technology evaluation
 - `8403804` add Pinnacle post-automation growth data to case study and resume
 - `43fe031` design system audit — resume integration, a11y fixes, visual hierarchy
@@ -38,6 +39,7 @@
 - `d93e5d5` comparison-label audit + docs restructure
 
 ### Documentation
+- `ff1867e` update token reference and mark PRD complete
 - `299a879` regenerate DSP and Pinnacle copy markdown from current HTML
 - `9a3fc85` add deploy ref, update site-map for fonts + headshot variants
 - `a68c73f` fix 2 CLAUDE.md inaccuracies flagged by scaffold audit
@@ -45,6 +47,7 @@
 - `9b142a4` clean up project structure and update CLAUDE.md
 
 ### Style
+- `a044102` redesign palette (slate + rose-clay + cream) and fix WCAG contrast
 - `9e4a1d0` Elements of Style copy-edit on DSP and Pinnacle case studies
 - `d6abd43` format all files with Prettier, commit prior session work
 - `7f13299` update visual regression snapshots for rebuilt case studies

@@ -10,21 +10,21 @@ All 57 custom properties defined in `:root`. Never hardcode values that have a t
 
 ## Colors
 
-| Token                  | Value                     | Use                          |
-| ---------------------- | ------------------------- | ---------------------------- |
-| `--color-text`         | `#4a4a4a`                 | Body text                    |
-| `--color-heading`      | `#3b4252`                 | Headings (slate)             |
-| `--color-muted`        | `#736a62`                 | Secondary/caption text       |
-| `--color-light`        | `#6b6b6b`                 | Tertiary text                |
-| `--color-accent`       | `#975c4f`                 | Primary brand color (rose-clay), links |
-| `--color-accent-hover` | `#8e584c`                 | Hover state for accent       |
-| `--color-accent-light` | `rgba(151,92,79,0.12)`    | Accent tint backgrounds      |
-| `--color-bg`           | `#faf8f5`                 | Page background (warm cream) |
-| `--color-bg-alt`       | `#f0ede8`                 | Alternate section background |
-| `--color-border`       | `#e0dbd5`                 | Default borders              |
-| `--color-border-light` | `#ede9e4`                 | Subtle borders               |
-| `--color-surface`      | `#ffffff`                 | Card/surface background      |
-| `--color-heading-inv`  | `#faf8f5`                 | Inverted heading (dark bg)   |
+| Token                  | Value                  | Use                                    |
+| ---------------------- | ---------------------- | -------------------------------------- |
+| `--color-text`         | `#4a4a4a`              | Body text                              |
+| `--color-heading`      | `#3b4252`              | Headings (slate)                       |
+| `--color-muted`        | `#736a62`              | Secondary/caption text                 |
+| `--color-light`        | `#6b6b6b`              | Tertiary text                          |
+| `--color-accent`       | `#975c4f`              | Primary brand color (rose-clay), links |
+| `--color-accent-hover` | `#8e584c`              | Hover state for accent                 |
+| `--color-accent-light` | `rgba(151,92,79,0.12)` | Accent tint backgrounds                |
+| `--color-bg`           | `#faf8f5`              | Page background (warm cream)           |
+| `--color-bg-alt`       | `#f0ede8`              | Alternate section background           |
+| `--color-border`       | `#e0dbd5`              | Default borders                        |
+| `--color-border-light` | `#ede9e4`              | Subtle borders                         |
+| `--color-surface`      | `#ffffff`              | Card/surface background                |
+| `--color-heading-inv`  | `#faf8f5`              | Inverted heading (dark bg)             |
 
 ### Semantic Colors
 
