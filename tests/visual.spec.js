@@ -18,6 +18,10 @@ const SNAPSHOT_PAGES = [
     path: '/work/pinnacle-program-selection/pinnacle-automation.html',
     name: 'work-pinnacle-automation',
   },
+  // Public (Tier 1) case studies
+  { path: '/work/partner-application-public/index.html', name: 'work-partner-application-public' },
+  { path: '/work/contract-transfer-public/index.html', name: 'work-contract-transfer-public' },
+  { path: '/work/pinnacle-public/index.html', name: 'work-pinnacle-public' },
   // Project pages
   { path: '/projects/mcp-ecosystem.html', name: 'project-mcp-ecosystem' },
   { path: '/projects/agentic-pipeline.html', name: 'project-agentic-pipeline' },

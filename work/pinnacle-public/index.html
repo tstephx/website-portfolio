@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex, nofollow" />
+    <meta name="robots" content="index, follow" />
     <meta
       name="description"
-      content="A 55+MB spreadsheet was deciding who got to expand — and getting it wrong. Diagnosed 7 root causes, built a 6-stage SQL pipeline, increased Pinnacle fill rate from 57.9% to 94.1%."
+      content="A 55+MB spreadsheet was deciding who got to expand — and getting it wrong. Diagnosed 7 root causes, built a 6-stage SQL pipeline, increased expansion program fill rate from 57.9% to 94.1%."
     />
     <title>Selection Automation | Taylor Stephens</title>
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
@@ -17,7 +17,7 @@
     />
     <meta property="og:type" content="article" />
     <meta property="og:image" content="https://taylorstephens.io/images/headshot.jpg" />
-    <link rel="canonical" href="https://taylorstephens.io/work/pinnacle-program-selection/" />
+    <link rel="canonical" href="https://taylorstephens.io/work/pinnacle-public/" />
     <meta name="theme-color" content="#3b4252" />
     <link rel="stylesheet" href="../../css/fonts.css" />
     <link rel="stylesheet" href="../../css/styles.css" />
@@ -36,7 +36,7 @@
       <header class="cs-header">
         <h1>A 55+MB Spreadsheet Was Deciding Who Got to Expand &mdash; and Getting It Wrong</h1>
         <p class="cs-tagline">
-          Pinnacle Program Automation | 57.9% &rarr; 94.1% Fill Rate | 7 Root Causes | Solo Build
+          Expansion Program Automation | 57.9% &rarr; 94.1% Fill Rate | 7 Root Causes | Solo Build
         </p>
         <div class="tech-pills">
           <span class="tech-pill">SQL / Data Warehouse</span>
@@ -61,23 +61,23 @@
             </li>
             <li>
               Fill rate jumped from 57.9% to 94.1% (+36 percentage points), hitting 100% in July. Zero candidates
-              bypassed. Pinnacle team expanded from 3 to 10.
+              bypassed. The program team expanded from 3 to 10.
             </li>
           </ul>
         </div>
       </details>
 
       <p class="scope-meta">
-        Q3&ndash;Q4 2024 (10 weeks) &middot; PM, Pinnacle Operations &middot; Capacity planning, BI, Operations,
-        Outreach &middot; No engineering resources
+        Q3&ndash;Q4 2024 (10 weeks) &middot; PM, Partner Operations &middot; Capacity planning, BI, Operations, Outreach
+        &middot; No engineering resources
       </p>
 
       <section class="cs-section" id="problem">
         <h2>The Reward Mechanism That Stopped Rewarding</h2>
         <p>
-          Amazon&rsquo;s Pinnacle program offers top-performing delivery partners&mdash;the 8.5% of 2,620 operators who
-          consistently achieve Tier 1 performance&mdash;a path to expand into a second station. It depends on one thing
-          working correctly: identifying who&rsquo;s eligible.
+          The expansion program offers top-performing delivery partners&mdash;the 8.5% of 2,600+ operators who
+          consistently achieve top-tier performance&mdash;a path to expand into a second station. It depends on one
+          thing working correctly: identifying who&rsquo;s eligible.
         </p>
         <p>
           In 2024, that identification process broke down. Launches dropped 55% (93 to 42). The process bypassed 20
@@ -104,7 +104,7 @@
           </li>
           <li>
             <strong>Stale data</strong>&mdash;eligibility refreshed quarterly while performance updated monthly.
-            Partners who earned Tier 1 mid-quarter were invisible until the next refresh.
+            Partners who earned top-tier status mid-quarter were invisible until the next refresh.
           </li>
           <li>
             <strong>Double-counting</strong>&mdash;reported eligibility counts included partners already in the program,
@@ -161,7 +161,7 @@
             data lag that made eligible partners invisible mid-cycle.
           </li>
           <li>
-            <strong>Validate consecutive Tier 1</strong>&mdash;checks sustained performance across two quarters,
+            <strong>Validate consecutive top-tier</strong>&mdash;checks sustained performance across two quarters,
             filtering single-quarter spikes.
           </li>
           <li>
@@ -201,8 +201,8 @@
         <p>
           A process that took hours collapsed to 10 minutes. The automation eliminated the Excel file. Removing
           double-counted partners reduced the reported eligible pool from 155 to 105, giving capacity planning its first
-          accurate numbers. The SQL infrastructure became the basis for a Salesforce migration that began in Q4 2024,
-          and the pipeline enabled the Pinnacle team to expand from 3 to 10 members.
+          accurate numbers. The SQL infrastructure became the basis for a CRM migration that began in Q4 2024, and the
+          pipeline enabled the program team to expand from 3 to 10 members.
         </p>
         <p>
           I created the script that enabled the workstream. Leadership credited it by name in program
@@ -236,7 +236,7 @@
           </div>
           <div class="metric-card">
             <span class="metric-number">3 &rarr; 10</span>
-            <span class="metric-label">Pinnacle Team</span>
+            <span class="metric-label">Program Team</span>
             <span class="metric-subtitle">3&times; capacity</span>
           </div>
         </div>
@@ -245,14 +245,14 @@
         <div class="funnel-chart" role="figure" aria-labelledby="funnel-label">
           <div class="funnel-stage" style="--width: 100%">
             <span class="stage-label">Full Partner Network</span>
-            <span class="stage-value">2,620</span>
+            <span class="stage-value">2,600+</span>
           </div>
           <div class="funnel-stage" style="--width: 55%">
-            <span class="stage-label">Tier 1 Designation</span>
-            <span class="stage-value">~222<span class="stage-drop">&darr;~8.5%</span></span>
+            <span class="stage-label">Top-Tier Designation</span>
+            <span class="stage-value">~220<span class="stage-drop">&darr;~8.5%</span></span>
           </div>
           <div class="funnel-stage" style="--width: 45%">
-            <span class="stage-label">Consecutive Tier 1</span>
+            <span class="stage-label">Consecutive Top-Tier</span>
             <span class="stage-value">~180</span>
           </div>
           <div class="funnel-stage" style="--width: 38%">
@@ -306,8 +306,8 @@
                 <td class="new-value">94.1% fill rate (100% in July)</td>
               </tr>
               <tr>
-                <td class="old-value">3 Pinnacle team members</td>
-                <td class="new-value">10 Pinnacle team members</td>
+                <td class="old-value">3 program team members</td>
+                <td class="new-value">10 program team members</td>
               </tr>
               <tr>
                 <td class="old-value">Hours per eligibility run</td>
@@ -331,18 +331,28 @@
         <h3>Post-automation: the program kept growing.</h3>
         <p>
           By May 2025, the eligible pool had grown
-          <strong>43% year-over-year to 441 delivery partners</strong>&mdash;even after tightening Leadership &amp;
-          Engagement, Positive Environment, and Strategic Communicator qualification screens. 118 delivery partners were
-          actively in the program. The SQL pipeline migrated to an Asana workflow with automated candidate
-          identification, heuristics-based allocation, and a quality-aligned vetting block. Acceptance held at
-          <strong>77%</strong>, exits stayed at <strong>zero year-to-date</strong>, and blended Quality reached 66.7%
-          (+270 basis points month-over-month).
+          <strong>43% year-over-year to 440+ delivery partners</strong>&mdash;even after tightening leadership,
+          engagement, and communication qualification screens. ~120 delivery partners were actively in the program. The
+          SQL pipeline migrated to a project management workflow with automated candidate identification,
+          heuristics-based allocation, and a quality-aligned vetting block. Acceptance held at <strong>77%</strong>,
+          exits stayed at <strong>zero year-to-date</strong>, and blended quality scores improved 270 basis points
+          month-over-month.
         </p>
         <p>
-          The constraint shifted: only 37 Pinnacle opportunities opened in the trailing twelve months (&minus;46% YoY),
+          The constraint shifted: only 37 expansion opportunities opened in the trailing twelve months (&minus;46% YoY),
           with 5 targets unfilled. The pipeline solved identification. The remaining gap was supply&mdash;too few
           expansion opportunities opening.
         </p>
+      </section>
+
+      <section class="cs-section cs-unlock-cta">
+        <p>
+          This case study uses anonymized metrics. The full version — with exact figures, internal benchmarks, and
+          detailed methodology — is available on request.
+        </p>
+        <a href="../../401.html" class="cta-button">
+          Request access to full case studies <span class="arrow">&rarr;</span>
+        </a>
       </section>
 
       <section class="cs-section lessons-section" id="lessons">
@@ -353,7 +363,7 @@
               >When a program is declining, diagnose whether the failure is strategy or infrastructure before touching
               either.</strong
             >
-            Pinnacle didn&rsquo;t need a new approach&mdash;it needed a working spreadsheet.
+            The program didn&rsquo;t need a new approach&mdash;it needed a working spreadsheet.
           </li>
           <li>
             <strong>An eligibility system built on variable inputs produces variable outputs.</strong>
@@ -378,7 +388,7 @@
       </blockquote>
 
       <section class="cs-cta">
-        <a href="../cfa-dsp-application/dsp-application.html" class="cta-button">
+        <a href="../partner-application-public/index.html" class="cta-button">
           Read next: Partner Application Redesign <span class="arrow">&rarr;</span>
         </a>
         <p class="secondary-link"><a href="../../index.html#contact">Get in touch</a></p>

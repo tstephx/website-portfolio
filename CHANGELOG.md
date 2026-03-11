@@ -41,6 +41,9 @@
 - `d93e5d5` comparison-label audit + docs restructure
 
 ### Documentation
+- `c6734cc` update stale palette refs, archive completed PRDs
+- `0582baa` mark work card narrative review as complete — all stats verified
+- `da8542c` delete completed homepage refinement plan, update design review todos
 - `ff1867e` update token reference and mark PRD complete
 - `299a879` regenerate DSP and Pinnacle copy markdown from current HTML
 - `9a3fc85` add deploy ref, update site-map for fonts + headshot variants
@@ -49,6 +52,7 @@
 - `9b142a4` clean up project structure and update CLAUDE.md
 
 ### Style
+- `681b130` widen card top-border opacity spread for clearer hierarchy
 - `22cc93d` scale hero h1 to 2x, remove Featured Projects h2, remove Skills section
 - `28e1fa5` bolder hero h1, contact section weight, mobile left-alignment
 - `25f8f13` update visual regression snapshots for batch 3 cleanup

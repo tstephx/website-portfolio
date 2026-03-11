@@ -21,6 +21,10 @@ const PAGES = [
     path: '/work/pinnacle-program-selection/pinnacle-automation.html',
     name: 'Pinnacle Automation',
   },
+  // Public (Tier 1) case studies
+  { path: '/work/partner-application-public/index.html', name: 'Partner Application (public)' },
+  { path: '/work/contract-transfer-public/index.html', name: 'Contract Transfer (public)' },
+  { path: '/work/pinnacle-public/index.html', name: 'Selection Automation (public)' },
 ];
 
 // ===== MOBILE LAYOUT (390px — iPhone 13) =====

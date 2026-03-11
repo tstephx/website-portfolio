@@ -21,7 +21,7 @@
     "format:check": "prettier --check '**/*.{js,css,html,json,md}'",
     "lint:css": "stylelint 'css/**/*.css'",
     "lint:css:fix": "stylelint 'css/**/*.css' --fix",
-    "lint:html": "html-validate 'index.html' 'resume.html' 'projects/*.html' 'work/cfa-dsp-application/dsp-application.html' 'work/contract-transfer/contract-transfer.html' 'work/pinnacle-program-selection/pinnacle-automation.html'",
+    "lint:html": "html-validate 'index.html' 'resume.html' 'projects/*.html' 'work/cfa-dsp-application/dsp-application.html' 'work/contract-transfer/contract-transfer.html' 'work/pinnacle-program-selection/pinnacle-automation.html' 'work/partner-application-public/index.html' 'work/contract-transfer-public/index.html' 'work/pinnacle-public/index.html'",
     "check:links": "linkinator . --recurse --skip 'https://' --verbosity error",
     "check": "npm run lint && npm run lint:css && npm run format:check && npm run lint:html"
   },

@@ -37,18 +37,17 @@ test.describe('DSP Application — consistency', () => {
   test('tagline matches body values', async ({ page }) => {
     await page.goto(slug);
     const tagline = await textOf(page.locator('.cs-tagline'));
-    expect(tagline).toContain('20 Global Markets');
+    expect(tagline).toContain('17 Global Markets');
     expect(tagline).toContain('$2.1M+');
   });
 
   test('homepage card stat matches body', async ({ page }) => {
     await page.goto('/');
-    const dspCard = page.locator('article.card', { hasText: 'DSP Application' });
+    const dspCard = page.locator('article.card', { hasText: 'Partner Application' });
     const statValues = await dspCard.locator('.stat-value').allTextContents();
     const stats = statValues.join(' ');
-    // Body: 20 markets, 15× multiplier, 26%→60% completion
-    expect(stats).toContain('20');
-    expect(stats).toContain('15');
+    // Body: 17 markets, multi-million investment, 26%→60% completion
+    expect(stats).toContain('17');
     expect(stats).toContain('60%');
   });
 
@@ -148,11 +147,10 @@ test.describe('Contract Transfer — consistency', () => {
     await page.goto('/');
     const ctCard = page.locator('article.card', { hasText: 'Contract Transfer' });
     const narrative = await textOf(ctCard.locator('.card-narrative'));
-    // Body: $13M+, 87%, zero documentation, 29 transfers
-    expect(narrative).toContain('$13M+');
-    expect(narrative).toContain('29 transfers');
+    // Homepage cards use public-safe language (no dollar figures)
+    expect(narrative).toContain('eight-figure');
+    expect(narrative).toContain('29');
     // Should NOT contain fabricated claims
-    expect(narrative).not.toContain('eight figures');
     expect(narrative).not.toContain('3 of 4 workstreams');
   });
 

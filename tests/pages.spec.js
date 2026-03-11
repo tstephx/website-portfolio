@@ -22,13 +22,29 @@ const PAGES = [
   },
   {
     path: '/work/cfa-dsp-application/dsp-application.html',
-    title: /DSP/i,
+    title: /Partner Application/i,
     name: 'DSP Application',
   },
   {
     path: '/work/pinnacle-program-selection/pinnacle-automation.html',
     title: /Automation/i,
     name: 'Pinnacle Automation',
+  },
+  // Public (Tier 1) case studies
+  {
+    path: '/work/partner-application-public/index.html',
+    title: /Partner Application/i,
+    name: 'Partner Application (public)',
+  },
+  {
+    path: '/work/contract-transfer-public/index.html',
+    title: /Contract Transfer/i,
+    name: 'Contract Transfer (public)',
+  },
+  {
+    path: '/work/pinnacle-public/index.html',
+    title: /Automation/i,
+    name: 'Selection Automation (public)',
   },
 ];
 

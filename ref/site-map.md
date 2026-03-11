@@ -8,13 +8,13 @@
 
 `index.html` — 3 work cards (V2.1 narrative-led) + 3 personal project cards + skill tags
 
-### Work Cards (3)
+### Work Cards (3) — link to public versions
 
-| Title                              | Path                                                       |
-| ---------------------------------- | ---------------------------------------------------------- |
-| DSP Application Redesign           | `work/cfa-dsp-application/dsp-application.html`            |
-| Contract Transfer Process Redesign | `work/contract-transfer/contract-transfer.html`            |
-| Selection Automation               | `work/pinnacle-program-selection/pinnacle-automation.html` |
+| Title                              | Path (public)                                |
+| ---------------------------------- | -------------------------------------------- |
+| Partner Application Redesign       | `work/partner-application-public/index.html` |
+| Contract Transfer Process Redesign | `work/contract-transfer-public/index.html`   |
+| Selection Automation               | `work/pinnacle-public/index.html`            |
 
 ### Project Cards (3 shown on homepage)
 
@@ -34,11 +34,35 @@
 
 ---
 
-## Work Case Study Link Chain (circular, 3 pages)
+## Public Case Studies (Tier 1 — no auth, indexed)
+
+| Title                              | Path                                         |
+| ---------------------------------- | -------------------------------------------- |
+| Partner Application Redesign       | `work/partner-application-public/index.html` |
+| Contract Transfer Process Redesign | `work/contract-transfer-public/index.html`   |
+| Selection Automation               | `work/pinnacle-public/index.html`            |
+
+## Protected Case Studies (Tier 2 — behind basic auth, noindex)
+
+| Title                              | Path                                                       |
+| ---------------------------------- | ---------------------------------------------------------- |
+| DSP Application Redesign           | `work/cfa-dsp-application/dsp-application.html`            |
+| Contract Transfer Process Redesign | `work/contract-transfer/contract-transfer.html`            |
+| Selection Automation               | `work/pinnacle-program-selection/pinnacle-automation.html` |
+
+---
+
+## Link Chains (circular, 3 pages each)
+
+### Public chain
+
+`partner-application-public` → `contract-transfer-public` → `pinnacle-public` → `partner-application-public`
+
+### Protected chain
 
 `dsp-application` → `contract-transfer` → `pinnacle-automation` → `dsp-application`
 
-Each page has a "Next:" footer link. When adding/reordering, update all 3 links to keep the chain intact.
+Each page has a "Next:" footer link. When adding/reordering, update all links in both chains.
 
 ---
 
