@@ -49,7 +49,7 @@ _Pages reviewed: all 6 work case studies, all 6 project pages, index.html_
 ### Index / Homepage
 
 - [x] **Homepage refinement (2026-03-11)** — Hero scaled to 2x with dramatic line-height, removed "Featured Projects" h2 (replaced with aria-label), removed Skills & Experience section, added resume link to contact, personality line added to all case study footers, contact section given visual weight with background/border, card top-border opacity widened (100%/50%/20%), sticky nav rgba aligned to `--color-bg`, h2 underlines removed sitewide, card left-borders removed + shadow added, orphaned CSS cleaned up.
-- [ ] **Work cards "Approach" one-liners** — review for freshness now that the full case study content has been refined. Some card summaries may no longer match the case study's sharpened narrative.
+- [x] **Work cards "Approach" one-liners** — reviewed 2026-03-11. All 3 card narratives and all 9 stats trace to specific lines in their case studies. No stale content.
 - [ ] **Project cards** — `tap-sevenrooms` and `_Lab Environment` cards were flagged as weak in the code review TODO (see `TODO.md`). Still unresolved.
 
 ### Cross-Cutting Technical
