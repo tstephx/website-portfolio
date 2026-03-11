@@ -225,6 +225,11 @@ nav li:last-child a {
   animation: fadeIn 0.8s ease-out both;
 }
 
+#hero h1 {
+  font-size: clamp(2.75rem, 2rem + 3vw, 4.5rem);
+  letter-spacing: -0.04em;
+}
+
 #hero::before {
   content: "";
   position: absolute;
@@ -251,7 +256,7 @@ nav li:last-child a {
 
 .hero-headshot {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 2rem;
 }
 
@@ -670,6 +675,8 @@ section {
 #contact {
   text-align: center;
   padding-bottom: 6rem;
+  background-color: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border-light);
 }
 
 #contact p {

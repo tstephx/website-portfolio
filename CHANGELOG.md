@@ -49,7 +49,7 @@
 - `9b142a4` clean up project structure and update CLAUDE.md
 
 ### Style
-- `f3515d5` update visual regression snapshots for batch 3 cleanup
+- `25f8f13` update visual regression snapshots for batch 3 cleanup
 - `c7bfa50` token-align sticky nav, remove h2 underlines, clean card borders — batch 3
 - `a044102` redesign palette (slate + rose-clay + cream) and fix WCAG contrast
 - `9e4a1d0` Elements of Style copy-edit on DSP and Pinnacle case studies
