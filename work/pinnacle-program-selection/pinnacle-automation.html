@@ -18,7 +18,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:image" content="https://taylorstephens.io/images/headshot.jpg" />
     <link rel="canonical" href="https://taylorstephens.io/work/pinnacle-program-selection/" />
-    <meta name="theme-color" content="#1a3a6b" />
+    <meta name="theme-color" content="#3b4252" />
     <link rel="stylesheet" href="../../css/fonts.css" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <link rel="stylesheet" href="../../css/case-study.css" />
@@ -90,8 +90,7 @@
         <h2>The Reward Mechanism That Stopped Rewarding</h2>
         <p>
           Amazon&rsquo;s Pinnacle program offers top-performing delivery partners&mdash;the 8.5% of 2,620 operators who
-          consistently achieve Tier 1 performance&mdash;a path to expand into a second station. It depends on one thing:
-          identifying eligible partners.
+          consistently achieve Tier 1 performance&mdash;a path to expand into a second station.
         </p>
         <p>
           In 2024, that identification process broke down. Launches dropped 55% (93 to 42). The process bypassed 20
@@ -100,10 +99,7 @@
         </p>
 
         <h3>Seven Root Causes Behind a 55% Decline</h3>
-        <p>
-          The selection program ran on a 55+MB Excel file pairing partners with stations within a 50-mile radius. I
-          diagnosed seven failures:
-        </p>
+        <p>The selection program ran on a 55+MB Excel file pairing partners with stations within a 50-mile radius.</p>
         <ul>
           <li>
             <strong>Tooling collapse</strong>&mdash;the 55+MB Excel file with index-match calculations across 24,000
@@ -143,23 +139,22 @@
         <p>
           The existing system used commute times to measure candidate proximity. The data was available, integrated, and
           familiar. Swapping it for a custom mathematical formula required additional development, introduced an
-          unfamiliar metric, and required explaining and defending.
+          unfamiliar metric, and demanded justification to stakeholders who trusted the existing system.
         </p>
         <p>
-          The problem was that commute times aren&rsquo;t a fixed property of geography. They&rsquo;re a function of
-          traffic&mdash;and traffic changes. A partner&rsquo;s eligibility shifted month to month on whatever highway
-          congestion happened on one Tuesday.
+          The problem was that commute times aren&rsquo;t a fixed property of geography&mdash;they&rsquo;re a function
+          of traffic. A partner&rsquo;s eligibility shifted month to month based on traffic conditions the day someone
+          ran the query.
         </p>
         <p>
           I chose the Haversine formula: a standard great-circle distance calculation using Earth&rsquo;s radius as a
-          constant. The distance between two stations is now a fixed number. It doesn&rsquo;t change between measurement
-          cycles. That&rsquo;s the only kind of metric that can support a program where eligibility must be
-          deterministic.
+          constant. The distance between two stations is now a fixed number. Only a fixed metric can support a program
+          where eligibility must be deterministic.
         </p>
         <p>
-          The 200-mile fallback was a second design choice with real stakes. A hard 50-mile cutoff would strand
-          expansion sites in remote regions. The fallback extends the search only when no 50-mile match
-          exists&mdash;preserving the primary threshold while ensuring no site gets orphaned.
+          The 200-mile fallback was the second consequential design choice. A hard 50-mile cutoff would strand expansion
+          sites in remote regions. The fallback extends the search only when no 50-mile match exists, preserving the
+          primary threshold without stranding remote sites.
         </p>
       </section>
 
@@ -169,7 +164,7 @@
         <h3>57.9% to 94.1%. Here&rsquo;s how the pipeline works.</h3>
         <p>
           I designed and built a six-stage SQL pipeline on a data warehouse that replaced the Excel process entirely.
-          Each stage addresses a specific diagnosed root cause:
+          Each stage addresses a specific root cause:
         </p>
         <ol>
           <li>
@@ -205,26 +200,24 @@
         <h3>20 candidates preserved. Prioritization tenets restored.</h3>
         <p>
           The program&rsquo;s 5-lever sourcing hierarchy ranks expansion of existing high-performers at Rank 3. Net-new
-          partners sit at Rank 5&mdash;last resort. In 2024, twenty Rank 3 candidates were skipped; their slots went
-          directly to Rank 5.
+          partners sit at Rank 5&mdash;last resort. In 2024, the system skipped twenty Rank 3 candidates; their slots
+          went directly to Rank 5.
         </p>
         <p>
           The pipeline enforces the hierarchy mechanically. Every open target checks the full eligible pool before
-          triggering any fallback. The prioritization tenets no longer depend on whoever is running the tracker that
-          week.
+          triggering any fallback. The prioritization tenets now hold regardless of who runs the tracker.
         </p>
 
         <h3>What the pipeline enabled.</h3>
         <p>
-          A process that took hours collapsed to 10 minutes. The automation eliminated the bloated Excel file. Removing
-          double-counted partners reduced the reported eligible pool from 155 to 105 (fluctuating monthly), giving
-          capacity planning its first accurate numbers. The SQL infrastructure became the basis for a Salesforce
-          migration that began in Q4 2024, and the reliable candidate pipeline enabled the Pinnacle team to expand from
-          3 to 10 members.
+          A process that took hours collapsed to 10 minutes. The automation eliminated the Excel file. Removing
+          double-counted partners reduced the reported eligible pool from 155 to 105, giving capacity planning its first
+          accurate numbers. The SQL infrastructure became the basis for a Salesforce migration that began in Q4 2024,
+          and the pipeline enabled the Pinnacle team to expand from 3 to 10 members.
         </p>
         <p>
-          I created the script that enabled the workstream. Leadership included it by name in the program&rsquo;s
-          official documentation&mdash;unusual for a PM deliverable in an engineering-adjacent domain.
+          I created the script that enabled the workstream. Leadership named it in the program&rsquo;s official
+          documentation&mdash;unusual for a PM deliverable.
         </p>
       </section>
 
@@ -337,12 +330,12 @@
 
         <p>
           In 2024, the program missed 20 eligible candidates and delivered 42 launches where 93 were expected. The root
-          cause wasn&rsquo;t strategy&mdash;it was a broken identification process.
+          cause was a broken identification process, not a flawed strategy.
         </p>
         <p>
           A SQL pipeline replaced a spreadsheet. Mathematical precision replaced traffic-dependent variability. The
           pipeline integrated vetting history directly, eliminating manual cross-referencing. Encoding the
-          prioritization hierarchy removed dependence on whoever opened the file. The program now identifies the right
+          prioritization hierarchy removed human discretion from candidate ranking. The program now identifies the right
           candidates, in the right order, every time the query runs.
         </p>
 
@@ -357,7 +350,8 @@
         </p>
         <p>
           The constraint shifted: only 37 Pinnacle opportunities opened in the trailing twelve months (&minus;46% YoY),
-          with 5 targets unfilled. The pipeline solved identification. The gap moved to the business side.
+          with 5 targets unfilled. The pipeline solved identification. The remaining gap was supply&mdash;too few
+          expansion opportunities opening.
         </p>
       </section>
 
@@ -366,8 +360,8 @@
         <ul class="lessons-list">
           <li>
             <strong
-              >When a program is declining, diagnose whether it&rsquo;s strategy or infrastructure before changing
-              strategy.</strong
+              >When a program is declining, diagnose whether the failure is strategy or infrastructure before touching
+              either.</strong
             >
             Pinnacle didn&rsquo;t need a new approach&mdash;it needed a working spreadsheet.
           </li>
@@ -380,8 +374,7 @@
             <strong
               >If you can&rsquo;t rerun the process and get the same answer, you don&rsquo;t have a process.</strong
             >
-            Determinism isn&rsquo;t a nice-to-have&mdash;it&rsquo;s the minimum bar for any system that decides who gets
-            an opportunity.
+            Determinism isn&rsquo;t optional&mdash;it&rsquo;s the minimum bar for any system that decides who advances.
           </li>
         </ul>
       </section>

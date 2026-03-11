@@ -21,13 +21,13 @@
 
 ## The Reward Mechanism That Stopped Rewarding
 
-Amazon's Pinnacle program offers top-performing delivery partners — the 8.5% of 2,620 operators who consistently achieve Tier 1 performance — a path to expand into a second station. It depends on one thing: identifying eligible partners.
+Amazon's Pinnacle program offers top-performing delivery partners — the 8.5% of 2,620 operators who consistently achieve Tier 1 performance — a path to expand into a second station.
 
 In 2024, that identification process broke down. Launches dropped 55% (93 to 42). The process bypassed 20 longstanding eligible candidates, handing their slots to net-new partners instead — violating the program's own prioritization hierarchy. The reward mechanism wasn't rewarding the right people.
 
 ### Seven Root Causes Behind a 55% Decline
 
-The selection program ran on a 55+MB Excel file pairing partners with stations within a 50-mile radius. I diagnosed seven failures:
+The selection program ran on a 55+MB Excel file pairing partners with stations within a 50-mile radius.
 
 - **Tooling collapse** — the 55+MB Excel file with index-match calculations across 24,000 rows crashed regularly, failing to pull all data. The primary identification tool was unreliable.
 - **Non-deterministic distance metric** — eligibility used commute times that varied with live traffic. The same route measured 49 miles one month and 52 the next. A partner could be eligible in October and ineligible in November.
@@ -41,19 +41,19 @@ Each failure compounded the others. Twenty eligible candidates were bypassed ent
 
 ## The Decision That Made Eligibility Deterministic
 
-The existing system used commute times to measure candidate proximity. The data was available, integrated, and familiar. Swapping it for a custom mathematical formula required additional development, introduced an unfamiliar metric, and required explaining and defending.
+The existing system used commute times to measure candidate proximity. The data was available, integrated, and familiar. Swapping it for a custom mathematical formula required additional development, introduced an unfamiliar metric, and demanded justification to stakeholders who trusted the existing system.
 
-The problem was that commute times aren't a fixed property of geography. They're a function of traffic — and traffic changes. A partner's eligibility shifted month to month on whatever highway congestion happened on one Tuesday.
+The problem was that commute times aren't a fixed property of geography — they're a function of traffic. A partner's eligibility shifted month to month based on traffic conditions the day someone ran the query.
 
-I chose the Haversine formula: a standard great-circle distance calculation using Earth's radius as a constant. The distance between two stations is now a fixed number. It doesn't change between measurement cycles. That's the only kind of metric that can support a program where eligibility must be deterministic.
+I chose the Haversine formula: a standard great-circle distance calculation using Earth's radius as a constant. The distance between two stations is now a fixed number. Only a fixed metric can support a program where eligibility must be deterministic.
 
-The 200-mile fallback was a second design choice with real stakes. A hard 50-mile cutoff would strand expansion sites in remote regions. The fallback extends the search only when no 50-mile match exists — preserving the primary threshold while ensuring no site gets orphaned.
+The 200-mile fallback was the second consequential design choice. A hard 50-mile cutoff would strand expansion sites in remote regions. The fallback extends the search only when no 50-mile match exists, preserving the primary threshold without stranding remote sites.
 
 ## What Changed
 
 ### 57.9% to 94.1%. Here's how the pipeline works.
 
-I designed and built a six-stage SQL pipeline on a data warehouse that replaced the Excel process entirely. Each stage addresses a specific diagnosed root cause:
+I designed and built a six-stage SQL pipeline on a data warehouse that replaced the Excel process entirely. Each stage addresses a specific root cause:
 
 1. **Lock snapshot dates** — quarterly configuration pins performance scores, eliminating the data lag that made eligible partners invisible mid-cycle.
 2. **Validate consecutive Tier 1** — checks sustained performance across two quarters, filtering single-quarter spikes.
@@ -66,15 +66,15 @@ The output — a ranked, pre-validated candidate list per expansion site — fee
 
 ### 20 candidates preserved. Prioritization tenets restored.
 
-The program's 5-lever sourcing hierarchy ranks expansion of existing high-performers at Rank 3. Net-new partners sit at Rank 5 — last resort. In 2024, twenty Rank 3 candidates were skipped; their slots went directly to Rank 5.
+The program's 5-lever sourcing hierarchy ranks expansion of existing high-performers at Rank 3. Net-new partners sit at Rank 5 — last resort. In 2024, the system skipped twenty Rank 3 candidates; their slots went directly to Rank 5.
 
-The pipeline enforces the hierarchy mechanically. Every open target checks the full eligible pool before triggering any fallback. The prioritization tenets no longer depend on whoever is running the tracker that week.
+The pipeline enforces the hierarchy mechanically. Every open target checks the full eligible pool before triggering any fallback. The prioritization tenets now hold regardless of who runs the tracker.
 
 ### What the pipeline enabled.
 
-A process that took hours collapsed to 10 minutes. The automation eliminated the bloated Excel file. Removing double-counted partners reduced the reported eligible pool from 155 to 105 (fluctuating monthly), giving capacity planning its first accurate numbers. The SQL infrastructure became the basis for a Salesforce migration that began in Q4 2024, and the reliable candidate pipeline enabled the Pinnacle team to expand from 3 to 10 members.
+A process that took hours collapsed to 10 minutes. The automation eliminated the Excel file. Removing double-counted partners reduced the reported eligible pool from 155 to 105, giving capacity planning its first accurate numbers. The SQL infrastructure became the basis for a Salesforce migration that began in Q4 2024, and the pipeline enabled the Pinnacle team to expand from 3 to 10 members.
 
-I created the script that enabled the workstream. Leadership included it by name in the program's official documentation — unusual for a PM deliverable in an engineering-adjacent domain.
+I created the script that enabled the workstream. Leadership named it in the program's official documentation — unusual for a PM deliverable.
 
 ## 57.9% to 94.1%: What the Numbers Show
 
@@ -111,21 +111,21 @@ I created the script that enabled the workstream. Leadership included it by name
 | 3 Pinnacle team members                                         | 10 Pinnacle team members              |
 | Hours per eligibility run                                       | 10 minutes per run                    |
 
-In 2024, the program missed 20 eligible candidates and delivered 42 launches where 93 were expected. The root cause wasn't strategy — it was a broken identification process.
+In 2024, the program missed 20 eligible candidates and delivered 42 launches where 93 were expected. The root cause was a broken identification process, not a flawed strategy.
 
-A SQL pipeline replaced a spreadsheet. Mathematical precision replaced traffic-dependent variability. The pipeline integrated vetting history directly, eliminating manual cross-referencing. Encoding the prioritization hierarchy removed dependence on whoever opened the file. The program now identifies the right candidates, in the right order, every time the query runs.
+A SQL pipeline replaced a spreadsheet. Mathematical precision replaced traffic-dependent variability. The pipeline integrated vetting history directly, eliminating manual cross-referencing. Encoding the prioritization hierarchy removed human discretion from candidate ranking. The program now identifies the right candidates, in the right order, every time the query runs.
 
 ### Post-automation: the program kept growing.
 
 By May 2025, the eligible pool had grown **43% year-over-year to 441 DSPs** — even after tightening Leadership & Engagement, Positive Environment, and Strategic Communicator qualification screens. 118 DSPs were actively in the program. The SQL pipeline migrated to an Asana workflow with automated candidate identification, heuristics-based allocation, and a quality-aligned vetting block. Acceptance held at **77%**, exits stayed at **zero year-to-date**, and blended Quality reached 66.7% (+270 bps month-over-month).
 
-The constraint shifted: only 37 Pinnacle opportunities opened in the trailing twelve months (−46% YoY), with 5 targets unfilled. The pipeline solved identification. The gap moved to the business side.
+The constraint shifted: only 37 Pinnacle opportunities opened in the trailing twelve months (−46% YoY), with 5 targets unfilled. The pipeline solved identification. The remaining gap was supply — too few expansion opportunities opening.
 
 ## Lessons Worth Stealing
 
-- **When a program is declining, diagnose whether it's strategy or infrastructure before changing strategy.** Pinnacle didn't need a new approach — it needed a working spreadsheet.
+- **When a program is declining, diagnose whether the failure is strategy or infrastructure before touching either.** Pinnacle didn't need a new approach — it needed a working spreadsheet.
 - **An eligibility system built on variable inputs produces variable outputs.** If the same query gives different answers on different days, the query isn't the problem — the inputs are.
-- **If you can't rerun the process and get the same answer, you don't have a process.** Determinism isn't a nice-to-have — it's the minimum bar for any system that decides who gets an opportunity.
+- **If you can't rerun the process and get the same answer, you don't have a process.** Determinism isn't optional — it's the minimum bar for any system that decides who advances.
 
 > A reward mechanism is only as good as the infrastructure behind it. When top performers don't receive the opportunities they've earned, the program hasn't failed — the process has.
 

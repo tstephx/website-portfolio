@@ -5,6 +5,7 @@
 ## 2026-03
 
 ### Features
+- `6e38047` replace DSP decision section with three-path technology evaluation
 - `8403804` add Pinnacle post-automation growth data to case study and resume
 - `43fe031` design system audit — resume integration, a11y fixes, visual hierarchy
 - `3c5697c` rebuild Contract Transfer and Pinnacle case studies from approved outlines
@@ -19,6 +20,7 @@
 - `2d33f93` add Playwright testing infrastructure + changelog automation
 
 ### Bug Fixes
+- `95cf584` enrich case studies from source documents and fix meta consistency
 - `833f07c` correct Pinnacle team expansion to 3→10 across all references
 - `c43ddb2` correct Pinnacle team expansion metric in resume (3→10)
 - `845f607` align DSP case study to BRD source of truth and sync resume

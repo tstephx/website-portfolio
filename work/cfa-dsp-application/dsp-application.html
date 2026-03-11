@@ -18,7 +18,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:image" content="https://taylorstephens.io/images/headshot.jpg" />
     <link rel="canonical" href="https://taylorstephens.io/work/cfa-dsp-application/" />
-    <meta name="theme-color" content="#1a3a6b" />
+    <meta name="theme-color" content="#3b4252" />
     <link rel="stylesheet" href="../../css/fonts.css" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <link rel="stylesheet" href="../../css/case-study.css" />
@@ -50,11 +50,11 @@
           <ul>
             <li>
               A delivery partner application unchanged since 2018 had a 74% abandonment rate, costing $2.1M+ annually in
-              lost candidate conversion.
+              lost conversion.
             </li>
             <li>
-              Applying to Chick-fil-A&rsquo;s franchise program as competitive intelligence revealed the fix: structured
-              inputs, not fewer questions. A 101-requirement redesign followed.
+              Applying to Chick-fil-A&rsquo;s franchise program revealed the fix: structured inputs, not fewer
+              questions. A 101-requirement redesign followed.
             </li>
             <li>
               An evidence chain&mdash;requirements specification, technology roadmap, annual operating plan
@@ -87,7 +87,7 @@
         <h2>The $2.1M+ Problem</h2>
         <p>
           The Delivery Service Partner (DSP) Acquisitions team needed to scale Amazon&rsquo;s partner network across 20
-          global markets. The application&mdash;unchanged since 2018&mdash;was broken in six compounding ways:
+          global markets. The application&mdash;unchanged since 2018&mdash;was broken in six ways:
         </p>
         <ul>
           <li>
@@ -96,15 +96,15 @@
           </li>
           <li>
             <strong>Poor candidate data quality</strong>&mdash;32 questions&mdash;including 5 long-form
-            essays&mdash;produced inconsistent responses across 25,830 records. Resume uploads contained valuable
-            experience data locked in unstructured PDFs that couldn&rsquo;t be parsed or scored. A one-way ANOVA across
-            six reviewers returned F&nbsp;=&nbsp;430.9 (p&nbsp;&lt;&nbsp;2e-16)&mdash;the application design, not
-            reviewer judgment, was driving score divergence.
+            essays&mdash;produced inconsistent responses across 25,830 records. Resume uploads contained experience data
+            locked in unstructured PDFs&mdash;unreadable by any scoring system. A one-way ANOVA across six reviewers
+            returned F&nbsp;=&nbsp;430.9 (p&nbsp;&lt;&nbsp;2e-16)&mdash;the application design, not reviewer judgment,
+            was the root cause.
           </li>
           <li>
             <strong>Wrong candidates getting through</strong>&mdash;62% rejection rate post-submission, but only 23% of
-            approved candidates showed program interest. Each candidate who reached the final interview cost $319 versus
-            $15 at application review. Filtering happened too late.
+            approved candidates showed program interest. At $319 per final interview versus $15 at application review,
+            the program filtered a full stage too late.
           </li>
           <li>
             <strong>Misrouted applicants</strong>&mdash;candidates searching for the DSP program landed on the Delivery
@@ -125,10 +125,10 @@
           </li>
         </ul>
         <p>
-          Of 2.9 million marketing page visitors in 2023, only 415 became program-inclined&mdash;a 0.014% end-to-end
-          conversion rate. Total annual vetting cost: $1.9M. $2.1M+ annually in lost candidate conversion entitlement.
-          The team projected a 33% recruiting cost increase for 2024. The constraint was the story: the work required
-          3.8 Software Development Engineers; the team had 0.25.
+          Of 2.9 million marketing page visitors in 2023, only 415 became program-inclined&mdash;a 0.014% conversion
+          rate. Total annual vetting cost: $1.9M. $2.1M+ annually in lost candidate conversion entitlement. The team
+          projected a 33% recruiting cost increase for 2024. The resource gap was the central problem: the work required
+          3.8 engineers; the team had 0.25.
         </p>
       </section>
 
@@ -137,10 +137,9 @@
         <p>
           I identified Chick-fil-A&rsquo;s franchise application as the benchmark: 40,000 applicants per year, ~0.2%
           acceptance rate, same model (individual operators running a branded business). Then I applied&mdash;October
-          17, 2023, using personal information. I documented every screen and cataloged every question by type and
-          completion time.
+          17, 2023. I documented every screen, cataloging each question by type and estimated completion time.
         </p>
-        <p>I then directed the entire Acquisitions team through the same process to build shared conviction.</p>
+        <p>I then directed the entire Acquisitions team through the same process.</p>
 
         <div class="comparison">
           <div class="comparison-before">
@@ -156,18 +155,15 @@
         </div>
 
         <p>
-          The ANOVA confirmed it: reviewer scores diverged at F&nbsp;=&nbsp;430.9 across 25,830 records&mdash;the
-          application design was the root cause. CFA collects <em>more</em> data in <em>less</em> time through better
-          input design. The fix wasn&rsquo;t fewer questions. It was better questions.
+          The ANOVA confirmed it: the design, not the reviewers, produced the inconsistent scores. CFA collects
+          <em>more</em> data in <em>less</em> time through better input design. The fix wasn&rsquo;t fewer questions. It
+          was better questions.
         </p>
       </section>
 
       <section class="cs-section" id="solution">
         <h2>From Benchmark to Engineering Roadmap</h2>
-        <p>
-          I owned strategy end-to-end&mdash;diagnosis, BRD, roadmap. Self-directed from initial diagnosis through the
-          annual operating plan escalation.
-        </p>
+        <p>I owned the work end-to-end: diagnosis, BRD, roadmap, and the annual operating plan escalation.</p>
         <p>
           Central constraint: the 2024 engineering allocation was <strong>0.25 engineers</strong>. The work required
           <strong>3.8</strong>.
@@ -186,10 +182,7 @@
         </ul>
 
         <h3>Evidence Chain That Moved Resources</h3>
-        <p>
-          Each document cited the same benchmark. By the time I requested 3.8 engineers, leadership had seen the
-          evidence three times:
-        </p>
+        <p>By the time I requested 3.8 engineers, leadership had seen the same evidence three times:</p>
         <ul>
           <li><strong>BRD</strong>&mdash;101 requirements across 8 epics, each traceable to a CFA benchmark finding</li>
           <li><strong>Global DSP Tech Vision 2025</strong>&mdash;executive narrative for senior leadership</li>
@@ -209,18 +202,16 @@
           migration.
         </div>
         <p>
-          Three business drivers forced a technology decision: the platform needed multi-program support for programs
-          that couldn&rsquo;t share workflows, form modifications took months when the team needed 2&ndash;3&nbsp;week
-          cycles, and each percentage point of completion rate improvement translated to thousands of additional
-          approved applications per year.
+          Three business drivers forced a technology decision: the platform needed multi-program support, form
+          modifications took months when the team needed 2&ndash;3&nbsp;week cycles, and every completion-rate point
+          represented thousands of additional approved applications.
         </p>
 
         <p>I evaluated three paths:</p>
         <ul>
           <li>
-            <strong>Third-party platform</strong>&mdash;full control over form strategy and UX through a
-            licensed solution, but required significant integration effort, vendor dependency, and ongoing licensing
-            costs.
+            <strong>Third-party platform</strong>&mdash;full control over form strategy and UX through a licensed
+            solution, but required significant integration effort, vendor dependency, and ongoing licensing costs.
           </li>
           <li>
             <strong>Salesforce with custom modules</strong>&mdash;robust multi-program infrastructure and faster
@@ -234,10 +225,9 @@
         </ul>
 
         <p>
-          I recommended the third path. The existing platform already integrated with every operational workflow the
-          team depended on. A migration would have introduced risk the program couldn&rsquo;t absorb while scaling
-          across 20 markets simultaneously. Extending what worked&mdash;and pairing it with the 101-requirement
-          redesign&mdash;was the fastest route to capturing the $2.1M+ entitlement.
+          I recommended the third path. The existing platform already integrated with every operational workflow. A
+          migration would have stalled a program already scaling across 20 markets. Extending what worked was the
+          fastest route to capturing the $2.1M+ entitlement.
         </p>
       </section>
 
@@ -327,7 +317,7 @@
         <p>
           9,419 additional approved applications per year (15,699 &rarr; 25,118). 365 more program-inclined candidates
           per year (421 &rarr; 786). The redesign removes 2,200+ hours from manual review annually. The team now updates
-          the application quarterly without an engineering ticket&mdash;across every program and market.
+          the application quarterly without an engineering ticket.
         </p>
       </section>
 
@@ -354,8 +344,8 @@
           </li>
           <li>
             <strong>Evaluate every path before committing.</strong>
-            Third-party, Salesforce, or extend what exists&mdash;each option had trade-offs. The right answer was
-            the one that matched the constraint: scale across 20 markets without introducing migration risk.
+            Third-party, Salesforce, or extend what exists&mdash;each option had trade-offs. The right answer was the
+            one that matched the constraint: scale across 20 markets without introducing migration risk.
           </li>
         </ul>
       </section>
