@@ -493,17 +493,17 @@ section {
   border-top: 1px solid var(--color-border-light);
 }
 
-/* Category-colored top borders */
+/* Category-colored top borders — decreasing weight signals reading order */
 .card:nth-child(1) {
   border-top: 3px solid var(--color-accent);
 }
 
 .card:nth-child(2) {
-  border-top: 3px solid rgba(151, 92, 79, 0.65);
+  border-top: 3px solid rgba(151, 92, 79, 0.5);
 }
 
 .card:nth-child(3) {
-  border-top: 3px solid rgba(151, 92, 79, 0.4);
+  border-top: 3px solid rgba(151, 92, 79, 0.2);
 }
 
 .card:last-child {

@@ -49,6 +49,7 @@
 - `9b142a4` clean up project structure and update CLAUDE.md
 
 ### Style
+- `22cc93d` scale hero h1 to 2x, remove Featured Projects h2, remove Skills section
 - `28e1fa5` bolder hero h1, contact section weight, mobile left-alignment
 - `25f8f13` update visual regression snapshots for batch 3 cleanup
 - `c7bfa50` token-align sticky nav, remove h2 underlines, clean card borders — batch 3
