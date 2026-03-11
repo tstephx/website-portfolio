@@ -48,11 +48,11 @@ window.addEventListener('DOMContentLoaded', () => {
   const css = getComputedStyle(document.documentElement);
   const token = (name, fallback) => css.getPropertyValue(name).trim() || fallback;
 
-  const accent = token('--color-accent', '#1a3a6b');
+  const accent = token('--color-accent', '#975c4f');
   const green = token('--color-success', '#16a34a');
   const red = token('--color-danger', '#dc2626');
-  const muted = token('--color-muted', '#6b6b6b');
-  const text = token('--color-text', '#3d3d3d');
+  const muted = token('--color-muted', '#736a62');
+  const text = token('--color-text', '#4a4a4a');
 
   const hexToRgba = (hex, a = 1) => {
     const h = hex.replace('#', '');
@@ -213,7 +213,7 @@ The portfolio succeeds when a hiring manager can name a specific metric after 30
 - Corporate/Enterprise (blue-gray monotony, stock photos, "synergy" language)
 - Over-designed Dribbble (glassmorphism, 3D elements, micro-animations everywhere)
 
-**Theme:** Light mode only (dark mode tokens prepped but not active). Navy accent (#1a3a6b) as the sole brand color — no gradients, no secondary hues. The palette is intentionally narrow: near-black, warm gray, navy, white.
+**Theme:** Light mode only (dark mode tokens prepped but not active). Rose-clay accent (#975c4f) as the sole brand color — no gradients, no secondary hues. The palette is intentionally narrow: slate (#3B4252), warm muted (#736a62), rose-clay, warm cream (#FAF8F5).
 
 ### Design Principles
 
@@ -225,4 +225,4 @@ The portfolio succeeds when a hiring manager can name a specific metric after 30
 
 ---
 
-_Last updated: 2026-03-10_
+_Last updated: 2026-03-11_

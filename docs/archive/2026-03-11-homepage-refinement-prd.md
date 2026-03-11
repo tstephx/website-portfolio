@@ -4,7 +4,7 @@
 
 _Created: 2026-03-11_
 _Source: `/critique` re-run after Slate + Rose-Clay + Cream palette ship (design-critique-prd.md, completed 2026-03-11)_
-_Status: Ready for implementation_
+_Status: Complete — all 12 tasks shipped, structural changes applied, pushed 2026-03-11_
 _Predecessor: `docs/active/design-critique-prd.md` (Complete)_
 
 ---

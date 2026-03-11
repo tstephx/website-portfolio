@@ -15,11 +15,11 @@ window.addEventListener('DOMContentLoaded', () => {
   const css = getComputedStyle(document.documentElement);
   const token = (name, fallback) => css.getPropertyValue(name).trim() || fallback;
 
-  const accent = token('--color-accent', '#1a3a6b');
+  const accent = token('--color-accent', '#975c4f');
   const green = token('--color-success', '#16a34a');
   const red = token('--color-danger', '#dc2626');
-  const muted = token('--color-muted', '#6b6b6b');
-  const text = token('--color-text', '#3d3d3d');
+  const muted = token('--color-muted', '#736a62');
+  const text = token('--color-text', '#4a4a4a');
 
   const hexToRgba = (hex, a = 1) => {
     const h = hex.replace('#', '');
@@ -55,11 +55,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
 | Variable | Token             | Default fallback |
 | -------- | ----------------- | ---------------- |
-| `accent` | `--color-accent`  | `#1a3a6b`        |
+| `accent` | `--color-accent`  | `#975c4f`        |
 | `green`  | `--color-success` | `#16a34a`        |
 | `red`    | `--color-danger`  | `#dc2626`        |
-| `muted`  | `--color-muted`   | `#6b6b6b`        |
-| `text`   | `--color-text`    | `#3d3d3d`        |
+| `muted`  | `--color-muted`   | `#736a62`        |
+| `text`   | `--color-text`    | `#4a4a4a`        |
 
 ---
 
