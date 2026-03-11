@@ -226,8 +226,9 @@ nav li:last-child a {
 }
 
 #hero h1 {
-  font-size: clamp(2.75rem, 2rem + 3vw, 4.5rem);
+  font-size: clamp(3.25rem, 2.5rem + 4vw, 6.5rem);
   letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 #hero::before {
@@ -331,7 +332,6 @@ section {
 #about,
 #projects,
 #personal-projects,
-#skills,
 #contact {
   max-width: var(--max-width);
   margin-left: auto;
@@ -348,8 +348,7 @@ section {
 }
 
 /* Alternating section backgrounds for visual rhythm */
-#about,
-#skills {
+#about {
   background-color: var(--color-bg-alt);
   border-top: 1px solid var(--color-border-light);
   border-bottom: 1px solid var(--color-border-light);
@@ -615,62 +614,6 @@ section {
   border-radius: var(--radius-sm);
 }
 
-/* ===== SKILL TAGS ===== */
-.skill-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 3rem;
-}
-
-.skill-tags span {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.04em;
-  color: var(--color-muted);
-  background: var(--color-bg-alt);
-  border: 1px solid var(--color-border-light);
-  padding: 0.25em 0.625em;
-  border-radius: var(--radius-sm);
-}
-
-/* ===== SKILLS GRID ===== */
-.skills-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
-  margin-bottom: 3rem;
-}
-
-.skill-category ul {
-  list-style: none;
-}
-
-.skill-category li {
-  padding: 0.4em 0;
-  font-size: 0.9375rem;
-  color: var(--color-text);
-  transition: color var(--transition);
-}
-
-/* hover styles scoped to desktop — see desktop media query */
-
-/* ===== EDUCATION ===== */
-.certifications {
-  padding-top: 2rem;
-  border-top: 1px solid var(--color-border);
-}
-
-.certifications ul {
-  list-style: none;
-}
-
-.certifications li {
-  padding: 0.4em 0;
-  font-size: 0.9375rem;
-  color: var(--color-text);
-}
-
 /* ===== CONTACT ===== */
 #contact {
   text-align: center;
@@ -808,10 +751,6 @@ footer {
     position: relative;
   }
 
-  .skills-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
   .contact-links {
     flex-direction: row;
     justify-content: center;
@@ -844,10 +783,6 @@ footer {
 
   nav ul {
     justify-content: flex-end;
-  }
-
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .project-card {
@@ -923,10 +858,6 @@ footer {
     transform: translateY(-2px);
     box-shadow: var(--shadow-hover);
     background-color: var(--color-bg);
-  }
-
-  .skill-category li:hover {
-    color: var(--color-heading);
   }
 
   .contact-links a:hover {
@@ -1058,10 +989,6 @@ h2 {
   .headshot {
     width: 80px;
     height: 80px;
-  }
-
-  .skills-grid {
-    grid-template-columns: repeat(4, 1fr);
   }
 
   #contact {
