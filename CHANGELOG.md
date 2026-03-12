@@ -24,6 +24,9 @@
 - `2d33f93` add Playwright testing infrastructure + changelog automation
 
 ### Bug Fixes
+- `5767fe5` exclude anonymization guides from public repo, redact company names in docs
+- `4a620cc` og:url meta tags, grammar, and anonymization polish on public case studies
+- `efa04c6` review findings — market count, grammar, dead test, anonymization guards
 - `95cf584` enrich case studies from source documents and fix meta consistency
 - `833f07c` correct Pinnacle team expansion to 3→10 across all references
 - `c43ddb2` correct Pinnacle team expansion metric in resume (3→10)
@@ -42,6 +45,8 @@
 - `d93e5d5` comparison-label audit + docs restructure
 
 ### Documentation
+- `a41a3e1` correct contrast audit false positives — all tokens pass WCAG AA
+- `0408b5f` add public case study review findings to design-review-todos
 - `c6734cc` update stale palette refs, archive completed PRDs
 - `0582baa` mark work card narrative review as complete — all stats verified
 - `da8542c` delete completed homepage refinement plan, update design review todos
