@@ -24,6 +24,9 @@
 - `2d33f93` add Playwright testing infrastructure + changelog automation
 
 ### Bug Fixes
+- `72f755d` mobile nav, stat legibility, table scroll indicator
+- `e6ce6fd` public CTA text consistency + add pull-quote to CT protected
+- `f4291e8` design review — 401/404 design system, project H2s, link chain, sticky nav
 - `11958d8` design review — CTA placement, touch targets, a11y, typography
 - `5767fe5` exclude anonymization guides from public repo, redact company names in docs
 - `4a620cc` og:url meta tags, grammar, and anonymization polish on public case studies
