@@ -5,6 +5,7 @@
 ## 2026-03
 
 ### Features
+- `f7ddd04` add two-tier portfolio with public anonymized case studies
 - `919594d` mobile stat preservation, resume link, personality line — batch 2
 - `608698a` hero split layout with ghost CTA — batch 1 of homepage refinement
 - `47e3ef0` batch 2 — case study polish, resume redesign, content sync tests
