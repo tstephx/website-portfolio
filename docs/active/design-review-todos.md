@@ -26,6 +26,51 @@ _Pages reviewed: all 6 work case studies, all 6 project pages, index.html_
 
 ---
 
+## PUBLIC CASE STUDY REVIEW (2026-03-11)
+
+_Sources: UX psychology audit, design effectiveness critique, a11y/perf audit, security audit_
+_Pages reviewed: partner-application-public, contract-transfer-public, pinnacle-public_
+
+### Blocking — Accessibility (contrast)
+
+- [ ] **Accent token fails AA for small text** — `#975c4f` on white/cream yields 3.65–3.78:1 (need 4.5). Affects: timeline-week, decision-card-label, lessons counters, code-annotation-lang. Fix: darken to ~`#7a4a3f` for small-text contexts, or scope overrides per component. Large-text accent (metric-number, stage-value) passes AA-large.
+- [ ] **Muted token fails AA on bg-alt** — `#736a62` on `#f0ede8` yields 4.21:1. Affects: tagline, table headers, comparison labels, lessons-section descriptions. Fix: darken to ~`#6a6059` or use `--color-text` for small text on alt backgrounds.
+- [ ] **Light token fails AA on cream** — `#6b6b6b` on `#faf8f5` yields 4.14:1. Affects: footer copyright, metric-subtitle. Fix: consolidate with `--color-muted` or darken.
+
+### High Priority — Structure & UX
+
+- [ ] **Move `cs-unlock-cta` after Lessons** — Currently between Results and Lessons, creates false page-end signal. Readers may skip Lessons (the most differentiated section). Reframe prose from defensive ("anonymized metrics") to confident ("You've seen the framework. Request the full case study."). Add dedicated CSS.
+- [ ] **CTA + back-nav touch targets** — `.cs-cta .cta-button` is ~34-38px tall (need 44px). `.back-nav a` is ~20-24px. Fix: `min-height: 44px` on both.
+- [ ] **CT emoji icons → CSS/SVG** — 📋📨🔍⚠ render inconsistently across OS. Replace with simple CSS shapes using `--color-accent` or remove (title + description carry the component).
+
+### Medium Priority — Engagement & Polish
+
+- [ ] **Tagline: increase visual weight** — Currently italic + `--color-muted` makes recruiter-critical info the least prominent header element. Reduce italic, increase weight to 500-600, bring color up to `--color-text`.
+- [ ] **"Read next" text → use target h1 hook** — Instead of "Read next: Selection Automation", use "Read next: The reward system that stopped rewarding the right people →". Leverages Zeigarnik effect.
+- [ ] **Scroll-driven animation reduced-motion fix** — `animation-timeline: view()` ignores `animation-duration: 0.01ms` override. Add explicit `animation: none` in `@media (prefers-reduced-motion)` for `.bar-fill` and `.reading-progress`.
+- [ ] **CT missing pull-quote close** — Partner Application and Pinnacle have pull-quotes; CT goes straight from Lessons to CTA. Weakest recency close.
+
+### Low Priority — Semantic & Polish
+
+- [ ] **Scrollable tables: add `aria-label`** — `tabindex="0"` wrappers need `role="region"` + `aria-labelledby` pointing to `<caption>` id.
+- [ ] **`<blockquote>` → `<aside>` for pull quotes** — Content is author's own synthesis, not external citation. Screen readers announce as block quote.
+- [ ] **Pinnacle before/after table: add `scope="col"`** — Explicit column scoping for screen readers.
+- [ ] **Font preload hints** — Add `<link rel="preload">` for Cormorant Garamond 600 and Newsreader 400 woff2 files.
+- [ ] **`.scope-context` missing CSS rule** — Class used in partner-application but has no definition. Add rule or change to `.scope-meta`.
+- [ ] **Funnel chart scroll affordance** — No visual hint that table is scrollable on mobile. Add subtle shadow or "scroll →" indicator.
+- [ ] **`projected-note` needs caveat styling** — Currently just italic muted text; should be visually distinct as a disclaimer.
+- [ ] **Pinnacle 7-item root-cause list** — At Miller's Law ceiling. Consider splitting into 2 visual groups.
+
+### Deploy-Time (Cloudflare/nginx)
+
+- [ ] **Content Security Policy** — Add via Cloudflare Transform Rule: `default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://taylorstephens.io; form-action https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'`
+- [ ] **HSTS: add `includeSubDomains; preload`** — Update in Cloudflare SSL/TLS settings, submit to hstspreload.org.
+- [ ] **Referrer-Policy + Permissions-Policy headers** — Add via same Cloudflare Transform Rule.
+- [ ] **Auth boundary verification** — Run `curl -sI` tests against both nginx ports after deploy to confirm public paths return 200 without challenge.
+- [ ] **401.html honeypot inline style** — Move to CSS class before CSP deployment (inline `style` attribute blocked by strict CSP).
+
+---
+
 ## FUTURE RECOMMENDATIONS
 
 ### Typography & Spacing
