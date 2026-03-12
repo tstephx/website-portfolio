@@ -24,6 +24,7 @@
 - `2d33f93` add Playwright testing infrastructure + changelog automation
 
 ### Bug Fixes
+- `11958d8` design review — CTA placement, touch targets, a11y, typography
 - `5767fe5` exclude anonymization guides from public repo, redact company names in docs
 - `4a620cc` og:url meta tags, grammar, and anonymization polish on public case studies
 - `efa04c6` review findings — market count, grammar, dead test, anonymization guards
@@ -45,6 +46,7 @@
 - `d93e5d5` comparison-label audit + docs restructure
 
 ### Documentation
+- `8254fb5` update changelog
 - `a41a3e1` correct contrast audit false positives — all tokens pass WCAG AA
 - `0408b5f` add public case study review findings to design-review-todos
 - `c6734cc` update stale palette refs, archive completed PRDs

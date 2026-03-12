@@ -1276,12 +1276,7 @@
   .code-annotation-header {
     align-items: center;
   }
-}
 
-/* =========================================
-   DESKTOP (1024px+)
-   ========================================= */
-@media screen and (min-width: 1024px) {
   .back-nav {
     position: sticky;
     top: 0;
@@ -1291,7 +1286,12 @@
     z-index: 100;
     border-bottom: 1px solid rgba(0, 0, 0, 0.04);
   }
+}
 
+/* =========================================
+   DESKTOP (1024px+)
+   ========================================= */
+@media screen and (min-width: 1024px) {
   .cs-cta .cta-button:hover,
   .cs-unlock-cta .cta-button:hover {
     background-color: var(--color-heading);
@@ -1310,7 +1310,8 @@
    PRINT
    ========================================= */
 @media print {
-  .back-nav {
+  .back-nav,
+  .cs-unlock-cta {
     display: none;
   }
 

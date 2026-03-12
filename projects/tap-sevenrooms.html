@@ -49,7 +49,7 @@
       </header>
 
       <section class="cs-section" id="problem">
-        <h2>The Problem</h2>
+        <h2>120 Fields Locked Behind a Web UI</h2>
         <p>
           Restaurant operations data was locked inside the SevenRooms platform. Reservation history, client profiles,
           venue configurations, and charge records were only accessible through the web UI or manual exports. Analysts
@@ -63,7 +63,7 @@
       </section>
 
       <section class="cs-section" id="approach">
-        <h2>The Approach</h2>
+        <h2>From Manual Exports to Automated Streams</h2>
         <p>
           I built a Singer-compatible tap that maps SevenRooms API endpoints to standardized data streams, implements
           incremental sync with bookmark-based state management, and outputs Singer-format messages compatible with any
@@ -96,7 +96,7 @@
       </section>
 
       <section class="cs-section" id="technical">
-        <h2>Key Technical Decisions</h2>
+        <h2>Parent-Child Streams and Daily Batching</h2>
 
         <h3>Stream Architecture</h3>
         <p>
@@ -209,7 +209,7 @@
       </section>
 
       <section class="cs-section" id="results">
-        <h2>Results</h2>
+        <h2>4 Streams, Zero Manual Exports</h2>
 
         <div class="metrics-row">
           <div class="metric-card">
@@ -240,7 +240,7 @@
       </section>
 
       <section class="cs-section" id="lessons">
-        <h2>Lessons Learned</h2>
+        <h2>What Real-World APIs Teach About Schema Design</h2>
         <ul class="lessons-list">
           <li>
             Daily batching is underrated &mdash; chunking API calls into one-day windows makes the system resilient to
@@ -264,6 +264,7 @@
     </main>
 
     <footer>
+      <p class="footer-personality">Built by a PM who watches F1 strategy calls like most people watch Netflix.</p>
       <p>&copy; <span id="copy-year">2026</span> Taylor Stephens. All rights reserved.</p>
     </footer>
 

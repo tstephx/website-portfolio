@@ -1,0 +1,141 @@
+/* ===== 401 AUTH PAGES =====
+   Builds on styles.css tokens — auth gate and confirmation pages */
+
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-lg) var(--space-md);
+}
+
+.auth-container {
+  max-width: var(--max-width);
+  width: 100%;
+}
+
+.auth-container h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 1.25rem + 1vw, 1.75rem);
+  font-weight: 600;
+  color: var(--color-heading);
+  line-height: 1.3;
+  margin-bottom: 1.25rem;
+}
+
+.auth-container h2 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-heading);
+  margin-bottom: 0.75rem;
+}
+
+.auth-container p {
+  margin-bottom: var(--space-sm);
+}
+
+.auth-container .cta {
+  margin-top: var(--space-xs);
+  margin-bottom: 0;
+}
+
+.auth-divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: var(--space-lg) 0;
+}
+
+/* ===== FORM ===== */
+
+.auth-form {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 400px;
+}
+
+.auth-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="email"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.auth-form input[type="text"]::placeholder,
+.auth-form input[type="email"]::placeholder {
+  color: var(--color-muted);
+}
+
+.auth-form input[type="text"]:focus,
+.auth-form input[type="email"]:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-light);
+}
+
+.auth-form button[type="submit"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-surface);
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.auth-form button[type="submit"]:hover {
+  background-color: var(--color-accent-hover);
+}
+
+.auth-form button[type="submit"]:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ===== BACK LINK ===== */
+
+.auth-back-link {
+  display: inline-block;
+  margin-top: 2.5rem;
+  font-size: 0.925rem;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.auth-back-link:hover {
+  color: var(--color-accent);
+}
+
+/* ===== THANKS PAGE ===== */
+
+.auth-thanks {
+  text-align: center;
+}
+
+.auth-thanks h1 {
+  font-size: clamp(1.75rem, 1.5rem + 1vw, 2rem);
+}
