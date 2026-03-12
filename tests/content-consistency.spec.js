@@ -61,7 +61,7 @@ test.describe('DSP Application — consistency', () => {
   test('quick summary contains key metrics', async ({ page }) => {
     await page.goto(slug);
     const summary = await textOf(page.locator('.tldr-content'));
-    expect(summary).toContain('20');
+    expect(summary).toContain('3.8');
     expect(summary).toContain('101');
   });
 
@@ -244,5 +244,51 @@ test.describe('Pinnacle Automation — consistency', () => {
     expect(narrative).toContain('55+MB');
     expect(narrative).not.toContain('crashed mid-calculation');
     expect(narrative).not.toContain('one coordinator');
+  });
+});
+
+// ── Public Case Study Anonymization Guards ──────────────────────────────────
+
+test.describe('Public pages — anonymization regression', () => {
+  const PUBLIC_PAGES = [
+    '/work/partner-application-public/index.html',
+    '/work/contract-transfer-public/index.html',
+    '/work/pinnacle-public/index.html',
+  ];
+
+  for (const slug of PUBLIC_PAGES) {
+    test(`${slug} — zero dollar figures`, async ({ page }) => {
+      await page.goto(slug);
+      const body = await textOf(page.locator('main'));
+      expect(body).not.toMatch(/\$\d/);
+    });
+  }
+
+  test('partner-application-public — no Chick-fil-A or CFA', async ({ page }) => {
+    await page.goto('/work/partner-application-public/index.html');
+    const body = await textOf(page.locator('main'));
+    expect(body).not.toMatch(/Chick-fil-A/i);
+    expect(body).not.toMatch(/\bCFA\b/);
+  });
+
+  test('partner-application-public — no DSP abbreviation', async ({ page }) => {
+    await page.goto('/work/partner-application-public/index.html');
+    const body = await textOf(page.locator('main'));
+    expect(body).not.toMatch(/\bDSP\b/);
+  });
+
+  test('contract-transfer-public — no CT or DSP Acquisitions', async ({ page }) => {
+    await page.goto('/work/contract-transfer-public/index.html');
+    const body = await textOf(page.locator('main'));
+    expect(body).not.toMatch(/\bCT\b/);
+    expect(body).not.toContain('DSP Acquisitions');
+  });
+
+  test('pinnacle-public — no Pinnacle, Salesforce, or Asana', async ({ page }) => {
+    await page.goto('/work/pinnacle-public/index.html');
+    const body = await textOf(page.locator('main'));
+    expect(body).not.toMatch(/\bPinnacle\b/);
+    expect(body).not.toMatch(/\bSalesforce\b/);
+    expect(body).not.toMatch(/\bAsana\b/);
   });
 });
