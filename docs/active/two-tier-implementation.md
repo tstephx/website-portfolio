@@ -162,7 +162,7 @@ cp work/contract-transfer/contract-transfer.html work/contract-transfer-public/i
 
 Anonymization guide: `work/contract-transfer/anonymization-guide.md`
 
-**B. Partner Application** (highest surface — Chick-fil-A 6×, dollar figures 7×)
+**B. Partner Application** (highest surface — benchmark name 6×, dollar figures 7×)
 
 ```bash
 mkdir -p work/partner-application-public
@@ -171,7 +171,7 @@ cp work/cfa-dsp-application/dsp-application.html work/partner-application-public
 
 Anonymization guide: `work/cfa-dsp-application/anonymization-guide.md`
 
-**C. Selection Automation / Pinnacle** (lightest — mainly "Pinnacle" → "expansion program")
+**C. Selection Automation** (lightest — mainly program name → "expansion program")
 
 ```bash
 mkdir -p work/pinnacle-public

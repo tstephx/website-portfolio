@@ -18,6 +18,10 @@ work/**/Project_*.txt
 work/**/Project *
 work/**/archive/
 
+# Anonymization guides (contain real company names — must not be public)
+work/**/*anonymization*.md
+work/**/*-anonymization-guide.md
+
 # Planning & drafts
 PORTFOLIO_EXPANSION_PLAN.md
 TODO.md
