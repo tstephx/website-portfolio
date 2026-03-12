@@ -34,6 +34,7 @@ _Pages reviewed: partner-application-public, contract-transfer-public, pinnacle-
 ### Contrast — Verified Passing (audit false positives)
 
 Audit agent miscalculated luminance. Verified via Node WCAG calculator:
+
 - accent `#975c4f` on white: **5.30** | cream: **5.00** | bg-alt: **4.54** — all AA pass
 - muted `#736a62` on cream: **4.99** | bg-alt: **4.53** — all AA pass
 - light `#6b6b6b` on cream: **5.03** | white: **5.33** — all AA pass
@@ -41,27 +42,27 @@ Audit agent miscalculated luminance. Verified via Node WCAG calculator:
 
 ### High Priority — Structure & UX
 
-- [ ] **Move `cs-unlock-cta` after Lessons** — Currently between Results and Lessons, creates false page-end signal. Readers may skip Lessons (the most differentiated section). Reframe prose from defensive ("anonymized metrics") to confident ("You've seen the framework. Request the full case study."). Add dedicated CSS.
-- [ ] **CTA + back-nav touch targets** — `.cs-cta .cta-button` is ~34-38px tall (need 44px). `.back-nav a` is ~20-24px. Fix: `min-height: 44px` on both.
-- [ ] **CT emoji icons → CSS/SVG** — 📋📨🔍⚠ render inconsistently across OS. Replace with simple CSS shapes using `--color-accent` or remove (title + description carry the component).
+- [x] **Move `cs-unlock-cta` after Lessons** — Moved to after Lessons + pull-quote on all 3 public pages. Prose reframed from defensive to confident ("You've seen the framework..."). Dedicated `.cs-unlock-cta` CSS added with accent gradient background, centered layout, 44px touch target. (2026-03-12)
+- [x] **CTA + back-nav touch targets** — `.cs-cta .cta-button` changed to `inline-flex` with `min-height: 44px`. `.back-nav a` gets `inline-flex` + `min-height: 44px`. `.cs-unlock-cta .cta-button` also 44px. Hover/active states added for unlock CTA in 1024px breakpoint. (2026-03-12)
+- [x] **CT emoji icons → CSS/SVG** — Removed emoji icon divs from public CT icon-cards. Title + description carry the component without cross-OS rendering issues. Protected version retains existing emoji (separate scope). (2026-03-12)
 
 ### Medium Priority — Engagement & Polish
 
-- [ ] **Tagline: increase visual weight** — Currently italic + `--color-muted` makes recruiter-critical info the least prominent header element. Reduce italic, increase weight to 500-600, bring color up to `--color-text`.
-- [ ] **"Read next" text → use target h1 hook** — Instead of "Read next: Selection Automation", use "Read next: The reward system that stopped rewarding the right people →". Leverages Zeigarnik effect.
-- [ ] **Scroll-driven animation reduced-motion fix** — `animation-timeline: view()` ignores `animation-duration: 0.01ms` override. Add explicit `animation: none` in `@media (prefers-reduced-motion)` for `.bar-fill` and `.reading-progress`.
-- [ ] **CT missing pull-quote close** — Partner Application and Pinnacle have pull-quotes; CT goes straight from Lessons to CTA. Weakest recency close.
+- [x] **Tagline: increase visual weight** — Removed `font-style: italic`, added `font-weight: 500`, changed color from `--color-muted` to `--color-text`. Tagline now reads as recruiter-critical info, not decorative metadata. (2026-03-12)
+- [x] **"Read next" text → use target h1 hook** — Public chain now uses Zeigarnik hooks: "From 17 weeks to 2.3—without lowering the bar", "The reward system that stopped rewarding the right people", "74% never finished the application". (2026-03-12)
+- [x] **Scroll-driven animation reduced-motion fix** — Added `@media (prefers-reduced-motion: reduce)` with `animation: none` for `.bar-fill` and `.reading-progress`. (2026-03-12)
+- [x] **CT missing pull-quote close** — Added pull-quote to CT public: "The bar was never the problem. The infrastructure behind it was. Fix the system, and decisions happen in days—not months." (2026-03-12)
 
 ### Low Priority — Semantic & Polish
 
-- [ ] **Scrollable tables: add `aria-label`** — `tabindex="0"` wrappers need `role="region"` + `aria-labelledby` pointing to `<caption>` id.
-- [ ] **`<blockquote>` → `<aside>` for pull quotes** — Content is author's own synthesis, not external citation. Screen readers announce as block quote.
-- [ ] **Pinnacle before/after table: add `scope="col"`** — Explicit column scoping for screen readers.
-- [ ] **Font preload hints** — Add `<link rel="preload">` for Cormorant Garamond 600 and Newsreader 400 woff2 files.
-- [ ] **`.scope-context` missing CSS rule** — Class used in partner-application but has no definition. Add rule or change to `.scope-meta`.
-- [ ] **Funnel chart scroll affordance** — No visual hint that table is scrollable on mobile. Add subtle shadow or "scroll →" indicator.
-- [ ] **`projected-note` needs caveat styling** — Currently just italic muted text; should be visually distinct as a disclaimer.
-- [ ] **Pinnacle 7-item root-cause list** — At Miller's Law ceiling. Consider splitting into 2 visual groups.
+- [x] **Scrollable tables: add `aria-label`** — Added `role="region"` + `aria-labelledby` pointing to caption ids on all public page `.data-table-wrapper` elements. (2026-03-12)
+- [x] **`<blockquote>` → `<aside>` for pull quotes** — Changed to `<aside class="pull-quote">` on partner-application-public and pinnacle-public. CT pull-quote also uses `<aside>`. (2026-03-12)
+- [x] **Pinnacle before/after table: add `scope="col"`** — Added `scope="col"` to both `<th>` elements in pinnacle-public before/after table. (2026-03-12)
+- [x] **Font preload hints** — Added `<link rel="preload">` for Cormorant Garamond 600 and Newsreader 400 woff2 files to all 3 public case study `<head>` sections. (2026-03-12)
+- [x] **`.scope-context` missing CSS rule** — Added `.scope-context` rule to `case-study.css` with `font-size: var(--font-size-body-lg)`, italic, muted color. (2026-03-12)
+- [ ] **Funnel chart scroll affordance** — Deferred. Funnel uses flex column with `min-width: 200px` stages and percentage widths; does not overflow on mobile. Tables already have `overflow-x: auto` via `.data-table-wrapper`. Low-value add.
+- [x] **`projected-note` needs caveat styling** — Enhanced with `background-color: var(--color-bg-alt)`, `border-left: 2px solid var(--color-border)`, padding, and border-radius. Visually distinct from body text. (2026-03-12)
+- [ ] **Pinnacle 7-item root-cause list** — Accepted as-is. 7 items is at Miller's Law ceiling but each has bold lead-in for scannability. Splitting would break the diagnostic narrative flow.
 
 ### Deploy-Time (Cloudflare/nginx)
 

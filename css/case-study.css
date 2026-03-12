@@ -16,6 +16,9 @@
 }
 
 .back-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--color-muted);
   text-decoration: none;
   transition: color var(--transition);
@@ -46,10 +49,10 @@
 
 .cs-tagline {
   font-family: var(--font-serif);
-  font-style: italic;
+  font-weight: 500;
   font-size: 1.0625rem;
   line-height: 1.6;
-  color: var(--color-muted);
+  color: var(--color-text);
   margin-bottom: 1.25em;
   max-width: 60ch;
   text-wrap: balance;
@@ -810,6 +813,14 @@
   line-height: 1.6;
 }
 
+.scope-context {
+  font-size: var(--font-size-body-lg);
+  line-height: 1.7;
+  color: var(--color-muted);
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
 /* ===== KEY INSIGHT CALLOUT ===== */
 .insight-callout {
   margin: 1.5rem 0;
@@ -826,10 +837,14 @@
 
 /* ===== PROJECTED NOTE ===== */
 .projected-note {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--color-muted);
   font-style: italic;
+  padding: 0.75rem 1rem;
   margin-bottom: 1.5rem;
+  background-color: var(--color-bg-alt);
+  border-left: 2px solid var(--color-border);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
 }
 
 /* ===== STAT HIGHLIGHT ===== */
@@ -867,7 +882,10 @@
 }
 
 .cs-cta .cta-button {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
   padding: 0.75em 2em;
   background-color: var(--color-heading);
   color: var(--color-bg);
@@ -1162,6 +1180,50 @@
   text-decoration: underline;
 }
 
+/* ===== UNLOCK CTA — public case study access prompt ===== */
+.cs-unlock-cta {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  background: linear-gradient(135deg, var(--color-accent-light), transparent);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.cs-unlock-cta p {
+  max-width: 45ch;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.25rem;
+}
+
+.cs-unlock-cta .cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.75em 2em;
+  background-color: var(--color-heading);
+  color: var(--color-bg);
+  text-decoration: none;
+  border-radius: 3px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    background-color var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  .bar-fill,
+  .reading-progress {
+    animation: none;
+  }
+}
+
 /* =========================================
    NARROW (≤380px)
    ========================================= */
@@ -1230,13 +1292,15 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.04);
   }
 
-  .cs-cta .cta-button:hover {
+  .cs-cta .cta-button:hover,
+  .cs-unlock-cta .cta-button:hover {
     background-color: var(--color-heading);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
-  .cs-cta .cta-button:active {
+  .cs-cta .cta-button:active,
+  .cs-unlock-cta .cta-button:active {
     transform: translateY(0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
