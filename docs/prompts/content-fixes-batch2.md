@@ -11,16 +11,19 @@ These are mechanical find-and-replace operations. Do all 6 first, then move to P
 ### Fix 2.1: Pull Quote Tag Mismatch (S1)
 
 **Files:**
+
 - `work/cfa-dsp-application/dsp-application.html` (PA protected)
 - `work/pinnacle-program-selection/pinnacle-automation.html` (PIN protected)
 
 **In each file:**
+
 - Find: `<blockquote class="pull-quote">`
 - Replace: `<aside class="pull-quote">`
 - Find: `</blockquote>` (the matching closing tag for the pull quote)
 - Replace: `</aside>`
 
 **Verification:**
+
 ```bash
 grep -rn "blockquote.*pull-quote\|pull-quote.*blockquote" --include="*.html" .
 # Should return 0 results
@@ -35,30 +38,36 @@ grep -rn "aside.*pull-quote" --include="*.html" .
 **Step 1 — Add id to `<caption>` elements:**
 
 `work/cfa-dsp-application/dsp-application.html`:
+
 - Find: `<caption>` (in the data table)
 - Replace: `<caption id="metrics-caption">`
 
 `work/contract-transfer/contract-transfer.html`:
+
 - Find: `<caption>` (in the defect data table)
 - Replace: `<caption id="defect-caption">`
 
 `work/pinnacle-program-selection/pinnacle-automation.html`:
+
 - Find: `<caption>` (in the transformation table)
 - Replace: `<caption id="transform-caption">`
 
 **Step 2 — Add `role` and `aria-labelledby` to table wrappers:**
 
 In each file, find the `<div class="data-table-wrapper"` (or similar wrapper with `tabindex="0"`) and add:
+
 - `role="region"`
 - `aria-labelledby="[matching-caption-id]"`
 
 Example for PA protected:
+
 - Find: `<div class="data-table-wrapper" tabindex="0">`
 - Replace: `<div class="data-table-wrapper" tabindex="0" role="region" aria-labelledby="metrics-caption">`
 
 Repeat for CT (`defect-caption`) and PIN (`transform-caption`).
 
 **Verification:**
+
 ```bash
 grep -rn "aria-labelledby" --include="*.html" work/
 # Should show matches on all 6 case study pages (3 public already have it, 3 protected now added)
@@ -71,15 +80,18 @@ grep -rn 'caption id=' --include="*.html" work/
 **File 1: `work/contract-transfer-public/index.html`** — Add emoji icons to match protected version
 
 Find each icon card `<div class="icon-card">` and add the emoji div before the heading. The protected version has these emojis:
+
 - Card 1 (Documentation): 📋 (`&#x1F4CB;`)
 - Card 2 (Communication): 📨 (`&#x1F4E8;`)
 - Card 3 (Evaluation): 🔍 (`&#x1F50D;`)
 - Card 4 (Visibility): ⚠️ (`&#x26A0;&#xFE0F;`)
 
 For each icon card, add as first child:
+
 ```html
 <div class="icon-card-icon" aria-hidden="true">&#x1F4CB;</div>
 ```
+
 (Use the appropriate emoji code for each card.)
 
 **File 2: `work/contract-transfer/contract-transfer.html`** — Add `aria-hidden="true"` to existing emoji icons
@@ -89,6 +101,7 @@ For each icon card, add as first child:
 - Apply to all 4 icon cards
 
 **Verification:**
+
 ```bash
 grep -rn "icon-card-icon" --include="*.html" work/contract-transfer*/
 # Should show 4 matches per file (8 total), all with aria-hidden="true"
@@ -99,12 +112,14 @@ grep -rn "icon-card-icon" --include="*.html" work/contract-transfer*/
 **File: `work/pinnacle-program-selection/pinnacle-automation.html`**
 
 Find the transformation/before-after table's `<th>` elements in the `<thead>` row and add `scope="col"`:
+
 - Find: `<th>` (in the table header row)
 - Replace: `<th scope="col">`
 
 Only apply to `<thead>` `<th>` elements, not any row headers.
 
 **Verification:**
+
 ```bash
 grep -rn 'scope="col"' --include="*.html" work/pinnacle*/
 # Both public and protected should now have scope="col"
@@ -117,9 +132,22 @@ grep -rn 'scope="col"' --include="*.html" work/pinnacle*/
 Copy the font preload `<link>` tags from any public case study's `<head>` and add them to each protected page's `<head>`.
 
 The preload links to add (get exact URLs from the public version):
+
 ```html
-<link rel="preload" href="../../css/fonts/CormorantGaramond-[weight].woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../../css/fonts/Newsreader-[weight].woff2" as="font" type="font/woff2" crossorigin>
+<link
+  rel="preload"
+  href="../../css/fonts/CormorantGaramond-[weight].woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="../../css/fonts/Newsreader-[weight].woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
 ```
 
 **Important:** Check that the `href` paths are correct for the protected page's directory depth (both public and protected case studies are 2 levels deep, so `../../` should be the same).
@@ -127,6 +155,7 @@ The preload links to add (get exact URLs from the public version):
 **Step:** Read one public case study's `<head>` to get the exact preload links, then copy them into all 3 protected pages.
 
 **Verification:**
+
 ```bash
 grep -rn "rel=\"preload\"" --include="*.html" work/
 # Should show preload links on all 6 case study pages
@@ -141,9 +170,11 @@ grep -rn "rel=\"preload\"" --include="*.html" work/
 **Files:** `work/contract-transfer-public/index.html` AND `work/contract-transfer/contract-transfer.html`
 
 Find the quality tracking paragraph (around lines 376-383 on public). It currently reads something like:
+
 > "The quality tracking framework proved its value three months after one 2023 launch, when it flagged a deviation in compliance incidents—not a catastrophic failure, but a leading indicator... Four of five launches maintained quality..."
 
 **Replace with:**
+
 > "One 2023 launch deviated from quality standards within three months. The tracking framework caught it before it compounded — the only early warning the program had. Four of five launches maintained baseline quality; the fifth was caught and corrected within the quarter."
 
 Adjust the protected version to use "Breach of Contract" terminology (lowercase per Fix 2.23/R2) instead of "compliance incidents."
@@ -167,6 +198,7 @@ Optionally, add a `<caption>` note: "A single case may have multiple defects."
 Check for any other "reward program" on the public page and change to "expansion program" for consistency.
 
 **Verification:**
+
 ```bash
 grep -rn "reward program" --include="*.html" work/pinnacle-public/
 # Should return 0 results
@@ -177,9 +209,11 @@ grep -rn "reward program" --include="*.html" work/pinnacle-public/
 **File: `work/partner-application-public/index.html`**
 
 Find the TL;DR third bullet (~lines 69-71). Currently something like:
+
 > "An evidence chain — requirements specification, technology roadmap, annual planning escalation — secured 3.8 engineers..."
 
 **Replace with two sentences:**
+
 > "An evidence chain — requirements specification, technology roadmap, annual planning escalation — secured the case. Engineering allocation grew from 0.25 to 3.8."
 
 ### Fix 2.10: PA Comparison Card Labels (W5)
@@ -229,6 +263,7 @@ In the funnel paragraph, move the "2% end-to-end conversion rate" to the opening
 Find the `<aside class="insight-callout">` (or similar). Currently a timeline summary. Rewrite to frame why the numbers matter:
 
 **Example rewrite:**
+
 > "The application wasn't collecting bad data — it was asking the wrong kind of questions. By the time reviewers could evaluate a candidate, the program had already spent $319 per interview on people who would never qualify."
 
 (Adjust for public version — use anonymized figures: "20× more expensive" instead of "$319.")

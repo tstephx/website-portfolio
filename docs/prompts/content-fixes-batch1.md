@@ -42,36 +42,44 @@ $482K+ × 29 = ~$14M, not $13M. The "+" makes the gap worse.
 ### If Option A (fix to 174%):
 
 **File: `work/contract-transfer-public/index.html`**
+
 - Find: `274% year-over-year`
 - Replace: `174% year-over-year`
 
 **File: `work/contract-transfer/contract-transfer.html`**
+
 - Find: `274% year-over-year`
 - Replace: `174% year-over-year`
 
 **File: `index.html`** (homepage CT card)
+
 - Find: `274% YoY`
 - Replace: `174% YoY`
 
 **File: `work/partner-application-public/index.html`** (if referenced in PA scope-context)
+
 - Grep for `274` and fix any occurrence
 
 ### If Option B (reword to "grew to 274%"):
 
 **File: `work/contract-transfer-public/index.html`**
+
 - Find: `grown 274% year-over-year (23 to 63)` (or similar)
 - Replace: `reached 274% of the prior year's volume (23 to 63 requests)`
 
 **File: `work/contract-transfer/contract-transfer.html`**
+
 - Same find/replace as above
 
 **File: `index.html`** — no change needed ("274% YoY" on the card is ambiguous enough to work either way)
 
 ### Verification:
+
 ```bash
 cd ~/Dev/_Projects/website-portfolio
 grep -rn "274" --include="*.html" .
 ```
+
 Confirm all instances are consistent with the chosen option.
 
 ---
@@ -84,23 +92,28 @@ Confirm all instances are consistent with the chosen option.
 **File: `work/contract-transfer/contract-transfer.html`**
 
 ### If Option A (fix per-case to ~$448K):
+
 - Find: `$482K+`
 - Replace: `~$448K` (or whatever Taylor specifies)
 - Check all instances: grep shows 4 occurrences on CT protected
 
 ### If Option B (fix total to $14M+):
+
 - Find: `$13M` (all instances)
 - Replace: `$14M+`
 - Also update homepage if "$13M" appears on the CT card
 
 ### If Option C (add context):
+
 - Find the sentence containing both figures
 - Rewrite to: "29 cases at $482K+ each — $13M+ in total avoided exit costs" (changing "$13M" to "$13M+" adds the qualifier)
 
 ### Verification:
+
 ```bash
 grep -rn "482\|13M\|14M" --include="*.html" .
 ```
+
 Confirm all instances are internally consistent. Check resume.html too (Fix 1.5 depends on this).
 
 ---
@@ -113,16 +126,19 @@ Confirm all instances are internally consistent. Check resume.html too (Fix 1.5 
 **File: `work/cfa-dsp-application/dsp-application.html`**
 
 ### If Option A (fix count):
+
 - Find: `4,450`
 - Replace: `4,831` (or whatever Taylor specifies based on actual data)
 - Update any downstream calculations that reference 4,450
 
 ### If Option B (fix percentage):
+
 - Find: `62%` (in the rejection rate context, not other uses of 62%)
 - Replace: `65%`
 - Also update "two in three were rejected" if changing from 62% to 65% — "two in three" ≈ 67%, closer to 65% than 62%, so this phrasing may actually become more accurate
 
 ### Verification:
+
 ```bash
 grep -rn "4,450\|62%\|65%\|4,831" --include="*.html" work/cfa-dsp-application/
 ```
@@ -134,10 +150,12 @@ grep -rn "4,450\|62%\|65%\|4,831" --include="*.html" work/cfa-dsp-application/
 **No decision needed — execute directly.**
 
 **File: `work/contract-transfer-public/index.html`**
+
 - Find: `39.6% of routes recover` (or the exact phrasing containing "39.6%")
 - Replace: `fewer than 40% of routes recover`
 
 ### Verification:
+
 ```bash
 # Confirm no exact percentages leaked from anonymization guide
 grep -rn "39\.6" --include="*.html" work/contract-transfer-public/
@@ -165,6 +183,7 @@ grep -rn "13M" resume.html
 - If F2 changed the total to "$14M+": update both resume mentions to "$14M+"
 
 ### Verification:
+
 ```bash
 grep -rn "\$1[34]M" resume.html
 # All occurrences should be identical

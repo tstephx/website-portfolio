@@ -36,6 +36,7 @@ D3.8 (CT owned e2e): rephrase
 **Tech Stack:** HTML editing, grep verification, Playwright test suite (`npm test`)
 
 **Reference docs:**
+
 - `docs/active/audit-phase4-fix-plan.md` — master triage plan
 - `docs/prompts/content-fixes-batch1.md` — MUST FIX details
 - `docs/prompts/content-fixes-batch2.md` — SHOULD FIX details
@@ -60,6 +61,7 @@ git checkout -b fix/content-audit-fixes
 ```bash
 git status
 ```
+
 Expected: clean working tree
 
 ---
@@ -67,6 +69,7 @@ Expected: clean working tree
 ### Task 2: Pull quote tag fix (PA + PIN protected)
 
 **Files:**
+
 - Modify: `work/cfa-dsp-application/dsp-application.html:347`
 - Modify: `work/pinnacle-program-selection/pinnacle-automation.html:378`
 
@@ -75,6 +78,7 @@ Expected: clean working tree
 **Step 1: Fix PA protected**
 
 In `work/cfa-dsp-application/dsp-application.html`:
+
 - Find: `<blockquote class="pull-quote">`
 - Replace: `<aside class="pull-quote">`
 - Find the matching `</blockquote>` (closing tag for the pull quote section)
@@ -83,6 +87,7 @@ In `work/cfa-dsp-application/dsp-application.html`:
 **Step 2: Fix PIN protected**
 
 In `work/pinnacle-program-selection/pinnacle-automation.html`:
+
 - Same find/replace as Step 1
 
 **Step 3: Verify**
@@ -90,11 +95,13 @@ In `work/pinnacle-program-selection/pinnacle-automation.html`:
 ```bash
 grep -rn "blockquote.*pull-quote" --include="*.html" work/
 ```
+
 Expected: 0 results
 
 ```bash
 grep -rn "aside.*pull-quote" --include="*.html" work/ | wc -l
 ```
+
 Expected: 6 (one per case study page)
 
 ---
@@ -102,6 +109,7 @@ Expected: 6 (one per case study page)
 ### Task 3: Data table accessibility (3 protected pages)
 
 **Files:**
+
 - Modify: `work/cfa-dsp-application/dsp-application.html:264-266`
 - Modify: `work/contract-transfer/contract-transfer.html:258-260`
 - Modify: `work/pinnacle-program-selection/pinnacle-automation.html:277-281`
@@ -111,6 +119,7 @@ Expected: 6 (one per case study page)
 **Step 1: PA protected — add caption id + wrapper attributes**
 
 In `work/cfa-dsp-application/dsp-application.html`:
+
 - Find: `<div class="data-table-wrapper" tabindex="0">`
 - Replace: `<div class="data-table-wrapper" tabindex="0" role="region" aria-labelledby="metrics-caption">`
 - Find: `<caption>` (the one inside the data table, ~line 266)
@@ -119,6 +128,7 @@ In `work/cfa-dsp-application/dsp-application.html`:
 **Step 2: CT protected — add caption id + wrapper attributes**
 
 In `work/contract-transfer/contract-transfer.html`:
+
 - Find: `<div class="data-table-wrapper" tabindex="0">`
 - Replace: `<div class="data-table-wrapper" tabindex="0" role="region" aria-labelledby="defect-caption">`
 - Find: `<caption>` (~line 260)
@@ -127,6 +137,7 @@ In `work/contract-transfer/contract-transfer.html`:
 **Step 3: PIN protected — add caption id + wrapper attributes + th scope**
 
 In `work/pinnacle-program-selection/pinnacle-automation.html`:
+
 - Find: `<div class="data-table-wrapper" tabindex="0">`
 - Replace: `<div class="data-table-wrapper" tabindex="0" role="region" aria-labelledby="transform-caption">`
 - Find: `<caption>` (~line 279)
@@ -140,16 +151,19 @@ In `work/pinnacle-program-selection/pinnacle-automation.html`:
 ```bash
 grep -rn "aria-labelledby" --include="*.html" work/ | wc -l
 ```
+
 Expected: 6 (3 public + 3 protected)
 
 ```bash
 grep -rn 'caption id=' --include="*.html" work/ | wc -l
 ```
+
 Expected: 6
 
 ```bash
 grep -rn 'scope="col"' --include="*.html" work/pinnacle*/
 ```
+
 Expected: matches on both public and protected
 
 ---
@@ -159,6 +173,7 @@ Expected: matches on both public and protected
 > **Note:** CT public icon card parity (adding emojis to public version) is DEFERRED to Task 4a after Decision Gate 1. If D3.6 = cut, icon cards are removed entirely and parity is moot. This task only fixes the a11y issue on icons that already exist.
 
 **File:**
+
 - Modify: `work/contract-transfer/contract-transfer.html:106,115,123,131`
 
 **Fix:** X1 (emoji a11y)
@@ -166,6 +181,7 @@ Expected: matches on both public and protected
 **Step 1: Add aria-hidden to CT protected emojis**
 
 In `work/contract-transfer/contract-transfer.html`, for each of the 4 icon cards:
+
 - Find: `<div class="icon-card-icon">`
 - Replace: `<div class="icon-card-icon" aria-hidden="true">`
 
@@ -174,6 +190,7 @@ In `work/contract-transfer/contract-transfer.html`, for each of the 4 icon cards
 ```bash
 grep -rn "icon-card-icon" --include="*.html" work/contract-transfer/
 ```
+
 Expected: 4 results, all with `aria-hidden="true"`
 
 ---
@@ -181,6 +198,7 @@ Expected: 4 results, all with `aria-hidden="true"`
 ### Task 5: Font preloads for protected pages
 
 **Files:**
+
 - Modify: `work/cfa-dsp-application/dsp-application.html` (head section)
 - Modify: `work/contract-transfer/contract-transfer.html` (head section)
 - Modify: `work/pinnacle-program-selection/pinnacle-automation.html` (head section)
@@ -199,7 +217,13 @@ Read `work/contract-transfer-public/index.html` lines 23-30. The preload links a
   type="font/woff2"
   crossorigin
 />
-<link rel="preload" href="../../fonts/newsreader-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link
+  rel="preload"
+  href="../../fonts/newsreader-400-normal.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
 ```
 
 **Step 2: Add to each protected page**
@@ -213,6 +237,7 @@ Note: All protected pages are 2 levels deep (`work/slug/file.html`), so `../../f
 ```bash
 grep -rn 'rel="preload"' --include="*.html" work/
 ```
+
 Expected: matches on all 6 case study pages (3 public already had them, 3 protected now added)
 
 ---
@@ -224,6 +249,7 @@ Expected: matches on all 6 case study pages (3 public already had them, 3 protec
 ```bash
 git diff --stat
 ```
+
 Expected: 5 files changed (3 protected pages + pull quote fixes)
 
 **Step 2: Commit**
@@ -246,6 +272,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 ### Task 7: Terminology fixes — all files
 
 **Files:**
+
 - Modify: `work/contract-transfer-public/index.html` (SLA → target, defect table header)
 - Modify: `work/contract-transfer/contract-transfer.html` (defect table header, Breach of Contract case)
 - Modify: `work/pinnacle-public/index.html` (reward → expansion, trailing → past)
@@ -259,6 +286,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 **Step 1: CT public — "SLA" → "target" (4 instances, KEEP table caption)**
 
 In `work/contract-transfer-public/index.html`:
+
 - Line 94: `no SLAs` → `no targets`
 - Line 152: `7-week SLA` → `7-week target`
 - Line 178: `hit the SLA` → `hit the target`
@@ -272,12 +300,14 @@ Read the file first to confirm exact context for each.
 **Step 2: CT public + CT protected — defect table column header**
 
 In both CT files, find the defect distribution table's `<th>` that says "Cases":
+
 - Find: `<th>Cases</th>` (or similar, in the defect table thead)
 - Replace: `<th>Defect Instances</th>`
 
 **Step 3: PIN — "reward program" → "expansion program" (ALL files)**
 
 Grep across the entire project:
+
 ```bash
 grep -rn "reward program" --include="*.html" .
 ```
@@ -292,18 +322,21 @@ Change EVERY instance to "expansion program" — in PIN public, PIN protected, h
 **Step 5: PA protected — BRD expansion**
 
 In `work/cfa-dsp-application/dsp-application.html`:
+
 - Find the first occurrence of `BRD` (~line 160)
 - If not already expanded, change to: `business requirements document (BRD)`
 
 **Step 6: CT protected — "Breach of Contract" case**
 
 In `work/contract-transfer/contract-transfer.html`:
+
 - Find: `Breach of Contract` (in prose, ~lines 372-377)
 - Replace: `breach of contract`
 
 **Step 7: Resume — "network average"**
 
 In `resume.html`:
+
 - Find: `network average`
 - Replace: `program average`
 
@@ -401,6 +434,7 @@ Read the CT protected file's icon cards to confirm which emoji maps to which car
 ```bash
 grep -rn "icon-card-icon" --include="*.html" work/contract-transfer*/
 ```
+
 Expected: 8 results (4 per file), all with `aria-hidden="true"`
 
 **Step 3: Commit**
@@ -429,12 +463,14 @@ Read lines 60-75 (TL;DR), 118-135 (funnel paragraph), 146-157 (comparison box), 
 Find the third `<li>` in the TL;DR `<details>` section (~line 69-71). It contains a dense sentence about evidence chain → 3.8 engineers.
 
 Split into two sentences:
+
 - "An evidence chain — requirements specification, technology roadmap, annual planning escalation — secured the case."
 - "Engineering allocation grew from 0.25 to 3.8."
 
 **Step 3: Comparison labels — temporal anchor (W5)**
 
 Find the comparison box header (~lines 146-157):
+
 - Find: `Current Application` (label text)
 - Replace: `Original Application (2018)`
 
@@ -455,6 +491,7 @@ Find the `<aside class="insight-callout">` (or similar component). Currently rea
 **Step 6: Decision section — read-then-decide (G2)**
 
 Read the actual decision section HTML first. Assess whether it uses:
+
 - (a) Prose paragraphs → rewrite the introductory prose to lead with why the obvious choice was wrong
 - (b) Visual components (option cards with rejected/chosen labels) → only rewrite the framing prose, do NOT restructure the visual components
 - (c) A mix → adapt accordingly
@@ -496,6 +533,7 @@ Read both PA files' modified sections. The narrative arc should match even thoug
 ### Task 11: CT content rewrites — draft insight callout options
 
 **Files:**
+
 - `work/contract-transfer-public/index.html`
 - `work/contract-transfer/contract-transfer.html`
 
@@ -535,6 +573,7 @@ Verify: "2.3" should appear in H1, tagline, and meta description. "2.28" should 
 ```bash
 grep -n "2\.3\|2\.28" work/contract-transfer-public/index.html
 ```
+
 Confirm the pattern: rounded in headlines, precise in body.
 
 ---
@@ -558,6 +597,7 @@ Insert the same callout using the HTML structure matched from other callouts.
 ### Task 13: PIN content rewrites
 
 **Files:**
+
 - `work/pinnacle-public/index.html`
 - `work/pinnacle-program-selection/pinnacle-automation.html`
 
@@ -596,6 +636,7 @@ Apply to both public and protected.
 **Step 1: Tagline fix (K1)**
 
 Find all occurrences of "AI Infrastructure & Systems Design" in:
+
 - `<meta name="description">` (line ~8)
 - `<meta property="og:description">` (line ~15)
 - `<meta name="twitter:description">` (line ~25)
@@ -616,6 +657,7 @@ Add `<span class="metric-qualifier">projected</span>` (or similar small text) un
 ```bash
 grep -n "AI Infrastructure" index.html
 ```
+
 Expected: 0 results
 
 ---
@@ -694,11 +736,13 @@ Find the exact occurrence and replace "39.6% of routes recover" with "fewer than
 ```bash
 grep -rn "39\.6" --include="*.html" work/contract-transfer-public/
 ```
+
 Expected: 0 results
 
 ```bash
 grep -rn '\$[0-9]' --include="*.html" work/contract-transfer-public/ work/partner-application-public/ work/pinnacle-public/
 ```
+
 Expected: 0 (no dollar figures on public pages)
 
 ---
@@ -706,6 +750,7 @@ Expected: 0 (no dollar figures on public pages)
 ### Task 17: Batch 1 — math fixes (per Taylor's decisions)
 
 **Files (depend on decisions):**
+
 - `work/contract-transfer-public/index.html` (274% YoY)
 - `work/contract-transfer/contract-transfer.html` (274% YoY, $482K×29)
 - `index.html` (274% on homepage card)
@@ -715,6 +760,7 @@ Expected: 0 (no dollar figures on public pages)
 **Step 1: Apply F1 decision (274% YoY)**
 
 Per Taylor's decision:
+
 - **If "fix to 174%":** Find/replace `274%` → `174%` in CT public, CT protected, homepage, and PA public (if referenced in scope-context)
 - **If "reword to 274% of prior year":** Rewrite the sentence in CT public + protected. Homepage card "274% YoY" may work as-is.
 - **If "remove parenthetical":** Remove "(23 to 63)" from CT public + protected
@@ -722,19 +768,23 @@ Per Taylor's decision:
 **Step 2: Apply F2 decision ($482K × 29)**
 
 Per Taylor's decision, fix in CT protected only (public uses "six figures"):
+
 - Adjust whichever number Taylor specified
 
 **Step 3: Apply F3 decision (PA 62% rejection)**
 
 Per Taylor's decision, fix in PA protected only:
+
 - Adjust the percentage or the count
 
 **Step 4: Fix resume number drift (N1)**
 
 In `resume.html`, standardize "$13M" / "$13M+" to match the resolved F2 value:
+
 ```bash
 grep -n "13M" resume.html
 ```
+
 Make both occurrences consistent.
 
 **Step 5: Verify all math**
@@ -742,6 +792,7 @@ Make both occurrences consistent.
 ```bash
 grep -rn "274\|482\|13M\|14M\|39\.6\|4,450\|4,831\|62%\|65%" --include="*.html" .
 ```
+
 Confirm internal consistency across all pages.
 
 ---
@@ -797,6 +848,7 @@ Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
 ### Task 20: Batch 4 — polish fixes
 
 **Files:**
+
 - `work/contract-transfer-public/index.html` (em-dash entity)
 - `index.html` (progress-bar.js position)
 
@@ -811,6 +863,7 @@ Find literal `—` characters in `work/contract-transfer-public/index.html` and 
 **Step 2: progress-bar.js load position (P1)**
 
 In `index.html`:
+
 - Find `<script src="js/progress-bar.js"></script>` near `</body>`
 - Move to `<head>` and add defer: `<script src="js/progress-bar.js" defer></script>`
 - Remove the original `<script>` from the body
@@ -912,11 +965,11 @@ git branch -d fix/content-audit-fixes
 
 ## Summary
 
-| Phase | Tasks | Estimated Time | Blockers |
-|-------|-------|---------------|----------|
-| A: Structural + Terminology | Tasks 1-8 | ~30 min | None |
-| Decision Gate 1 | — | Taylor's review | Batch 1 math + Batch 3 strategic |
-| B: Content Rewrites + Batch 1 | Tasks 4a, 9-18 | ~60-90 min | Decision Gate 1 |
-| B (QA): Content-writer review | Task 14a | ~15 min | Tasks 9-14 complete |
-| C: Remaining Batch 3 + 4 | Tasks 19-20 | ~30 min | Decision Gate 1 |
-| Final Verification | Tasks 21-22 | ~15 min | All above + manual browser review |
+| Phase                         | Tasks          | Estimated Time  | Blockers                          |
+| ----------------------------- | -------------- | --------------- | --------------------------------- |
+| A: Structural + Terminology   | Tasks 1-8      | ~30 min         | None                              |
+| Decision Gate 1               | —              | Taylor's review | Batch 1 math + Batch 3 strategic  |
+| B: Content Rewrites + Batch 1 | Tasks 4a, 9-18 | ~60-90 min      | Decision Gate 1                   |
+| B (QA): Content-writer review | Task 14a       | ~15 min         | Tasks 9-14 complete               |
+| C: Remaining Batch 3 + 4      | Tasks 19-20    | ~30 min         | Decision Gate 1                   |
+| Final Verification            | Tasks 21-22    | ~15 min         | All above + manual browser review |

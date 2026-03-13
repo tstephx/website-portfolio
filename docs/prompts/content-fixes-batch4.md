@@ -31,6 +31,7 @@ Homepage loads `progress-bar.js` at end of `<body>` while case studies load it i
 - Move to `<head>` and add `defer`: `<script src="js/progress-bar.js" defer></script>`
 
 **Verification:**
+
 ```bash
 grep -rn "progress-bar.js" --include="*.html" .
 # All should show defer in <head>
@@ -47,6 +48,7 @@ grep -rn "progress-bar.js" --include="*.html" .
 PA and CT have 4 "Lessons Worth Stealing"; PIN has 3. Consider adding a 4th lesson for structural parity.
 
 **Suggested approach:** Read the PIN case study's narrative for a transferable insight that isn't already covered by the 3 existing lessons. The strongest candidate from the case study text:
+
 - "If you can't get clean data from the source, sometimes the right move is to change the measurement methodology entirely" (the Haversine decision)
 - Or: "Automate the judgment out of the process — the spreadsheet failed because humans were making decisions that a formula should make"
 
@@ -63,6 +65,7 @@ PA and CT have 4 "Lessons Worth Stealing"; PIN has 3. Consider adding a 4th less
 The results paragraph packs 4 distinct metrics into one paragraph (9,000+ applications, double program-inclined, 2,000+ hours saved, quarterly updates without engineering). Each is impressive individually but they compete when packed together.
 
 **Suggested approach:** Convert to a secondary metrics row or styled bullet list:
+
 ```html
 <ul class="results-highlights">
   <li><strong>9,000+</strong> additional approved applications per year</li>
@@ -117,6 +120,7 @@ The PA card shows "7-Figure" / "Eng. investment secured" while other stats are p
 The Personal Projects intro line "Built to solve problems the job didn't come with" is slightly ambiguous.
 
 **Options:**
+
 - "Built to solve problems the job didn't cover"
 - "Built outside working hours to solve real problems"
 - "Side projects that solve real problems"
@@ -132,6 +136,7 @@ The Personal Projects intro line "Built to solve problems the job didn't come wi
 **Note:** If Batch 3 Decision 3.4 approves cutting or collapsing this section, this fix is superseded. Only apply if Decision 3.4 = KEEP.
 
 Break the dense paragraph into 2-3 shorter paragraphs:
+
 1. Growth metrics (43% YoY, 440+ partners)
 2. Process improvements (qualification screens, automated identification)
 3. Quality results (77% acceptance, zero exits, 2.7pp improvement)

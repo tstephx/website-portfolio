@@ -8,16 +8,16 @@ Skills, agents, and hooks configured for this project.
 
 ## Skills (`.claude/skills/`)
 
-| Skill                | Invocation  | Type         | What it does                                                                             |
-| -------------------- | ----------- | ------------ | ---------------------------------------------------------------------------------------- |
-| `/deploy`            | User-only   | Side effect  | Push to GitHub + pull on Whatbox + verify headers                                        |
-| `/new-case-study`    | User-only   | Scaffold     | Create evidence file, walk through 3-prompt pattern, integrate                           |
-| `/check`             | User-only   | Verification | Run full `npm run check` + `npm test`, report summary table                              |
-| `/update-snapshots`  | User-only   | Side effect  | Update Playwright visual baselines after confirming changes                              |
+| Skill                | Invocation  | Type         | What it does                                                                                                                                 |
+| -------------------- | ----------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/deploy`            | User-only   | Side effect  | Push to GitHub + pull on Whatbox + verify headers                                                                                            |
+| `/new-case-study`    | User-only   | Scaffold     | Create evidence file, walk through 3-prompt pattern, integrate                                                                               |
+| `/check`             | User-only   | Verification | Run full `npm run check` + `npm test`, report summary table                                                                                  |
+| `/update-snapshots`  | User-only   | Side effect  | Update Playwright visual baselines after confirming changes                                                                                  |
 | `/content-audit`     | User-only   | Analysis     | 5-phase audit pipeline: mechanical checks → standards → deep review → 4 agent reviews → triage plan. Args: `--phase [0\|1\|2\|3\|agents\|4]` |
-| `/design-tokens`     | Claude-only | Context      | Load CSS tokens + component reference before styling work                                |
-| `/link-check`        | User-only   | Verification | Run linkinator + link-chain Playwright test                                              |
-| `/revise-case-study` | User-only   | Analysis     | 8-criterion rubric scoring of case study drafts → approved outline for `/new-case-study` |
+| `/design-tokens`     | Claude-only | Context      | Load CSS tokens + component reference before styling work                                                                                    |
+| `/link-check`        | User-only   | Verification | Run linkinator + link-chain Playwright test                                                                                                  |
+| `/revise-case-study` | User-only   | Analysis     | 8-criterion rubric scoring of case study drafts → approved outline for `/new-case-study`                                                     |
 
 **User-only** = must be invoked with `/skill-name` — Claude won't trigger automatically.
 **Claude-only** = Claude invokes when relevant — not available as a slash command.

@@ -30,6 +30,7 @@ For each page, write:
 ### Step 2: Logic and flow
 
 Read the page section by section. For each transition between sections (H2 to H2), answer:
+
 - Does the reader know WHY they're now reading this section?
 - Could this section be understood without reading the one before it?
 - Is there a gap where the reader has to infer a connection that should be explicit?
@@ -39,6 +40,7 @@ Flag any section that could be cut without weakening the argument.
 ### Step 3: Clarity and voice
 
 Flag any sentence where:
+
 - A hiring manager at Stripe or Google would need Amazon context to understand it
 - The sentence requires re-reading to parse (usually a sign of too many clauses or find-and-replace artifacts)
 - The tone drifts defensive, apologetic, or self-congratulatory
@@ -48,6 +50,7 @@ Flag any sentence where:
 ### Step 4: Reader experience
 
 After finishing the page:
+
 - Can you name the ONE thing this person did and why it mattered?
 - Does any section repeat a point already made elsewhere on the page?
 - Is there anywhere the page loses momentum — where your attention drifted?
