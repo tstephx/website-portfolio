@@ -587,7 +587,6 @@ section {
   color: var(--color-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  opacity: 0.75;
 }
 
 .card-link {

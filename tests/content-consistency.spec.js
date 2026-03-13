@@ -115,7 +115,7 @@ test.describe('Contract Transfer — consistency', () => {
     const main = await textOf(page.locator('main'));
     expect(main).toContain('Contract Transfer');
     expect(main).toMatch(/86\.6%/);
-    expect(main).toContain('$13M');
+    expect(main).toContain('$14M');
   });
 
   test('tagline says "Exit Costs Avoided" not "Risk Mitigated"', async ({ page }) => {
