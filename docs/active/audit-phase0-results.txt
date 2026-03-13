@@ -1,0 +1,82 @@
+=== ANONYMIZATION LEAKS ===
+--- Dollar signs on public pages ---
+  CLEAN
+--- Chick-fil-A / CFA on public pages ---
+  CLEAN
+--- Pinnacle on public pages ---
+19:    <meta property="og:url" content="https://taylorstephens.io/work/pinnacle-public/" />
+21:    <link rel="canonical" href="https://taylorstephens.io/work/pinnacle-public/" />
+  (These are URLs — acceptable, not content leaks)
+--- DSP abbreviation on public pages (excluding href/canonical) ---
+  CLEAN
+--- Tier 1 on Pinnacle public ---
+  CLEAN
+--- Amazon on public pages (excluding href/canonical) ---
+index.html:8:  meta description — "Former Amazon PM"
+index.html:15: og:description — "Former Amazon PM"
+index.html:25: twitter:description — "Former Amazon PM"
+index.html:49: tagline — "Former Amazon PM"
+index.html:55: intro paragraph — "8 years building operational systems at Amazon, Uber, and high-growth startups"
+  (Amazon on homepage is INTENTIONAL — it's Taylor's employer, not a case study leak)
+
+=== SENTENCE LENGTH (>35 words) ===
+Note: Many "long sentences" are actually HTML artifacts (metric cards, multi-line layout elements parsed as single sentences). True prose sentences flagged below:
+
+  Homepage:
+    [43w] Header/tagline area (HTML artifact, not prose)
+    [48w] MCP Ecosystem card (HTML artifact, not prose)
+
+  PA Public:
+    [38w] Scope-meta bar (HTML artifact)
+    [43w] Current Application comparison table header area (HTML artifact)
+    [63w] Architecture Redesign comparison area — MAY contain long prose
+    [43w] "8 engineers, leadership had seen the same evidence three times" — INVESTIGATE
+    [40w] "Three business drivers forced a technology decision" — INVESTIGATE
+
+  CT Public:
+    [44w] H1 + scope-meta area (HTML artifact)
+    [69w] Six sequential gates description — INVESTIGATE
+    [70w] Defect category breakdown area — INVESTIGATE
+
+  PIN Public:
+    [52w] H1 + scope-meta area (HTML artifact)
+    [38w] Scope-meta bar (HTML artifact)
+    [38w] Metric cards (HTML artifact)
+    [69w] Metric cards area — INVESTIGATE
+    [38w] Metric cards (HTML artifact)
+
+  PA Protected:
+    Similar pattern to PA Public (expected — same content with real names)
+
+  CT Protected:
+    Similar pattern to CT Public (expected)
+
+  PIN Protected:
+    Similar pattern to PIN Public (expected)
+
+=== READ NEXT CTA CHECK ===
+  PA Public      : Contract Transfer Process Redesign
+  CT Public      : Selection Automation
+  PIN Public     : Partner Application Redesign
+  PA Protected   : Contract Transfer Process Redesign
+  CT Protected   : Selection Automation
+  PIN Protected  : Partner Application Redesign
+
+  Chain: PA → CT → PIN → PA (circular, both tiers match)
+
+=== NUMBER CONSISTENCY CHECK ===
+  Number     Homepage PA Pub   CT Pub   PIN Pub  PA Prot  CT Prot  PIN Prot Resume
+  86.6%             .        .        1        .        .        1        .        2
+  16.98             .        .        4        .        .        4        .        1
+  2.28              1        .        3        .        .        3        .        1
+  274%              2        1        1        .        1        1        .        .
+  57.9%             1        .        .        8        .        .        8        1
+  94.1%             1        .        .        8        .        .        8        1
+  0.25              .        6        .        .        6        .        .        .
+  3.8               1        8        .        .        8        .        .        .
+
+  Key observations:
+  - Public/Protected counts match for each case study pair (good)
+  - Numbers appear on relevant pages only (PA numbers on PA pages, CT on CT, etc.)
+  - Homepage references subset of metrics (expected — summary cards)
+  - Resume references CT metrics (86.6%, 16.98, 2.28) and PIN metrics (57.9%, 94.1%)

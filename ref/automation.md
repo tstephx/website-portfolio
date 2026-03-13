@@ -14,7 +14,7 @@ Skills, agents, and hooks configured for this project.
 | `/new-case-study`    | User-only   | Scaffold     | Create evidence file, walk through 3-prompt pattern, integrate                           |
 | `/check`             | User-only   | Verification | Run full `npm run check` + `npm test`, report summary table                              |
 | `/update-snapshots`  | User-only   | Side effect  | Update Playwright visual baselines after confirming changes                              |
-| `/content-audit`     | User-only   | Analysis     | Score pages on content-first principles (accurate, useful, clear, findable, purposeful)  |
+| `/content-audit`     | User-only   | Analysis     | 5-phase audit pipeline: mechanical checks → standards → deep review → 4 agent reviews → triage plan. Args: `--phase [0\|1\|2\|3\|agents\|4]` |
 | `/design-tokens`     | Claude-only | Context      | Load CSS tokens + component reference before styling work                                |
 | `/link-check`        | User-only   | Verification | Run linkinator + link-chain Playwright test                                              |
 | `/revise-case-study` | User-only   | Analysis     | 8-criterion rubric scoring of case study drafts → approved outline for `/new-case-study` |
