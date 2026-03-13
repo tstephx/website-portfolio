@@ -1,6 +1,6 @@
 # Case Study Components Reference
 
-**Source:** `css/case-study.css` | **Last verified:** 2026-03-06
+**Source:** `css/case-study.css` | **Last verified:** 2026-03-13
 
 Reusable visual components for case study pages (`work/*/` and `projects/`). All components use CSS design tokens — no hardcoded colors.
 
@@ -82,14 +82,14 @@ Add `.chart-label` div below funnel for axis label.
 ### Data Table
 
 ```html
-<div class="data-table-wrapper">
+<div class="data-table-wrapper" tabindex="0" role="region" aria-labelledby="my-caption">
   <table class="data-table">
-    <caption>
-      Optional caption
+    <caption id="my-caption">
+      Caption text (id must match aria-labelledby)
     </caption>
     <thead>
       <tr>
-        <th>Col</th>
+        <th scope="col">Col</th>
       </tr>
     </thead>
     <tbody>
@@ -103,6 +103,8 @@ Add `.chart-label` div below funnel for axis label.
   </table>
 </div>
 ```
+
+A11y requirements: `role="region"` + `aria-labelledby` on wrapper, `id` on `<caption>`, `scope="col"` on `<th>` elements.
 
 Cell modifiers: `.highlight`, `.old-value`, `.new-value`
 
@@ -245,21 +247,23 @@ Config in `js/mermaid-init.js`. Use `flowchart LR/TD` or `stateDiagram-v2`.
 ```html
 <div class="icon-cards">
   <div class="icon-card">
-    <div class="icon-card-icon">&#x26A0;</div>
+    <div class="icon-card-icon" aria-hidden="true">&#x26A0;</div>
     <div class="icon-card-title">Card Title</div>
     <div class="icon-card-desc">Short description of the problem or concept.</div>
   </div>
 </div>
 ```
 
+Emoji icons must have `aria-hidden="true"` — they are decorative, not informational.
+
 ### Pull Quote
 
-Styled closing thesis statement with accent border and large opening quote mark.
+Styled closing thesis statement with accent border and large opening quote mark. Uses `<aside>` (not `<blockquote>` or `<div>`).
 
 ```html
-<div class="pull-quote">
+<aside class="pull-quote">
   <p>The application wasn't collecting bad data — it was asking the wrong kind of questions.</p>
-</div>
+</aside>
 ```
 
 ### TL;DR Collapsible Summary
@@ -308,6 +312,18 @@ Secondary link below the main CTA button. Use inside `.cs-cta`.
   <p class="secondary-link"><a href="...">Get in touch</a></p>
 </section>
 ```
+
+---
+
+### Metric Qualifier
+
+Small label for projected/estimated stats on homepage cards. Defined in `css/styles.css`.
+
+```html
+<span class="stat-value">+130% <span class="metric-qualifier">projected</span></span>
+```
+
+Uses `--font-mono`, `--color-muted`, uppercase. No opacity — full color for WCAG AA contrast compliance.
 
 ---
 

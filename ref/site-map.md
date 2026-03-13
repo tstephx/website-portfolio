@@ -1,6 +1,6 @@
 # Site Map & Page Index
 
-**Last verified:** 2026-03-05
+**Last verified:** 2026-03-13
 
 ---
 
@@ -8,13 +8,13 @@
 
 `index.html` — 3 work cards (V2.1 narrative-led) + 3 personal project cards + skill tags
 
-### Work Cards (3) — link to public versions
+### Work Cards (3) — link to public versions, order matters
 
-| Title                              | Path (public)                                |
-| ---------------------------------- | -------------------------------------------- |
-| Partner Application Redesign       | `work/partner-application-public/index.html` |
-| Contract Transfer Process Redesign | `work/contract-transfer-public/index.html`   |
-| Selection Automation               | `work/pinnacle-public/index.html`            |
+| #   | Card Title                                                  | Path (public)                                |
+| --- | ----------------------------------------------------------- | -------------------------------------------- |
+| 1   | From 17 Weeks to 2: Redefining What the Program Was For    | `work/contract-transfer-public/index.html`   |
+| 2   | The Fix Wasn't Fewer Questions — It Was Better Ones         | `work/partner-application-public/index.html` |
+| 3   | Overlooking Elite for Good Enough                           | `work/pinnacle-public/index.html`            |
 
 ### Project Cards (3 shown on homepage)
 
@@ -36,11 +36,11 @@
 
 ## Public Case Studies (Tier 1 — no auth, indexed)
 
-| Title                              | Path                                         |
-| ---------------------------------- | -------------------------------------------- |
-| Partner Application Redesign       | `work/partner-application-public/index.html` |
-| Contract Transfer Process Redesign | `work/contract-transfer-public/index.html`   |
-| Selection Automation               | `work/pinnacle-public/index.html`            |
+| Title                                | Path                                         |
+| ------------------------------------ | -------------------------------------------- |
+| Partner Application Redesign         | `work/partner-application-public/index.html` |
+| Contract Transfer Process Redesign   | `work/contract-transfer-public/index.html`   |
+| Selection Automation (Pinnacle)      | `work/pinnacle-public/index.html`            |
 
 ## Protected Case Studies (Tier 2 — behind basic auth, noindex)
 
