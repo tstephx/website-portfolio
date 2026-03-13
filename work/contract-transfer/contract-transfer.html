@@ -19,6 +19,14 @@
     <meta property="og:image" content="https://taylorstephens.io/images/headshot.jpg" />
     <link rel="canonical" href="https://taylorstephens.io/work/contract-transfer/" />
     <meta name="theme-color" content="#3b4252" />
+    <link
+      rel="preload"
+      href="../../fonts/cormorant-garamond-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="../../fonts/newsreader-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../css/fonts.css" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <link rel="stylesheet" href="../../css/case-study.css" />
@@ -103,7 +111,7 @@
         <h3>Four Failures Contributing to Decision Paralysis</h3>
         <div class="icon-cards">
           <div class="icon-card">
-            <div class="icon-card-icon">&#x1F4CB;</div>
+            <div class="icon-card-icon" aria-hidden="true">&#x1F4CB;</div>
             <div class="icon-card-title">No one knew how it worked</div>
             <div class="icon-card-desc">
               Institutional knowledge was scattered across eight teams&mdash;field coaches, development managers,
@@ -112,7 +120,7 @@
             </div>
           </div>
           <div class="icon-card">
-            <div class="icon-card-icon">&#x1F4E8;</div>
+            <div class="icon-card-icon" aria-hidden="true">&#x1F4E8;</div>
             <div class="icon-card-title">Candidates and owners were left in silence</div>
             <div class="icon-card-desc">
               Only 4 standardized communications existed&mdash;all to candidates. Partner owners received nothing across
@@ -120,7 +128,7 @@
             </div>
           </div>
           <div class="icon-card">
-            <div class="icon-card-icon">&#x1F50D;</div>
+            <div class="icon-card-icon" aria-hidden="true">&#x1F50D;</div>
             <div class="icon-card-title">Vetting lacked scrutiny and standardization</div>
             <div class="icon-card-desc">
               No rubric backed the 89% rejection rate. Different reviewers caught disqualifying factors at different
@@ -128,7 +136,7 @@
             </div>
           </div>
           <div class="icon-card">
-            <div class="icon-card-icon">&#x26A0;</div>
+            <div class="icon-card-icon" aria-hidden="true">&#x26A0;</div>
             <div class="icon-card-title">Decisions took 3+ months on average</div>
             <div class="icon-card-desc">
               Without data to justify a decision either way, stakeholders deferred. Every stalled case risked becoming a
@@ -255,9 +263,9 @@
           anyone expected.
         </p>
 
-        <div class="data-table-wrapper" tabindex="0">
+        <div class="data-table-wrapper" tabindex="0" role="region" aria-labelledby="defect-caption">
           <table class="data-table">
-            <caption>
+            <caption id="defect-caption">
               Defect category breakdown: where SLA misses actually originated
             </caption>
             <thead>

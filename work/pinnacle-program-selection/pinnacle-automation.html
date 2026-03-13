@@ -19,6 +19,14 @@
     <meta property="og:image" content="https://taylorstephens.io/images/headshot.jpg" />
     <link rel="canonical" href="https://taylorstephens.io/work/pinnacle-program-selection/" />
     <meta name="theme-color" content="#3b4252" />
+    <link
+      rel="preload"
+      href="../../fonts/cormorant-garamond-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="../../fonts/newsreader-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../css/fonts.css" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <link rel="stylesheet" href="../../css/case-study.css" />
@@ -274,15 +282,15 @@
           </div>
         </div>
 
-        <div class="data-table-wrapper" tabindex="0">
+        <div class="data-table-wrapper" tabindex="0" role="region" aria-labelledby="transform-caption">
           <table class="data-table">
-            <caption>
+            <caption id="transform-caption">
               System transformation: before and after automation
             </caption>
             <thead>
               <tr>
-                <th>Before</th>
-                <th>After</th>
+                <th scope="col">Before</th>
+                <th scope="col">After</th>
               </tr>
             </thead>
             <tbody>
@@ -375,12 +383,12 @@
         </ul>
       </section>
 
-      <blockquote class="pull-quote">
+      <aside class="pull-quote">
         <p>
           A reward mechanism is only as good as the infrastructure behind it. When top performers don&rsquo;t receive
           the opportunities they&rsquo;ve earned, the program hasn&rsquo;t failed&mdash;the process has.
         </p>
-      </blockquote>
+      </aside>
 
       <section class="cs-cta">
         <a href="../cfa-dsp-application/dsp-application.html" class="cta-button">

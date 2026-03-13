@@ -19,6 +19,14 @@
     <meta property="og:image" content="https://taylorstephens.io/images/headshot.jpg" />
     <link rel="canonical" href="https://taylorstephens.io/work/cfa-dsp-application/" />
     <meta name="theme-color" content="#3b4252" />
+    <link
+      rel="preload"
+      href="../../fonts/cormorant-garamond-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="../../fonts/newsreader-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="../../css/fonts.css" />
     <link rel="stylesheet" href="../../css/styles.css" />
     <link rel="stylesheet" href="../../css/case-study.css" />
@@ -261,9 +269,9 @@
           </div>
         </div>
 
-        <div class="data-table-wrapper" tabindex="0">
+        <div class="data-table-wrapper" tabindex="0" role="region" aria-labelledby="metrics-caption">
           <table class="data-table">
-            <caption>
+            <caption id="metrics-caption">
               Metrics reflect projected targets from the approved roadmap, not confirmed post-launch results.
             </caption>
             <thead>
@@ -344,12 +352,12 @@
         </ul>
       </section>
 
-      <blockquote class="pull-quote">
+      <aside class="pull-quote">
         <p>
           The application wasn&rsquo;t collecting bad data&mdash;it was asking the wrong kind of questions. The fix
           wasn&rsquo;t fewer questions. It was better ones.
         </p>
-      </blockquote>
+      </aside>
 
       <section class="cs-cta">
         <a href="../contract-transfer/contract-transfer.html" class="cta-button">
