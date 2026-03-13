@@ -7,7 +7,7 @@ Use the `ui-review` skill to audit the portfolio website, then the `ui-refactor`
 
 ## Context
 
-Project: `/Users/taylorstephens/Dev/_Lab/website-portfolio`
+Project: `/Users/taylorstephens/Dev/_Projects/website-portfolio`
 Primary audience: Technical recruiters and hiring managers scanning 50+ portfolios under time pressure.
 Success criterion: A visitor answers "Who is this person, what do they do, why should I care?" within 5 seconds of landing.
 

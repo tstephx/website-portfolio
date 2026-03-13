@@ -340,7 +340,7 @@ Expected: `portfolio:{SSHA}...` (hashed password)
 **Step 1: Push to GitHub**
 
 ```bash
-cd ~/\_Lab/website-portfolio
+cd ~/\_Projects/website-portfolio
 git push origin main
 ```
 

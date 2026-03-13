@@ -23,15 +23,15 @@
 **Step 1: Create directories**
 
 ```bash
-mkdir -p /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/decisions
-mkdir -p /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/active
-mkdir -p /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/archive
+mkdir -p /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/decisions
+mkdir -p /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/active
+mkdir -p /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/archive
 ```
 
 **Step 2: Verify**
 
 ```bash
-ls /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/
+ls /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/
 ```
 
 Expected: `active/  archive/  decisions/  plans/  review/`
@@ -45,27 +45,27 @@ Move open-work files to `docs/active/`.
 **Step 1: Move design-review-todos**
 
 ```bash
-mv /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/plans/2026-02-19-design-review-todos.md \
-   /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/active/design-review-todos.md
+mv /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/plans/2026-02-19-design-review-todos.md \
+   /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/active/design-review-todos.md
 ```
 
 **Step 2: Move portfolio expansion plan**
 
 ```bash
-mv /Users/taylorstephens/Dev/_Lab/website-portfolio/PORTFOLIO_EXPANSION_PLAN.md \
-   /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/active/portfolio-expansion-plan.md
+mv /Users/taylorstephens/Dev/_Projects/website-portfolio/PORTFOLIO_EXPANSION_PLAN.md \
+   /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/active/portfolio-expansion-plan.md
 ```
 
 **Step 3: Delete TODO.md (fully complete)**
 
 ```bash
-rm /Users/taylorstephens/Dev/_Lab/website-portfolio/TODO.md
+rm /Users/taylorstephens/Dev/_Projects/website-portfolio/TODO.md
 ```
 
 **Step 4: Verify**
 
 ```bash
-ls /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/active/
+ls /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/active/
 ```
 
 Expected: `design-review-todos.md  portfolio-expansion-plan.md`
@@ -77,7 +77,7 @@ Expected: `design-review-todos.md  portfolio-expansion-plan.md`
 **Step 1: Move all executed implementation plans**
 
 ```bash
-cd /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/plans
+cd /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/plans
 mv 2026-02-12-css-design-system-implementation.md ../archive/
 mv 2026-02-14-sql-r-analytics-implementation.md ../archive/
 mv 2026-02-13-content-protection-implementation.md ../archive/
@@ -87,7 +87,7 @@ mv 2026-02-19-typography-overhaul-implementation.md ../archive/
 **Step 2: Verify**
 
 ```bash
-ls /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/archive/
+ls /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/archive/
 ```
 
 Expected: 4 implementation plan files.
@@ -137,14 +137,14 @@ updates.
 **Step 2: Move source file to archive**
 
 ```bash
-mv /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/plans/2026-02-12-css-design-system-upgrade.md \
-   /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/archive/
+mv /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/plans/2026-02-12-css-design-system-upgrade.md \
+   /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/archive/
 ```
 
 **Step 3: Commit**
 
 ```bash
-cd /Users/taylorstephens/Dev/_Lab/website-portfolio
+cd /Users/taylorstephens/Dev/_Projects/website-portfolio
 git add docs/decisions/ADR-001-css-token-system.md docs/archive/2026-02-12-css-design-system-upgrade.md
 git commit -m "docs: add ADR-001 CSS token system, archive source design doc"
 ```
@@ -194,7 +194,7 @@ technical showcase rather than a full work case study.
 **Step 2: Move both source files to archive**
 
 ```bash
-cd /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/plans
+cd /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/plans
 mv 2026-02-12-sql-r-portfolio-integration-design.md ../archive/
 mv 2026-02-14-sql-r-analytics-design.md ../archive/
 ```
@@ -250,8 +250,8 @@ site on a VPS without requiring a login UI or session management.
 **Step 2: Move source file to archive**
 
 ```bash
-mv /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/plans/2026-02-13-content-protection-design.md \
-   /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/archive/
+mv /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/plans/2026-02-13-content-protection-design.md \
+   /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/archive/
 ```
 
 **Step 3: Commit**
@@ -306,8 +306,8 @@ positioning. System serif for body reduces font loading weight.
 **Step 2: Move source file to archive**
 
 ```bash
-mv /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/plans/2026-02-19-typography-overhaul-design.md \
-   /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/archive/
+mv /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/plans/2026-02-19-typography-overhaul-design.md \
+   /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/archive/
 ```
 
 **Step 3: Commit**
@@ -360,8 +360,8 @@ simplest CSS-only solution — no JS needed, degrades gracefully.
 **Step 2: Move source file to archive**
 
 ```bash
-mv /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/plans/2026-02-14-homepage-card-truncation-design.md \
-   /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/archive/
+mv /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/plans/2026-02-14-homepage-card-truncation-design.md \
+   /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/archive/
 ```
 
 **Step 3: Commit**
@@ -381,7 +381,7 @@ Two files need updating: global `~/.claude/CLAUDE.md` (session-start step) and p
 **Files:**
 
 - Modify: `/Users/taylorstephens/.claude/CLAUDE.md`
-- Modify: `/Users/taylorstephens/Dev/_Lab/website-portfolio/CLAUDE.md`
+- Modify: `/Users/taylorstephens/Dev/_Projects/website-portfolio/CLAUDE.md`
 
 **Step 1: Add staleness check to global CLAUDE.md session-start**
 
@@ -409,7 +409,7 @@ Add before `## Common Tasks`:
 **Step 3: Commit**
 
 ```bash
-cd /Users/taylorstephens/Dev/_Lab/website-portfolio
+cd /Users/taylorstephens/Dev/_Projects/website-portfolio
 git add CLAUDE.md
 git commit -m "docs: add Documentation section to CLAUDE.md"
 ```
@@ -421,7 +421,7 @@ git commit -m "docs: add Documentation section to CLAUDE.md"
 **Step 1: Check docs/plans/ for remaining files**
 
 ```bash
-ls /Users/taylorstephens/Dev/_Lab/website-portfolio/docs/plans/
+ls /Users/taylorstephens/Dev/_Projects/website-portfolio/docs/plans/
 ```
 
 Expected: only `2026-02-23-documentation-system-design.md` and `2026-02-23-documentation-system-implementation.md` (this plan and its design doc — keep both as a record of this migration).
@@ -429,7 +429,7 @@ Expected: only `2026-02-23-documentation-system-design.md` and `2026-02-23-docum
 **Step 2: Verify full docs structure**
 
 ```bash
-find /Users/taylorstephens/Dev/_Lab/website-portfolio/docs -name "*.md" | sort
+find /Users/taylorstephens/Dev/_Projects/website-portfolio/docs -name "*.md" | sort
 ```
 
 Expected output shape:
@@ -461,7 +461,7 @@ docs/review/portfolio-design-review.md
 **Step 3: Final commit**
 
 ```bash
-cd /Users/taylorstephens/Dev/_Lab/website-portfolio
+cd /Users/taylorstephens/Dev/_Projects/website-portfolio
 git add -A
 git commit -m "docs: complete documentation system migration — ADRs, active/, archive/"
 ```

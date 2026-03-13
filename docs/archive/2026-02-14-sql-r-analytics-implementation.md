@@ -19,7 +19,7 @@
 
 **Files:**
 
-- Modify: `/Users/taylorstephens/_Lab/website-portfolio/css/case-study.css:207` (insert after existing code block styles)
+- Modify: `/Users/taylorstephens/_Projects/website-portfolio/css/case-study.css:207` (insert after existing code block styles)
 
 **Step 1: Read the existing code block styles for context**
 
@@ -125,7 +125,7 @@ Inside the existing `@media print` block (around line 948), add:
 
 **Step 5: Verify in browser**
 
-Run: `open /Users/taylorstephens/_Lab/website-portfolio/work/pinnacle-program-selection/pinnacle-automation.html`
+Run: `open /Users/taylorstephens/_Projects/website-portfolio/work/pinnacle-program-selection/pinnacle-automation.html`
 Expected: Page loads normally with no visual changes (no HTML uses the new component yet)
 
 **Step 6: Commit**
@@ -141,7 +141,7 @@ git commit -m "feat: add .code-annotation CSS component for annotated code snipp
 
 **Files:**
 
-- Modify: `/Users/taylorstephens/_Lab/website-portfolio/work/pinnacle-program-selection/pinnacle-automation.html:201-203` (insert between `</section>` closing `#technical` and `<section>` opening `#results`)
+- Modify: `/Users/taylorstephens/_Projects/website-portfolio/work/pinnacle-program-selection/pinnacle-automation.html:201-203` (insert between `</section>` closing `#technical` and `<section>` opening `#results`)
 
 **Step 1: Read the insertion point for context**
 
@@ -234,7 +234,7 @@ Note: HTML entities required for `<>` inside code blocks: use `&lt;` for `<` and
 
 **Step 3: Verify in browser**
 
-Run: `open /Users/taylorstephens/_Lab/website-portfolio/work/pinnacle-program-selection/pinnacle-automation.html`
+Run: `open /Users/taylorstephens/_Projects/website-portfolio/work/pinnacle-program-selection/pinnacle-automation.html`
 
 Expected:
 
@@ -256,7 +256,7 @@ git commit -m "feat: add Under the Hood section with 3 SQL snippets to pinnacle-
 
 **Files:**
 
-- Modify: `/Users/taylorstephens/_Lab/website-portfolio/work/pinnacle-station/pinnacle-distance.html:232-234` (insert between `</section>` closing `#approach` and `<section>` opening `#technical`)
+- Modify: `/Users/taylorstephens/_Projects/website-portfolio/work/pinnacle-station/pinnacle-distance.html:232-234` (insert between `</section>` closing `#approach` and `<section>` opening `#technical`)
 
 **Step 1: Read the insertion point for context**
 
@@ -365,7 +365,7 @@ Note: R assignment operator `<-` must be escaped as `&lt;-` in HTML. The pipe `%
 
 **Step 3: Verify in browser**
 
-Run: `open /Users/taylorstephens/_Lab/website-portfolio/work/pinnacle-station/pinnacle-distance.html`
+Run: `open /Users/taylorstephens/_Projects/website-portfolio/work/pinnacle-station/pinnacle-distance.html`
 
 Expected:
 
@@ -395,8 +395,8 @@ git commit -m "feat: add Under the Hood section with 3 R snippets to pinnacle-di
 Run:
 
 ```bash
-open /Users/taylorstephens/_Lab/website-portfolio/work/pinnacle-program-selection/pinnacle-automation.html
-open /Users/taylorstephens/_Lab/website-portfolio/work/pinnacle-station/pinnacle-distance.html
+open /Users/taylorstephens/_Projects/website-portfolio/work/pinnacle-program-selection/pinnacle-automation.html
+open /Users/taylorstephens/_Projects/website-portfolio/work/pinnacle-station/pinnacle-distance.html
 ```
 
 **Step 2: Desktop QA checklist**

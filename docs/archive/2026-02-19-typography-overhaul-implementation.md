@@ -15,7 +15,7 @@
 
 **Files:**
 
-- Modify: `/Users/taylorstephens/_Lab/website-portfolio/index.html:20`
+- Modify: `/Users/taylorstephens/_Projects/website-portfolio/index.html:20`
 
 **Step 1: Read the current link for context**
 
@@ -61,7 +61,7 @@ git commit -m "feat: update Google Fonts link for typography overhaul (Cormorant
 
 **Files:**
 
-- Modify: `/Users/taylorstephens/_Lab/website-portfolio/css/styles.css:14-15`
+- Modify: `/Users/taylorstephens/_Projects/website-portfolio/css/styles.css:14-15`
 
 **Step 1: Read current font tokens**
 
@@ -107,7 +107,7 @@ git commit -m "feat: add font tokens for typography overhaul (--font-display, --
 
 **Files:**
 
-- Modify: `/Users/taylorstephens/_Lab/website-portfolio/css/styles.css:7-9`
+- Modify: `/Users/taylorstephens/_Projects/website-portfolio/css/styles.css:7-9`
 
 **Step 1: Read current accent tokens**
 
@@ -150,7 +150,7 @@ git commit -m "feat: update accent color tokens to ink navy (#1a3a6b)"
 
 **Files:**
 
-- Modify: `/Users/taylorstephens/_Lab/website-portfolio/css/styles.css:99-104`
+- Modify: `/Users/taylorstephens/_Projects/website-portfolio/css/styles.css:99-104`
 
 **Step 1: Read current h1 rule**
 
@@ -206,7 +206,7 @@ git commit -m "feat: override h1 to Cormorant Garamond display font with tuned l
 
 **Files:**
 
-- Modify: `/Users/taylorstephens/_Lab/website-portfolio/css/styles.css:123-131`
+- Modify: `/Users/taylorstephens/_Projects/website-portfolio/css/styles.css:123-131`
 
 **Step 1: Read current h3 rule**
 
@@ -265,7 +265,7 @@ git commit -m "feat: override h3 labels to DM Mono monospace for analytical prec
 
 **Files:**
 
-- Modify: `/Users/taylorstephens/_Lab/website-portfolio/css/styles.css:376-384`
+- Modify: `/Users/taylorstephens/_Projects/website-portfolio/css/styles.css:376-384`
 
 **Step 1: Read current .project-meta rule**
 
