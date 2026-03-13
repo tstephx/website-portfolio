@@ -581,6 +581,15 @@ section {
   margin-top: 0.15rem;
 }
 
+.metric-qualifier {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.75;
+}
+
 .card-link {
   font-family: var(--font-sans);
   font-size: 0.8125rem;
