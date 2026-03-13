@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Case study: Building a semantic search engine over 130+ technical books using MCP, SQLite FTS5, and sentence-transformers."
+      content="Case study: Building a semantic search engine over 250+ technical books using MCP, SQLite FTS5, and sentence-transformers."
     />
     <title>Book Library MCP Server | Taylor Stephens</title>
     <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
     <meta property="og:title" content="Book Library MCP Server | Taylor Stephens" />
     <meta
       property="og:description"
-      content="Turned 130+ technical books into an AI-searchable knowledge base with semantic search, full-text search, and 40+ natural language tools."
+      content="Turned 250+ technical books into an AI-searchable knowledge base with semantic search, full-text search, and 40+ natural language tools."
     />
     <meta property="og:type" content="article" />
     <meta property="og:image" content="https://taylorstephens.io/images/headshot.jpg" />
@@ -34,9 +34,9 @@
 
     <main id="main-content" class="case-study">
       <header class="cs-header">
-        <h1>From 130 Books to Instant Answers: Building a Semantic Search Engine with MCP</h1>
+        <h1>From 250 Books to Instant Answers: Building a Semantic Search Engine with MCP</h1>
         <p class="cs-tagline">
-          Turned a personal library of 130+ technical books into an AI-searchable knowledge base with dual search,
+          Turned a personal library of 250+ technical books into an AI-searchable knowledge base with dual search,
           learning tools, and natural language access.
         </p>
         <div class="tech-pills">
@@ -50,9 +50,9 @@
       </header>
 
       <section class="cs-section" id="problem">
-        <h2>130 Books, Mostly Half-Read, Entirely Unsearchable</h2>
+        <h2>250 Books, Mostly Half-Read, Entirely Unsearchable</h2>
         <p>
-          I had 130+ technical books sitting on disk &mdash; Docker, Python, Linux, AI/ML, career development, mental
+          I had 250+ technical books sitting on disk &mdash; Docker, Python, Linux, AI/ML, career development, mental
           models. Most were half-read or forgotten entirely. When starting a new project, I&rsquo;d spend hours
           re-reading chapters I&rsquo;d already studied, unable to connect ideas across books or remember which volume
           covered what.
@@ -82,7 +82,7 @@
           </div>
         </div>
 
-        <h3>Three-Step Plan</h3>
+        <h3>Parse, Index, Surface</h3>
         <ul>
           <li>
             <strong>Ingest and structure:</strong> Parse EPUB/PDF files into chapters with metadata, store in SQLite
@@ -219,19 +219,19 @@ results = semantic_search("container networking concepts", limit=5)
       </section>
 
       <section class="cs-section" id="results">
-        <h2>9.9 Million Words, Searchable in Under 5ms</h2>
+        <h2>24 Million Words, Searchable in Under 5ms</h2>
 
         <div class="metrics-row">
           <div class="metric-card">
-            <span class="metric-number">102</span>
+            <span class="metric-number">252</span>
             <span class="metric-label">Books Indexed</span>
           </div>
           <div class="metric-card">
-            <span class="metric-number">1,349</span>
+            <span class="metric-number">7,174</span>
             <span class="metric-label">Chapters Searchable</span>
           </div>
           <div class="metric-card">
-            <span class="metric-number">9.9M</span>
+            <span class="metric-number">24M</span>
             <span class="metric-label">Words Accessible</span>
           </div>
           <div class="metric-card">

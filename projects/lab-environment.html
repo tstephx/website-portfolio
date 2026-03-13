@@ -55,9 +55,10 @@
           find where. Each project starts from zero instead of building on what you&rsquo;ve already learned.
         </p>
         <p>
-          The philosophical issue: learning should compound. Every book read should make the next project easier. But
-          without a system to enforce that, the default behavior is to reach for whatever Google serves first &mdash;
-          which is usually not the best source you have available.
+          The cost: research time that produced shallow results. A curated library of 250+ books sat unused while
+          projects started from the first Google result instead. Learning should compound &mdash; every book read
+          should make the next project easier &mdash; but without a system to enforce that, the default was always the
+          most convenient source, not the best one.
         </p>
       </section>
 
@@ -88,7 +89,7 @@
           </div>
         </div>
 
-        <h3>Three-Step Plan</h3>
+        <h3>The Enforcement Mechanism</h3>
         <ul>
           <li>
             <strong>Define research-first workflow:</strong> Mandatory research phase before implementation. Every
@@ -112,7 +113,7 @@
         <h3>The &ldquo;Book Library First&rdquo; Rule</h3>
         <p>
           Codified in the environment&rsquo;s configuration (<code>CLAUDE.md</code>), this rule instructs Claude Code to
-          always search the curated book library before external sources. The library contains 130+ books across
+          always search the curated book library before external sources. The library contains 250+ books across
           technical infrastructure, programming, AI/ML, career development, mental models, and financial analysis
           &mdash; all high-quality, curated content.
         </p>
@@ -166,7 +167,7 @@
           aria-label="Knowledge integration stack: book library to projects via MCP"
         >
           <div class="mermaid">
-            flowchart BT BL["Book Library\n130+ Books"] --> MCP["MCP Server\n40+ Tools"] MCP --> CC["Claude Code\n(AI
+            flowchart BT BL["Book Library\n250+ Books"] --> MCP["MCP Server\n40+ Tools"] MCP --> CC["Claude Code\n(AI
             Assistant)"] CC --> LAB["_Lab Environment"] LAB --> P["Projects"] P -.->|"Learnings feed back"| BL
           </div>
         </div>
@@ -226,7 +227,7 @@ semantic_search("container communication patterns")
 
         <div class="metrics-row">
           <div class="metric-card">
-            <span class="metric-number">130+</span>
+            <span class="metric-number">250+</span>
             <span class="metric-label">Books Integrated</span>
           </div>
           <div class="metric-card">
