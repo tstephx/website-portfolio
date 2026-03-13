@@ -12,17 +12,17 @@ PA decision section: Read-then-decide — agent assesses HTML structure before c
 New CT callout: Agent drafts 2-3 candidate texts, Taylor picks one before insertion
 -->
 <!-- DECISIONS (filled in by Taylor):
-F1 (274% YoY): [A/B/C] — [pending]
-F2 ($482K×29): [A/B/C/D] — [pending]
-F3 (PA 62%): [A/B/C] — [pending]
-D3.1 (card order): [approve/reject] — [pending]
-D3.2 (projected label): [approve/reject] — [pending]
-D3.3 (CT quality para): [cut/rewrite] — [pending]
-D3.4 (PIN post-auto): [cut/collapse/keep] — [pending]
-D3.5 (PIN superlative): [trim/keep] — [pending]
-D3.6 (CT icon cards): [cut/keep] — [pending, blocks Task 4a]
-D3.7 (PA blocker): [collapse/keep] — [pending]
-D3.8 (CT owned e2e): [cut/rephrase/keep] — [pending]
+F1 (274% YoY): A — fix to "174% increase"
+F2 ($482K×29): A — $482K correct, fix total to $14M
+F3 (PA 62%): B — 4,450 correct, fix rejection to 65%
+D3.1 (card order): approve — CT leads homepage
+D3.2 (projected label): approve — add "projected" to PA metrics
+D3.3 (CT quality para): cut — remove entirely
+D3.4 (PIN post-auto): collapse — reduce to 2-3 sentences
+D3.5 (PIN superlative): trim — cut "only workstream" clause
+D3.6 (CT icon cards): keep — add to public for parity (Task 4a runs)
+D3.7 (PA blocker): collapse
+D3.8 (CT owned e2e): rephrase
 -->
 
 # Content Audit Fix Execution Plan
