@@ -2,7 +2,7 @@
 
 Skills, agents, and hooks configured for this project.
 
-**Last verified:** 2026-03-06
+**Last verified:** 2026-03-13
 
 ---
 

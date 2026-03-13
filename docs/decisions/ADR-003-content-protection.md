@@ -1,6 +1,6 @@
 # ADR-003: Content Protection (Basic Auth)
 
-**Date:** 2026-02-13 | **Status:** Implemented | **Supersedes:** —
+**Date:** 2026-02-13 | **Status:** Partially superseded by ADR-006 | **Supersedes:** —
 
 ## Decision
 
@@ -21,3 +21,4 @@ site on a VPS without requiring a login UI or session management.
 
 - nginx config (server-side, not in this repo)
 - No auth logic in HTML/CSS/JS — the site assumes authenticated access
+- See ADR-006 for the two-tier split (public pages no longer gated)

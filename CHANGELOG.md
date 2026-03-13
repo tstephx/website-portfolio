@@ -24,6 +24,13 @@
 - `2d33f93` add Playwright testing infrastructure + changelog automation
 
 ### Bug Fixes
+- `5a229cb` a11y contrast on .metric-qualifier, update CT test for $14M
+- `d77127f` math corrections, anonymization gap, number drift
+- `8678964` content rewrites — clarity, callouts, homepage, and QA fixes
+- `c622c48` terminology consistency across case studies and resume
+- `b40ef62` structural parity and a11y across case study pages
+- `5b68d35` content review — book counts, unique H3s, problem framing, funnel narrative
+- `c85e874` content review — card narrative, terminology, grammar, scope-context
 - `72f755d` mobile nav, stat legibility, table scroll indicator
 - `e6ce6fd` public CTA text consistency + add pull-quote to CT protected
 - `f4291e8` design review — 401/404 design system, project H2s, link chain, sticky nav
@@ -49,6 +56,8 @@
 - `d93e5d5` comparison-label audit + docs restructure
 
 ### Documentation
+- `dc624a6` record Decision Gate 1 answers in execution plan
+- `af52a68` content audit pipeline — 5-phase audit outputs and fix plan
 - `8254fb5` update changelog
 - `a41a3e1` correct contrast audit false positives — all tokens pass WCAG AA
 - `0408b5f` add public case study review findings to design-review-todos
@@ -63,6 +72,7 @@
 - `9b142a4` clean up project structure and update CLAUDE.md
 
 ### Style
+- `da8912d` apply Prettier formatting across all modified files
 - `681b130` widen card top-border opacity spread for clearer hierarchy
 - `22cc93d` scale hero h1 to 2x, remove Featured Projects h2, remove Skills section
 - `28e1fa5` bolder hero h1, contact section weight, mobile left-alignment
@@ -76,12 +86,14 @@
 - `cd7b634` apply 4 typography/design refinements to case-study components
 
 ### Chores / Maintenance
+- `c1fee94` remove project-level agents (moved to user-level) + Prettier formatting
 - `432af34` update changelog, gitignore design screenshots
 - `6c1b121` commit .claude tooling, update .gitignore
 - `507a691` remove _headers (nginx/Cloudflare stack — use CF Transform Rules instead)
 - `b64ade6` add ESLint, Prettier, stylelint; apply first-run formatting
 
 ### Other
+- `5fed379` refactor: strategic content changes + polish
 - `6b735ba` perf: add _headers caching/security rules; update changelog
 - `311ee4c` perf: performance improvements — fonts, images, chart CLS
 - `2886327` test: add mobile visual regression snapshots

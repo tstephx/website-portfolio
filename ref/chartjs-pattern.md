@@ -1,6 +1,6 @@
 # Chart.js Token-Driven Pattern
 
-**Source:** `CLAUDE.md` | **Last verified:** 2026-03-04
+**Source:** `CLAUDE.md` | **Last verified:** 2026-03-13
 
 All Chart.js charts must read colors from CSS custom properties via `getComputedStyle`. Never hardcode hex values in chart config.
 
